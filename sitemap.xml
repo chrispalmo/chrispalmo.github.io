@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>/categories/</loc>
+    <lastmod>2020-02-04T09:06:05+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2020-02-04T09:06:05+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/20200204-brisjs-meetup/</loc>
+    <lastmod>2020-02-04T09:06:05+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/event-reviews/</loc>
+    <lastmod>2020-02-04T09:06:05+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/frontend/</loc>
+    <lastmod>2020-02-04T09:06:05+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/javascript/</loc>
+    <lastmod>2020-02-04T09:06:05+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-02-04T09:06:05+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-02-04T09:06:05+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/entrepreneurship/</loc>
+    <lastmod>2020-01-31T12:31:33+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/20200131-collaborate-at-rcl/</loc>
+    <lastmod>2020-01-31T12:31:33+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/networking/</loc>
+    <lastmod>2020-01-31T12:31:33+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/about/</loc>
+  </url>
+  
+  <url>
+    <loc>/contact/</loc>
+  </url>
+  
+  <url>
+    <loc>/projects/</loc>
+  </url>
+  
+</urlset>

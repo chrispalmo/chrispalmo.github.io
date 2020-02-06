@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Chris Palmieri</title>
+    <link>/post/</link>
+    <description>Recent content in Posts on Chris Palmieri</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 04 Feb 2020 09:06:05 +1000</lastBuildDate>
+    
+	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Event Review: BrisJS - Introducing the TypeScript compiler, Atomic Design, Scrutinising the norm</title>
+      <link>/post/20200204-brisjs-meetup/</link>
+      <pubDate>Tue, 04 Feb 2020 09:06:05 +1000</pubDate>
+      
+      <guid>/post/20200204-brisjs-meetup/</guid>
+      <description>I attended the first BrisJS meetup of the year last night. This was my first time attending a &amp;ldquo;programming language-centric&amp;rdquo; meetup, and I was surprised to find around 100 people in attendance. All presenters and the majority of the crowd looked to be in their 20&#39;s, and while the presentations didn&#39;t have the level of polish that I would usually expect for an event of this size, I was still able to learn a few things, and more importantly, have some interesting conversations with other developers about projects they are working on and opportunities in the market.</description>
+    </item>
+    
+    <item>
+      <title>Event Review: Collaborate at RCL</title>
+      <link>/post/20200131-collaborate-at-rcl/</link>
+      <pubDate>Fri, 31 Jan 2020 12:31:33 +1000</pubDate>
+      
+      <guid>/post/20200131-collaborate-at-rcl/</guid>
+      <description>I attended &amp;ldquo;Collaborate at RCL&amp;rdquo; last night, an event hosted by River City Labs, described as follows:
+ What do you do when you have an amazing business idea, but you don&#39;t have the skills or resources to make it happen? Help others with their ideas, and they&#39;ll help you with yours!
+That&#39;s the idea behind Collaborate @ RCL. Meet some great people, learn some new skills, and work on some fantastic businesses - all at the same time.</description>
+    </item>
+    
+  </channel>
+</rss>

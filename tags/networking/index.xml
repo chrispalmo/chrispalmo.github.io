@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Networking on Chris Palmieri</title>
+    <link>/tags/networking/</link>
+    <description>Recent content in Networking on Chris Palmieri</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 31 Jan 2020 12:31:33 +1000</lastBuildDate>
+    
+	<atom:link href="/tags/networking/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Event Review: Collaborate at RCL</title>
+      <link>/post/20200131-collaborate-at-rcl/</link>
+      <pubDate>Fri, 31 Jan 2020 12:31:33 +1000</pubDate>
+      
+      <guid>/post/20200131-collaborate-at-rcl/</guid>
+      <description>I attended &amp;ldquo;Collaborate at RCL&amp;rdquo; last night, an event hosted by River City Labs, described as follows:
+ What do you do when you have an amazing business idea, but you don&#39;t have the skills or resources to make it happen? Help others with their ideas, and they&#39;ll help you with yours!
+That&#39;s the idea behind Collaborate @ RCL. Meet some great people, learn some new skills, and work on some fantastic businesses - all at the same time.</description>
+    </item>
+    
+  </channel>
+</rss>
