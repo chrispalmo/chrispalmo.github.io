@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>DevOps on Chris Palmieri</title>
-    <link>/tags/devops/</link>
-    <description>Recent content in DevOps on Chris Palmieri</description>
+    <title>Code Snippets on Chris Palmieri</title>
+    <link>/categories/code-snippets/</link>
+    <description>Recent content in Code Snippets on Chris Palmieri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 09 Feb 2020 20:31:46 +1000</lastBuildDate>
     
-	<atom:link href="/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/code-snippets/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,6 +19,16 @@
       <guid>/post/20200210-use-powershell-profile-like-a-pro/</guid>
       <description>If you do any software development in a Windows environment, you&#39;ll be spending enough time inside the Powershell (PS) console that it will be worth customizing the PS Profile to speed up your workflow.
 The PS Profile is essentially a .ps1 script that is run whenever a new PS console is opened. Without going too deep into how a sysadmin might use it, the average developer will probably want to use it to quickly do a few basic things:</description>
+    </item>
+    
+    <item>
+      <title>Search Google from the Powershell Console</title>
+      <link>/post/20200209-search-google-from-powershell/</link>
+      <pubDate>Sun, 09 Feb 2020 18:09:03 +1000</pubDate>
+      
+      <guid>/post/20200209-search-google-from-powershell/</guid>
+      <description>You may have seen people walking around with those awkwardEat; Sleep; Code; Repeat; brogrammer shirts. I don&#39;t like them - between the many other things that developing software requires, when I actually sit down to write code the workflow would more accurately be described as Code; Compile; Google Error; Repeat;.
+This short post explains how the below gg.ps1 Powershell script can increase your productivity by opening a chrome browser and executing a Google search straight from the Powershell console.</description>
     </item>
     
     <item>

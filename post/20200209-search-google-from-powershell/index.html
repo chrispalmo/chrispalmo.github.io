@@ -4,19 +4,20 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Entrepreneurship - Chris Palmieri</title>
+	<title>Search Google from the Powershell Console - Chris Palmieri</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
-	<meta property="og:title" content="Entrepreneurship" />
-<meta property="og:description" content="What I&#39;m working on, what I&#39;ve learned, and thinking out loud" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/tags/entrepreneurship/" />
-<meta property="og:updated_time" content="2020-01-31T12:31:33+10:00" />
+	<meta property="og:title" content="Search Google from the Powershell Console" />
+<meta property="og:description" content="You may have seen people walking around with those awkwardEat; Sleep; Code; Repeat; brogrammer shirts. I don&#39;t like them - between the many other things that developing software requires, when I actually sit down to write code the workflow would more accurately be described as Code; Compile; Google Error; Repeat;.
+This short post explains how the below gg.ps1 Powershell script can increase your productivity by opening a chrome browser and executing a Google search straight from the Powershell console." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/20200209-search-google-from-powershell/" />
+<meta property="article:published_time" content="2020-02-09T18:09:03+10:00" />
+<meta property="article:modified_time" content="2020-02-09T18:09:03+10:00" />
 
 	
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
-	<link rel="alternate" type="application/rss+xml" href="/tags/entrepreneurship/index.xml" title="Chris Palmieri">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
 	<link rel="stylesheet" href="/css/style.css">
 	
@@ -81,43 +82,103 @@
 		<div class="wrapper flex">
 			<div class="primary">
 			
-<main class="main list" role="main">
-	<header class="main__header">
-		<h1 class="main__title">Entrepreneurship</h1>
-	</header><article class="list__item post">
-	<header class="list__header">
-		<h3 class="list__title post__title ">
-			<a href="/post/20200131-collaborate-at-rcl/" rel="bookmark">
-			Event Review: Collaborate at RCL
-			</a>
-		</h3>
-		<div class="list__meta meta">
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Search Google from the Powershell Console</h1>
+			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2020-01-31T12:31:33">January 31, 2020</time>
+	<time class="meta__text" datetime="2020-02-09T18:09:03">February 09, 2020</time>
 </div>
 
 <div class="meta__item-categories meta__item">
 	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta__text"><a class="meta__link" href="/categories/event-reviews/" rel="category">Event Reviews</a>
+	<span class="meta__text"><a class="meta__link" href="/categories/automation/" rel="category">Automation</a>, <a class="meta__link" href="/categories/code-snippets/" rel="category">Code Snippets</a>
 	</span>
 </div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		I attended &ldquo;Collaborate at RCL&rdquo; last night, an event hosted by River City Labs, described as follows:
- What do you do when you have an amazing business idea, but you don't have the skills or resources to make it happen? Help others with their ideas, and they'll help you with yours!
-That's the idea behind Collaborate @ RCL. Meet some great people, learn some new skills, and work on some fantastic businesses - all at the same time.
-	</div>
-	<div class="list__footer clearfix">
-		<a class="list__footer-readmore" href="/post/20200131-collaborate-at-rcl/">Read more…</a>
-	</div>
-</article>
+		</header><div class="content post__content clearfix">
+			<p>You may have seen people walking around with those awkward<code>Eat; Sleep; Code; Repeat;</code> <a href="https://www.urbandictionary.com/define.php?term=brogrammer">brogrammer</a> shirts. I don't like them - between the many other things that developing software requires, when I actually sit down to write code the workflow would more accurately be described as <code>Code; Compile; Google Error; Repeat;</code>.</p>
+<p>This short post explains how the below <code>gg.ps1</code> Powershell script can increase your productivity by opening a chrome browser and executing a Google search straight from the Powershell console.</p>
+<p>If no arguments are passed to the function, it will Google whatever is in the clipboard, reducing keystrokes required to <code>ctrl+c</code>,<code>gg</code>,<code>enter</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Function name is used to call the function after importing this script</span>
+<span style="color:#66d9ef">Function</span> gg
+{
+<span style="color:#75715e">&lt;#</span><span style="color:#75715e"> </span><span style="color:#e6db74">.Synopsis</span><span style="color:#75715e">
+</span><span style="color:#75715e">    Open Chrome browser and search for the [-SearchString] argument</span><span style="color:#75715e">.</span><span style="color:#75715e"> 
+</span><span style="color:#75715e">    If [-SearchString] not provided, defaults to clipboard contents</span><span style="color:#75715e">.</span><span style="color:#75715e">
+</span><span style="color:#75715e">    Requires Google Chrome browser to be installed with &#34;chrome</span><span style="color:#75715e">.</span><span style="color:#75715e">exe&#34; in the system path</span><span style="color:#75715e">.</span><span style="color:#75715e">
+</span><span style="color:#75715e">    Example usage:	
+</span><span style="color:#75715e">        gg &#34;your search terms&#34;
+</span><span style="color:#75715e"></span><span style="color:#75715e">#&gt;</span>
+    <span style="color:#66d9ef">param</span> (
+        [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">mandatory</span>=$false, <span style="color:#66d9ef">Position</span>=0)] `
+        <span style="color:#66d9ef">[String]</span>$SearchString
+    )
+    <span style="color:#66d9ef">process</span> {
+        <span style="color:#66d9ef">if</span> (!$SearchString){
+            $SearchString = Get-Clipboard;
+        }
+        $URL = $SearchString <span style="color:#f92672">-replace</span> <span style="color:#e6db74">&#39; &#39;</span>,<span style="color:#e6db74">&#39;+&#39;</span>;
+        $URL = <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">https://www.google.com/search?q=</span><span style="color:#e6db74">&#34;</span> + $URL;
+        echo (<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Searching Google for &lt;</span><span style="color:#e6db74">&#34;</span> + $SearchString + <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&gt;...</span><span style="color:#e6db74">&#34;</span>);
+        start chrome.exe $URL;
+    }
+}
+</code></pre></div><p>To automatically import this function whenever Powershell is started, see my post &ldquo;<a href="/post/20200210-use-powershell-profile-like-a-pro/">Use Powershell Profiles Like a Pro</a>&quot;.</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/powershell/" rel="tag">Powershell</a></li>
+	</ul>
+</div>
+		</footer>
+	</article>
 </main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Chris avatar" src="/img/avatar.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About Chris</span>
+	</div>
+	<div class="authorbox__description">
+		Software Engineer from Brisbane, Australia. Previousy a mechanical engineer, consultant and project manager. Currently looking for interesting software projects to work on. Enjoys making music, working out, skateboarding and outdoor adventuring.
+	</div>
+</div>
+
+
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "palmo-xyz" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
 
 
 			</div>
-			
-<aside class="sidebar">
+			<aside class="sidebar">
 <div class="widget-recent widget">
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">

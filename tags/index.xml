@@ -6,24 +6,15 @@
     <description>Recent content in Tags on Chris Palmieri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 07 Feb 2020 15:12:54 +1000</lastBuildDate>
+    <lastBuildDate>Sun, 09 Feb 2020 20:31:46 +1000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Cloudflare</title>
-      <link>/tags/cloudflare/</link>
-      <pubDate>Fri, 07 Feb 2020 15:12:54 +1000</pubDate>
-      
-      <guid>/tags/cloudflare/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>DevOps</title>
       <link>/tags/devops/</link>
-      <pubDate>Fri, 07 Feb 2020 15:12:54 +1000</pubDate>
+      <pubDate>Sun, 09 Feb 2020 20:31:46 +1000</pubDate>
       
       <guid>/tags/devops/</guid>
       <description></description>
@@ -32,9 +23,18 @@
     <item>
       <title>Powershell</title>
       <link>/tags/powershell/</link>
-      <pubDate>Fri, 07 Feb 2020 15:12:54 +1000</pubDate>
+      <pubDate>Sun, 09 Feb 2020 20:31:46 +1000</pubDate>
       
       <guid>/tags/powershell/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cloudflare</title>
+      <link>/tags/cloudflare/</link>
+      <pubDate>Fri, 07 Feb 2020 15:12:54 +1000</pubDate>
+      
+      <guid>/tags/cloudflare/</guid>
       <description></description>
     </item>
     

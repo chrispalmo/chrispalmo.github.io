@@ -6,7 +6,7 @@
     <description>Recent content in Categories on Chris Palmieri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 07 Feb 2020 15:12:54 +1000</lastBuildDate>
+    <lastBuildDate>Sun, 09 Feb 2020 20:31:46 +1000</lastBuildDate>
     
 	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,18 @@
     <item>
       <title>Automation</title>
       <link>/categories/automation/</link>
-      <pubDate>Fri, 07 Feb 2020 15:12:54 +1000</pubDate>
+      <pubDate>Sun, 09 Feb 2020 20:31:46 +1000</pubDate>
       
       <guid>/categories/automation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Code Snippets</title>
+      <link>/categories/code-snippets/</link>
+      <pubDate>Sun, 09 Feb 2020 20:31:46 +1000</pubDate>
+      
+      <guid>/categories/code-snippets/</guid>
       <description></description>
     </item>
     

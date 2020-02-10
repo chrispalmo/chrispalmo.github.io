@@ -3,47 +3,62 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/categories/automation/</loc>
+    <lastmod>2020-02-09T20:31:46+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/</loc>
+    <lastmod>2020-02-09T20:31:46+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2020-02-09T20:31:46+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/code-snippets/</loc>
+    <lastmod>2020-02-09T20:31:46+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/devops/</loc>
+    <lastmod>2020-02-09T20:31:46+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-02-09T20:31:46+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/powershell/</loc>
+    <lastmod>2020-02-09T20:31:46+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-02-09T20:31:46+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/20200210-use-powershell-profile-like-a-pro/</loc>
+    <lastmod>2020-02-09T20:31:46+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/20200209-search-google-from-powershell/</loc>
+    <lastmod>2020-02-09T18:09:03+10:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/20200207-automating-deployment-hugo-github-pages/</loc>
     <lastmod>2020-02-07T15:12:54+10:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/automation/</loc>
-    <lastmod>2020-02-07T15:12:54+10:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/</loc>
-    <lastmod>2020-02-07T15:12:54+10:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2020-02-07T15:12:54+10:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/cloudflare/</loc>
-    <lastmod>2020-02-07T15:12:54+10:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/devops/</loc>
-    <lastmod>2020-02-07T15:12:54+10:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2020-02-07T15:12:54+10:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/powershell/</loc>
-    <lastmod>2020-02-07T15:12:54+10:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2020-02-07T15:12:54+10:00</lastmod>
   </url>
   
