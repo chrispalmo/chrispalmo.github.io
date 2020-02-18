@@ -6,10 +6,20 @@
     <description>Recent content in Code Snippets on Chris Palmieri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 09 Feb 2020 20:31:46 +1000</lastBuildDate>
+    <lastBuildDate>Mon, 17 Feb 2020 16:17:10 +1000</lastBuildDate>
     
 	<atom:link href="/categories/code-snippets/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Convert SQL Query to CSV File Using Python</title>
+      <link>/post/20200217-sql-to-csv-using-python/</link>
+      <pubDate>Mon, 17 Feb 2020 16:17:10 +1000</pubDate>
+      
+      <guid>/post/20200217-sql-to-csv-using-python/</guid>
+      <description>This function takes an SQLAlchemy query object as it&#39;s input (SQLAlchemy is a popular Python SQL toolkit and Object Relational Mapper). It&#39;s strength lies in not needing to hard-code column names, making it scaleable and suitable to &amp;ldquo;set-and-forget&amp;rdquo;.
+While developing enterprise software, every developer has surely have been faced with a client asking &amp;ldquo;how do I get the data out of the system?&amp;quot;, and after digging a bit deeper, it becomes clear they want the ability to save a snapshot of data as an Excel spreadsheet.</description>
+    </item>
     
     <item>
       <title>Use Powershell Profiles Like a Pro</title>
