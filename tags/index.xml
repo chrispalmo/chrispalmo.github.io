@@ -6,10 +6,28 @@
     <description>Recent content in Tags on Chris Palmieri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 Feb 2020 16:17:10 +1000</lastBuildDate>
+    <lastBuildDate>Tue, 18 Feb 2020 14:49:56 +1000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Frontend</title>
+      <link>/tags/frontend/</link>
+      <pubDate>Tue, 18 Feb 2020 14:49:56 +1000</pubDate>
+      
+      <guid>/tags/frontend/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>/tags/python/</link>
+      <pubDate>Tue, 18 Feb 2020 14:49:56 +1000</pubDate>
+      
+      <guid>/tags/python/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Backend</title>
@@ -17,15 +35,6 @@
       <pubDate>Mon, 17 Feb 2020 16:17:10 +1000</pubDate>
       
       <guid>/tags/backend/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Python</title>
-      <link>/tags/python/</link>
-      <pubDate>Mon, 17 Feb 2020 16:17:10 +1000</pubDate>
-      
-      <guid>/tags/python/</guid>
       <description></description>
     </item>
     
@@ -62,15 +71,6 @@
       <pubDate>Fri, 07 Feb 2020 15:12:54 +1000</pubDate>
       
       <guid>/tags/cloudflare/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Frontend</title>
-      <link>/tags/frontend/</link>
-      <pubDate>Tue, 04 Feb 2020 09:06:05 +1000</pubDate>
-      
-      <guid>/tags/frontend/</guid>
       <description></description>
     </item>
     

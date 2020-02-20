@@ -3,22 +3,47 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/tags/backend/</loc>
-    <lastmod>2020-02-17T16:17:10+10:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/categories/</loc>
-    <lastmod>2020-02-17T16:17:10+10:00</lastmod>
+    <lastmod>2020-02-18T14:49:56+10:00</lastmod>
   </url>
   
   <url>
     <loc>/</loc>
-    <lastmod>2020-02-17T16:17:10+10:00</lastmod>
+    <lastmod>2020-02-18T14:49:56+10:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/code-snippets/</loc>
+    <lastmod>2020-02-18T14:49:56+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/frontend/</loc>
+    <lastmod>2020-02-18T14:49:56+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/20200218-human-readable-time-intervals-python/</loc>
+    <lastmod>2020-02-18T14:49:56+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-02-18T14:49:56+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/python/</loc>
+    <lastmod>2020-02-18T14:49:56+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-02-18T14:49:56+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/backend/</loc>
     <lastmod>2020-02-17T16:17:10+10:00</lastmod>
   </url>
   
@@ -28,22 +53,7 @@
   </url>
   
   <url>
-    <loc>/post/</loc>
-    <lastmod>2020-02-17T16:17:10+10:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/python/</loc>
-    <lastmod>2020-02-17T16:17:10+10:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/sql/</loc>
-    <lastmod>2020-02-17T16:17:10+10:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2020-02-17T16:17:10+10:00</lastmod>
   </url>
   
@@ -89,11 +99,6 @@
   
   <url>
     <loc>/categories/event-reviews/</loc>
-    <lastmod>2020-02-04T09:06:05+10:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/frontend/</loc>
     <lastmod>2020-02-04T09:06:05+10:00</lastmod>
   </url>
   

@@ -6,10 +6,20 @@
     <description>Recent content in Python on Chris Palmieri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 Feb 2020 16:17:10 +1000</lastBuildDate>
+    <lastBuildDate>Tue, 18 Feb 2020 14:49:56 +1000</lastBuildDate>
     
 	<atom:link href="/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Human-Readable Time Intervals in Python</title>
+      <link>/post/20200218-human-readable-time-intervals-python/</link>
+      <pubDate>Tue, 18 Feb 2020 14:49:56 +1000</pubDate>
+      
+      <guid>/post/20200218-human-readable-time-intervals-python/</guid>
+      <description>Expressing time intervals in a format that is readable by humans is an old problem that every frontend developer will eventually face. While there are plenty of solutions available (this one is my favourite), I required a function that could provide different levels of granularity in it&#39;s &amp;ldquo;human-readable&amp;rdquo; description of time.
+Take, for example, a component that tells the user how long in aggregate they have been using a service. If they have been using it for a few hours, it would be appropriate to display ## hours, ## minutes, ignoring the seconds and milliseconds.</description>
+    </item>
     
     <item>
       <title>Convert SQL Query to CSV File in Python</title>
