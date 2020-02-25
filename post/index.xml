@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Chris Palmieri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Feb 2020 14:49:56 +1000</lastBuildDate>
+    <lastBuildDate>Sun, 23 Feb 2020 22:49:26 +1000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Build and Manage Selenium Web Scrapers With Auto-Scrape</title>
+      <link>/post/20200224-manage-selenium-web-scrapers-with-auto-scrape/</link>
+      <pubDate>Sun, 23 Feb 2020 22:49:26 +1000</pubDate>
+      
+      <guid>/post/20200224-manage-selenium-web-scrapers-with-auto-scrape/</guid>
+      <description>tl;dr Auto-scrape let&#39;s you focus on writing web scraping scripts, while it takes care of logging, data persistance, data presentation and data export, all through a modern browser-based UI. It can be run locally or deployed remotely.
+ Here are some screencasts of the UI. Get it on Github.  Why Scrape the Web? Building a Selenium web scraper is almost a rite of passage for programmers starting out. Watching a computer fill out forms, click links and collect data before your eyes is not only a highly satisfying and suitably non-abstract exercise for beginners to complete - browser automation forms a foundation for frontend testing, can be used for automated research, and of course can be used to replace those expensive and unreliable humans to accomplish a wide range of business-related tasks.</description>
+    </item>
     
     <item>
       <title>Human-Readable Time Intervals in Python</title>

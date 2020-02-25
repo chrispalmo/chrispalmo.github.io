@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>SQL on Chris Palmieri</title>
-    <link>/tags/sql/</link>
-    <description>Recent content in SQL on Chris Palmieri</description>
+    <title>Flask on Chris Palmieri</title>
+    <link>/tags/flask/</link>
+    <description>Recent content in Flask on Chris Palmieri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 23 Feb 2020 22:49:26 +1000</lastBuildDate>
     
-	<atom:link href="/tags/sql/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/flask/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,16 +19,6 @@
       <guid>/post/20200224-manage-selenium-web-scrapers-with-auto-scrape/</guid>
       <description>tl;dr Auto-scrape let&#39;s you focus on writing web scraping scripts, while it takes care of logging, data persistance, data presentation and data export, all through a modern browser-based UI. It can be run locally or deployed remotely.
  Here are some screencasts of the UI. Get it on Github.  Why Scrape the Web? Building a Selenium web scraper is almost a rite of passage for programmers starting out. Watching a computer fill out forms, click links and collect data before your eyes is not only a highly satisfying and suitably non-abstract exercise for beginners to complete - browser automation forms a foundation for frontend testing, can be used for automated research, and of course can be used to replace those expensive and unreliable humans to accomplish a wide range of business-related tasks.</description>
-    </item>
-    
-    <item>
-      <title>Convert SQL Query to CSV File in Python</title>
-      <link>/post/20200217-sql-to-csv-in-python/</link>
-      <pubDate>Mon, 17 Feb 2020 16:17:10 +1000</pubDate>
-      
-      <guid>/post/20200217-sql-to-csv-in-python/</guid>
-      <description>This function takes an SQLAlchemy query object as it&#39;s input (SQLAlchemy is a popular Python SQL toolkit and Object Relational Mapper). It&#39;s strength lies in not needing to hard-code column names, making it scaleable and suitable to &amp;ldquo;set-and-forget&amp;rdquo;.
-While developing enterprise software, every developer has surely have been faced with a client asking &amp;ldquo;how do I get the data out of the system?&amp;quot;, and after digging a bit deeper, it becomes clear they want the ability to save a snapshot of data as an Excel spreadsheet.</description>
     </item>
     
   </channel>

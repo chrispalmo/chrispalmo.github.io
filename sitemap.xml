@@ -3,13 +3,58 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/categories/automation/</loc>
+    <lastmod>2020-02-23T22:49:26+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/20200224-manage-selenium-web-scrapers-with-auto-scrape/</loc>
+    <lastmod>2020-02-23T22:49:26+10:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/categories/</loc>
-    <lastmod>2020-02-18T14:49:56+10:00</lastmod>
+    <lastmod>2020-02-23T22:49:26+10:00</lastmod>
   </url>
   
   <url>
     <loc>/</loc>
-    <lastmod>2020-02-18T14:49:56+10:00</lastmod>
+    <lastmod>2020-02-23T22:49:26+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/flask/</loc>
+    <lastmod>2020-02-23T22:49:26+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-02-23T22:49:26+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/projects/</loc>
+    <lastmod>2020-02-23T22:49:26+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/python/</loc>
+    <lastmod>2020-02-23T22:49:26+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/selenium/</loc>
+    <lastmod>2020-02-23T22:49:26+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/sql/</loc>
+    <lastmod>2020-02-23T22:49:26+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-02-23T22:49:26+10:00</lastmod>
   </url>
   
   <url>
@@ -28,21 +73,6 @@
   </url>
   
   <url>
-    <loc>/post/</loc>
-    <lastmod>2020-02-18T14:49:56+10:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/python/</loc>
-    <lastmod>2020-02-18T14:49:56+10:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2020-02-18T14:49:56+10:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/backend/</loc>
     <lastmod>2020-02-17T16:17:10+10:00</lastmod>
   </url>
@@ -50,16 +80,6 @@
   <url>
     <loc>/post/20200217-sql-to-csv-in-python/</loc>
     <lastmod>2020-02-17T16:17:10+10:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/sql/</loc>
-    <lastmod>2020-02-17T16:17:10+10:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/automation/</loc>
-    <lastmod>2020-02-09T20:31:46+10:00</lastmod>
   </url>
   
   <url>
