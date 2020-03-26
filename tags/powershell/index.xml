@@ -17,7 +17,7 @@
       <pubDate>Sun, 09 Feb 2020 20:31:46 +1000</pubDate>
       
       <guid>/post/20200210-use-powershell-profile-like-a-pro/</guid>
-      <description>If you do any software development in a Windows environment, you&#39;ll be spending enough time inside the Powershell (PS) console that it will be worth customizing the PS Profile to speed up your workflow.
+      <description>If you do any software development in a Windows environment, you&amp;rsquo;ll be spending enough time inside the Powershell (PS) console that it will be worth customizing the PS Profile to speed up your workflow.
 The PS Profile is essentially a .ps1 script that is run whenever a new PS console is opened. Without going too deep into how a sysadmin might use it, the average developer will probably want to use it to quickly do a few basic things:</description>
     </item>
     
@@ -27,7 +27,7 @@ The PS Profile is essentially a .ps1 script that is run whenever a new PS consol
       <pubDate>Sun, 09 Feb 2020 18:09:03 +1000</pubDate>
       
       <guid>/post/20200209-search-google-from-powershell/</guid>
-      <description>You may have seen people walking around with those awkwardEat; Sleep; Code; Repeat; brogrammer shirts. I don&#39;t like them - between the many other things that developing software requires, when I actually sit down to write code the workflow would more accurately be described as Code; Compile; Google Error; Repeat;.
+      <description>You may have seen people walking around with those awkwardEat; Sleep; Code; Repeat; brogrammer shirts. I don&amp;rsquo;t like them - between the many other things that developing software requires, when I actually sit down to write code the workflow would more accurately be described as Code; Compile; Google Error; Repeat;.
 This short post explains how the below gg.ps1 Powershell script can increase your productivity by opening a chrome browser and executing a Google search straight from the Powershell console.</description>
     </item>
     

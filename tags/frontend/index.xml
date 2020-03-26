@@ -17,7 +17,7 @@
       <pubDate>Tue, 18 Feb 2020 14:49:56 +1000</pubDate>
       
       <guid>/post/20200218-human-readable-time-intervals-python/</guid>
-      <description>Expressing time intervals in a format that is readable by humans is an old problem that every frontend developer will eventually face. While there are plenty of solutions available (this one is my favourite), I required a function that could provide different levels of granularity in it&#39;s &amp;ldquo;human-readable&amp;rdquo; description of time.
+      <description>Expressing time intervals in a format that is readable by humans is an old problem that every frontend developer will eventually face. While there are plenty of solutions available (this one is my favourite), I required a function that could provide different levels of granularity in it&amp;rsquo;s &amp;ldquo;human-readable&amp;rdquo; description of time.
 Take, for example, a component that tells the user how long in aggregate they have been using a service. If they have been using it for a few hours, it would be appropriate to display ## hours, ## minutes, ignoring the seconds and milliseconds.</description>
     </item>
     
@@ -27,7 +27,7 @@ Take, for example, a component that tells the user how long in aggregate they ha
       <pubDate>Tue, 04 Feb 2020 09:06:05 +1000</pubDate>
       
       <guid>/post/20200204-brisjs-meetup/</guid>
-      <description>I attended the first BrisJS meetup of the year last night. This was my first time attending a &amp;ldquo;programming language-centric&amp;rdquo; meetup, and I was surprised to find around 100 people in attendance. All presenters and the majority of the crowd looked to be in their 20&#39;s, and while the presentations didn&#39;t have the level of polish that I would usually expect for an event of this size, I was still able to learn a few things, and more importantly, have some interesting conversations with other developers about projects they are working on and opportunities in the market.</description>
+      <description>I attended the first BrisJS meetup of the year last night. This was my first time attending a &amp;ldquo;programming language-centric&amp;rdquo; meetup, and I was surprised to find around 100 people in attendance. All presenters and the majority of the crowd looked to be in their 20&amp;rsquo;s, and while the presentations didn&amp;rsquo;t have the level of polish that I would usually expect for an event of this size, I was still able to learn a few things, and more importantly, have some interesting conversations with other developers about projects they are working on and opportunities in the market.</description>
     </item>
     
   </channel>

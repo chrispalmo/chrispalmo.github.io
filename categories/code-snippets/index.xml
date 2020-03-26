@@ -17,7 +17,7 @@
       <pubDate>Tue, 18 Feb 2020 14:49:56 +1000</pubDate>
       
       <guid>/post/20200218-human-readable-time-intervals-python/</guid>
-      <description>Expressing time intervals in a format that is readable by humans is an old problem that every frontend developer will eventually face. While there are plenty of solutions available (this one is my favourite), I required a function that could provide different levels of granularity in it&#39;s &amp;ldquo;human-readable&amp;rdquo; description of time.
+      <description>Expressing time intervals in a format that is readable by humans is an old problem that every frontend developer will eventually face. While there are plenty of solutions available (this one is my favourite), I required a function that could provide different levels of granularity in it&amp;rsquo;s &amp;ldquo;human-readable&amp;rdquo; description of time.
 Take, for example, a component that tells the user how long in aggregate they have been using a service. If they have been using it for a few hours, it would be appropriate to display ## hours, ## minutes, ignoring the seconds and milliseconds.</description>
     </item>
     
@@ -27,7 +27,7 @@ Take, for example, a component that tells the user how long in aggregate they ha
       <pubDate>Mon, 17 Feb 2020 16:17:10 +1000</pubDate>
       
       <guid>/post/20200217-sql-to-csv-in-python/</guid>
-      <description>This function takes an SQLAlchemy query object as it&#39;s input (SQLAlchemy is a popular Python SQL toolkit and Object Relational Mapper). It&#39;s strength lies in not needing to hard-code column names, making it scaleable and suitable to &amp;ldquo;set-and-forget&amp;rdquo;.
+      <description>This function takes an SQLAlchemy query object as it&amp;rsquo;s input (SQLAlchemy is a popular Python SQL toolkit and Object Relational Mapper). It&amp;rsquo;s strength lies in not needing to hard-code column names, making it scaleable and suitable to &amp;ldquo;set-and-forget&amp;rdquo;.
 While developing enterprise software, every developer has surely have been faced with a client asking &amp;ldquo;how do I get the data out of the system?&amp;quot;, and after digging a bit deeper, it becomes clear they want the ability to save a snapshot of data as an Excel spreadsheet.</description>
     </item>
     
@@ -37,7 +37,7 @@ While developing enterprise software, every developer has surely have been faced
       <pubDate>Sun, 09 Feb 2020 20:31:46 +1000</pubDate>
       
       <guid>/post/20200210-use-powershell-profile-like-a-pro/</guid>
-      <description>If you do any software development in a Windows environment, you&#39;ll be spending enough time inside the Powershell (PS) console that it will be worth customizing the PS Profile to speed up your workflow.
+      <description>If you do any software development in a Windows environment, you&amp;rsquo;ll be spending enough time inside the Powershell (PS) console that it will be worth customizing the PS Profile to speed up your workflow.
 The PS Profile is essentially a .ps1 script that is run whenever a new PS console is opened. Without going too deep into how a sysadmin might use it, the average developer will probably want to use it to quickly do a few basic things:</description>
     </item>
     
@@ -47,7 +47,7 @@ The PS Profile is essentially a .ps1 script that is run whenever a new PS consol
       <pubDate>Sun, 09 Feb 2020 18:09:03 +1000</pubDate>
       
       <guid>/post/20200209-search-google-from-powershell/</guid>
-      <description>You may have seen people walking around with those awkwardEat; Sleep; Code; Repeat; brogrammer shirts. I don&#39;t like them - between the many other things that developing software requires, when I actually sit down to write code the workflow would more accurately be described as Code; Compile; Google Error; Repeat;.
+      <description>You may have seen people walking around with those awkwardEat; Sleep; Code; Repeat; brogrammer shirts. I don&amp;rsquo;t like them - between the many other things that developing software requires, when I actually sit down to write code the workflow would more accurately be described as Code; Compile; Google Error; Repeat;.
 This short post explains how the below gg.ps1 Powershell script can increase your productivity by opening a chrome browser and executing a Google search straight from the Powershell console.</description>
     </item>
     

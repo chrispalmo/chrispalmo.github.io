@@ -17,7 +17,7 @@
       <pubDate>Sun, 09 Feb 2020 20:31:46 +1000</pubDate>
       
       <guid>/post/20200210-use-powershell-profile-like-a-pro/</guid>
-      <description>If you do any software development in a Windows environment, you&#39;ll be spending enough time inside the Powershell (PS) console that it will be worth customizing the PS Profile to speed up your workflow.
+      <description>If you do any software development in a Windows environment, you&amp;rsquo;ll be spending enough time inside the Powershell (PS) console that it will be worth customizing the PS Profile to speed up your workflow.
 The PS Profile is essentially a .ps1 script that is run whenever a new PS console is opened. Without going too deep into how a sysadmin might use it, the average developer will probably want to use it to quickly do a few basic things:</description>
     </item>
     

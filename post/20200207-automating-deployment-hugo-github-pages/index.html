@@ -138,20 +138,20 @@ if (!doNotTrack) {
 }
 </code></pre></div><p>Note the double backslashes <code>\\</code> in the <code>production_build_directory</code> path. The first backslash is an escape character used by the Powershell <code>ConvertFrom-Json</code> parser.</p>
 <h3 id="publishps1"><strong><code>publish.ps1</code></strong></h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Import configurations and secret keys from config.json</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Import configurations and secret keys from config.json</span>
 
 $config = Get-Content -Raw -Path .\scripts\config.json | ConvertFrom-Json
 
-<span style="color:#75715e"># Pass the configurations and secret keys as arguments into the script that does the actual work:</span>
+<span style="color:#75715e"># Pass the configurations and secret keys as arguments into the script that does the actual work:</span>
 
-<span style="color:#75715e">### **`./scripts/build_commit_push_clear_cache.ps1`**</span>
+<span style="color:#75715e">### **`./scripts/build_commit_push_clear_cache.ps1`**</span>
 	-production_build_directory $config.production_build_directory	`
 	-CloudflareAdminEmail $config.CloudflareAdminEmail `
 	-CloudflareApiKey $config.CloudflareApiKey `
 	-CloudflareZoneId $config.CloudflareZoneId
 </code></pre></div><p>Note that the <code>production_build_directory</code> is a separate git repository to the Hugo source code, in order to comply with Github Pages hosting requirements.</p>
 <p>The real work is done by <code>build_commit_push_clear_cache.ps1</code>:</p>
-<h3 id="build-commit-push-clear-cacheps1"><strong><code>build_commit_push_clear_cache.ps1</code></strong></h3>
+<h3 id="build_commit_push_clear_cacheps1"><strong><code>build_commit_push_clear_cache.ps1</code></strong></h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">Param</span>(
     [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>=$true)]
     <span style="color:#66d9ef">[string]</span> $production_build_directory, 
@@ -163,37 +163,37 @@ $config = Get-Content -Raw -Path .\scripts\config.json | ConvertFrom-Json
     <span style="color:#66d9ef">[string]</span> $ZoneId
 );
 
-<span style="color:#75715e"># Build the website</span>
+<span style="color:#75715e"># Build the website</span>
 
-Read-Host -Prompt (<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Initializing production build. This will delete all files in </span><span style="color:#e6db74">&#34;</span> `
+Read-Host -Prompt (<span style="color:#e6db74">&#34;Initializing production build. This will delete all files in &#34;</span> `
 	+ $production_build_directory `
-	+ <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">. Press any key to continue, or ctrl+c to abort</span><span style="color:#e6db74">&#34;</span>)
+	+ <span style="color:#e6db74">&#34;. Press any key to continue, or ctrl+c to abort&#34;</span>)
 
 hugo --cleanDestinationDir `
 	--destination $production_build_directory
 
-<span style="color:#75715e"># Upload the website</span>
+<span style="color:#75715e"># Upload the website</span>
 
-Read-Host -prompt (<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Initializing git commit and push for all files in </span><span style="color:#e6db74">&#34;</span> `
+Read-Host -prompt (<span style="color:#e6db74">&#34;Initializing git commit and push for all files in &#34;</span> `
 	+ $production_build_directory `
-	+ <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">. Press any key to continue or ctrl+c to abort</span><span style="color:#e6db74">&#34;</span>)
+	+ <span style="color:#e6db74">&#34;. Press any key to continue or ctrl+c to abort&#34;</span>)
 
 git -C $production_build_directory add *
 git -C $production_build_directory status
 
-$git_commit_message = Read-Host (<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Enter a short commit message, or ctrl+c to abort</span><span style="color:#e6db74">&#34;</span>)
+$git_commit_message = Read-Host (<span style="color:#e6db74">&#34;Enter a short commit message, or ctrl+c to abort&#34;</span>)
 
 git -C $production_build_directory checkout master 
 git -C $production_build_directory commit -a -m $git_commit_message
 git -C $production_build_directory push
 
-<span style="color:#75715e"># Clear the Cloudflare cache</span>
-<span style="color:#75715e">&lt;#</span><span style="color:#75715e"> Credit to [Niels Swimberghe]
-</span><span style="color:#75715e">(https://swimburger</span><span style="color:#75715e">.</span><span style="color:#75715e">net/blog/powershell/powershell-snippet-clearing-cloudflare-cache-with-cloudflares-api) </span><span style="color:#75715e">#&gt;</span>
+<span style="color:#75715e"># Clear the Cloudflare cache</span>
+<span style="color:#75715e">&lt;# Credit to [Niels Swimberghe]
+</span><span style="color:#75715e">(https://swimburger.net/blog/powershell/powershell-snippet-clearing-cloudflare-cache-with-cloudflares-api) #&gt;</span>
 
-Read-Host -Prompt <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">About to clear the Cloudflare cache. Press any key to continue, or ctrl+c to abort</span><span style="color:#e6db74">&#34;</span>
+Read-Host -Prompt <span style="color:#e6db74">&#34;About to clear the Cloudflare cache. Press any key to continue, or ctrl+c to abort&#34;</span>
 
-$PurgeCacheUri = <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">https://api.cloudflare.com/client/v4/zones/</span><span style="color:#e6db74">$</span><span style="color:#e6db74">ZoneId/purge_cache</span><span style="color:#e6db74">&#34;</span>;
+$PurgeCacheUri = <span style="color:#e6db74">&#34;https://api.cloudflare.com/client/v4/zones/$ZoneId/purge_cache&#34;</span>;
 $RequestHeader = @{
     <span style="color:#e6db74">&#39;X-Auth-Email&#39;</span> = $AdminEmail
     <span style="color:#e6db74">&#39;X-Auth-Key&#39;</span> = $ApiKey
@@ -202,7 +202,7 @@ $RequestBody = <span style="color:#e6db74">&#39;{&#34;purge_everything&#34;:true
 Invoke-RestMethod `
     -Uri $PurgeCacheUri `
     -Method Delete `
-    -ContentType  <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">application/json</span><span style="color:#e6db74">&#34;</span> `
+    -ContentType  <span style="color:#e6db74">&#34;application/json&#34;</span> `
     -Headers $requestHeader `
     -Body $RequestBody
 </code></pre></div><h2 id="notes">Notes</h2>
