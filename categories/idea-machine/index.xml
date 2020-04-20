@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Idea Machine on Chris Palmieri</title>
+    <link>/categories/idea-machine/</link>
+    <description>Recent content in Idea Machine on Chris Palmieri</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 20 Apr 2020 13:21:27 +1000</lastBuildDate>
+    
+	<atom:link href="/categories/idea-machine/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>12 Ideas to Improve Clipchamp</title>
+      <link>/post/20200420-ten-ideas-clipchamp/</link>
+      <pubDate>Mon, 20 Apr 2020 13:21:27 +1000</pubDate>
+      
+      <guid>/post/20200420-ten-ideas-clipchamp/</guid>
+      <description>This is part of the Idea Machine, an ongoing series of short posts inspired by a James Altucher article titled Write Ten Ideas Every Day And Within Three Months You Will Have Rewired Your Brain. Each post simply shares 10 (or more) ideas with a different company/product team/writer/business leader whose work I find interesting, or for a product I wish existed. Listening to instrumental beats while watching the news, letures or other educational videos is something I have always done.</description>
+    </item>
+    
+  </channel>
+</rss>
