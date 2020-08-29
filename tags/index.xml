@@ -6,10 +6,82 @@
     <description>Recent content in Tags on Chris Palmieri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 Apr 2020 13:21:27 +1000</lastBuildDate>
+    <lastBuildDate>Sun, 23 Aug 2020 21:05:48 +1000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Javascript</title>
+      <link>/tags/javascript/</link>
+      <pubDate>Sun, 23 Aug 2020 21:05:48 +1000</pubDate>
+      
+      <guid>/tags/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MongoDB</title>
+      <link>/tags/mongodb/</link>
+      <pubDate>Sun, 23 Aug 2020 21:05:48 +1000</pubDate>
+      
+      <guid>/tags/mongodb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NodeJS</title>
+      <link>/tags/nodejs/</link>
+      <pubDate>Sun, 23 Aug 2020 21:05:48 +1000</pubDate>
+      
+      <guid>/tags/nodejs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>React</title>
+      <link>/tags/react/</link>
+      <pubDate>Sun, 23 Aug 2020 21:05:48 +1000</pubDate>
+      
+      <guid>/tags/react/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Redux</title>
+      <link>/tags/redux/</link>
+      <pubDate>Sun, 23 Aug 2020 21:05:48 +1000</pubDate>
+      
+      <guid>/tags/redux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Data Analysis</title>
+      <link>/tags/data-analysis/</link>
+      <pubDate>Sun, 23 Aug 2020 11:37:43 +1000</pubDate>
+      
+      <guid>/tags/data-analysis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Learning Hack</title>
+      <link>/tags/learning-hack/</link>
+      <pubDate>Sun, 23 Aug 2020 11:37:43 +1000</pubDate>
+      
+      <guid>/tags/learning-hack/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>/tags/python/</link>
+      <pubDate>Sun, 23 Aug 2020 11:37:43 +1000</pubDate>
+      
+      <guid>/tags/python/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Idea Machine</title>
@@ -26,15 +98,6 @@
       <pubDate>Sun, 23 Feb 2020 22:49:26 +1000</pubDate>
       
       <guid>/tags/flask/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Python</title>
-      <link>/tags/python/</link>
-      <pubDate>Sun, 23 Feb 2020 22:49:26 +1000</pubDate>
-      
-      <guid>/tags/python/</guid>
       <description></description>
     </item>
     
@@ -98,15 +161,6 @@
       <pubDate>Fri, 07 Feb 2020 15:12:54 +1000</pubDate>
       
       <guid>/tags/cloudflare/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Javascript</title>
-      <link>/tags/javascript/</link>
-      <pubDate>Tue, 04 Feb 2020 09:06:05 +1000</pubDate>
-      
-      <guid>/tags/javascript/</guid>
       <description></description>
     </item>
     

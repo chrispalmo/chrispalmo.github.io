@@ -6,10 +6,29 @@
     <description>Recent content on Chris Palmieri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 Apr 2020 13:21:27 +1000</lastBuildDate>
+    <lastBuildDate>Sun, 23 Aug 2020 21:05:48 +1000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Learn touch typing using custom reading materials with Typr</title>
+      <link>/post/20200823-typr-typing-tutor-web-app/</link>
+      <pubDate>Sun, 23 Aug 2020 21:05:48 +1000</pubDate>
+      
+      <guid>/post/20200823-typr-typing-tutor-web-app/</guid>
+      <description>tl;dr Typr is a simple web-based typing tutor that lets you practice typing using your own material. It also provides live feedback on typing speed, and in the future will include detailed statistics and algorithmically-generated custom exercises.
+ Create an account and use it for free here. Check out some screencasts of the UI. Check out the source code on Github.  The demo is currently hosted on a Heroku free-tier server which treats itself to a nap when there is no traffic and can take up to 30 seconds to wake up, so please be patient!</description>
+    </item>
+    
+    <item>
+      <title>Learning to Type at 100 WPM in Two Weeks</title>
+      <link>/post/20200823-type-at-100-wpm-in-two-weeks/</link>
+      <pubDate>Sun, 23 Aug 2020 11:37:43 +1000</pubDate>
+      
+      <guid>/post/20200823-type-at-100-wpm-in-two-weeks/</guid>
+      <description>tl;dr  It&amp;rsquo;s hard to underestimate the importance of typing. Unless you are a journalist, legal secretary, or professional writer, you probably don&amp;rsquo;t get enough practice to ever become truly fast. I built Typr and used it to simultaneously read &amp;amp; type &amp;ldquo;Surely You&amp;rsquo;re Joking, Mr. Feynman!&amp;quot;. Two weeks and 100,195 words later, I was maintaining between 100-110 WPM after starting out at 50 WPM. If you like reading, kill two birds with one stone by using Typr to practice typing material you would otherwise be reading.</description>
+    </item>
     
     <item>
       <title>12 Ideas to Improve Clipchamp</title>

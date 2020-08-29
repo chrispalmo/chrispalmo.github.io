@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MongoDB on Chris Palmieri</title>
+    <link>/tags/mongodb/</link>
+    <description>Recent content in MongoDB on Chris Palmieri</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 23 Aug 2020 21:05:48 +1000</lastBuildDate>
+    
+	<atom:link href="/tags/mongodb/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Learn touch typing using custom reading materials with Typr</title>
+      <link>/post/20200823-typr-typing-tutor-web-app/</link>
+      <pubDate>Sun, 23 Aug 2020 21:05:48 +1000</pubDate>
+      
+      <guid>/post/20200823-typr-typing-tutor-web-app/</guid>
+      <description>tl;dr Typr is a simple web-based typing tutor that lets you practice typing using your own material. It also provides live feedback on typing speed, and in the future will include detailed statistics and algorithmically-generated custom exercises.
+ Create an account and use it for free here. Check out some screencasts of the UI. Check out the source code on Github.  The demo is currently hosted on a Heroku free-tier server which treats itself to a nap when there is no traffic and can take up to 30 seconds to wake up, so please be patient!</description>
+    </item>
+    
+  </channel>
+</rss>

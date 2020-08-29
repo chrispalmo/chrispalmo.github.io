@@ -125,11 +125,11 @@ C:\Users\chris\Documents\WindowsPowerShell\profile.ps1
 </code></pre></div><h2 id="lets-configure-the-profile">Let&rsquo;s configure the profile</h2>
 <p>Add the below code to <code>profile.ps1</code>, which will be executed when a new console is opened.</p>
 <h5 id="set-the-starting-directory">Set the starting directory</h5>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Navigate to the default startup folder</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Navigate to the default startup folder</span>
 cd <span style="color:#e6db74">&#34;C:\PATH\TO\YOUR\PREFERRED\STARTUP\FOLDER\&#34;</span>
 </code></pre></div><h5 id="use-a-more-succinct-prompt">Use a more succinct prompt</h5>
 <p>The default prompt contains the entire path to the current working directory which can take up a lot of space. To show only the name of the current folder, the default <code>prompt</code> function can be overwritten by adding:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Show current directory (instead of entire path) in prompt:</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Show current directory (instead of entire path) in prompt:</span>
 <span style="color:#66d9ef">Function</span> prompt {
   $p = Split-Path -leaf -path (Get-Location)
   <span style="color:#e6db74">&#34;$p&gt; &#34;</span>
@@ -141,18 +141,18 @@ cd <span style="color:#e6db74">&#34;C:\PATH\TO\YOUR\PREFERRED\STARTUP\FOLDER\&#3
 </code></pre></div><p>This clears up the console, and if you ever need to check exactly where you are, just use <code>Get-Location</code> or it&rsquo;s alis <code>pwd</code>.</p>
 <h5 id="create-shortcuts-to-favourite-directories">Create shortcuts to favourite directories</h5>
 <p>I added the below functions to navigate to my development directory by just typing <code>dev</code>, or to my blog working directory by typing <code>blog</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># cd to dev folder</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># cd to dev folder</span>
 <span style="color:#66d9ef">function</span> dev {
     cd <span style="color:#e6db74">&#34;C:\Users\chris\webdev&#34;</span>
 }
-<span style="color:#75715e"># cd to blog folder</span>
+<span style="color:#75715e"># cd to blog folder</span>
 <span style="color:#66d9ef">function</span> blog {
     cd <span style="color:#e6db74">&#34;C:\Users\chris\webdev\myblog\blog&#34;</span>
 }
 </code></pre></div><h5 id="automatically-import-custom-scripts">Automatically import custom scripts</h5>
 <p>I prefer to store custom scripts that I have written or borrowed from others within my local development folder. This makes it easy to manage and keep synchronized with a git repository.</p>
 <p>I added the below script to <code>profile.ps1</code> to look inside this folder and import all <code>.ps1</code> files:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Import custom powershell scripts</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Import custom powershell scripts</span>
 $custom_script_dir = <span style="color:#e6db74">&#34;PATH_TO_YOUR_CUSTOM_PS1_SCRIPT_DIRECTORY&#34;</span> 
 Write-Output `
 	(<span style="color:#e6db74">&#34;*** Importing all .ps1 modules from &#34;</span> `
@@ -228,11 +228,11 @@ Get-ChildItem `
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/20200823-typr-typing-tutor-web-app/">Learn touch typing using custom reading materials with Typr</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20200823-type-at-100-wpm-in-two-weeks/">Learning to Type at 100 WPM in Two Weeks</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20200420-idea-machine-clipchamp/">12 Ideas to Improve Clipchamp</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20200224-manage-selenium-web-scrapers-with-auto-scrape/">Build and Manage Selenium Web Scrapers With Auto-Scrape</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20200218-human-readable-time-intervals-python/">Human-Readable Time Intervals in Python</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20200217-sql-to-csv-in-python/">Convert SQL Query to CSV File in Python</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20200210-use-powershell-profile-like-a-pro/">Use Powershell Profiles Like a Pro</a></li>
 		</ul>
 	</div>
 </div>
@@ -263,15 +263,21 @@ Get-ChildItem `
 	<div class="widget__content">
 		<a class="widget-taglist__link widget__link btn" href="/tags/backend/" title="Backend">Backend (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/cloudflare/" title="Cloudflare">Cloudflare (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/data-analysis/" title="Data Analysis">Data Analysis (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/devops/" title="DevOps">DevOps (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/entrepreneurship/" title="Entrepreneurship">Entrepreneurship (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/flask/" title="Flask">Flask (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/frontend/" title="Frontend">Frontend (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/idea-machine/" title="Idea Machine">Idea Machine (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="Javascript">Javascript (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="Javascript">Javascript (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/learning-hack/" title="Learning Hack">Learning Hack (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mongodb/" title="MongoDB">MongoDB (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/networking/" title="Networking">Networking (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/nodejs/" title="NodeJS">NodeJS (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="Powershell">Powershell (3)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python (4)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/react/" title="React">React (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/redux/" title="Redux">Redux (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/selenium/" title="Selenium">Selenium (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/sql/" title="SQL">SQL (2)</a>
 	</div>
