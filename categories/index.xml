@@ -6,10 +6,28 @@
     <description>Recent content in Categories on Chris Palmieri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 23 Aug 2020 21:05:48 +1000</lastBuildDate>
+    <lastBuildDate>Mon, 07 Sep 2020 16:48:39 +1000</lastBuildDate>
     
 	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Automation</title>
+      <link>/categories/automation/</link>
+      <pubDate>Mon, 07 Sep 2020 16:48:39 +1000</pubDate>
+      
+      <guid>/categories/automation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Code Snippets</title>
+      <link>/categories/code-snippets/</link>
+      <pubDate>Mon, 07 Sep 2020 16:48:39 +1000</pubDate>
+      
+      <guid>/categories/code-snippets/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Projects</title>
@@ -26,24 +44,6 @@
       <pubDate>Mon, 20 Apr 2020 13:21:27 +1000</pubDate>
       
       <guid>/categories/idea-machine/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Automation</title>
-      <link>/categories/automation/</link>
-      <pubDate>Sun, 23 Feb 2020 22:49:26 +1000</pubDate>
-      
-      <guid>/categories/automation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Code Snippets</title>
-      <link>/categories/code-snippets/</link>
-      <pubDate>Tue, 18 Feb 2020 14:49:56 +1000</pubDate>
-      
-      <guid>/categories/code-snippets/</guid>
       <description></description>
     </item>
     

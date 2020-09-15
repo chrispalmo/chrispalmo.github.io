@@ -6,15 +6,24 @@
     <description>Recent content in Tags on Chris Palmieri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 23 Aug 2020 21:05:48 +1000</lastBuildDate>
+    <lastBuildDate>Mon, 07 Sep 2020 16:48:39 +1000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Frontend</title>
+      <link>/tags/frontend/</link>
+      <pubDate>Mon, 07 Sep 2020 16:48:39 +1000</pubDate>
+      
+      <guid>/tags/frontend/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Javascript</title>
       <link>/tags/javascript/</link>
-      <pubDate>Sun, 23 Aug 2020 21:05:48 +1000</pubDate>
+      <pubDate>Mon, 07 Sep 2020 16:48:39 +1000</pubDate>
       
       <guid>/tags/javascript/</guid>
       <description></description>
@@ -116,15 +125,6 @@
       <pubDate>Sun, 23 Feb 2020 22:49:26 +1000</pubDate>
       
       <guid>/tags/sql/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Frontend</title>
-      <link>/tags/frontend/</link>
-      <pubDate>Tue, 18 Feb 2020 14:49:56 +1000</pubDate>
-      
-      <guid>/tags/frontend/</guid>
       <description></description>
     </item>
     

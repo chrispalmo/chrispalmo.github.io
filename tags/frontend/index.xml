@@ -6,10 +6,19 @@
     <description>Recent content in Frontend on Chris Palmieri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Feb 2020 14:49:56 +1000</lastBuildDate>
+    <lastBuildDate>Mon, 07 Sep 2020 16:48:39 +1000</lastBuildDate>
     
 	<atom:link href="/tags/frontend/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Browser Debugging with Bookmarklets</title>
+      <link>/post/20200907-browser-debugging-with-bookmarklets/</link>
+      <pubDate>Mon, 07 Sep 2020 16:48:39 +1000</pubDate>
+      
+      <guid>/post/20200907-browser-debugging-with-bookmarklets/</guid>
+      <description>tl;dr  Bookmarklet are browser bookmarks that, instead of linking to a web page, inject custom javascript into the current page. Here are a couple of bookmarklets I use regularly - to add them to your browser simply copy the minified code directly into the URL field for a new bookmark (remember to include the javascript: prefix).  Track current mouse coordinates Use the below script to display the current mouse coordinates in the current tab title:</description>
+    </item>
     
     <item>
       <title>Human-Readable Time Intervals in Python</title>

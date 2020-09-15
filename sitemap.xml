@@ -3,18 +3,48 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/categories/automation/</loc>
+    <lastmod>2020-09-07T16:48:39+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/20200907-browser-debugging-with-bookmarklets/</loc>
+    <lastmod>2020-09-07T16:48:39+10:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/categories/</loc>
-    <lastmod>2020-08-23T21:05:48+10:00</lastmod>
+    <lastmod>2020-09-07T16:48:39+10:00</lastmod>
   </url>
   
   <url>
     <loc>/</loc>
-    <lastmod>2020-08-23T21:05:48+10:00</lastmod>
+    <lastmod>2020-09-07T16:48:39+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/code-snippets/</loc>
+    <lastmod>2020-09-07T16:48:39+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/frontend/</loc>
+    <lastmod>2020-09-07T16:48:39+10:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/javascript/</loc>
-    <lastmod>2020-08-23T21:05:48+10:00</lastmod>
+    <lastmod>2020-09-07T16:48:39+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-09-07T16:48:39+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-09-07T16:48:39+10:00</lastmod>
   </url>
   
   <url>
@@ -33,11 +63,6 @@
   </url>
   
   <url>
-    <loc>/post/</loc>
-    <lastmod>2020-08-23T21:05:48+10:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/categories/projects/</loc>
     <lastmod>2020-08-23T21:05:48+10:00</lastmod>
   </url>
@@ -49,11 +74,6 @@
   
   <url>
     <loc>/tags/redux/</loc>
-    <lastmod>2020-08-23T21:05:48+10:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2020-08-23T21:05:48+10:00</lastmod>
   </url>
   
@@ -93,11 +113,6 @@
   </url>
   
   <url>
-    <loc>/categories/automation/</loc>
-    <lastmod>2020-02-23T22:49:26+10:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/post/20200224-manage-selenium-web-scrapers-with-auto-scrape/</loc>
     <lastmod>2020-02-23T22:49:26+10:00</lastmod>
   </url>
@@ -115,16 +130,6 @@
   <url>
     <loc>/tags/sql/</loc>
     <lastmod>2020-02-23T22:49:26+10:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/code-snippets/</loc>
-    <lastmod>2020-02-18T14:49:56+10:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/frontend/</loc>
-    <lastmod>2020-02-18T14:49:56+10:00</lastmod>
   </url>
   
   <url>
