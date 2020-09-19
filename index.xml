@@ -45,7 +45,7 @@
       <pubDate>Mon, 20 Apr 2020 13:21:27 +1000</pubDate>
       
       <guid>/post/20200420-idea-machine-clipchamp/</guid>
-      <description>This is part of the Idea Machine, an ongoing series of short posts inspired by a James Altucher article titled Write Ten Ideas Every Day And Within Three Months You Will Have Rewired Your Brain. Read more about the project here. Listening to instrumental beats while watching the news, lectures or other educational videos is something I have always done. It keeps my brain just busy enough to maintain consistent focus, plus I find it endlessly amusing to hear the rhythmic cadence of a good speaker lining up perfectly with a solid beat and a chunky bassline.</description>
+      <description>This is part of the Idea Machine, an ongoing series of short posts inspired by a James Altucher article titled Write Ten Ideas Every Day And Within Three Months You Will Have Rewired Your Brain. Read more about the project here.    Listening to instrumental beats while watching the news, lectures or other educational videos is something I have always done. It keeps my brain just busy enough to maintain consistent focus, plus I find it endlessly amusing to hear the rhythmic cadence of a good speaker lining up perfectly with a solid beat and a chunky bassline.</description>
     </item>
     
     <item>
@@ -75,7 +75,7 @@ Take, for example, a component that tells the user how long in aggregate they ha
       
       <guid>/post/20200217-sql-to-csv-in-python/</guid>
       <description>This function takes an SQLAlchemy query object as it&amp;rsquo;s input (SQLAlchemy is a popular Python SQL toolkit and Object Relational Mapper). It&amp;rsquo;s strength lies in not needing to hard-code column names, making it scaleable and suitable to &amp;ldquo;set-and-forget&amp;rdquo;.
-While developing enterprise software, every developer has surely have been faced with a client asking &amp;ldquo;how do I get the data out of the system?&amp;quot;, and after digging a bit deeper, it becomes clear they want the ability to save a snapshot of data as an Excel spreadsheet.</description>
+While developing enterprise software, every developer has surely have been faced with a client asking &amp;ldquo;how do I get the data out of the system?&amp;rdquo;, and after digging a bit deeper, it becomes clear they want the ability to save a snapshot of data as an Excel spreadsheet.</description>
     </item>
     
     <item>
@@ -135,7 +135,7 @@ That&amp;rsquo;s the idea behind Collaborate @ RCL. Meet some great people, lear
       
       <guid>/about/</guid>
       <description>I&amp;rsquo;m Chris. This blog is where I write about what I&amp;rsquo;m working on, what I&amp;rsquo;ve learned, and what I&amp;rsquo;m thinking about. It&amp;rsquo;s a place to organise my thoughts and ideas in a place where other people might be able to find some value in it.
-I live in Brisbane, Australia, and currently work as a frontend developer. In the past I have worked as an engineering consultant and project manager. I spend some time consulting in mathematics, software and business process automation, and also run a tuition business.</description>
+I currently live in Brisbane, Australia. I have worked as an engineering consultant and project manager, and have dabbled in sales. I also run an engineering tuition business.</description>
     </item>
     
     <item>
@@ -144,7 +144,7 @@ I live in Brisbane, Australia, and currently work as a frontend developer. In th
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/contact/</guid>
-      <description>Full Name*Email*MobileCompanyMessage*I am a human*Fields marked with an asterisk are required. Send</description>
+      <description>Full Name* Email* Mobile Company Message* I am a human* Fields marked with an asterisk are required.   Send   </description>
     </item>
     
     <item>

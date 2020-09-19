@@ -18,7 +18,7 @@
       
       <guid>/post/20200217-sql-to-csv-in-python/</guid>
       <description>This function takes an SQLAlchemy query object as it&amp;rsquo;s input (SQLAlchemy is a popular Python SQL toolkit and Object Relational Mapper). It&amp;rsquo;s strength lies in not needing to hard-code column names, making it scaleable and suitable to &amp;ldquo;set-and-forget&amp;rdquo;.
-While developing enterprise software, every developer has surely have been faced with a client asking &amp;ldquo;how do I get the data out of the system?&amp;quot;, and after digging a bit deeper, it becomes clear they want the ability to save a snapshot of data as an Excel spreadsheet.</description>
+While developing enterprise software, every developer has surely have been faced with a client asking &amp;ldquo;how do I get the data out of the system?&amp;rdquo;, and after digging a bit deeper, it becomes clear they want the ability to save a snapshot of data as an Excel spreadsheet.</description>
     </item>
     
   </channel>

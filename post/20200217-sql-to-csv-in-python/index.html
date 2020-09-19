@@ -9,7 +9,7 @@
 	<meta name="description" content="">
 	<meta property="og:title" content="Convert SQL Query to CSV File in Python" />
 <meta property="og:description" content="This function takes an SQLAlchemy query object as it&rsquo;s input (SQLAlchemy is a popular Python SQL toolkit and Object Relational Mapper). It&rsquo;s strength lies in not needing to hard-code column names, making it scaleable and suitable to &ldquo;set-and-forget&rdquo;.
-While developing enterprise software, every developer has surely have been faced with a client asking &ldquo;how do I get the data out of the system?&quot;, and after digging a bit deeper, it becomes clear they want the ability to save a snapshot of data as an Excel spreadsheet." />
+While developing enterprise software, every developer has surely have been faced with a client asking &ldquo;how do I get the data out of the system?&rdquo;, and after digging a bit deeper, it becomes clear they want the ability to save a snapshot of data as an Excel spreadsheet." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/20200217-sql-to-csv-in-python/" />
 <meta property="article:published_time" content="2020-02-17T16:17:10+10:00" />
@@ -110,7 +110,7 @@ if (!doNotTrack) {
 </div></div>
 		</header><div class="content post__content clearfix">
 			<p>This function takes an SQLAlchemy query object as it&rsquo;s input (<a href="https://www.sqlalchemy.org/">SQLAlchemy</a> is a popular Python SQL toolkit and Object Relational Mapper). It&rsquo;s strength lies in not needing to hard-code column names, making it <strong>scaleable and suitable to &ldquo;set-and-forget&rdquo;.</strong></p>
-<p>While developing enterprise software, every developer has surely have been faced with a client asking &ldquo;how do I get the data out of the system?&quot;, and after digging a bit deeper, it becomes clear they want the ability to save a snapshot of data as an Excel spreadsheet. While it may be a good idea in the longer term to sit down with the client to figure out how the application might be extended to automate these additional steps, here is a handy python script that will &ldquo;get the data&rdquo; from a SQL database interfaced with SQLAlchemy and output a CSV file.</p>
+<p>While developing enterprise software, every developer has surely have been faced with a client asking &ldquo;how do I get the data out of the system?&rdquo;, and after digging a bit deeper, it becomes clear they want the ability to save a snapshot of data as an Excel spreadsheet. While it may be a good idea in the longer term to sit down with the client to figure out how the application might be extended to automate these additional steps, here is a handy python script that will &ldquo;get the data&rdquo; from a SQL database interfaced with SQLAlchemy and output a CSV file.</p>
 <h3 id="sql_query_to_csvpy">sql_query_to_csv.py</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sql_query_to_csv</span>(query_output, columns_to_exclude<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>):
 	<span style="color:#e6db74">&#34;&#34;&#34;	Converts output from a SQLAlchemy query to a .csv string.
