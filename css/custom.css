@@ -1,0 +1,27 @@
+h3 a {
+	color: black !important;
+}
+
+h3 a:hover {
+	color: red !important;
+	text-decoration: none !important;
+}
+
+.meta a {
+	color: #666;
+	font-weight: normal !important;
+}
+
+.meta a:hover {
+	text-decoration: none !important
+}
+
+a.list__footer-readmore {
+	font-weight: normal !important;
+	color: black !important;
+}
+
+a.list__footer-readmore:hover {
+	color: red !important;
+	text-decoration: none !important;
+}
