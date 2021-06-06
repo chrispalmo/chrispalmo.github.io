@@ -25,3 +25,7 @@ a.list__footer-readmore:hover {
 	color: red !important;
 	text-decoration: none !important;
 }
+
+figcaption {
+	text-align: center;
+}
