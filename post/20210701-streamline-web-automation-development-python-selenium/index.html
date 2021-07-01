@@ -4,19 +4,21 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Learning Hack - Chris Palmieri</title>
+	<title>Streamline web automation development (Python &#43; Selenium) - Chris Palmieri</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
-	<meta property="og:title" content="Learning Hack" />
-<meta property="og:description" content="What I&#39;m working on, what I&#39;ve learned, and thinking out loud" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/tags/learning-hack/" />
-<meta property="og:updated_time" content="2020-08-23T11:37:43+10:00" />
+	<meta property="og:title" content="Streamline web automation development (Python &#43; Selenium)" />
+<meta property="og:description" content="tl;dr When using Python to write web scraping / general automation scripts, run Python using the -i flag preserve and interact with the latest state (i.e python -i script.py).
+This let&rsquo;s you avoid re-running the whole script every time a change is made.
+Problem When developing a bot or web scraper that operates behind a login screen, development, testing, and debugging can take longer than you might expect. The process of write code --&gt; test --&gt; debug --&gt; repeat hits a bottleneck every time the browser starts, pages load, login details are entered, the welcome page loads, and so on." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/20210701-streamline-web-automation-development-python-selenium/" />
+<meta property="article:published_time" content="2021-07-01T13:47:07+10:00" />
+<meta property="article:modified_time" content="2021-07-01T13:47:07+10:00" />
 
 	
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
-	<link rel="alternate" type="application/rss+xml" href="/tags/learning-hack/index.xml" title="Chris Palmieri">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
 	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" href="/css/custom.css">
@@ -90,41 +92,117 @@ if (!doNotTrack) {
 		<div class="wrapper flex">
 			<div class="primary">
 			
-<main class="main list" role="main">
-	<header class="main__header">
-		<h1 class="main__title">Learning Hack</h1>
-	</header><article class="list__item post">
-	<header class="list__header">
-		<h3 class="list__title post__title ">
-			<a href="/post/20200823-type-at-100-wpm-in-two-weeks/" rel="bookmark">
-			Learning to Type at 100 WPM in Two Weeks
-			</a>
-		</h3>
-		<div class="list__meta meta">
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Streamline web automation development (Python &#43; Selenium)</h1>
+			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
-	<time class="meta__text" datetime="2020-08-23T11:37:43">August 23, 2020</time>
+	<time class="meta__text" datetime="2021-07-01T13:47:07">July 01, 2021</time>
 </div>
 
 <div class="meta__item-categories meta__item">
 	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta__text"><a class="meta__link" href="/categories/projects/" rel="category">Projects</a>
+	<span class="meta__text"><a class="meta__link" href="/categories/automation/" rel="category">Automation</a>, <a class="meta__link" href="/categories/code-snippets/" rel="category">Code Snippets</a>
 	</span>
 </div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		tl;dr  It&rsquo;s hard to underestimate the importance of typing. Unless you are a journalist, legal secretary, or professional writer, you probably don&rsquo;t get enough practice to ever become truly fast. I built Typr and used it to simultaneously read &amp; type &ldquo;Surely You&rsquo;re Joking, Mr. Feynman!&quot;. Two weeks and 100,195 words later, I was maintaining between 100-110 WPM after starting out at 50 WPM. If you like reading, kill two birds with one stone by using Typr to practice typing material you would otherwise be reading.
-	</div>
-	<div class="list__footer clearfix">
-		<a class="list__footer-readmore" href="/post/20200823-type-at-100-wpm-in-two-weeks/">Read more…</a>
-	</div>
-</article>
+		</header><div class="content post__content clearfix">
+			<h2 id="tldr">tl;dr</h2>
+<p>When using Python to write web scraping / general automation scripts, run Python using the <code>-i</code> flag preserve and interact with the latest state (i.e <code>python -i script.py</code>).</p>
+<p>This let&rsquo;s you avoid re-running the whole script every time a change is made.</p>
+<h2 id="problem">Problem</h2>
+<p>When developing a bot or web scraper that operates behind a login screen, development, testing, and debugging can take longer than you might expect. The process of <code>write code --&gt; test --&gt; debug --&gt; repeat</code> hits a bottleneck every time the browser starts, pages load, login details are entered, the welcome page loads, and so on. In the worst cases, it may take several minutes or hours before the error appears.</p>
+<p>Wouldn&rsquo;t it be great if, when the script completes (or under certain error conditions), instead of closing the browser driver and Python, the browser stayed open along with a Python <a href="https://en.wikipedia.org/wiki/Command-line_interface">CLI</a> allowing the session to be continued manually, one line of code at a time?</p>
+<h2 id="solution">Solution</h2>
+<p>Suppose you have a simple Python script, <code>bot.py</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> selenium <span style="color:#f92672">import</span> webdriver
+
+<span style="color:#75715e"># start browser</span>
+driver<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;https://website.com/login)</span>
+driver <span style="color:#f92672">=</span> webdriver<span style="color:#f92672">.</span>Chrome(<span style="color:#e6db74">&#39;./chromedriver&#39;</span>)
+
+<span style="color:#75715e"># login</span>
+email_input<span style="color:#f92672">=</span> driver<span style="color:#f92672">.</span>find_element_by_xpath(<span style="color:#e6db74">&#34;//input[@id=&#39;Email&#39;]&#34;</span>)
+email_input<span style="color:#f92672">.</span>click()
+email_input<span style="color:#f92672">.</span>send_keys(<span style="color:#e6db74">&#34;happyUser888&#34;</span>)
+
+password_input <span style="color:#f92672">=</span> driver<span style="color:#f92672">.</span>find_element_by_xpath(<span style="color:#e6db74">&#34;//input[@id=&#39;Password&#39;]&#34;</span>)
+password_input<span style="color:#f92672">.</span>click()
+password_input<span style="color:#f92672">.</span>send_keys(<span style="color:#e6db74">&#34;Password123)</span>
+
+submit_button <span style="color:#f92672">=</span> driver<span style="color:#f92672">.</span>find_element_by_xpath(<span style="color:#e6db74">&#34;//input[@id=&#39;Submit&#39;]&#34;</span>)
+submit_button<span style="color:#f92672">.</span>click()
+
+<span style="color:#75715e"># do automated bot stuff</span>
+</code></pre></div><p>Instead of running <code>pyton bot.py</code>, run <code>python -i bot.py</code> so keep an interactive session running when the script completes.</p>
+<h3 id="for-multiple-sessions">For multiple sessions</h3>
+<p>You can also use this while running a multiple concurrent browser sessions, using a single script as an entry point, <code>run.py</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> bot1 <span style="color:#f92672">import</span> driver <span style="color:#66d9ef">as</span> driver1
+<span style="color:#f92672">from</span> bot2 <span style="color:#f92672">import</span> driver <span style="color:#66d9ef">as</span> driver2
+</code></pre></div><p>Running <code>python -i run.py</code> will spin up both sessions and leaves you with <code>driver1</code> and <code>driver2</code> available to play with via the Python CLI. Unfortunately this wont run both scrapers simultaneously - we would need <a href="https://stackoverflow.com/questions/27435284/multiprocessing-vs-multithreading-vs-asyncio-in-python-3">asyncio, threading, or multiprocessing</a> for that and have instead kept this example as simple as possible for the purposes of this post.</p>
+<p>As a bonus, the below function could also be defined in <code>run.py</code> to cleanly terminate the sessions, avoiding the memory leaks that occur when manually closing the browser windows or exiting Python:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">quit</span>():
+    driver1<span style="color:#f92672">.</span>quit()
+    driver2<span style="color:#f92672">.</span>quit()
+    exit()
+</code></pre></div><h2 id="questions">Questions?</h2>
+<p>Do you have any questions or feedback? Feel free to leave a comment below, or to <a href="/contact/">reach out to me directly</a>.</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/python/" rel="tag">Python</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/selenium/" rel="tag">Selenium</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/speed-hacks/" rel="tag">Speed Hacks</a></li>
+	</ul>
+</div>
+		</footer>
+	</article>
 </main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Chris avatar" src="/img/avatar.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About Chris</span>
+	</div>
+	<div class="authorbox__description">
+		Software Engineer from Brisbane, Australia. Previousy a mechanical engineer, consultant and project manager. Currently looking for interesting software projects to work on. Enjoys making music, working out, skateboarding and outdoor adventuring.
+	</div>
+</div>
+
+
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "palmo-xyz" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
 
 
 			</div>
-			
-<aside class="sidebar">
+			<aside class="sidebar">
 <div class="widget-recent widget">
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
