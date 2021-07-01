@@ -23,7 +23,7 @@ Problem When developing a bot or web scraper that operates behind a login screen
     </item>
     
     <item>
-      <title>Browser Debugging with Bookmarklets</title>
+      <title>Browser debugging with bookmarklets</title>
       <link>/post/20200907-browser-debugging-with-bookmarklets/</link>
       <pubDate>Mon, 07 Sep 2020 16:48:39 +1000</pubDate>
       
@@ -42,7 +42,7 @@ Problem When developing a bot or web scraper that operates behind a login screen
     </item>
     
     <item>
-      <title>Learning to Type at 100 WPM in Two Weeks</title>
+      <title>Learning to type at 100 WPM in two weeks</title>
       <link>/post/20200823-type-at-100-wpm-in-two-weeks/</link>
       <pubDate>Sun, 23 Aug 2020 11:37:43 +1000</pubDate>
       
@@ -51,7 +51,7 @@ Problem When developing a bot or web scraper that operates behind a login screen
     </item>
     
     <item>
-      <title>12 Ideas to Improve Clipchamp</title>
+      <title>12 ideas to improve Clipchamp</title>
       <link>/post/20200420-idea-machine-clipchamp/</link>
       <pubDate>Mon, 20 Apr 2020 13:21:27 +1000</pubDate>
       
@@ -60,7 +60,7 @@ Problem When developing a bot or web scraper that operates behind a login screen
     </item>
     
     <item>
-      <title>Build and Manage Selenium Web Scrapers With Auto-Scrape</title>
+      <title>Build and manage Selenium web scrapers with Auto-Scrape</title>
       <link>/post/20200224-manage-selenium-web-scrapers-with-auto-scrape/</link>
       <pubDate>Sun, 23 Feb 2020 22:49:26 +1000</pubDate>
       
@@ -70,7 +70,7 @@ Problem When developing a bot or web scraper that operates behind a login screen
     </item>
     
     <item>
-      <title>Human-Readable Time Intervals in Python</title>
+      <title>Human-readable time intervals in Python</title>
       <link>/post/20200218-human-readable-time-intervals-python/</link>
       <pubDate>Tue, 18 Feb 2020 14:49:56 +1000</pubDate>
       
@@ -80,7 +80,7 @@ Take, for example, a component that tells the user how long in aggregate they ha
     </item>
     
     <item>
-      <title>Convert SQL Query to CSV File in Python</title>
+      <title>Convert SQL query to CSV file in Python</title>
       <link>/post/20200217-sql-to-csv-in-python/</link>
       <pubDate>Mon, 17 Feb 2020 16:17:10 +1000</pubDate>
       
@@ -90,7 +90,7 @@ While developing enterprise software, every developer has surely have been faced
     </item>
     
     <item>
-      <title>Use Powershell Profiles Like a Pro</title>
+      <title>Use powershell profiles like a pro</title>
       <link>/post/20200210-use-powershell-profile-like-a-pro/</link>
       <pubDate>Sun, 09 Feb 2020 20:31:46 +1000</pubDate>
       
@@ -100,7 +100,7 @@ The PS Profile is essentially a .ps1 script that is run whenever a new PS consol
     </item>
     
     <item>
-      <title>Search Google from the Powershell Console</title>
+      <title>Search Google from the powershell console</title>
       <link>/post/20200209-search-google-from-powershell/</link>
       <pubDate>Sun, 09 Feb 2020 18:09:03 +1000</pubDate>
       
@@ -110,7 +110,7 @@ This short post explains how the below gg.ps1 Powershell script can increase you
     </item>
     
     <item>
-      <title>Automating Deployment of a Hugo Website to Github Pages using Powershell Scripts</title>
+      <title>Automating deployment of a Hugo website to Github Pages using powershell scripts</title>
       <link>/post/20200207-automating-deployment-hugo-github-pages/</link>
       <pubDate>Fri, 07 Feb 2020 15:12:54 +1000</pubDate>
       
@@ -120,7 +120,7 @@ This short post explains how the below gg.ps1 Powershell script can increase you
     </item>
     
     <item>
-      <title>Event Review: BrisJS - Introducing the TypeScript Compiler, Atomic Design, Scrutinising the Norm</title>
+      <title>Event review: BrisJs - Introducing the typescript compiler; Atomic design; Scrutinising the norm</title>
       <link>/post/20200204-brisjs-meetup/</link>
       <pubDate>Tue, 04 Feb 2020 09:06:05 +1000</pubDate>
       
@@ -129,7 +129,7 @@ This short post explains how the below gg.ps1 Powershell script can increase you
     </item>
     
     <item>
-      <title>Event Review: Collaborate at RCL</title>
+      <title>Event review: Collaborate at RCL</title>
       <link>/post/20200131-collaborate-at-rcl/</link>
       <pubDate>Fri, 31 Jan 2020 12:31:33 +1000</pubDate>
       

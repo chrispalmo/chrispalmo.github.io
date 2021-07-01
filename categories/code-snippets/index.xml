@@ -23,7 +23,7 @@ Problem When developing a bot or web scraper that operates behind a login screen
     </item>
     
     <item>
-      <title>Browser Debugging with Bookmarklets</title>
+      <title>Browser debugging with bookmarklets</title>
       <link>/post/20200907-browser-debugging-with-bookmarklets/</link>
       <pubDate>Mon, 07 Sep 2020 16:48:39 +1000</pubDate>
       
@@ -32,7 +32,7 @@ Problem When developing a bot or web scraper that operates behind a login screen
     </item>
     
     <item>
-      <title>Human-Readable Time Intervals in Python</title>
+      <title>Human-readable time intervals in Python</title>
       <link>/post/20200218-human-readable-time-intervals-python/</link>
       <pubDate>Tue, 18 Feb 2020 14:49:56 +1000</pubDate>
       
@@ -42,7 +42,7 @@ Take, for example, a component that tells the user how long in aggregate they ha
     </item>
     
     <item>
-      <title>Convert SQL Query to CSV File in Python</title>
+      <title>Convert SQL query to CSV file in Python</title>
       <link>/post/20200217-sql-to-csv-in-python/</link>
       <pubDate>Mon, 17 Feb 2020 16:17:10 +1000</pubDate>
       
@@ -52,7 +52,7 @@ While developing enterprise software, every developer has surely have been faced
     </item>
     
     <item>
-      <title>Use Powershell Profiles Like a Pro</title>
+      <title>Use powershell profiles like a pro</title>
       <link>/post/20200210-use-powershell-profile-like-a-pro/</link>
       <pubDate>Sun, 09 Feb 2020 20:31:46 +1000</pubDate>
       
@@ -62,7 +62,7 @@ The PS Profile is essentially a .ps1 script that is run whenever a new PS consol
     </item>
     
     <item>
-      <title>Search Google from the Powershell Console</title>
+      <title>Search Google from the powershell console</title>
       <link>/post/20200209-search-google-from-powershell/</link>
       <pubDate>Sun, 09 Feb 2020 18:09:03 +1000</pubDate>
       
@@ -72,7 +72,7 @@ This short post explains how the below gg.ps1 Powershell script can increase you
     </item>
     
     <item>
-      <title>Automating Deployment of a Hugo Website to Github Pages using Powershell Scripts</title>
+      <title>Automating deployment of a Hugo website to Github Pages using powershell scripts</title>
       <link>/post/20200207-automating-deployment-hugo-github-pages/</link>
       <pubDate>Fri, 07 Feb 2020 15:12:54 +1000</pubDate>
       

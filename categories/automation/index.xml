@@ -23,7 +23,7 @@ Problem When developing a bot or web scraper that operates behind a login screen
     </item>
     
     <item>
-      <title>Browser Debugging with Bookmarklets</title>
+      <title>Browser debugging with bookmarklets</title>
       <link>/post/20200907-browser-debugging-with-bookmarklets/</link>
       <pubDate>Mon, 07 Sep 2020 16:48:39 +1000</pubDate>
       
@@ -32,7 +32,7 @@ Problem When developing a bot or web scraper that operates behind a login screen
     </item>
     
     <item>
-      <title>Build and Manage Selenium Web Scrapers With Auto-Scrape</title>
+      <title>Build and manage Selenium web scrapers with Auto-Scrape</title>
       <link>/post/20200224-manage-selenium-web-scrapers-with-auto-scrape/</link>
       <pubDate>Sun, 23 Feb 2020 22:49:26 +1000</pubDate>
       
@@ -42,7 +42,7 @@ Problem When developing a bot or web scraper that operates behind a login screen
     </item>
     
     <item>
-      <title>Use Powershell Profiles Like a Pro</title>
+      <title>Use powershell profiles like a pro</title>
       <link>/post/20200210-use-powershell-profile-like-a-pro/</link>
       <pubDate>Sun, 09 Feb 2020 20:31:46 +1000</pubDate>
       
@@ -52,7 +52,7 @@ The PS Profile is essentially a .ps1 script that is run whenever a new PS consol
     </item>
     
     <item>
-      <title>Search Google from the Powershell Console</title>
+      <title>Search Google from the powershell console</title>
       <link>/post/20200209-search-google-from-powershell/</link>
       <pubDate>Sun, 09 Feb 2020 18:09:03 +1000</pubDate>
       
@@ -62,7 +62,7 @@ This short post explains how the below gg.ps1 Powershell script can increase you
     </item>
     
     <item>
-      <title>Automating Deployment of a Hugo Website to Github Pages using Powershell Scripts</title>
+      <title>Automating deployment of a Hugo website to Github Pages using powershell scripts</title>
       <link>/post/20200207-automating-deployment-hugo-github-pages/</link>
       <pubDate>Fri, 07 Feb 2020 15:12:54 +1000</pubDate>
       
