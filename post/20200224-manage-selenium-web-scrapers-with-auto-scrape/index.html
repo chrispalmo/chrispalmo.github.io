@@ -11,9 +11,10 @@
 <meta property="og:description" content="tl;dr Auto-scrape let&rsquo;s you focus on writing web scraping scripts, while it takes care of logging, data persistance, data presentation and data export, all through a modern browser-based UI. It can be run locally or deployed remotely.
  Here are some screencasts of the UI. Get it on Github.  Why Scrape the Web? Building a Selenium web scraper is almost a rite of passage for programmers starting out. Watching a computer fill out forms, click links and collect data before your eyes is not only a highly satisfying and suitably non-abstract exercise for beginners to complete - browser automation forms a foundation for frontend testing, can be used for automated research, and of course can be used to replace those expensive and unreliable humans to accomplish a wide range of business-related tasks." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/post/20200224-manage-selenium-web-scrapers-with-auto-scrape/" />
+<meta property="og:url" content="/post/20200224-manage-selenium-web-scrapers-with-auto-scrape/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-02-23T22:49:26+10:00" />
 <meta property="article:modified_time" content="2020-02-23T22:49:26+10:00" />
+
 
 	
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -141,18 +142,16 @@ if (!doNotTrack) {
 <p>The dashboard provides an overview of &ldquo;Active Sessions&rdquo; (daemon browser instances in the process of scraping) and &ldquo;Past Sessions&rdquo; (that are either completed or were prematurely terminated.</p>
 <h3 id="live-logging">Live logging</h3>
 <p>The below screencast shows live logs that allow the progress of an active session to be tracked in real time. Scraped data can also be previewed while a scraper is in progress:</p>
-<figure>
-    <img src="live-logging.gif"
-         alt="Live logging"/> <figcaption>
+<figure><img src="live-logging.gif"
+         alt="Live logging"/><figcaption>
             <p>Live logging</p>
         </figcaption>
 </figure>
 
 <h3 id="data-export">Data export</h3>
 <p>The below screencast shows scraped data being exported as a CSV file:
-<figure>
-    <img src="export-data.gif"
-         alt="Data export to CSV"/> <figcaption>
+<figure><img src="export-data.gif"
+         alt="Data export to CSV"/><figcaption>
             <p>Data export to CSV</p>
         </figcaption>
 </figure>
@@ -160,9 +159,8 @@ if (!doNotTrack) {
 <p>Check out the data exported from a scrape of the YC Hacker News front page post <a href="/post/20200224-manage-selenium-web-scrapers-with-auto-scrape/20200224_155305_session_15.csv">here</a>. If a session is prematurely terminated, the status is recorded as &ldquo;Aborted&rdquo;, with the logs and saved data remaining available.</p>
 <h2 id="multiple-simultaneous-scrapers">Multiple simultaneous scrapers</h2>
 <p>The below screencase shows multiple simultaneous scrapers running. In the below example we have <code>max_active_sessions = 3</code>, but this can be easily adjusted depending on available system resources:
-<figure>
-    <img src="multiple-simultaneous-scrapers.gif"
-         alt="Multiple simultaneous scrapers"/> <figcaption>
+<figure><img src="multiple-simultaneous-scrapers.gif"
+         alt="Multiple simultaneous scrapers"/><figcaption>
             <p>Multiple simultaneous scrapers</p>
         </figcaption>
 </figure>
@@ -191,10 +189,10 @@ if (!doNotTrack) {
 		<img alt="Chris avatar" src="/img/avatar.png" class="avatar" height="90" width="90">
 	</figure>
 	<div class="authorbox__header">
-		<span class="authorbox__name">About Chris</span>
+		<span class="authorbox__name"></span>
 	</div>
 	<div class="authorbox__description">
-		Software Engineer from Brisbane, Australia. Currently looking for interesting software projects to work on. Previous experience in mechanical engineering, consulting and project management. Enjoys making music, working out, skateboarding and outdoor adventuring.
+		Software Engineer at Microsoft. Looking for interesting projects to advise on, contribute to, or invest in. Enjoys making music, working out, photography, skateboarding and outdoor adventuring.
 	</div>
 </div>
 

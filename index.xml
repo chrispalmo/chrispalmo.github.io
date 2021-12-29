@@ -6,11 +6,7 @@
     <description>Recent content on Chris Palmieri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 01 Jul 2021 13:47:07 +1000</lastBuildDate>
-    
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 01 Jul 2021 13:47:07 +1000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Streamline web automation development (Python &#43; Selenium)</title>
       <link>/post/20210701-streamline-web-automation-development-python-selenium/</link>
@@ -145,8 +141,8 @@ That&amp;rsquo;s the idea behind Collaborate @ RCL. Meet some great people, lear
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/about/</guid>
-      <description>I&amp;rsquo;m Chris. This blog is where I write about what I&amp;rsquo;m working on, what I&amp;rsquo;ve learned, and what I&amp;rsquo;m thinking about. It&amp;rsquo;s a place to organise my thoughts and ideas in a place where other people might be able to find some value in it.
-I live in Brisbane, Australia, and currently work as a frontend developer. I have previously worked as an engineering consultant and project manager, and have used my skills in mathematics and programming to help businesses automate their engineering design and project management processes.</description>
+      <description>I&amp;rsquo;m Chris. This blog is where I write about what I&amp;rsquo;m working on, what I&amp;rsquo;ve learned, and what I&amp;rsquo;m thinking about. It&amp;rsquo;s a place to organize my thoughts and ideas in a place where other people might be able to find some value in it.
+I am a software engineer at Microsoft, have previous experience as an engineering consultant and project manager, and have used my skills in mathematics and programming to help businesses automate their engineering design and project management processes.</description>
     </item>
     
     <item>

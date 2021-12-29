@@ -11,9 +11,10 @@
 <meta property="og:description" content="Expressing time intervals in a format that is readable by humans is an old problem that every frontend developer will eventually face. While there are plenty of solutions available (this one is my favourite), I required a function that could provide different levels of granularity in it&rsquo;s &ldquo;human-readable&rdquo; description of time.
 Take, for example, a component that tells the user how long in aggregate they have been using a service. If they have been using it for a few hours, it would be appropriate to display ## hours, ## minutes, ignoring the seconds and milliseconds." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/post/20200218-human-readable-time-intervals-python/" />
+<meta property="og:url" content="/post/20200218-human-readable-time-intervals-python/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-02-18T14:49:56+10:00" />
 <meta property="article:modified_time" content="2020-02-18T14:49:56+10:00" />
+
 
 	
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -112,7 +113,7 @@ if (!doNotTrack) {
 <p>If you are creating a countdown timer however, it may be more useful to have a higher level of granularity, displaying days, hours, minutes and seconds (<code>granularity=4</code>).</p>
 <p>The below script contains two functions: <code>time_breakdown</code>, which handles the unit conversions, and <code>time_breakdown_string</code>, which handles the &ldquo;human readability&rdquo; logic:</p>
 <h3 id="semantic_timepy">semantic_time.py</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> math <span style="color:#f92672">import</span> floor
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> math <span style="color:#f92672">import</span> floor
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">time_breakdown</span>(ms):
  <span style="color:#e6db74">&#34;&#34;&#34;Converts an integer representing number of milliseconds into a dictionary 
@@ -204,38 +205,38 @@ if (!doNotTrack) {
  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">.</span>join(time_string)
 </code></pre></div><h3 id="example-implementation">Example implementation</h3>
 <p>To test it out, add the below code at the bottom of <code>semantic_time.py</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
  <span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
 
  mercury_orbit_period <span style="color:#f92672">=</span> <span style="color:#ae81ff">7600608000</span>
- <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;&#34;&#34;
+ print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;&#34;&#34;
 </span><span style="color:#e6db74">To orbit the sun, it takes Mercury:
 </span><span style="color:#e6db74">
-</span><span style="color:#e6db74"> {time_breakdown(mercury_orbit_period)}
-</span><span style="color:#e6db74"> {time_breakdown_string(mercury_orbit_period, 1)}
-</span><span style="color:#e6db74"> {time_breakdown_string(mercury_orbit_period, 2)}
-</span><span style="color:#e6db74"> {time_breakdown_string(mercury_orbit_period, 3)}
-</span><span style="color:#e6db74"> {time_breakdown_string(mercury_orbit_period, 4)}
+</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>time_breakdown(mercury_orbit_period)<span style="color:#e6db74">}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>time_breakdown_string(mercury_orbit_period, <span style="color:#ae81ff">1</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>time_breakdown_string(mercury_orbit_period, <span style="color:#ae81ff">2</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>time_breakdown_string(mercury_orbit_period, <span style="color:#ae81ff">3</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>time_breakdown_string(mercury_orbit_period, <span style="color:#ae81ff">4</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">
 </span><span style="color:#e6db74"> &#34;&#34;&#34;</span>)
 
  one_day_minus_one_second <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">*</span><span style="color:#ae81ff">24</span><span style="color:#f92672">*</span><span style="color:#ae81ff">60</span><span style="color:#f92672">*</span><span style="color:#ae81ff">60</span><span style="color:#f92672">*</span><span style="color:#ae81ff">1000</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1000</span>
  one_day_exactly <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">*</span><span style="color:#ae81ff">24</span><span style="color:#f92672">*</span><span style="color:#ae81ff">60</span><span style="color:#f92672">*</span><span style="color:#ae81ff">60</span><span style="color:#f92672">*</span><span style="color:#ae81ff">1000</span>
  one_day_plus_one_second <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">*</span><span style="color:#ae81ff">24</span><span style="color:#f92672">*</span><span style="color:#ae81ff">60</span><span style="color:#f92672">*</span><span style="color:#ae81ff">60</span><span style="color:#f92672">*</span><span style="color:#ae81ff">1000</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1000</span>
  one_day_plus_one_minute <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">*</span><span style="color:#ae81ff">24</span><span style="color:#f92672">*</span><span style="color:#ae81ff">60</span><span style="color:#f92672">*</span><span style="color:#ae81ff">60</span><span style="color:#f92672">*</span><span style="color:#ae81ff">1000</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1000</span><span style="color:#f92672">*</span><span style="color:#ae81ff">60</span>
- <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;&#34;&#34;
+ print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;&#34;&#34;
 </span><span style="color:#e6db74">Ignores &#39;zero&#39; units:
 </span><span style="color:#e6db74">
-</span><span style="color:#e6db74"> {time_breakdown(one_day_minus_one_second)}
-</span><span style="color:#e6db74"> {time_breakdown_string(one_day_minus_one_second)}
+</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>time_breakdown(one_day_minus_one_second)<span style="color:#e6db74">}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>time_breakdown_string(one_day_minus_one_second)<span style="color:#e6db74">}</span><span style="color:#e6db74">
 </span><span style="color:#e6db74"> 
-</span><span style="color:#e6db74"> {time_breakdown(one_day_exactly)}
-</span><span style="color:#e6db74"> {time_breakdown_string(one_day_exactly)}
+</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>time_breakdown(one_day_exactly)<span style="color:#e6db74">}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>time_breakdown_string(one_day_exactly)<span style="color:#e6db74">}</span><span style="color:#e6db74">
 </span><span style="color:#e6db74">
-</span><span style="color:#e6db74"> {time_breakdown(one_day_plus_one_second)}
-</span><span style="color:#e6db74"> {time_breakdown_string(one_day_plus_one_second)}
+</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>time_breakdown(one_day_plus_one_second)<span style="color:#e6db74">}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>time_breakdown_string(one_day_plus_one_second)<span style="color:#e6db74">}</span><span style="color:#e6db74">
 </span><span style="color:#e6db74">
-</span><span style="color:#e6db74"> {time_breakdown(one_day_plus_one_minute)}
-</span><span style="color:#e6db74"> {time_breakdown_string(one_day_plus_one_minute)}
+</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>time_breakdown(one_day_plus_one_minute)<span style="color:#e6db74">}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>time_breakdown_string(one_day_plus_one_minute)<span style="color:#e6db74">}</span><span style="color:#e6db74">
 </span><span style="color:#e6db74"> &#34;&#34;&#34;</span>)
 
  one_second <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span>
@@ -243,14 +244,14 @@ if (!doNotTrack) {
  one_minute_one_second <span style="color:#f92672">=</span> <span style="color:#ae81ff">361000</span>
  two_minute_one_second <span style="color:#f92672">=</span> <span style="color:#ae81ff">721000</span>
  two_minute_two_second <span style="color:#f92672">=</span> <span style="color:#ae81ff">722000</span>
- <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#34;&#34;&#34;
+ print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;&#34;&#34;
 </span><span style="color:#e6db74">Plurality is considered:
 </span><span style="color:#e6db74">
-</span><span style="color:#e6db74"> {time_breakdown_string(one_second)}
-</span><span style="color:#e6db74"> {time_breakdown_string(two_seconds)}
-</span><span style="color:#e6db74"> {time_breakdown_string(one_minute_one_second)}
-</span><span style="color:#e6db74"> {time_breakdown_string(two_minute_one_second)}
-</span><span style="color:#e6db74"> {time_breakdown_string(two_minute_two_second)}
+</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>time_breakdown_string(one_second)<span style="color:#e6db74">}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>time_breakdown_string(two_seconds)<span style="color:#e6db74">}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>time_breakdown_string(one_minute_one_second)<span style="color:#e6db74">}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>time_breakdown_string(two_minute_one_second)<span style="color:#e6db74">}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>time_breakdown_string(two_minute_two_second)<span style="color:#e6db74">}</span><span style="color:#e6db74">
 </span><span style="color:#e6db74"> &#34;&#34;&#34;</span>)
 
 <span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
@@ -307,10 +308,10 @@ Plurality is considered:
 		<img alt="Chris avatar" src="/img/avatar.png" class="avatar" height="90" width="90">
 	</figure>
 	<div class="authorbox__header">
-		<span class="authorbox__name">About Chris</span>
+		<span class="authorbox__name"></span>
 	</div>
 	<div class="authorbox__description">
-		Software Engineer from Brisbane, Australia. Currently looking for interesting software projects to work on. Previous experience in mechanical engineering, consulting and project management. Enjoys making music, working out, skateboarding and outdoor adventuring.
+		Software Engineer at Microsoft. Looking for interesting projects to advise on, contribute to, or invest in. Enjoys making music, working out, photography, skateboarding and outdoor adventuring.
 	</div>
 </div>
 

@@ -11,9 +11,10 @@
 <meta property="og:description" content="This function takes an SQLAlchemy query object as it&rsquo;s input (SQLAlchemy is a popular Python SQL toolkit and Object Relational Mapper). It&rsquo;s strength lies in not needing to hard-code column names, making it scaleable and suitable to &ldquo;set-and-forget&rdquo;.
 While developing enterprise software, every developer has surely have been faced with a client asking &ldquo;how do I get the data out of the system?&rdquo;, and after digging a bit deeper, it becomes clear they want the ability to save a snapshot of data as an Excel spreadsheet." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/post/20200217-sql-to-csv-in-python/" />
+<meta property="og:url" content="/post/20200217-sql-to-csv-in-python/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-02-17T16:17:10+10:00" />
 <meta property="article:modified_time" content="2020-02-17T16:17:10+10:00" />
+
 
 	
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -110,7 +111,7 @@ if (!doNotTrack) {
 			<p>This function takes an SQLAlchemy query object as it&rsquo;s input (<a href="https://www.sqlalchemy.org/">SQLAlchemy</a> is a popular Python SQL toolkit and Object Relational Mapper). It&rsquo;s strength lies in not needing to hard-code column names, making it <strong>scaleable and suitable to &ldquo;set-and-forget&rdquo;.</strong></p>
 <p>While developing enterprise software, every developer has surely have been faced with a client asking &ldquo;how do I get the data out of the system?&rdquo;, and after digging a bit deeper, it becomes clear they want the ability to save a snapshot of data as an Excel spreadsheet. While it may be a good idea in the longer term to sit down with the client to figure out how the application might be extended to automate these additional steps, here is a handy python script that will &ldquo;get the data&rdquo; from a SQL database interfaced with SQLAlchemy and output a CSV file.</p>
 <h3 id="sql_query_to_csvpy">sql_query_to_csv.py</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sql_query_to_csv</span>(query_output, columns_to_exclude<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>):
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sql_query_to_csv</span>(query_output, columns_to_exclude<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>):
  <span style="color:#e6db74">&#34;&#34;&#34; Converts output from a SQLAlchemy query to a .csv string.
 </span><span style="color:#e6db74">
 </span><span style="color:#e6db74"> Parameters:
@@ -149,7 +150,7 @@ if (!doNotTrack) {
 
  <span style="color:#66d9ef">return</span> csv
 </code></pre></div><h3 id="example-implementation">Example implementation</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
 
 <span style="color:#f92672">from</span> sqlalchemy <span style="color:#f92672">import</span> create_engine
 <span style="color:#f92672">from</span> sqlalchemy <span style="color:#f92672">import</span> Column, String, Integer, DateTime
@@ -164,9 +165,9 @@ Base <span style="color:#f92672">=</span> declarative_base()
 <span style="color:#75715e"># define model</span>
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span>(Base):
     __tablename__ <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;User&#39;</span>
-    id       <span style="color:#f92672">=</span> Column(Integer, primary_key<span style="color:#f92672">=</span>True)
-    name     <span style="color:#f92672">=</span> Column(String, nullable<span style="color:#f92672">=</span>False)
-    fullname <span style="color:#f92672">=</span> Column(String, nullable<span style="color:#f92672">=</span>False)
+    id       <span style="color:#f92672">=</span> Column(Integer, primary_key<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+    name     <span style="color:#f92672">=</span> Column(String, nullable<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+    fullname <span style="color:#f92672">=</span> Column(String, nullable<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
     birth    <span style="color:#f92672">=</span> Column(DateTime)
 
 engine <span style="color:#f92672">=</span> create_engine(<span style="color:#e6db74">&#39;sqlite:///db.sqlite&#39;</span>)
@@ -197,11 +198,11 @@ query <span style="color:#f92672">=</span> session<span style="color:#f92672">.<
 
 <span style="color:#75715e"># output all users to csv</span>
 csv_1 <span style="color:#f92672">=</span> sql_query_to_csv(query)
-<span style="color:#66d9ef">print</span>(csv_1)
+print(csv_1)
 
 <span style="color:#75715e"># output all users to csv, excluding some columns</span>
 csv_2 <span style="color:#f92672">=</span> sql_query_to_csv(query, [<span style="color:#e6db74">&#34;birth&#34;</span>, <span style="color:#e6db74">&#34;id&#34;</span>, <span style="color:#e6db74">&#34;_sa_instance_state&#34;</span>])
-<span style="color:#66d9ef">print</span>(csv_2)
+print(csv_2)
 </code></pre></div><h3 id="example-output">Example output</h3>
 <pre><code>_sa_instance_state, birth, fullname, id, name
 &quot;&lt;sqlalchemy.orm.state.InstanceState object at 0x00000230B14AB2C8&gt;&quot;,&quot;1942-11-27 00:00:00&quot;,&quot;Jimi Hendrix&quot;,&quot;1&quot;,&quot;JH&quot;,
@@ -233,10 +234,10 @@ fullname, name
 		<img alt="Chris avatar" src="/img/avatar.png" class="avatar" height="90" width="90">
 	</figure>
 	<div class="authorbox__header">
-		<span class="authorbox__name">About Chris</span>
+		<span class="authorbox__name"></span>
 	</div>
 	<div class="authorbox__description">
-		Software Engineer from Brisbane, Australia. Currently looking for interesting software projects to work on. Previous experience in mechanical engineering, consulting and project management. Enjoys making music, working out, skateboarding and outdoor adventuring.
+		Software Engineer at Microsoft. Looking for interesting projects to advise on, contribute to, or invest in. Enjoys making music, working out, photography, skateboarding and outdoor adventuring.
 	</div>
 </div>
 

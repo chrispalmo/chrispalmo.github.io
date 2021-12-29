@@ -11,9 +11,10 @@
 <meta property="og:description" content="If you do any software development in a Windows environment, you&rsquo;ll be spending enough time inside the Powershell (PS) console that it will be worth customizing the PS Profile to speed up your workflow.
 The PS Profile is essentially a .ps1 script that is run whenever a new PS console is opened. Without going too deep into how a sysadmin might use it, the average developer will probably want to use it to quickly do a few basic things:" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/post/20200210-use-powershell-profile-like-a-pro/" />
+<meta property="og:url" content="/post/20200210-use-powershell-profile-like-a-pro/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-02-09T20:31:46+10:00" />
 <meta property="article:modified_time" content="2020-02-09T20:31:46+10:00" />
+
 
 	
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -116,30 +117,30 @@ if (!doNotTrack) {
 </ul>
 <h2 id="locating-profileps1">Locating profile.ps1</h2>
 <p>The <code>$PROFILE</code> variable should return the path to the profile for the current user (the <code>&gt;</code> symbol is used to denote console input):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">&gt; $PROFILE
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">&gt; $PROFILE
 C:\Users\chris\Documents\WindowsPowerShell\profile.ps1
 </code></pre></div><p>Now that you know where Windows is looking to load the profile from, you can use your text editor of choice to create or modify it:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">notepad $PROFILE
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">notepad $PROFILE
 </code></pre></div><h2 id="lets-configure-the-profile">Let&rsquo;s configure the profile</h2>
 <p>Add the below code to <code>profile.ps1</code>, which will be executed when a new console is opened.</p>
 <h5 id="set-the-starting-directory">Set the starting directory</h5>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Navigate to the default startup folder</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Navigate to the default startup folder</span>
 cd <span style="color:#e6db74">&#34;C:\PATH\TO\YOUR\PREFERRED\STARTUP\FOLDER\&#34;</span>
 </code></pre></div><h5 id="use-a-more-succinct-prompt">Use a more succinct prompt</h5>
 <p>The default prompt contains the entire path to the current working directory which can take up a lot of space. To show only the name of the current folder, the default <code>prompt</code> function can be overwritten by adding:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Show current directory (instead of entire path) in prompt:</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Show current directory (instead of entire path) in prompt:</span>
 <span style="color:#66d9ef">Function</span> prompt {
   $p = Split-Path -leaf -path (Get-Location)
   <span style="color:#e6db74">&#34;$p&gt; &#34;</span>
 }
 </code></pre></div><p>This will change the prompt from this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">C:\a\really\long\path\to\the\current\working\directory&gt;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">C:\a\really\long\path\to\the\current\working\directory&gt;
 </code></pre></div><p>to this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">directory&gt;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">directory&gt;
 </code></pre></div><p>This clears up the console, and if you ever need to check exactly where you are, just use <code>Get-Location</code> or it&rsquo;s alis <code>pwd</code>.</p>
 <h5 id="create-shortcuts-to-favourite-directories">Create shortcuts to favourite directories</h5>
 <p>I added the below functions to navigate to my development directory by just typing <code>dev</code>, or to my blog working directory by typing <code>blog</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># cd to dev folder</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># cd to dev folder</span>
 <span style="color:#66d9ef">function</span> dev {
     cd <span style="color:#e6db74">&#34;C:\Users\chris\webdev&#34;</span>
 }
@@ -150,7 +151,7 @@ cd <span style="color:#e6db74">&#34;C:\PATH\TO\YOUR\PREFERRED\STARTUP\FOLDER\&#3
 </code></pre></div><h5 id="automatically-import-custom-scripts">Automatically import custom scripts</h5>
 <p>I prefer to store custom scripts that I have written or borrowed from others within my local development folder. This makes it easy to manage and keep synchronized with a git repository.</p>
 <p>I added the below script to <code>profile.ps1</code> to look inside this folder and import all <code>.ps1</code> files:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Import custom powershell scripts</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Import custom powershell scripts</span>
 $custom_script_dir = <span style="color:#e6db74">&#34;PATH_TO_YOUR_CUSTOM_PS1_SCRIPT_DIRECTORY&#34;</span> 
 Write-Output `
  (<span style="color:#e6db74">&#34;*** Importing all .ps1 modules from &#34;</span> `
@@ -159,12 +160,12 @@ Write-Output `
 Get-ChildItem `
  $custom_script_dir `
  -Filter *.ps1 | `
- <span style="color:#66d9ef">Foreach</span>-Object `
+ Foreach-Object `
  { Import-Module ($custom_script_dir + $_) }
 </code></pre></div><h5 id="set-the-execution-policy-to-allow-scripts-to-run">Set the execution policy to allow scripts to run</h5>
 <p>According to the <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7">official docs</a>, &ldquo;PowerShell&rsquo;s execution policy is a safety feature that controls the conditions under which PowerShell loads configuration files and runs scripts. This feature helps prevent the execution of malicious scripts.&rdquo;</p>
 <p>Press the <code>Windows</code> key and search for <code>Powershell</code>, right-click and select <code>Run as administrator</code> then enter the following commad:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
 </code></pre></div><h5 id="try-it-out">Try it out</h5>
 <p>To try it out simply place some custom scripts in the directory specified above and open a new PowerShell instance.</p>
 <p>If you want a useful script to try this out on, check out <a href="/post/20200209-search-google-from-powershell/">my script that searches Google from the powershell console</a>.</p>
@@ -188,10 +189,10 @@ Get-ChildItem `
 		<img alt="Chris avatar" src="/img/avatar.png" class="avatar" height="90" width="90">
 	</figure>
 	<div class="authorbox__header">
-		<span class="authorbox__name">About Chris</span>
+		<span class="authorbox__name"></span>
 	</div>
 	<div class="authorbox__description">
-		Software Engineer from Brisbane, Australia. Currently looking for interesting software projects to work on. Previous experience in mechanical engineering, consulting and project management. Enjoys making music, working out, skateboarding and outdoor adventuring.
+		Software Engineer at Microsoft. Looking for interesting projects to advise on, contribute to, or invest in. Enjoys making music, working out, photography, skateboarding and outdoor adventuring.
 	</div>
 </div>
 
