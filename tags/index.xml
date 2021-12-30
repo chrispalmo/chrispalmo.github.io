@@ -6,7 +6,43 @@
     <description>Recent content in Tags on Chris Palmieri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 01 Jul 2021 13:47:07 +1000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 29 Dec 2021 11:39:50 +1000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Javascript</title>
+      <link>/tags/javascript/</link>
+      <pubDate>Wed, 29 Dec 2021 11:39:50 +1000</pubDate>
+      
+      <guid>/tags/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NodeJS</title>
+      <link>/tags/nodejs/</link>
+      <pubDate>Wed, 29 Dec 2021 11:39:50 +1000</pubDate>
+      
+      <guid>/tags/nodejs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>React</title>
+      <link>/tags/react/</link>
+      <pubDate>Wed, 29 Dec 2021 11:39:50 +1000</pubDate>
+      
+      <guid>/tags/react/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Typescript</title>
+      <link>/tags/typescript/</link>
+      <pubDate>Wed, 29 Dec 2021 11:39:50 +1000</pubDate>
+      
+      <guid>/tags/typescript/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Python</title>
       <link>/tags/python/</link>
@@ -44,38 +80,11 @@
     </item>
     
     <item>
-      <title>Javascript</title>
-      <link>/tags/javascript/</link>
-      <pubDate>Mon, 07 Sep 2020 16:48:39 +1000</pubDate>
-      
-      <guid>/tags/javascript/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>MongoDB</title>
       <link>/tags/mongodb/</link>
       <pubDate>Sun, 23 Aug 2020 21:05:48 +1000</pubDate>
       
       <guid>/tags/mongodb/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>NodeJS</title>
-      <link>/tags/nodejs/</link>
-      <pubDate>Sun, 23 Aug 2020 21:05:48 +1000</pubDate>
-      
-      <guid>/tags/nodejs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>React</title>
-      <link>/tags/react/</link>
-      <pubDate>Sun, 23 Aug 2020 21:05:48 +1000</pubDate>
-      
-      <guid>/tags/react/</guid>
       <description></description>
     </item>
     

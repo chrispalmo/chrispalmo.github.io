@@ -6,7 +6,18 @@
     <description>Recent content on Chris Palmieri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 01 Jul 2021 13:47:07 +1000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 29 Dec 2021 11:39:50 +1000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Javascript: Gotchas with logical operators || and &amp;&amp;</title>
+      <link>/post/20211229-javascript-gotchas/</link>
+      <pubDate>Wed, 29 Dec 2021 11:39:50 +1000</pubDate>
+      
+      <guid>/post/20211229-javascript-gotchas/</guid>
+      <description>Overview Javascript&amp;rsquo;s logical OR || and logical AND &amp;amp;&amp;amp; operators are useful in contexts other than creating if, else, while etc. statements, but there are some edge cases that that I see many devs (myself included) getting caught out by.
+This article explores common pitfalls, and provides recommendations for:
+ using || to define values with a default fallback, and using &amp;amp;&amp;amp; to conditionally render JSX components only when required props are defined.</description>
+    </item>
+    
     <item>
       <title>Streamline web automation development (Python &#43; Selenium)</title>
       <link>/post/20210701-streamline-web-automation-development-python-selenium/</link>
@@ -160,7 +171,7 @@ I am a software engineer at Microsoft, have previous experience as an engineerin
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/projects/</guid>
-      <description>Learn touch typing using custom reading materials with Typr    August 23, 2020   Projects    tl;dr Typr is a simple web-based typing tutor that lets you practice typing using your own material. It also provides live feedback on typing speed, and in the future will include detailed statistics and algorithmically-generated custom exercises. Create an account and use it for free here. Check out some screencasts of the UI.</description>
+      <description>Learn touch typing using custom reading materials with Typr    August 23, 2020   Projects    tl;dr Typr is a simple web-based typing tutor that lets you practice typing using your own material. It also provides live feedback on typing speed, and in the future will include detailed statistics and algorithmically-generated custom exercises. Create an account and use it for free here.</description>
     </item>
     
   </channel>
