@@ -111,31 +111,31 @@ if (!doNotTrack) {
 			<p>You may have seen people walking around with those awkward<code>Eat; Sleep; Code; Repeat;</code> <a href="https://www.urbandictionary.com/define.php?term=brogrammer">brogrammer</a> shirts. I don&rsquo;t like them - between the many other things that developing software requires, when I actually sit down to write code the workflow would more accurately be described as <code>Code; Compile; Google Error; Repeat;</code>.</p>
 <p>This short post explains how the below <code>gg.ps1</code> Powershell script can increase your productivity by opening a chrome browser and executing a Google search straight from the Powershell console.</p>
 <p>If no arguments are passed to the function, it will Google whatever is in the clipboard, reducing keystrokes required to <code>ctrl+c</code>,<code>gg</code>,<code>enter</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Function name is used to call the function after importing this script</span>
-<span style="color:#66d9ef">Function</span> gg
-{
-<span style="color:#75715e">&lt;# </span><span style="color:#e6db74">.Synopsis</span><span style="color:#75715e">
-</span><span style="color:#75715e">    Open Chrome browser and search for the [-SearchString] argument. 
-</span><span style="color:#75715e">    If [-SearchString] not provided, defaults to clipboard contents.
-</span><span style="color:#75715e">    Requires Google Chrome browser to be installed with &#34;chrome.exe&#34; in the system path.
-</span><span style="color:#75715e">    Example usage: 
-</span><span style="color:#75715e">        gg &#34;your search terms&#34;
-</span><span style="color:#75715e">#&gt;</span>
-    <span style="color:#66d9ef">param</span> (
-        [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">mandatory</span>=$false, <span style="color:#66d9ef">Position</span>=0)] `
-        <span style="color:#66d9ef">[String]</span>$SearchString
-    )
-    <span style="color:#66d9ef">process</span> {
-        <span style="color:#66d9ef">if</span> (!$SearchString){
-            $SearchString = Get-Clipboard;
-        }
-        $URL = $SearchString <span style="color:#f92672">-replace</span> <span style="color:#e6db74">&#39; &#39;</span>,<span style="color:#e6db74">&#39;+&#39;</span>;
-        $URL = <span style="color:#e6db74">&#34;https://www.google.com/search?q=&#34;</span> + $URL;
-        echo (<span style="color:#e6db74">&#34;Searching Google for &lt;&#34;</span> + $SearchString + <span style="color:#e6db74">&#34;&gt;...&#34;</span>);
-        start chrome.exe $URL;
-    }
-}
-</code></pre></div><p>To automatically import this function whenever Powershell is started, see my post &ldquo;<a href="/post/20200210-use-powershell-profile-like-a-pro/">Use Powershell Profiles Like a Pro</a>&rdquo;.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Function name is used to call the function after importing this script</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">Function</span> gg
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;# </span><span style="color:#e6db74">.Synopsis</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    Open Chrome browser and search for the [-SearchString] argument. 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    If [-SearchString] not provided, defaults to clipboard contents.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    Requires Google Chrome browser to be installed with &#34;chrome.exe&#34; in the system path.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    Example usage: 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        gg &#34;your search terms&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">param</span> (
+</span></span><span style="display:flex;"><span>        [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">mandatory</span>=$false, <span style="color:#66d9ef">Position</span>=0)] `
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">[String]</span>$SearchString
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">process</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (!$SearchString){
+</span></span><span style="display:flex;"><span>            $SearchString = Get-Clipboard;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        $URL = $SearchString <span style="color:#f92672">-replace</span> <span style="color:#e6db74">&#39; &#39;</span>,<span style="color:#e6db74">&#39;+&#39;</span>;
+</span></span><span style="display:flex;"><span>        $URL = <span style="color:#e6db74">&#34;https://www.google.com/search?q=&#34;</span> + $URL;
+</span></span><span style="display:flex;"><span>        echo (<span style="color:#e6db74">&#34;Searching Google for &lt;&#34;</span> + $SearchString + <span style="color:#e6db74">&#34;&gt;...&#34;</span>);
+</span></span><span style="display:flex;"><span>        start chrome.exe $URL;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>To automatically import this function whenever Powershell is started, see my post &ldquo;<a href="/post/20200210-use-powershell-profile-like-a-pro/">Use Powershell Profiles Like a Pro</a>&rdquo;.</p>
 
 		</div>
 		<footer class="post__footer">
@@ -166,7 +166,7 @@ if (!doNotTrack) {
 <section class="comments">
 	<div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -193,11 +193,11 @@ if (!doNotTrack) {
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2022-05-14-higher-order-components-hocs/">Higher-Order Functional Components (HOCs) in React (with Typescript)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20211229-javascript-gotchas/">Javascript: Gotchas with logical operators || and &amp;&amp;</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20210701-streamline-web-automation-development-python-selenium/">Streamline web automation development (Python &#43; Selenium)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20200907-browser-debugging-with-bookmarklets/">Browser debugging with bookmarklets</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20200823-typr-typing-tutor-web-app/">Learn touch typing using custom reading materials with Typr</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20200823-type-at-100-wpm-in-two-weeks/">Learning to type at 100 WPM in two weeks</a></li>
 		</ul>
 	</div>
 </div>
@@ -232,21 +232,21 @@ if (!doNotTrack) {
 		<a class="widget-taglist__link widget__link btn" href="/tags/devops/" title="DevOps">DevOps (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/entrepreneurship/" title="Entrepreneurship">Entrepreneurship (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/flask/" title="Flask">Flask (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/frontend/" title="Frontend">Frontend (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/frontend/" title="Frontend">Frontend (5)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/idea-machine/" title="Idea Machine">Idea Machine (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="Javascript">Javascript (4)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="Javascript">Javascript (5)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/learning-hack/" title="Learning Hack">Learning Hack (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/mongodb/" title="MongoDB">MongoDB (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/networking/" title="Networking">Networking (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/nodejs/" title="NodeJS">NodeJS (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="Powershell">Powershell (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python (5)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/react/" title="React">React (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/react/" title="React">React (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/redux/" title="Redux">Redux (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/selenium/" title="Selenium">Selenium (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/speed-hacks/" title="Speed Hacks">Speed Hacks (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/sql/" title="SQL">SQL (2)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/typescript/" title="Typescript">Typescript (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/typescript/" title="Typescript">Typescript (2)</a>
 	</div>
 </div>
 <div class="widget-social widget">

@@ -111,108 +111,108 @@ if (!doNotTrack) {
 			<p>This function takes an SQLAlchemy query object as it&rsquo;s input (<a href="https://www.sqlalchemy.org/">SQLAlchemy</a> is a popular Python SQL toolkit and Object Relational Mapper). It&rsquo;s strength lies in not needing to hard-code column names, making it <strong>scaleable and suitable to &ldquo;set-and-forget&rdquo;.</strong></p>
 <p>While developing enterprise software, every developer has surely have been faced with a client asking &ldquo;how do I get the data out of the system?&rdquo;, and after digging a bit deeper, it becomes clear they want the ability to save a snapshot of data as an Excel spreadsheet. While it may be a good idea in the longer term to sit down with the client to figure out how the application might be extended to automate these additional steps, here is a handy python script that will &ldquo;get the data&rdquo; from a SQL database interfaced with SQLAlchemy and output a CSV file.</p>
 <h3 id="sql_query_to_csvpy">sql_query_to_csv.py</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sql_query_to_csv</span>(query_output, columns_to_exclude<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>):
- <span style="color:#e6db74">&#34;&#34;&#34; Converts output from a SQLAlchemy query to a .csv string.
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"> Parameters:
-</span><span style="color:#e6db74">  query_output (list of &lt;class &#39;SQLAlchemy.Model&#39;&gt;): output from an SQLAlchemy query.
-</span><span style="color:#e6db74">  columns_to_exclude (list of str): names of columns to exclude from .csv output.
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"> Returns:
-</span><span style="color:#e6db74">  csv (str): query_output represented in .csv format.
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"> Example usage:
-</span><span style="color:#e6db74">  users = db.Users.query.filter_by(user_id=123)
-</span><span style="color:#e6db74">  csv = sql_query_to_csv(users, [&#34;id&#34;, &#34;age&#34;, &#34;address&#34;]
-</span><span style="color:#e6db74"> &#34;&#34;&#34;</span>
- rows <span style="color:#f92672">=</span> query_output
- columns_to_exclude <span style="color:#f92672">=</span> set(columns_to_exclude)
-
- <span style="color:#75715e">#create list of column names  </span>
- column_names <span style="color:#f92672">=</span> [i <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> rows[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>__dict__]
- <span style="color:#66d9ef">for</span> column_name <span style="color:#f92672">in</span> columns_to_exclude:
-  column_names<span style="color:#f92672">.</span>pop(column_names<span style="color:#f92672">.</span>index(column_name))
-
- <span style="color:#75715e">#add column titles to csv</span>
- column_names<span style="color:#f92672">.</span>sort()
- csv <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;, &#34;</span><span style="color:#f92672">.</span>join(column_names) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-
- <span style="color:#75715e">#add rows of data to csv</span>
- <span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> rows:
-  <span style="color:#66d9ef">for</span> column_name <span style="color:#f92672">in</span> column_names:
-   <span style="color:#66d9ef">if</span> column_name <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> columns_to_exclude:
-    data <span style="color:#f92672">=</span> str(row<span style="color:#f92672">.</span>__dict__[column_name])
-    <span style="color:#75715e">#Escape (&#34;) symbol by preceeding with another (&#34;)</span>
-    data<span style="color:#f92672">.</span>replace(<span style="color:#e6db74">&#39;&#34;&#39;</span>,<span style="color:#e6db74">&#39;&#34;&#34;&#39;</span>)
-    <span style="color:#75715e">#Enclose each datum in double quotes so commas within are not treated as separators</span>
-    csv <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;&#34;&#39;</span> <span style="color:#f92672">+</span> data <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&#34;&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;,&#34;</span>
-  csv <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-
- <span style="color:#66d9ef">return</span> csv
-</code></pre></div><h3 id="example-implementation">Example implementation</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
-
-<span style="color:#f92672">from</span> sqlalchemy <span style="color:#f92672">import</span> create_engine
-<span style="color:#f92672">from</span> sqlalchemy <span style="color:#f92672">import</span> Column, String, Integer, DateTime
-<span style="color:#f92672">from</span> sqlalchemy.orm <span style="color:#f92672">import</span> sessionmaker
-<span style="color:#f92672">from</span> sqlalchemy.exc <span style="color:#f92672">import</span> SQLAlchemyError
-<span style="color:#f92672">from</span> sqlalchemy.ext.declarative <span style="color:#f92672">import</span> declarative_base
-
-<span style="color:#f92672">from</span> sql_query_to_csv <span style="color:#f92672">import</span> sql_query_to_csv
-
-Base <span style="color:#f92672">=</span> declarative_base()
-
-<span style="color:#75715e"># define model</span>
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span>(Base):
-    __tablename__ <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;User&#39;</span>
-    id       <span style="color:#f92672">=</span> Column(Integer, primary_key<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
-    name     <span style="color:#f92672">=</span> Column(String, nullable<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
-    fullname <span style="color:#f92672">=</span> Column(String, nullable<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
-    birth    <span style="color:#f92672">=</span> Column(DateTime)
-
-engine <span style="color:#f92672">=</span> create_engine(<span style="color:#e6db74">&#39;sqlite:///db.sqlite&#39;</span>)
-Base<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>create_all(bind<span style="color:#f92672">=</span>engine)
-
-users <span style="color:#f92672">=</span> [
-    User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;JH&#39;</span>,
-         fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Jimi Hendrix&#39;</span>,
-         birth<span style="color:#f92672">=</span>datetime(<span style="color:#ae81ff">1942</span>,<span style="color:#ae81ff">11</span>,<span style="color:#ae81ff">27</span>)),
-    User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;RJ&#39;</span>,
-         fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Robert Johnson&#39;</span>,
-         birth<span style="color:#f92672">=</span>datetime(<span style="color:#ae81ff">1943</span>,<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">8</span>)),
-    User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;JM&#39;</span>,
-         fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Jim Morrison&#39;</span>,
-         birth<span style="color:#f92672">=</span>datetime(<span style="color:#ae81ff">1911</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">8</span>))]
-
-<span style="color:#75715e"># create session</span>
-Session <span style="color:#f92672">=</span> sessionmaker()
-Session<span style="color:#f92672">.</span>configure(bind<span style="color:#f92672">=</span>engine)
-session <span style="color:#f92672">=</span> Session()
-
-<span style="color:#75715e"># add data</span>
-session<span style="color:#f92672">.</span>add_all(users)
-session<span style="color:#f92672">.</span>commit()
-
-<span style="color:#75715e"># query database</span>
-query <span style="color:#f92672">=</span> session<span style="color:#f92672">.</span>query(User)<span style="color:#f92672">.</span>all()
-
-<span style="color:#75715e"># output all users to csv</span>
-csv_1 <span style="color:#f92672">=</span> sql_query_to_csv(query)
-print(csv_1)
-
-<span style="color:#75715e"># output all users to csv, excluding some columns</span>
-csv_2 <span style="color:#f92672">=</span> sql_query_to_csv(query, [<span style="color:#e6db74">&#34;birth&#34;</span>, <span style="color:#e6db74">&#34;id&#34;</span>, <span style="color:#e6db74">&#34;_sa_instance_state&#34;</span>])
-print(csv_2)
-</code></pre></div><h3 id="example-output">Example output</h3>
-<pre><code>_sa_instance_state, birth, fullname, id, name
-&quot;&lt;sqlalchemy.orm.state.InstanceState object at 0x00000230B14AB2C8&gt;&quot;,&quot;1942-11-27 00:00:00&quot;,&quot;Jimi Hendrix&quot;,&quot;1&quot;,&quot;JH&quot;,
-&quot;&lt;sqlalchemy.orm.state.InstanceState object at 0x00000230B07985C8&gt;&quot;,&quot;1943-12-08 00:00:00&quot;,&quot;Robert Johnson&quot;,&quot;2&quot;,&quot;RJ&quot;,
-&quot;&lt;sqlalchemy.orm.state.InstanceState object at 0x00000230B14D8C48&gt;&quot;,&quot;1911-05-08 00:00:00&quot;,&quot;Jim Morrison&quot;,&quot;3&quot;,&quot;JM&quot;,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sql_query_to_csv</span>(query_output, columns_to_exclude<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>):
+</span></span><span style="display:flex;"><span> <span style="color:#e6db74">&#34;&#34;&#34; Converts output from a SQLAlchemy query to a .csv string.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> Parameters:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  query_output (list of &lt;class &#39;SQLAlchemy.Model&#39;&gt;): output from an SQLAlchemy query.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  columns_to_exclude (list of str): names of columns to exclude from .csv output.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> Returns:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  csv (str): query_output represented in .csv format.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> Example usage:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  users = db.Users.query.filter_by(user_id=123)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  csv = sql_query_to_csv(users, [&#34;id&#34;, &#34;age&#34;, &#34;address&#34;]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span> rows <span style="color:#f92672">=</span> query_output
+</span></span><span style="display:flex;"><span> columns_to_exclude <span style="color:#f92672">=</span> set(columns_to_exclude)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> <span style="color:#75715e">#create list of column names  </span>
+</span></span><span style="display:flex;"><span> column_names <span style="color:#f92672">=</span> [i <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> rows[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>__dict__]
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">for</span> column_name <span style="color:#f92672">in</span> columns_to_exclude:
+</span></span><span style="display:flex;"><span>  column_names<span style="color:#f92672">.</span>pop(column_names<span style="color:#f92672">.</span>index(column_name))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> <span style="color:#75715e">#add column titles to csv</span>
+</span></span><span style="display:flex;"><span> column_names<span style="color:#f92672">.</span>sort()
+</span></span><span style="display:flex;"><span> csv <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;, &#34;</span><span style="color:#f92672">.</span>join(column_names) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> <span style="color:#75715e">#add rows of data to csv</span>
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> rows:
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> column_name <span style="color:#f92672">in</span> column_names:
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">if</span> column_name <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> columns_to_exclude:
+</span></span><span style="display:flex;"><span>    data <span style="color:#f92672">=</span> str(row<span style="color:#f92672">.</span>__dict__[column_name])
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#Escape (&#34;) symbol by preceeding with another (&#34;)</span>
+</span></span><span style="display:flex;"><span>    data<span style="color:#f92672">.</span>replace(<span style="color:#e6db74">&#39;&#34;&#39;</span>,<span style="color:#e6db74">&#39;&#34;&#34;&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#Enclose each datum in double quotes so commas within are not treated as separators</span>
+</span></span><span style="display:flex;"><span>    csv <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;&#34;&#39;</span> <span style="color:#f92672">+</span> data <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&#34;&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;,&#34;</span>
+</span></span><span style="display:flex;"><span>  csv <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">return</span> csv
+</span></span></code></pre></div><h3 id="example-implementation">Example implementation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sqlalchemy <span style="color:#f92672">import</span> create_engine
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sqlalchemy <span style="color:#f92672">import</span> Column, String, Integer, DateTime
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sqlalchemy.orm <span style="color:#f92672">import</span> sessionmaker
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sqlalchemy.exc <span style="color:#f92672">import</span> SQLAlchemyError
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sqlalchemy.ext.declarative <span style="color:#f92672">import</span> declarative_base
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sql_query_to_csv <span style="color:#f92672">import</span> sql_query_to_csv
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Base <span style="color:#f92672">=</span> declarative_base()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># define model</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span>(Base):
+</span></span><span style="display:flex;"><span>    __tablename__ <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;User&#39;</span>
+</span></span><span style="display:flex;"><span>    id       <span style="color:#f92672">=</span> Column(Integer, primary_key<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>    name     <span style="color:#f92672">=</span> Column(String, nullable<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>    fullname <span style="color:#f92672">=</span> Column(String, nullable<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>    birth    <span style="color:#f92672">=</span> Column(DateTime)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>engine <span style="color:#f92672">=</span> create_engine(<span style="color:#e6db74">&#39;sqlite:///db.sqlite&#39;</span>)
+</span></span><span style="display:flex;"><span>Base<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>create_all(bind<span style="color:#f92672">=</span>engine)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>users <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;JH&#39;</span>,
+</span></span><span style="display:flex;"><span>         fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Jimi Hendrix&#39;</span>,
+</span></span><span style="display:flex;"><span>         birth<span style="color:#f92672">=</span>datetime(<span style="color:#ae81ff">1942</span>,<span style="color:#ae81ff">11</span>,<span style="color:#ae81ff">27</span>)),
+</span></span><span style="display:flex;"><span>    User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;RJ&#39;</span>,
+</span></span><span style="display:flex;"><span>         fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Robert Johnson&#39;</span>,
+</span></span><span style="display:flex;"><span>         birth<span style="color:#f92672">=</span>datetime(<span style="color:#ae81ff">1943</span>,<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">8</span>)),
+</span></span><span style="display:flex;"><span>    User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;JM&#39;</span>,
+</span></span><span style="display:flex;"><span>         fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Jim Morrison&#39;</span>,
+</span></span><span style="display:flex;"><span>         birth<span style="color:#f92672">=</span>datetime(<span style="color:#ae81ff">1911</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">8</span>))]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># create session</span>
+</span></span><span style="display:flex;"><span>Session <span style="color:#f92672">=</span> sessionmaker()
+</span></span><span style="display:flex;"><span>Session<span style="color:#f92672">.</span>configure(bind<span style="color:#f92672">=</span>engine)
+</span></span><span style="display:flex;"><span>session <span style="color:#f92672">=</span> Session()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># add data</span>
+</span></span><span style="display:flex;"><span>session<span style="color:#f92672">.</span>add_all(users)
+</span></span><span style="display:flex;"><span>session<span style="color:#f92672">.</span>commit()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># query database</span>
+</span></span><span style="display:flex;"><span>query <span style="color:#f92672">=</span> session<span style="color:#f92672">.</span>query(User)<span style="color:#f92672">.</span>all()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># output all users to csv</span>
+</span></span><span style="display:flex;"><span>csv_1 <span style="color:#f92672">=</span> sql_query_to_csv(query)
+</span></span><span style="display:flex;"><span>print(csv_1)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># output all users to csv, excluding some columns</span>
+</span></span><span style="display:flex;"><span>csv_2 <span style="color:#f92672">=</span> sql_query_to_csv(query, [<span style="color:#e6db74">&#34;birth&#34;</span>, <span style="color:#e6db74">&#34;id&#34;</span>, <span style="color:#e6db74">&#34;_sa_instance_state&#34;</span>])
+</span></span><span style="display:flex;"><span>print(csv_2)
+</span></span></code></pre></div><h3 id="example-output">Example output</h3>
+<pre tabindex="0"><code>_sa_instance_state, birth, fullname, id, name
+&#34;&lt;sqlalchemy.orm.state.InstanceState object at 0x00000230B14AB2C8&gt;&#34;,&#34;1942-11-27 00:00:00&#34;,&#34;Jimi Hendrix&#34;,&#34;1&#34;,&#34;JH&#34;,
+&#34;&lt;sqlalchemy.orm.state.InstanceState object at 0x00000230B07985C8&gt;&#34;,&#34;1943-12-08 00:00:00&#34;,&#34;Robert Johnson&#34;,&#34;2&#34;,&#34;RJ&#34;,
+&#34;&lt;sqlalchemy.orm.state.InstanceState object at 0x00000230B14D8C48&gt;&#34;,&#34;1911-05-08 00:00:00&#34;,&#34;Jim Morrison&#34;,&#34;3&#34;,&#34;JM&#34;,
 
 fullname, name
-&quot;Jimi Hendrix&quot;,&quot;JH&quot;,
-&quot;Robert Johnson&quot;,&quot;RJ&quot;,
-&quot;Jim Morrison&quot;,&quot;JM&quot;,
+&#34;Jimi Hendrix&#34;,&#34;JH&#34;,
+&#34;Robert Johnson&#34;,&#34;RJ&#34;,
+&#34;Jim Morrison&#34;,&#34;JM&#34;,
 </code></pre>
 		</div>
 		<footer class="post__footer">
@@ -245,7 +245,7 @@ fullname, name
 <section class="comments">
 	<div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -272,11 +272,11 @@ fullname, name
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2022-05-14-higher-order-components-hocs/">Higher-Order Functional Components (HOCs) in React (with Typescript)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20211229-javascript-gotchas/">Javascript: Gotchas with logical operators || and &amp;&amp;</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20210701-streamline-web-automation-development-python-selenium/">Streamline web automation development (Python &#43; Selenium)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20200907-browser-debugging-with-bookmarklets/">Browser debugging with bookmarklets</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20200823-typr-typing-tutor-web-app/">Learn touch typing using custom reading materials with Typr</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20200823-type-at-100-wpm-in-two-weeks/">Learning to type at 100 WPM in two weeks</a></li>
 		</ul>
 	</div>
 </div>
@@ -311,21 +311,21 @@ fullname, name
 		<a class="widget-taglist__link widget__link btn" href="/tags/devops/" title="DevOps">DevOps (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/entrepreneurship/" title="Entrepreneurship">Entrepreneurship (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/flask/" title="Flask">Flask (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/frontend/" title="Frontend">Frontend (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/frontend/" title="Frontend">Frontend (5)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/idea-machine/" title="Idea Machine">Idea Machine (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="Javascript">Javascript (4)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="Javascript">Javascript (5)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/learning-hack/" title="Learning Hack">Learning Hack (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/mongodb/" title="MongoDB">MongoDB (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/networking/" title="Networking">Networking (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/nodejs/" title="NodeJS">NodeJS (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="Powershell">Powershell (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python (5)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/react/" title="React">React (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/react/" title="React">React (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/redux/" title="Redux">Redux (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/selenium/" title="Selenium">Selenium (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/speed-hacks/" title="Speed Hacks">Speed Hacks (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/sql/" title="SQL">SQL (2)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/typescript/" title="Typescript">Typescript (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/typescript/" title="Typescript">Typescript (2)</a>
 	</div>
 </div>
 <div class="widget-social widget">

@@ -129,82 +129,82 @@ if (!doNotTrack) {
 <li><strong><code>build_commit_push_clear_cache.ps1</code></strong>: builds the website, uploads to server (in this case, via a git commit to GitHub), clears Cloudflare content delivery cache.</li>
 </ul>
 <h3 id="configjson"><strong><code>config.json</code></strong></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">{
-   <span style="color:#e6db74">&#39;production_build_directory&#39;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#39;PATH//TO//PRODUCTION//BUILD//DIRECTORY&#39;</span>,
-   <span style="color:#e6db74">&#39;CloudflareAdminEmail&#39;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#39;YOUR_CLOUDFLARE_ADMIN_EMAIL&#39;</span>,
-   <span style="color:#e6db74">&#39;CloudflareApiKey&#39;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#39;YOUR_CLOUDFLARE_API_KEY&#39;</span>,
-   <span style="color:#e6db74">&#39;CloudflareZoneId&#39;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#39;YOUR_CLOUDFLARE_ZONE_ID&#39;</span>
-}
-</code></pre></div><p>Note the double backslashes <code>\\</code> in the <code>production_build_directory</code> path. The first backslash is an escape character used by the Powershell <code>ConvertFrom-Json</code> parser.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#39;production_build_directory&#39;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#39;PATH//TO//PRODUCTION//BUILD//DIRECTORY&#39;</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#39;CloudflareAdminEmail&#39;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#39;YOUR_CLOUDFLARE_ADMIN_EMAIL&#39;</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#39;CloudflareApiKey&#39;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#39;YOUR_CLOUDFLARE_API_KEY&#39;</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#39;CloudflareZoneId&#39;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#39;YOUR_CLOUDFLARE_ZONE_ID&#39;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Note the double backslashes <code>\\</code> in the <code>production_build_directory</code> path. The first backslash is an escape character used by the Powershell <code>ConvertFrom-Json</code> parser.</p>
 <h3 id="publishps1"><strong><code>publish.ps1</code></strong></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Import configurations and secret keys from config.json</span>
-
-$config = Get-Content -Raw -Path .\scripts\config.json | ConvertFrom-Json
-
-<span style="color:#75715e"># Pass the configurations and secret keys as arguments into the script that does the actual work:</span>
-
-<span style="color:#75715e">### **`./scripts/build_commit_push_clear_cache.ps1`**</span>
- -production_build_directory $config.production_build_directory `
- -CloudflareAdminEmail $config.CloudflareAdminEmail `
- -CloudflareApiKey $config.CloudflareApiKey `
- -CloudflareZoneId $config.CloudflareZoneId
-</code></pre></div><p>Note that the <code>production_build_directory</code> is a separate git repository to the Hugo source code, in order to comply with Github Pages hosting requirements.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Import configurations and secret keys from config.json</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$config = Get-Content -Raw -Path .\scripts\config.json | ConvertFrom-Json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Pass the configurations and secret keys as arguments into the script that does the actual work:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### **`./scripts/build_commit_push_clear_cache.ps1`**</span>
+</span></span><span style="display:flex;"><span> -production_build_directory $config.production_build_directory `
+</span></span><span style="display:flex;"><span> -CloudflareAdminEmail $config.CloudflareAdminEmail `
+</span></span><span style="display:flex;"><span> -CloudflareApiKey $config.CloudflareApiKey `
+</span></span><span style="display:flex;"><span> -CloudflareZoneId $config.CloudflareZoneId
+</span></span></code></pre></div><p>Note that the <code>production_build_directory</code> is a separate git repository to the Hugo source code, in order to comply with Github Pages hosting requirements.</p>
 <p>The real work is done by <code>build_commit_push_clear_cache.ps1</code>:</p>
 <h3 id="build_commit_push_clear_cacheps1"><strong><code>build_commit_push_clear_cache.ps1</code></strong></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">Param</span>(
-    [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>=$true)]
-    <span style="color:#66d9ef">[string]</span> $production_build_directory, 
-    [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>=$true)]
-    <span style="color:#66d9ef">[string]</span> $AdminEmail, 
-    [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>=$true)]
-    <span style="color:#66d9ef">[string]</span> $ApiKey, 
-    [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>=$true)]
-    <span style="color:#66d9ef">[string]</span> $ZoneId
-);
-
-<span style="color:#75715e"># Build the website</span>
-
-Read-Host -Prompt (<span style="color:#e6db74">&#34;Initializing production build. This will delete all files in &#34;</span> `
- + $production_build_directory `
- + <span style="color:#e6db74">&#34;. Press any key to continue, or ctrl+c to abort&#34;</span>)
-
-hugo --cleanDestinationDir `
- --destination $production_build_directory
-
-<span style="color:#75715e"># Upload the website</span>
-
-Read-Host -prompt (<span style="color:#e6db74">&#34;Initializing git commit and push for all files in &#34;</span> `
- + $production_build_directory `
- + <span style="color:#e6db74">&#34;. Press any key to continue or ctrl+c to abort&#34;</span>)
-
-git -C $production_build_directory add *
-git -C $production_build_directory status
-
-$git_commit_message = Read-Host (<span style="color:#e6db74">&#34;Enter a short commit message, or ctrl+c to abort&#34;</span>)
-
-git -C $production_build_directory checkout master 
-git -C $production_build_directory commit -a -m $git_commit_message
-git -C $production_build_directory push
-
-<span style="color:#75715e"># Clear the Cloudflare cache</span>
-<span style="color:#75715e">&lt;# Credit to [Niels Swimberghe]
-</span><span style="color:#75715e">(https://swimburger.net/blog/powershell/powershell-snippet-clearing-cloudflare-cache-with-cloudflares-api) #&gt;</span>
-
-Read-Host -Prompt <span style="color:#e6db74">&#34;About to clear the Cloudflare cache. Press any key to continue, or ctrl+c to abort&#34;</span>
-
-$PurgeCacheUri = <span style="color:#e6db74">&#34;https://api.cloudflare.com/client/v4/zones/$ZoneId/purge_cache&#34;</span>;
-$RequestHeader = @{
-    <span style="color:#e6db74">&#39;X-Auth-Email&#39;</span> = $AdminEmail
-    <span style="color:#e6db74">&#39;X-Auth-Key&#39;</span> = $ApiKey
-};
-$RequestBody = <span style="color:#e6db74">&#39;{&#34;purge_everything&#34;:true}&#39;</span>;
-Invoke-RestMethod `
-    -Uri $PurgeCacheUri `
-    -Method Delete `
-    -ContentType  <span style="color:#e6db74">&#34;application/json&#34;</span> `
-    -Headers $requestHeader `
-    -Body $RequestBody
-</code></pre></div><h2 id="notes">Notes</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">Param</span>(
+</span></span><span style="display:flex;"><span>    [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>=$true)]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">[string]</span> $production_build_directory, 
+</span></span><span style="display:flex;"><span>    [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>=$true)]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">[string]</span> $AdminEmail, 
+</span></span><span style="display:flex;"><span>    [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>=$true)]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">[string]</span> $ApiKey, 
+</span></span><span style="display:flex;"><span>    [<span style="color:#66d9ef">parameter</span>(<span style="color:#66d9ef">Mandatory</span>=$true)]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">[string]</span> $ZoneId
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Build the website</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Read-Host -Prompt (<span style="color:#e6db74">&#34;Initializing production build. This will delete all files in &#34;</span> `
+</span></span><span style="display:flex;"><span> + $production_build_directory `
+</span></span><span style="display:flex;"><span> + <span style="color:#e6db74">&#34;. Press any key to continue, or ctrl+c to abort&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>hugo --cleanDestinationDir `
+</span></span><span style="display:flex;"><span> --destination $production_build_directory
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Upload the website</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Read-Host -prompt (<span style="color:#e6db74">&#34;Initializing git commit and push for all files in &#34;</span> `
+</span></span><span style="display:flex;"><span> + $production_build_directory `
+</span></span><span style="display:flex;"><span> + <span style="color:#e6db74">&#34;. Press any key to continue or ctrl+c to abort&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>git -C $production_build_directory add *
+</span></span><span style="display:flex;"><span>git -C $production_build_directory status
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$git_commit_message = Read-Host (<span style="color:#e6db74">&#34;Enter a short commit message, or ctrl+c to abort&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>git -C $production_build_directory checkout master 
+</span></span><span style="display:flex;"><span>git -C $production_build_directory commit -a -m $git_commit_message
+</span></span><span style="display:flex;"><span>git -C $production_build_directory push
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Clear the Cloudflare cache</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;# Credit to [Niels Swimberghe]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">(https://swimburger.net/blog/powershell/powershell-snippet-clearing-cloudflare-cache-with-cloudflares-api) #&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Read-Host -Prompt <span style="color:#e6db74">&#34;About to clear the Cloudflare cache. Press any key to continue, or ctrl+c to abort&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$PurgeCacheUri = <span style="color:#e6db74">&#34;https://api.cloudflare.com/client/v4/zones/$ZoneId/purge_cache&#34;</span>;
+</span></span><span style="display:flex;"><span>$RequestHeader = @{
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;X-Auth-Email&#39;</span> = $AdminEmail
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;X-Auth-Key&#39;</span> = $ApiKey
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>$RequestBody = <span style="color:#e6db74">&#39;{&#34;purge_everything&#34;:true}&#39;</span>;
+</span></span><span style="display:flex;"><span>Invoke-RestMethod `
+</span></span><span style="display:flex;"><span>    -Uri $PurgeCacheUri `
+</span></span><span style="display:flex;"><span>    -Method Delete `
+</span></span><span style="display:flex;"><span>    -ContentType  <span style="color:#e6db74">&#34;application/json&#34;</span> `
+</span></span><span style="display:flex;"><span>    -Headers $requestHeader `
+</span></span><span style="display:flex;"><span>    -Body $RequestBody
+</span></span></code></pre></div><h2 id="notes">Notes</h2>
 <ul>
 <li><code>Read-Host -Prompt</code> statements are used to inform the user of impending actions and provide a chance to abort. It is also used to set the Git commit message. Important if there is a chance that a script will be re-used in a setting where <code>{number_of_users} &gt; 1</code>, or if a less-technical client will be using it &ndash; UX is not just for front-end design!</li>
 <li><code>git -C &lt;path&gt;</code> runs commands as if git was started in the <!-- raw HTML omitted --> directory instead of the current working directory.</li>
@@ -243,7 +243,7 @@ Invoke-RestMethod `
 <section class="comments">
 	<div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -270,11 +270,11 @@ Invoke-RestMethod `
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2022-05-14-higher-order-components-hocs/">Higher-Order Functional Components (HOCs) in React (with Typescript)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20211229-javascript-gotchas/">Javascript: Gotchas with logical operators || and &amp;&amp;</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20210701-streamline-web-automation-development-python-selenium/">Streamline web automation development (Python &#43; Selenium)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20200907-browser-debugging-with-bookmarklets/">Browser debugging with bookmarklets</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20200823-typr-typing-tutor-web-app/">Learn touch typing using custom reading materials with Typr</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20200823-type-at-100-wpm-in-two-weeks/">Learning to type at 100 WPM in two weeks</a></li>
 		</ul>
 	</div>
 </div>
@@ -309,21 +309,21 @@ Invoke-RestMethod `
 		<a class="widget-taglist__link widget__link btn" href="/tags/devops/" title="DevOps">DevOps (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/entrepreneurship/" title="Entrepreneurship">Entrepreneurship (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/flask/" title="Flask">Flask (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/frontend/" title="Frontend">Frontend (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/frontend/" title="Frontend">Frontend (5)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/idea-machine/" title="Idea Machine">Idea Machine (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="Javascript">Javascript (4)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="Javascript">Javascript (5)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/learning-hack/" title="Learning Hack">Learning Hack (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/mongodb/" title="MongoDB">MongoDB (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/networking/" title="Networking">Networking (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/nodejs/" title="NodeJS">NodeJS (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="Powershell">Powershell (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python (5)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/react/" title="React">React (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/react/" title="React">React (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/redux/" title="Redux">Redux (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/selenium/" title="Selenium">Selenium (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/speed-hacks/" title="Speed Hacks">Speed Hacks (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/sql/" title="SQL">SQL (2)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/typescript/" title="Typescript">Typescript (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/typescript/" title="Typescript">Typescript (2)</a>
 	</div>
 </div>
 <div class="widget-social widget">

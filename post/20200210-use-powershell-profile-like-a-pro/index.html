@@ -117,56 +117,56 @@ if (!doNotTrack) {
 </ul>
 <h2 id="locating-profileps1">Locating profile.ps1</h2>
 <p>The <code>$PROFILE</code> variable should return the path to the profile for the current user (the <code>&gt;</code> symbol is used to denote console input):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">&gt; $PROFILE
-C:\Users\chris\Documents\WindowsPowerShell\profile.ps1
-</code></pre></div><p>Now that you know where Windows is looking to load the profile from, you can use your text editor of choice to create or modify it:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">notepad $PROFILE
-</code></pre></div><h2 id="lets-configure-the-profile">Let&rsquo;s configure the profile</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>&gt; $PROFILE
+</span></span><span style="display:flex;"><span>C:\Users\chris\Documents\WindowsPowerShell\profile.ps1
+</span></span></code></pre></div><p>Now that you know where Windows is looking to load the profile from, you can use your text editor of choice to create or modify it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>notepad $PROFILE
+</span></span></code></pre></div><h2 id="lets-configure-the-profile">Let&rsquo;s configure the profile</h2>
 <p>Add the below code to <code>profile.ps1</code>, which will be executed when a new console is opened.</p>
 <h5 id="set-the-starting-directory">Set the starting directory</h5>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Navigate to the default startup folder</span>
-cd <span style="color:#e6db74">&#34;C:\PATH\TO\YOUR\PREFERRED\STARTUP\FOLDER\&#34;</span>
-</code></pre></div><h5 id="use-a-more-succinct-prompt">Use a more succinct prompt</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Navigate to the default startup folder</span>
+</span></span><span style="display:flex;"><span>cd <span style="color:#e6db74">&#34;C:\PATH\TO\YOUR\PREFERRED\STARTUP\FOLDER\&#34;</span>
+</span></span></code></pre></div><h5 id="use-a-more-succinct-prompt">Use a more succinct prompt</h5>
 <p>The default prompt contains the entire path to the current working directory which can take up a lot of space. To show only the name of the current folder, the default <code>prompt</code> function can be overwritten by adding:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Show current directory (instead of entire path) in prompt:</span>
-<span style="color:#66d9ef">Function</span> prompt {
-  $p = Split-Path -leaf -path (Get-Location)
-  <span style="color:#e6db74">&#34;$p&gt; &#34;</span>
-}
-</code></pre></div><p>This will change the prompt from this:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">C:\a\really\long\path\to\the\current\working\directory&gt;
-</code></pre></div><p>to this:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">directory&gt;
-</code></pre></div><p>This clears up the console, and if you ever need to check exactly where you are, just use <code>Get-Location</code> or it&rsquo;s alis <code>pwd</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Show current directory (instead of entire path) in prompt:</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">Function</span> prompt {
+</span></span><span style="display:flex;"><span>  $p = Split-Path -leaf -path (Get-Location)
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;$p&gt; &#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This will change the prompt from this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>C:\a\really\long\path\to\the\current\working\directory&gt;
+</span></span></code></pre></div><p>to this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>directory&gt;
+</span></span></code></pre></div><p>This clears up the console, and if you ever need to check exactly where you are, just use <code>Get-Location</code> or it&rsquo;s alis <code>pwd</code>.</p>
 <h5 id="create-shortcuts-to-favourite-directories">Create shortcuts to favourite directories</h5>
 <p>I added the below functions to navigate to my development directory by just typing <code>dev</code>, or to my blog working directory by typing <code>blog</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># cd to dev folder</span>
-<span style="color:#66d9ef">function</span> dev {
-    cd <span style="color:#e6db74">&#34;C:\Users\chris\webdev&#34;</span>
-}
-<span style="color:#75715e"># cd to blog folder</span>
-<span style="color:#66d9ef">function</span> blog {
-    cd <span style="color:#e6db74">&#34;C:\Users\chris\webdev\myblog\blog&#34;</span>
-}
-</code></pre></div><h5 id="automatically-import-custom-scripts">Automatically import custom scripts</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># cd to dev folder</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> dev {
+</span></span><span style="display:flex;"><span>    cd <span style="color:#e6db74">&#34;C:\Users\chris\webdev&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># cd to blog folder</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> blog {
+</span></span><span style="display:flex;"><span>    cd <span style="color:#e6db74">&#34;C:\Users\chris\webdev\myblog\blog&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h5 id="automatically-import-custom-scripts">Automatically import custom scripts</h5>
 <p>I prefer to store custom scripts that I have written or borrowed from others within my local development folder. This makes it easy to manage and keep synchronized with a git repository.</p>
 <p>I added the below script to <code>profile.ps1</code> to look inside this folder and import all <code>.ps1</code> files:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Import custom powershell scripts</span>
-$custom_script_dir = <span style="color:#e6db74">&#34;PATH_TO_YOUR_CUSTOM_PS1_SCRIPT_DIRECTORY&#34;</span> 
-Write-Output `
- (<span style="color:#e6db74">&#34;*** Importing all .ps1 modules from &#34;</span> `
- + $custom_script_dir + `
- <span style="color:#e6db74">&#34; ***&#34;</span>)
-Get-ChildItem `
- $custom_script_dir `
- -Filter *.ps1 | `
- Foreach-Object `
- { Import-Module ($custom_script_dir + $_) }
-</code></pre></div><h5 id="set-the-execution-policy-to-allow-scripts-to-run">Set the execution policy to allow scripts to run</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Import custom powershell scripts</span>
+</span></span><span style="display:flex;"><span>$custom_script_dir = <span style="color:#e6db74">&#34;PATH_TO_YOUR_CUSTOM_PS1_SCRIPT_DIRECTORY&#34;</span> 
+</span></span><span style="display:flex;"><span>Write-Output `
+</span></span><span style="display:flex;"><span> (<span style="color:#e6db74">&#34;*** Importing all .ps1 modules from &#34;</span> `
+</span></span><span style="display:flex;"><span> + $custom_script_dir + `
+</span></span><span style="display:flex;"><span> <span style="color:#e6db74">&#34; ***&#34;</span>)
+</span></span><span style="display:flex;"><span>Get-ChildItem `
+</span></span><span style="display:flex;"><span> $custom_script_dir `
+</span></span><span style="display:flex;"><span> -Filter *.ps1 | `
+</span></span><span style="display:flex;"><span> Foreach-Object `
+</span></span><span style="display:flex;"><span> { Import-Module ($custom_script_dir + $_) }
+</span></span></code></pre></div><h5 id="set-the-execution-policy-to-allow-scripts-to-run">Set the execution policy to allow scripts to run</h5>
 <p>According to the <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7">official docs</a>, &ldquo;PowerShell&rsquo;s execution policy is a safety feature that controls the conditions under which PowerShell loads configuration files and runs scripts. This feature helps prevent the execution of malicious scripts.&rdquo;</p>
 <p>Press the <code>Windows</code> key and search for <code>Powershell</code>, right-click and select <code>Run as administrator</code> then enter the following commad:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
-</code></pre></div><h5 id="try-it-out">Try it out</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
+</span></span></code></pre></div><h5 id="try-it-out">Try it out</h5>
 <p>To try it out simply place some custom scripts in the directory specified above and open a new PowerShell instance.</p>
 <p>If you want a useful script to try this out on, check out <a href="/post/20200209-search-google-from-powershell/">my script that searches Google from the powershell console</a>.</p>
 
@@ -200,7 +200,7 @@ Get-ChildItem `
 <section class="comments">
 	<div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -227,11 +227,11 @@ Get-ChildItem `
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2022-05-14-higher-order-components-hocs/">Higher-Order Functional Components (HOCs) in React (with Typescript)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20211229-javascript-gotchas/">Javascript: Gotchas with logical operators || and &amp;&amp;</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20210701-streamline-web-automation-development-python-selenium/">Streamline web automation development (Python &#43; Selenium)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20200907-browser-debugging-with-bookmarklets/">Browser debugging with bookmarklets</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20200823-typr-typing-tutor-web-app/">Learn touch typing using custom reading materials with Typr</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20200823-type-at-100-wpm-in-two-weeks/">Learning to type at 100 WPM in two weeks</a></li>
 		</ul>
 	</div>
 </div>
@@ -266,21 +266,21 @@ Get-ChildItem `
 		<a class="widget-taglist__link widget__link btn" href="/tags/devops/" title="DevOps">DevOps (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/entrepreneurship/" title="Entrepreneurship">Entrepreneurship (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/flask/" title="Flask">Flask (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/frontend/" title="Frontend">Frontend (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/frontend/" title="Frontend">Frontend (5)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/idea-machine/" title="Idea Machine">Idea Machine (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="Javascript">Javascript (4)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="Javascript">Javascript (5)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/learning-hack/" title="Learning Hack">Learning Hack (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/mongodb/" title="MongoDB">MongoDB (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/networking/" title="Networking">Networking (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/nodejs/" title="NodeJS">NodeJS (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="Powershell">Powershell (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python (5)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/react/" title="React">React (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/react/" title="React">React (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/redux/" title="Redux">Redux (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/selenium/" title="Selenium">Selenium (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/speed-hacks/" title="Speed Hacks">Speed Hacks (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/sql/" title="SQL">SQL (2)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/typescript/" title="Typescript">Typescript (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/typescript/" title="Typescript">Typescript (2)</a>
 	</div>
 </div>
 <div class="widget-social widget">

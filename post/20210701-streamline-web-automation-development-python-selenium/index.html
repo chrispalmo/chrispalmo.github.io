@@ -117,37 +117,37 @@ if (!doNotTrack) {
 <p>Wouldn&rsquo;t it be great if, when the script completes (or under certain error conditions), instead of closing the browser driver and Python, the browser stayed open along with a Python <a href="https://en.wikipedia.org/wiki/Command-line_interface">CLI</a> allowing the session to be continued manually, one line of code at a time?</p>
 <h2 id="solution">Solution</h2>
 <p>Suppose you have a simple Python script, <code>bot.py</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> selenium <span style="color:#f92672">import</span> webdriver
-
-<span style="color:#75715e"># start browser</span>
-driver<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;https://website.com/login)</span>
-driver <span style="color:#f92672">=</span> webdriver<span style="color:#f92672">.</span>Chrome(<span style="color:#e6db74">&#39;./chromedriver&#39;</span>)
-
-<span style="color:#75715e"># login</span>
-email_input<span style="color:#f92672">=</span> driver<span style="color:#f92672">.</span>find_element_by_xpath(<span style="color:#e6db74">&#34;//input[@id=&#39;Email&#39;]&#34;</span>)
-email_input<span style="color:#f92672">.</span>click()
-email_input<span style="color:#f92672">.</span>send_keys(<span style="color:#e6db74">&#34;happyUser888&#34;</span>)
-
-password_input <span style="color:#f92672">=</span> driver<span style="color:#f92672">.</span>find_element_by_xpath(<span style="color:#e6db74">&#34;//input[@id=&#39;Password&#39;]&#34;</span>)
-password_input<span style="color:#f92672">.</span>click()
-password_input<span style="color:#f92672">.</span>send_keys(<span style="color:#e6db74">&#34;Password123)</span>
-
-submit_button <span style="color:#f92672">=</span> driver<span style="color:#f92672">.</span>find_element_by_xpath(<span style="color:#e6db74">&#34;//input[@id=&#39;Submit&#39;]&#34;</span>)
-submit_button<span style="color:#f92672">.</span>click()
-
-<span style="color:#75715e"># do automated bot stuff</span>
-</code></pre></div><p>Instead of running <code>pyton bot.py</code>, run <code>python -i bot.py</code> so keep an interactive session running when the script completes.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> selenium <span style="color:#f92672">import</span> webdriver
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># start browser</span>
+</span></span><span style="display:flex;"><span>driver<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;https://website.com/login)</span>
+</span></span><span style="display:flex;"><span>driver <span style="color:#f92672">=</span> webdriver<span style="color:#f92672">.</span>Chrome(<span style="color:#e6db74">&#39;./chromedriver&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># login</span>
+</span></span><span style="display:flex;"><span>email_input<span style="color:#f92672">=</span> driver<span style="color:#f92672">.</span>find_element_by_xpath(<span style="color:#e6db74">&#34;//input[@id=&#39;Email&#39;]&#34;</span>)
+</span></span><span style="display:flex;"><span>email_input<span style="color:#f92672">.</span>click()
+</span></span><span style="display:flex;"><span>email_input<span style="color:#f92672">.</span>send_keys(<span style="color:#e6db74">&#34;happyUser888&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>password_input <span style="color:#f92672">=</span> driver<span style="color:#f92672">.</span>find_element_by_xpath(<span style="color:#e6db74">&#34;//input[@id=&#39;Password&#39;]&#34;</span>)
+</span></span><span style="display:flex;"><span>password_input<span style="color:#f92672">.</span>click()
+</span></span><span style="display:flex;"><span>password_input<span style="color:#f92672">.</span>send_keys(<span style="color:#e6db74">&#34;Password123)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>submit_button <span style="color:#f92672">=</span> driver<span style="color:#f92672">.</span>find_element_by_xpath(<span style="color:#e6db74">&#34;//input[@id=&#39;Submit&#39;]&#34;</span>)
+</span></span><span style="display:flex;"><span>submit_button<span style="color:#f92672">.</span>click()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># do automated bot stuff</span>
+</span></span></code></pre></div><p>Instead of running <code>pyton bot.py</code>, run <code>python -i bot.py</code> so keep an interactive session running when the script completes.</p>
 <h3 id="for-multiple-sessions">For multiple sessions</h3>
 <p>You can also use this while running a multiple concurrent browser sessions, using a single script as an entry point, <code>run.py</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> bot1 <span style="color:#f92672">import</span> driver <span style="color:#66d9ef">as</span> driver1
-<span style="color:#f92672">from</span> bot2 <span style="color:#f92672">import</span> driver <span style="color:#66d9ef">as</span> driver2
-</code></pre></div><p>Running <code>python -i run.py</code> will spin up both sessions and leaves you with <code>driver1</code> and <code>driver2</code> available to play with via the Python CLI. Unfortunately this wont run both scrapers simultaneously - we would need <a href="https://stackoverflow.com/questions/27435284/multiprocessing-vs-multithreading-vs-asyncio-in-python-3">asyncio, threading, or multiprocessing</a> for that and have instead kept this example as simple as possible for the purposes of this post.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> bot1 <span style="color:#f92672">import</span> driver <span style="color:#66d9ef">as</span> driver1
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> bot2 <span style="color:#f92672">import</span> driver <span style="color:#66d9ef">as</span> driver2
+</span></span></code></pre></div><p>Running <code>python -i run.py</code> will spin up both sessions and leaves you with <code>driver1</code> and <code>driver2</code> available to play with via the Python CLI. Unfortunately this wont run both scrapers simultaneously - we would need <a href="https://stackoverflow.com/questions/27435284/multiprocessing-vs-multithreading-vs-asyncio-in-python-3">asyncio, threading, or multiprocessing</a> for that and have instead kept this example as simple as possible for the purposes of this post.</p>
 <p>As a bonus, the below function could also be defined in <code>run.py</code> to cleanly terminate the sessions, avoiding the memory leaks that occur when manually closing the browser windows or exiting Python:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">quit</span>():
-    driver1<span style="color:#f92672">.</span>quit()
-    driver2<span style="color:#f92672">.</span>quit()
-    exit()
-</code></pre></div><h2 id="questions">Questions?</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">quit</span>():
+</span></span><span style="display:flex;"><span>    driver1<span style="color:#f92672">.</span>quit()
+</span></span><span style="display:flex;"><span>    driver2<span style="color:#f92672">.</span>quit()
+</span></span><span style="display:flex;"><span>    exit()
+</span></span></code></pre></div><h2 id="questions">Questions?</h2>
 <p>Do you have any questions or feedback? Feel free to leave a comment below, or to <a href="/contact/">reach out to me directly</a>.</p>
 
 		</div>
@@ -181,7 +181,7 @@ submit_button<span style="color:#f92672">.</span>click()
 <section class="comments">
 	<div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -208,11 +208,11 @@ submit_button<span style="color:#f92672">.</span>click()
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2022-05-14-higher-order-components-hocs/">Higher-Order Functional Components (HOCs) in React (with Typescript)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20211229-javascript-gotchas/">Javascript: Gotchas with logical operators || and &amp;&amp;</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20210701-streamline-web-automation-development-python-selenium/">Streamline web automation development (Python &#43; Selenium)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20200907-browser-debugging-with-bookmarklets/">Browser debugging with bookmarklets</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20200823-typr-typing-tutor-web-app/">Learn touch typing using custom reading materials with Typr</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20200823-type-at-100-wpm-in-two-weeks/">Learning to type at 100 WPM in two weeks</a></li>
 		</ul>
 	</div>
 </div>
@@ -247,21 +247,21 @@ submit_button<span style="color:#f92672">.</span>click()
 		<a class="widget-taglist__link widget__link btn" href="/tags/devops/" title="DevOps">DevOps (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/entrepreneurship/" title="Entrepreneurship">Entrepreneurship (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/flask/" title="Flask">Flask (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/frontend/" title="Frontend">Frontend (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/frontend/" title="Frontend">Frontend (5)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/idea-machine/" title="Idea Machine">Idea Machine (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="Javascript">Javascript (4)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="Javascript">Javascript (5)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/learning-hack/" title="Learning Hack">Learning Hack (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/mongodb/" title="MongoDB">MongoDB (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/networking/" title="Networking">Networking (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/nodejs/" title="NodeJS">NodeJS (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="Powershell">Powershell (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python (5)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/react/" title="React">React (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/react/" title="React">React (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/redux/" title="Redux">Redux (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/selenium/" title="Selenium">Selenium (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/speed-hacks/" title="Speed Hacks">Speed Hacks (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/sql/" title="SQL">SQL (2)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/typescript/" title="Typescript">Typescript (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/typescript/" title="Typescript">Typescript (2)</a>
 	</div>
 </div>
 <div class="widget-social widget">
