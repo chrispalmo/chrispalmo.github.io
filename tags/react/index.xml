@@ -19,7 +19,7 @@ HOCs can be used to avoid repeated code in many scenarios such as:
     </item>
     
     <item>
-      <title>Javascript: Gotchas with logical operators || and &amp;&amp;</title>
+      <title>JS Gotchas with logical operators || and &amp;&amp;</title>
       <link>/post/20211229-javascript-gotchas/</link>
       <pubDate>Wed, 29 Dec 2021 11:39:50 +1000</pubDate>
       

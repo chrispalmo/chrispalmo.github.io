@@ -8,7 +8,7 @@
     <loc>/</loc>
     <lastmod>2022-05-14T14:20:16+10:00</lastmod>
   </url><url>
-    <loc>/categories/code-snippets/</loc>
+    <loc>/categories/code-automation/</loc>
     <lastmod>2022-05-14T14:20:16+10:00</lastmod>
   </url><url>
     <loc>/tags/frontend/</loc>
@@ -17,7 +17,7 @@
     <loc>/post/2022-05-14-higher-order-components-hocs/</loc>
     <lastmod>2022-05-14T14:20:16+10:00</lastmod>
   </url><url>
-    <loc>/tags/javascript/</loc>
+    <loc>/tags/js/</loc>
     <lastmod>2022-05-14T14:20:16+10:00</lastmod>
   </url><url>
     <loc>/post/</loc>
@@ -35,19 +35,16 @@
     <loc>/post/20211229-javascript-gotchas/</loc>
     <lastmod>2021-12-29T11:39:50+10:00</lastmod>
   </url><url>
-    <loc>/tags/nodejs/</loc>
+    <loc>/tags/node/</loc>
     <lastmod>2021-12-29T11:39:50+10:00</lastmod>
   </url><url>
-    <loc>/categories/automation/</loc>
+    <loc>/tags/hack/</loc>
     <lastmod>2021-07-01T13:47:07+10:00</lastmod>
   </url><url>
     <loc>/tags/python/</loc>
     <lastmod>2021-07-01T13:47:07+10:00</lastmod>
   </url><url>
     <loc>/tags/selenium/</loc>
-    <lastmod>2021-07-01T13:47:07+10:00</lastmod>
-  </url><url>
-    <loc>/tags/speed-hacks/</loc>
     <lastmod>2021-07-01T13:47:07+10:00</lastmod>
   </url><url>
     <loc>/post/20210701-streamline-web-automation-development-python-selenium/</loc>
@@ -68,10 +65,7 @@
     <loc>/tags/redux/</loc>
     <lastmod>2020-08-23T21:05:48+10:00</lastmod>
   </url><url>
-    <loc>/tags/data-analysis/</loc>
-    <lastmod>2020-08-23T11:37:43+10:00</lastmod>
-  </url><url>
-    <loc>/tags/learning-hack/</loc>
+    <loc>/tags/data/</loc>
     <lastmod>2020-08-23T11:37:43+10:00</lastmod>
   </url><url>
     <loc>/post/20200823-type-at-100-wpm-in-two-weeks/</loc>
@@ -80,10 +74,7 @@
     <loc>/post/20200420-idea-machine-clipchamp/</loc>
     <lastmod>2020-04-20T13:21:27+10:00</lastmod>
   </url><url>
-    <loc>/tags/idea-machine/</loc>
-    <lastmod>2020-04-20T13:21:27+10:00</lastmod>
-  </url><url>
-    <loc>/categories/idea-machine/</loc>
+    <loc>/categories/random/</loc>
     <lastmod>2020-04-20T13:21:27+10:00</lastmod>
   </url><url>
     <loc>/post/20200224-manage-selenium-web-scrapers-with-auto-scrape/</loc>
@@ -122,19 +113,13 @@
     <loc>/tags/cloudflare/</loc>
     <lastmod>2020-02-07T15:12:54+10:00</lastmod>
   </url><url>
+    <loc>/tags/event/</loc>
+    <lastmod>2020-02-04T09:06:05+10:00</lastmod>
+  </url><url>
     <loc>/post/20200204-brisjs-meetup/</loc>
     <lastmod>2020-02-04T09:06:05+10:00</lastmod>
   </url><url>
-    <loc>/categories/event-reviews/</loc>
-    <lastmod>2020-02-04T09:06:05+10:00</lastmod>
-  </url><url>
-    <loc>/tags/entrepreneurship/</loc>
-    <lastmod>2020-01-31T12:31:33+10:00</lastmod>
-  </url><url>
     <loc>/post/20200131-collaborate-at-rcl/</loc>
-    <lastmod>2020-01-31T12:31:33+10:00</lastmod>
-  </url><url>
-    <loc>/tags/networking/</loc>
     <lastmod>2020-01-31T12:31:33+10:00</lastmod>
   </url><url>
     <loc>/about/</loc>

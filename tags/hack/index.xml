@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hack on Chris Palmieri</title>
+    <link>/tags/hack/</link>
+    <description>Recent content in Hack on Chris Palmieri</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 01 Jul 2021 13:47:07 +1000</lastBuildDate><atom:link href="/tags/hack/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Streamline web automation development (Python &#43; Selenium)</title>
+      <link>/post/20210701-streamline-web-automation-development-python-selenium/</link>
+      <pubDate>Thu, 01 Jul 2021 13:47:07 +1000</pubDate>
+      
+      <guid>/post/20210701-streamline-web-automation-development-python-selenium/</guid>
+      <description>tl;dr When using Python to write web scraping / general automation scripts, run Python using the -i flag preserve and interact with the latest state (i.e python -i script.py).
+This let&amp;rsquo;s you avoid re-running the whole script every time a change is made.
+Problem When developing a bot or web scraper that operates behind a login screen, development, testing, and debugging can take longer than you might expect. The process of write code --&amp;gt; test --&amp;gt; debug --&amp;gt; repeat hits a bottleneck every time the browser starts, pages load, login details are entered, the welcome page loads, and so on.</description>
+    </item>
+    
+    <item>
+      <title>Learning to type at 100 WPM in two weeks</title>
+      <link>/post/20200823-type-at-100-wpm-in-two-weeks/</link>
+      <pubDate>Sun, 23 Aug 2020 11:37:43 +1000</pubDate>
+      
+      <guid>/post/20200823-type-at-100-wpm-in-two-weeks/</guid>
+      <description>tl;dr  It&amp;rsquo;s hard to underestimate the importance of typing. Unless you are a journalist, legal secretary, or professional writer, you probably don&amp;rsquo;t get enough practice to ever become truly fast. I built Typr and used it to simultaneously read &amp;amp; type &amp;ldquo;Surely You&amp;rsquo;re Joking, Mr. Feynman!&amp;rdquo;. Two weeks and 100,195 words later, I was maintaining between 100-110 WPM after starting out at 50 WPM. If you like reading, kill two birds with one stone by using Typr to practice typing material you would otherwise be reading.</description>
+    </item>
+    
+  </channel>
+</rss>

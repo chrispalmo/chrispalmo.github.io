@@ -8,20 +8,11 @@
     <language>en-us</language>
     <lastBuildDate>Sat, 14 May 2022 14:20:16 +1000</lastBuildDate><atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Code Snippets</title>
-      <link>/categories/code-snippets/</link>
+      <title>Code &amp; Automation</title>
+      <link>/categories/code-automation/</link>
       <pubDate>Sat, 14 May 2022 14:20:16 +1000</pubDate>
       
-      <guid>/categories/code-snippets/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Automation</title>
-      <link>/categories/automation/</link>
-      <pubDate>Thu, 01 Jul 2021 13:47:07 +1000</pubDate>
-      
-      <guid>/categories/automation/</guid>
+      <guid>/categories/code-automation/</guid>
       <description></description>
     </item>
     
@@ -35,20 +26,11 @@
     </item>
     
     <item>
-      <title>Idea Machine</title>
-      <link>/categories/idea-machine/</link>
+      <title>Random</title>
+      <link>/categories/random/</link>
       <pubDate>Mon, 20 Apr 2020 13:21:27 +1000</pubDate>
       
-      <guid>/categories/idea-machine/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Event Reviews</title>
-      <link>/categories/event-reviews/</link>
-      <pubDate>Tue, 04 Feb 2020 09:06:05 +1000</pubDate>
-      
-      <guid>/categories/event-reviews/</guid>
+      <guid>/categories/random/</guid>
       <description></description>
     </item>
     

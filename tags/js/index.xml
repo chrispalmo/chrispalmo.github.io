@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JS on Chris Palmieri</title>
+    <link>/tags/js/</link>
+    <description>Recent content in JS on Chris Palmieri</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 14 May 2022 14:20:16 +1000</lastBuildDate><atom:link href="/tags/js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Higher-Order Functional Components (HOCs) in React (with Typescript)</title>
+      <link>/post/2022-05-14-higher-order-components-hocs/</link>
+      <pubDate>Sat, 14 May 2022 14:20:16 +1000</pubDate>
+      
+      <guid>/post/2022-05-14-higher-order-components-hocs/</guid>
+      <description>Background Higher-Order Components are &amp;ldquo;functions that take a component and return a new component&amp;rdquo;, and while they are not part of the React API, &amp;ldquo;they are a pattern that emerges from React&amp;rsquo;s compositional nature&amp;rdquo; (React docs).
+HOCs can be used to avoid repeated code in many scenarios such as:
+ showing a loader, while waiting for data, conditionally rendering components, managing common user-interactions states, providing components with specific styles, and more generally, providing a component with any prop.</description>
+    </item>
+    
+    <item>
+      <title>JS Gotchas with logical operators || and &amp;&amp;</title>
+      <link>/post/20211229-javascript-gotchas/</link>
+      <pubDate>Wed, 29 Dec 2021 11:39:50 +1000</pubDate>
+      
+      <guid>/post/20211229-javascript-gotchas/</guid>
+      <description>Overview Javascript&amp;rsquo;s logical OR || and logical AND &amp;amp;&amp;amp; operators are useful in contexts other than creating if, else, while etc. statements, but there are some edge cases that that I see many devs (myself included) getting caught out by.
+This article explores common pitfalls, and provides recommendations for:
+ using || to define values with a default fallback, and using &amp;amp;&amp;amp; to conditionally render JSX components only when required props are defined.</description>
+    </item>
+    
+    <item>
+      <title>Browser debugging with bookmarklets</title>
+      <link>/post/20200907-browser-debugging-with-bookmarklets/</link>
+      <pubDate>Mon, 07 Sep 2020 16:48:39 +1000</pubDate>
+      
+      <guid>/post/20200907-browser-debugging-with-bookmarklets/</guid>
+      <description>tl;dr  Bookmarklet are browser bookmarks that, instead of linking to a web page, inject custom javascript into the current page. Here are a couple of bookmarklets I use regularly - to add them to your browser simply copy the minified code directly into the URL field for a new bookmark (remember to include the javascript: prefix).  Track current mouse coordinates Use the below script to display the current mouse coordinates in the current tab title:</description>
+    </item>
+    
+    <item>
+      <title>Learn touch typing using custom reading materials with Typr</title>
+      <link>/post/20200823-typr-typing-tutor-web-app/</link>
+      <pubDate>Sun, 23 Aug 2020 21:05:48 +1000</pubDate>
+      
+      <guid>/post/20200823-typr-typing-tutor-web-app/</guid>
+      <description>tl;dr Typr is a simple web-based typing tutor that lets you practice typing using your own material. It also provides live feedback on typing speed, and in the future will include detailed statistics and algorithmically-generated custom exercises.
+ Create an account and use it for free here. Check out some screencasts of the UI. Check out the source code on Github.  The demo is currently hosted on a Heroku free-tier server which treats itself to a nap when there is no traffic and can take up to 30 seconds to wake up, so please be patient!</description>
+    </item>
+    
+    <item>
+      <title>Event review: BrisJs - Introducing the typescript compiler; Atomic design; Scrutinising the norm</title>
+      <link>/post/20200204-brisjs-meetup/</link>
+      <pubDate>Tue, 04 Feb 2020 09:06:05 +1000</pubDate>
+      
+      <guid>/post/20200204-brisjs-meetup/</guid>
+      <description>I attended the first BrisJS meetup of the year last night. This was my first time attending a &amp;ldquo;programming language-centric&amp;rdquo; meetup, and I was surprised to find around 100 people in attendance. All presenters and the majority of the crowd looked to be in their 20&amp;rsquo;s, and while the presentations didn&amp;rsquo;t have the level of polish that I would usually expect for an event of this size, I was still able to learn a few things, and more importantly, have some interesting conversations with other developers about projects they are working on and opportunities in the market.</description>
+    </item>
+    
+  </channel>
+</rss>

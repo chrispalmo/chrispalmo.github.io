@@ -105,7 +105,7 @@ if (!doNotTrack) {
 
 <div class="meta__item-categories meta__item">
 	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta__text"><a class="meta__link" href="/categories/code-snippets/" rel="category">Code Snippets</a>
+	<span class="meta__text"><a class="meta__link" href="/categories/code-automation/" rel="category">Code &amp; Automation</a>
 	</span>
 </div></div>
 		</header><div class="content post__content clearfix">
@@ -124,55 +124,49 @@ if (!doNotTrack) {
 <p>While where is <a href="https://sebhastian.com/react-higher-order-components/">no shortage</a> of <a href="https://medium.com/geekculture/understanding-react-higher-order-component-hoc-8e7a96820205">examples</a> and <a href="https://blog.openreplay.com/what-are-higher-order-components-in-react">guides</a> on <a href="https://www.geeksforgeeks.org/react-js-higher-order-components/">HOCs</a> in <a href="https://flexiple.com/react/introduction-to-higher-order-components-in-react-by-example/">React</a> available, at the time of writing this there is (as with many React resources) <strong>a lack of examples that include Typescript</strong>, and even less that <strong>use functional components</strong> – both of which have overwhelmingly become industry standards over the past few years.</p>
 <h2 id="example">Example</h2>
 <p>Say you have multiple components that require some object <code>data: Data | undefined</code> that can only be fetched asynchronously. The <code>withData</code> HOC &ldquo;wraps&rdquo; the base <code>Component</code>, returning a new <code>ComponentWrapped</code> which replaces the <code>data: Data</code> prop with <code>dataId: string</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">WithDataProps</span>&lt;<span style="color:#f92672">TProps</span>&gt; <span style="color:#f92672">=</span> <span style="color:#a6e22e">Omit</span>&lt;<span style="color:#f92672">TProps</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">data</span><span style="color:#960050;background-color:#1e0010">&#39;</span>&gt; <span style="color:#f92672">&amp;</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">dataId</span>: <span style="color:#66d9ef">string</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">children?</span>: <span style="color:#66d9ef">React.ReactNode</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">WithDataProps</span>&lt;<span style="color:#f92672">TProps</span>&gt; <span style="color:#f92672">=</span> <span style="color:#a6e22e">Omit</span>&lt;<span style="color:#f92672">TProps</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">data</span><span style="color:#960050;background-color:#1e0010">&#34;</span>&gt; <span style="color:#f92672">&amp;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">dataId</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">children?</span>: <span style="color:#66d9ef">React.ReactNode</span>;
 </span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">withData</span>&lt;<span style="color:#f92672">TProps</span>&gt;(
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Component</span>: <span style="color:#66d9ef">React.ComponentType</span>&lt;<span style="color:#f92672">TProps</span>&gt;,
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">isValid</span><span style="color:#f92672">?:</span> (<span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">any</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">boolean</span>
 </span></span><span style="display:flex;"><span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// eslint-disable-next-line react/display-name
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> ({ <span style="color:#a6e22e">dataId</span>, ...<span style="color:#a6e22e">rest</span> }<span style="color:#f92672">:</span> <span style="color:#a6e22e">WithDataProps</span>&lt;<span style="color:#f92672">TProps</span>&gt;) <span style="color:#f92672">=&gt;</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">useData</span>(<span style="color:#a6e22e">dataId</span>);
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">data</span>) {
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> &lt;<span style="color:#f92672">Loading</span>/&gt;;
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">isValid</span>(<span style="color:#a6e22e">data</span>)) {
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;data not valid&#34;</span>)
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> &lt;<span style="color:#f92672">Broken</span>/&gt;
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// typecasting should generally be avoided, but the typescript compiler
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// isn&#39;t able to infer the correct type here (if there _is_ a way to 
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// achieve this without typecasting, please let me know!
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">props</span> <span style="color:#f92672">=</span> { ...<span style="color:#a6e22e">rest</span>, <span style="color:#a6e22e">data</span> } <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">unknown</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">TProps</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (
-</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">Component</span> {<span style="color:#a6e22e">...props</span>}&gt;
-</span></span><span style="display:flex;"><span>                {<span style="color:#a6e22e">rest</span>.<span style="color:#a6e22e">children</span>}
-</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">Component</span>&gt;
-</span></span><span style="display:flex;"><span>        );
-</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// eslint-disable-next-line react/display-name
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> ({ <span style="color:#a6e22e">dataId</span>, ...<span style="color:#a6e22e">rest</span> }<span style="color:#f92672">:</span> <span style="color:#a6e22e">WithDataProps</span>&lt;<span style="color:#f92672">TProps</span>&gt;) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">useData</span>(<span style="color:#a6e22e">dataId</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">data</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> &lt;<span style="color:#f92672">Loading</span> /&gt;;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">isValid</span>(<span style="color:#a6e22e">data</span>)) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;data not valid&#34;</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> &lt;<span style="color:#f92672">Broken</span> /&gt;;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// typecasting should generally be avoided, but the typescript compiler
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// isn&#39;t able to infer the correct type here (if there _is_ a way to
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// achieve this without typecasting, please let me know!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">props</span> <span style="color:#f92672">=</span> { ...<span style="color:#a6e22e">rest</span>, <span style="color:#a6e22e">data</span> } <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">unknown</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">TProps</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> &lt;<span style="color:#f92672">Component</span> {<span style="color:#a6e22e">...props</span>}&gt;{<span style="color:#a6e22e">rest</span>.<span style="color:#a6e22e">children</span>}&lt;/<span style="color:#f92672">Component</span>&gt;;
+</span></span><span style="display:flex;"><span>  };
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>The <code>withData</code> wrapper can now be used as follows:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Parent</span> <span style="color:#f92672">=</span> ({ <span style="color:#a6e22e">dataId</span> }<span style="color:#f92672">:</span> { <span style="color:#a6e22e">dataId</span>: <span style="color:#66d9ef">string</span> }) <span style="color:#f92672">=&gt;</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Widget</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">withData</span>(<span style="color:#a6e22e">WidgetBase</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Doodad</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">withData</span>(<span style="color:#a6e22e">DoodadBase</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Gizmo</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">withData</span>(<span style="color:#a6e22e">GizmoBase</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (
-</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">Widget</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">dataId</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">dataId</span>}
-</span></span><span style="display:flex;"><span>        &gt;
-</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">Doodad</span> <span style="color:#a6e22e">dataId</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">dataId</span>} /&gt;
-</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">Gizmo</span> <span style="color:#a6e22e">dataId</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">dataId</span>} /&gt;
-</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">Widget</span>&gt;
-</span></span><span style="display:flex;"><span>    )
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Widget</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">withData</span>(<span style="color:#a6e22e">WidgetBase</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Doodad</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">withData</span>(<span style="color:#a6e22e">DoodadBase</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Gizmo</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">withData</span>(<span style="color:#a6e22e">GizmoBase</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">Widget</span> <span style="color:#a6e22e">dataId</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">dataId</span>}&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">Doodad</span> <span style="color:#a6e22e">dataId</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">dataId</span>} /&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">Gizmo</span> <span style="color:#a6e22e">dataId</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">dataId</span>} /&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">Widget</span>&gt;
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>};
 </span></span></code></pre></div><p>The obvious advantage of this approach is that the data fetching, null check and conditional rendering doesn&rsquo;t need to be repeated across multiple components – but there is an additional reason you may consider using this pattern:</p>
 <h3 id="less-renders">Less Renders</h3>
 <p>If a component calling <code>useData</code> also calls <code>setState</code> for some unrelated reason, the <code>useData(dataId)</code> hook will render again, and even if <code>dataId</code> hasn&rsquo;t changed, a new reference to an otherwise identical <code>data</code> object will be returned (remember: <code>{ dataId: 123 } !== { dataId: 123 }</code>).</p>
 <p>React uses strict equality to determine if props have changed, so if the <code>data</code> object is being passed as a prop to any child components, renders will be triggered in those child components <em>even if the properties of <code>data</code> are unchanged</em>.</p>
-<p>By wrapping the components in a state-providing wrapper, not only are we achieving  <a href="https://nalexn.github.io/separation-of-concerns/">Separation of Concerns</a> (a Good Thing™️ for any codebase), we are also allowing React to make better decisions about when to render, leading to less memory usage and a smoother user experience.</p>
+<p>By wrapping the components in a state-providing wrapper, not only are we achieving <a href="https://nalexn.github.io/separation-of-concerns/">Separation of Concerns</a> (a Good Thing™️ for any codebase), we are also allowing React to make better decisions about when to render, leading to less memory usage and a smoother user experience.</p>
 <h2 id="questions">Questions?</h2>
 <p>Do you have any questions or feedback? Feel free to leave a comment below, or to <a href="/contact/">reach out to me directly</a>.</p>
 
@@ -183,7 +177,7 @@ if (!doNotTrack) {
 	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
 	<ul class="tags__list">
 		<li class="tags__item"><a class="tags__link btn" href="/tags/frontend/" rel="tag">Frontend</a></li>
-		<li class="tags__item"><a class="tags__link btn" href="/tags/javascript/" rel="tag">Javascript</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/js/" rel="tag">JS</a></li>
 		<li class="tags__item"><a class="tags__link btn" href="/tags/react/" rel="tag">React</a></li>
 		<li class="tags__item"><a class="tags__link btn" href="/tags/typescript/" rel="tag">Typescript</a></li>
 	</ul>
@@ -236,7 +230,7 @@ if (!doNotTrack) {
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item"><a class="widget__link" href="/post/2022-05-14-higher-order-components-hocs/">Higher-Order Functional Components (HOCs) in React (with Typescript)</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20211229-javascript-gotchas/">Javascript: Gotchas with logical operators || and &amp;&amp;</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20211229-javascript-gotchas/">JS Gotchas with logical operators || and &amp;&amp;</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20210701-streamline-web-automation-development-python-selenium/">Streamline web automation development (Python &#43; Selenium)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20200907-browser-debugging-with-bookmarklets/">Browser debugging with bookmarklets</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20200823-typr-typing-tutor-web-app/">Learn touch typing using custom reading materials with Typr</a></li>
@@ -248,19 +242,13 @@ if (!doNotTrack) {
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/automation/">Automation</a>
-			</li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/code-snippets/">Code Snippets</a>
-			</li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/event-reviews/">Event Reviews</a>
-			</li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/idea-machine/">Idea Machine</a>
+				<a class="widget__link" href="/categories/code-automation/">Code &amp; Automation</a>
 			</li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/projects/">Projects</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/random/">Random</a>
 			</li>
 		</ul>
 	</div>
@@ -270,23 +258,20 @@ if (!doNotTrack) {
 	<div class="widget__content">
 		<a class="widget-taglist__link widget__link btn" href="/tags/backend/" title="Backend">Backend (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/cloudflare/" title="Cloudflare">Cloudflare (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/data-analysis/" title="Data Analysis">Data Analysis (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/data/" title="Data">Data (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/devops/" title="DevOps">DevOps (2)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/entrepreneurship/" title="Entrepreneurship">Entrepreneurship (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/event/" title="Event">Event (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/flask/" title="Flask">Flask (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/frontend/" title="Frontend">Frontend (5)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/idea-machine/" title="Idea Machine">Idea Machine (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="Javascript">Javascript (5)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/learning-hack/" title="Learning Hack">Learning Hack (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/frontend/" title="Frontend">Frontend (4)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hack/" title="Hack">Hack (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/js/" title="JS">JS (5)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/mongodb/" title="MongoDB">MongoDB (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/networking/" title="Networking">Networking (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/nodejs/" title="NodeJS">NodeJS (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/node/" title="Node">Node (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="Powershell">Powershell (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python (5)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/react/" title="React">React (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/redux/" title="Redux">Redux (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/selenium/" title="Selenium">Selenium (2)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/speed-hacks/" title="Speed Hacks">Speed Hacks (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/sql/" title="SQL">SQL (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/typescript/" title="Typescript">Typescript (2)</a>
 	</div>

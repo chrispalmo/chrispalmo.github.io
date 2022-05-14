@@ -104,7 +104,7 @@ if (!doNotTrack) {
 
 <div class="meta__item-categories meta__item">
 	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta__text"><a class="meta__link" href="/categories/code-snippets/" rel="category">Code Snippets</a>
+	<span class="meta__text"><a class="meta__link" href="/categories/code-automation/" rel="category">Code &amp; Automation</a>
 	</span>
 </div></div>
 		</header><div class="content post__content clearfix">
@@ -116,20 +116,20 @@ if (!doNotTrack) {
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> math <span style="color:#f92672">import</span> floor
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">time_breakdown</span>(ms):
-</span></span><span style="display:flex;"><span> <span style="color:#e6db74">&#34;&#34;&#34;Converts an integer representing number of milliseconds into a dictionary 
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> representing days, hours, minutes, seconds and milliseconds. Output is 
+</span></span><span style="display:flex;"><span> <span style="color:#e6db74">&#34;&#34;&#34;Converts an integer representing number of milliseconds into a dictionary
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> representing days, hours, minutes, seconds and milliseconds. Output is
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> rounded down to the nearest whole number.
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> Parameters:
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  ms (integer): number of milliseconds.
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> Returns:
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  (dictionary): breakdown of total days, hours, minutes, seconds and 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  (dictionary): breakdown of total days, hours, minutes, seconds and
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  milliseconds.
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> Example usage:
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &gt;&gt;&gt; time_breakdown = time_breakdown(123456789)
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  {&#39;day&#39;: 1, &#39;hr&#39;: 10, &#39;min&#39;: 17, &#39;sec&#39;: 36, &#39;ms&#39;: 789} 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  {&#39;day&#39;: 1, &#39;hr&#39;: 10, &#39;min&#39;: 17, &#39;sec&#39;: 36, &#39;ms&#39;: 789}
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> &#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span> ms_out <span style="color:#f92672">=</span> ms <span style="color:#f92672">%</span> <span style="color:#ae81ff">1000</span>;
@@ -149,7 +149,7 @@ if (!doNotTrack) {
 </span></span><span style="display:flex;"><span> }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">time_breakdown_string</span>(ms, granularity<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>):
-</span></span><span style="display:flex;"><span> <span style="color:#e6db74">&#34;&#34;&#34;Converts an integer representing number of milliseconds into a string that 
+</span></span><span style="display:flex;"><span> <span style="color:#e6db74">&#34;&#34;&#34;Converts an integer representing number of milliseconds into a string that
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> uses natural language to represent the time quantity.
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> Parameters:
@@ -161,13 +161,13 @@ if (!doNotTrack) {
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> Example usage:
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &gt;&gt;&gt; time_breakdown_string(123456789)
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#39;1 day 10 hours 17 minutes 36 seconds 789 milliseconds&#39;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &gt;&gt;&gt;time_breakdown_string(
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  123456789,
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  granularity=3)
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#39;1 day 10 hours 17 minutes&#39;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> &#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>
@@ -192,12 +192,12 @@ if (!doNotTrack) {
 </span></span><span style="display:flex;"><span> <span style="color:#66d9ef">if</span> time[<span style="color:#e6db74">&#34;sec&#34;</span>] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>:
 </span></span><span style="display:flex;"><span>  time_string <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> str(time[<span style="color:#e6db74">&#34;sec&#34;</span>]) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; second&#34;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> time[<span style="color:#e6db74">&#34;sec&#34;</span>] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>:
-</span></span><span style="display:flex;"><span>   time_string <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;s&#34;</span> 
+</span></span><span style="display:flex;"><span>   time_string <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;s&#34;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span> <span style="color:#66d9ef">if</span> time[<span style="color:#e6db74">&#34;ms&#34;</span>] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>:
 </span></span><span style="display:flex;"><span>  time_string <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> str(time[<span style="color:#e6db74">&#34;ms&#34;</span>]) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; millisecond&#34;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> time[<span style="color:#e6db74">&#34;ms&#34;</span>] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>:
-</span></span><span style="display:flex;"><span>   time_string <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;s&#34;</span> 
+</span></span><span style="display:flex;"><span>   time_string <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;s&#34;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span> <span style="color:#75715e">#filter to specified granularity</span>
 </span></span><span style="display:flex;"><span> time_string <span style="color:#f92672">=</span> time_string<span style="color:#f92672">.</span>strip()<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34; &#34;</span>)[:<span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>granularity]
@@ -228,7 +228,7 @@ if (!doNotTrack) {
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>time_breakdown(one_day_minus_one_second)<span style="color:#e6db74">}</span><span style="color:#e6db74">
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>time_breakdown_string(one_day_minus_one_second)<span style="color:#e6db74">}</span><span style="color:#e6db74">
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>time_breakdown(one_day_exactly)<span style="color:#e6db74">}</span><span style="color:#e6db74">
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>time_breakdown_string(one_day_exactly)<span style="color:#e6db74">}</span><span style="color:#e6db74">
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
@@ -347,7 +347,7 @@ Plurality is considered:
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item"><a class="widget__link" href="/post/2022-05-14-higher-order-components-hocs/">Higher-Order Functional Components (HOCs) in React (with Typescript)</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20211229-javascript-gotchas/">Javascript: Gotchas with logical operators || and &amp;&amp;</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20211229-javascript-gotchas/">JS Gotchas with logical operators || and &amp;&amp;</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20210701-streamline-web-automation-development-python-selenium/">Streamline web automation development (Python &#43; Selenium)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20200907-browser-debugging-with-bookmarklets/">Browser debugging with bookmarklets</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20200823-typr-typing-tutor-web-app/">Learn touch typing using custom reading materials with Typr</a></li>
@@ -359,19 +359,13 @@ Plurality is considered:
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/automation/">Automation</a>
-			</li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/code-snippets/">Code Snippets</a>
-			</li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/event-reviews/">Event Reviews</a>
-			</li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/idea-machine/">Idea Machine</a>
+				<a class="widget__link" href="/categories/code-automation/">Code &amp; Automation</a>
 			</li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/projects/">Projects</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/random/">Random</a>
 			</li>
 		</ul>
 	</div>
@@ -381,23 +375,20 @@ Plurality is considered:
 	<div class="widget__content">
 		<a class="widget-taglist__link widget__link btn" href="/tags/backend/" title="Backend">Backend (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/cloudflare/" title="Cloudflare">Cloudflare (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/data-analysis/" title="Data Analysis">Data Analysis (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/data/" title="Data">Data (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/devops/" title="DevOps">DevOps (2)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/entrepreneurship/" title="Entrepreneurship">Entrepreneurship (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/event/" title="Event">Event (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/flask/" title="Flask">Flask (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/frontend/" title="Frontend">Frontend (5)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/idea-machine/" title="Idea Machine">Idea Machine (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="Javascript">Javascript (5)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/learning-hack/" title="Learning Hack">Learning Hack (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/frontend/" title="Frontend">Frontend (4)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hack/" title="Hack">Hack (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/js/" title="JS">JS (5)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/mongodb/" title="MongoDB">MongoDB (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/networking/" title="Networking">Networking (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/nodejs/" title="NodeJS">NodeJS (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/node/" title="Node">Node (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="Powershell">Powershell (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python (5)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/react/" title="React">React (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/redux/" title="Redux">Redux (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/selenium/" title="Selenium">Selenium (2)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/speed-hacks/" title="Speed Hacks">Speed Hacks (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/sql/" title="SQL">SQL (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/typescript/" title="Typescript">Typescript (2)</a>
 	</div>

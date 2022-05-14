@@ -17,11 +17,11 @@
     </item>
     
     <item>
-      <title>Javascript</title>
-      <link>/tags/javascript/</link>
+      <title>JS</title>
+      <link>/tags/js/</link>
       <pubDate>Sat, 14 May 2022 14:20:16 +1000</pubDate>
       
-      <guid>/tags/javascript/</guid>
+      <guid>/tags/js/</guid>
       <description></description>
     </item>
     
@@ -44,11 +44,20 @@
     </item>
     
     <item>
-      <title>NodeJS</title>
-      <link>/tags/nodejs/</link>
+      <title>Node</title>
+      <link>/tags/node/</link>
       <pubDate>Wed, 29 Dec 2021 11:39:50 +1000</pubDate>
       
-      <guid>/tags/nodejs/</guid>
+      <guid>/tags/node/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hack</title>
+      <link>/tags/hack/</link>
+      <pubDate>Thu, 01 Jul 2021 13:47:07 +1000</pubDate>
+      
+      <guid>/tags/hack/</guid>
       <description></description>
     </item>
     
@@ -71,15 +80,6 @@
     </item>
     
     <item>
-      <title>Speed Hacks</title>
-      <link>/tags/speed-hacks/</link>
-      <pubDate>Thu, 01 Jul 2021 13:47:07 +1000</pubDate>
-      
-      <guid>/tags/speed-hacks/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>MongoDB</title>
       <link>/tags/mongodb/</link>
       <pubDate>Sun, 23 Aug 2020 21:05:48 +1000</pubDate>
@@ -98,29 +98,11 @@
     </item>
     
     <item>
-      <title>Data Analysis</title>
-      <link>/tags/data-analysis/</link>
+      <title>Data</title>
+      <link>/tags/data/</link>
       <pubDate>Sun, 23 Aug 2020 11:37:43 +1000</pubDate>
       
-      <guid>/tags/data-analysis/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Learning Hack</title>
-      <link>/tags/learning-hack/</link>
-      <pubDate>Sun, 23 Aug 2020 11:37:43 +1000</pubDate>
-      
-      <guid>/tags/learning-hack/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Idea Machine</title>
-      <link>/tags/idea-machine/</link>
-      <pubDate>Mon, 20 Apr 2020 13:21:27 +1000</pubDate>
-      
-      <guid>/tags/idea-machine/</guid>
+      <guid>/tags/data/</guid>
       <description></description>
     </item>
     
@@ -179,20 +161,11 @@
     </item>
     
     <item>
-      <title>Entrepreneurship</title>
-      <link>/tags/entrepreneurship/</link>
-      <pubDate>Fri, 31 Jan 2020 12:31:33 +1000</pubDate>
+      <title>Event</title>
+      <link>/tags/event/</link>
+      <pubDate>Tue, 04 Feb 2020 09:06:05 +1000</pubDate>
       
-      <guid>/tags/entrepreneurship/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Networking</title>
-      <link>/tags/networking/</link>
-      <pubDate>Fri, 31 Jan 2020 12:31:33 +1000</pubDate>
-      
-      <guid>/tags/networking/</guid>
+      <guid>/tags/event/</guid>
       <description></description>
     </item>
     

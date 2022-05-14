@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Random on Chris Palmieri</title>
+    <link>/categories/random/</link>
+    <description>Recent content in Random on Chris Palmieri</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 20 Apr 2020 13:21:27 +1000</lastBuildDate><atom:link href="/categories/random/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>12 ideas to improve Clipchamp</title>
+      <link>/post/20200420-idea-machine-clipchamp/</link>
+      <pubDate>Mon, 20 Apr 2020 13:21:27 +1000</pubDate>
+      
+      <guid>/post/20200420-idea-machine-clipchamp/</guid>
+      <description>This is part of the Idea Machine, an ongoing series of short posts inspired by a James Altucher article titled Write Ten Ideas Every Day And Within Three Months You Will Have Rewired Your Brain. Read more about the project here.    Listening to instrumental beats while watching the news, lectures or other educational videos is something I have always done. It keeps my brain just busy enough to maintain consistent focus, plus I find it endlessly amusing to hear the rhythmic cadence of a good speaker lining up perfectly with a solid beat and a chunky bassline.</description>
+    </item>
+    
+    <item>
+      <title>Event review: BrisJs - Introducing the typescript compiler; Atomic design; Scrutinising the norm</title>
+      <link>/post/20200204-brisjs-meetup/</link>
+      <pubDate>Tue, 04 Feb 2020 09:06:05 +1000</pubDate>
+      
+      <guid>/post/20200204-brisjs-meetup/</guid>
+      <description>I attended the first BrisJS meetup of the year last night. This was my first time attending a &amp;ldquo;programming language-centric&amp;rdquo; meetup, and I was surprised to find around 100 people in attendance. All presenters and the majority of the crowd looked to be in their 20&amp;rsquo;s, and while the presentations didn&amp;rsquo;t have the level of polish that I would usually expect for an event of this size, I was still able to learn a few things, and more importantly, have some interesting conversations with other developers about projects they are working on and opportunities in the market.</description>
+    </item>
+    
+    <item>
+      <title>Event review: Collaborate at RCL</title>
+      <link>/post/20200131-collaborate-at-rcl/</link>
+      <pubDate>Fri, 31 Jan 2020 12:31:33 +1000</pubDate>
+      
+      <guid>/post/20200131-collaborate-at-rcl/</guid>
+      <description>I attended &amp;ldquo;Collaborate at RCL&amp;rdquo; last night, an event hosted by River City Labs, described as follows:
+ What do you do when you have an amazing business idea, but you don&amp;rsquo;t have the skills or resources to make it happen? Help others with their ideas, and they&amp;rsquo;ll help you with yours!
+That&amp;rsquo;s the idea behind Collaborate @ RCL. Meet some great people, learn some new skills, and work on some fantastic businesses - all at the same time.</description>
+    </item>
+    
+  </channel>
+</rss>
