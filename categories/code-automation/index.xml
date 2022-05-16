@@ -6,14 +6,26 @@
     <description>Recent content in Code &amp; Automation on Chris Palmieri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 14 May 2022 14:20:16 +1000</lastBuildDate><atom:link href="/categories/code-automation/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 May 2022 09:21:22 +1000</lastBuildDate><atom:link href="/categories/code-automation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Push or Pull State with React Context (useContext, useState, useRef, useCallback)</title>
+      <link>/post/2022-05-15-push-or-pull-state-react-context/</link>
+      <pubDate>Sun, 15 May 2022 09:21:22 +1000</pubDate>
+      
+      <guid>/post/2022-05-15-push-or-pull-state-react-context/</guid>
+      <description>tldr: this CodeSandbox demonstrates a way to fetch state via a context only when required, eliminating unnecessary renders.
+Overview The React Context API has made accessing state anywhere in the component tree (and writing clean code without prop drilling) easier than ever before.
+This article:
+ examines a typical pattern for sharing state using the Context API, and discusses performance implications of the above pattern, and proposes a simple modification using the useRef and useCallback hooks to eliminates unnecessary renders.</description>
+    </item>
+    
     <item>
       <title>Higher-Order Functional Components (HOCs) in React (with Typescript)</title>
       <link>/post/2022-05-14-higher-order-components-hocs/</link>
       <pubDate>Sat, 14 May 2022 14:20:16 +1000</pubDate>
       
       <guid>/post/2022-05-14-higher-order-components-hocs/</guid>
-      <description>Background Higher-Order Components are &amp;ldquo;functions that take a component and return a new component&amp;rdquo;, and while they are not part of the React API, &amp;ldquo;they are a pattern that emerges from React&amp;rsquo;s compositional nature&amp;rdquo; (React docs).
+      <description>Higher-Order Components are &amp;ldquo;functions that take a component and return a new component&amp;rdquo;, and while they are not part of the React API, &amp;ldquo;they are a pattern that emerges from React&amp;rsquo;s compositional nature&amp;rdquo; (React docs).
 HOCs can be used to avoid repeated code in many scenarios such as:
  showing a loader, while waiting for data, conditionally rendering components, managing common user-interactions states, providing components with specific styles, and more generally, providing a component with any prop.</description>
     </item>
@@ -44,7 +56,7 @@ Problem When developing a bot or web scraper that operates behind a login screen
       <pubDate>Sun, 23 Feb 2020 22:49:26 +1000</pubDate>
       
       <guid>/post/20200224-manage-selenium-web-scrapers-with-auto-scrape/</guid>
-      <description>tl;dr Auto-scrape let&amp;rsquo;s you focus on writing web scraping scripts, while it takes care of logging, data persistance, data presentation and data export, all through a modern browser-based UI. It can be run locally or deployed remotely.
+      <description>tldr: Auto-scrape let&amp;rsquo;s you focus on writing web scraping scripts, while it takes care of logging, data persistance, data presentation and data export, all through a modern browser-based UI. It can be run locally or deployed remotely.
  Here are some screencasts of the UI. Get it on Github.  Why scrape the web? Building a Selenium web scraper is almost a rite of passage for programmers starting out. Watching a computer fill out forms, click links and collect data before your eyes is not only a highly satisfying and suitably non-abstract exercise for beginners to complete - browser automation forms a foundation for frontend testing, can be used for automated research, and of course can be used to replace those expensive and unreliable humans to accomplish a wide range of business-related tasks.</description>
     </item>
     
