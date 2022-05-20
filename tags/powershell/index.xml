@@ -6,19 +6,7 @@
     <description>Recent content in Powershell on Chris Palmieri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 15 May 2022 09:21:22 +1000</lastBuildDate><atom:link href="/tags/powershell/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Push or Pull State with React Context (useContext, useState, useRef, useCallback)</title>
-      <link>/post/2022-05-15-push-or-pull-state-react-context/</link>
-      <pubDate>Sun, 15 May 2022 09:21:22 +1000</pubDate>
-      
-      <guid>/post/2022-05-15-push-or-pull-state-react-context/</guid>
-      <description>tldr: this CodeSandbox demonstrates a way to fetch state via a context only when required, eliminating unnecessary renders.
-Overview The React Context API has made accessing state anywhere in the component tree (and writing clean code without prop drilling) easier than ever before.
-This article:
- examines a typical pattern for sharing state using the Context API, and discusses performance implications of the above pattern, and proposes a simple modification using the useRef and useCallback hooks to eliminates unnecessary renders.</description>
-    </item>
-    
+    <lastBuildDate>Sun, 09 Feb 2020 20:31:46 +1000</lastBuildDate><atom:link href="/tags/powershell/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Use powershell profiles like a pro</title>
       <link>/post/20200210-use-powershell-profile-like-a-pro/</link>
