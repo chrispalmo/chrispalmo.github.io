@@ -20,14 +20,14 @@ This article:
     </item>
     
     <item>
-      <title>JS Gotchas with logical operators || and &amp;&amp;</title>
+      <title>JS Gotchas with logical operators ||, &amp;&amp;, and ??</title>
       <link>/post/20211229-javascript-gotchas/</link>
       <pubDate>Wed, 29 Dec 2021 11:39:50 +1000</pubDate>
       
       <guid>/post/20211229-javascript-gotchas/</guid>
       <description>Javascript&amp;rsquo;s logical OR || and logical AND &amp;amp;&amp;amp; operators are useful in contexts other than creating if, else, while etc. statements, but there are some edge cases that that I see many devs (myself included) getting caught out by.
 This article explores common pitfalls, and provides recommendations for:
- using || to define values with a default fallback, and using &amp;amp;&amp;amp; to conditionally render JSX components only when required props are defined.</description>
+ using ?? instead of || to define values with a default fallback, and using &amp;amp;&amp;amp; to conditionally render JSX components only when required props are defined.</description>
     </item>
     
     <item>

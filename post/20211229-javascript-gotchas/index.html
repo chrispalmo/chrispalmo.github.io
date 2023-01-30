@@ -4,13 +4,13 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>JS Gotchas with logical operators || and &amp;&amp; - Chris Palmieri</title>
+	<title>JS Gotchas with logical operators ||, &amp;&amp;, and ?? - Chris Palmieri</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
-	<meta property="og:title" content="JS Gotchas with logical operators || and &amp;&amp;" />
+	<meta property="og:title" content="JS Gotchas with logical operators ||, &amp;&amp;, and ??" />
 <meta property="og:description" content="Javascript&rsquo;s logical OR || and logical AND &amp;&amp; operators are useful in contexts other than creating if, else, while etc. statements, but there are some edge cases that that I see many devs (myself included) getting caught out by.
 This article explores common pitfalls, and provides recommendations for:
- using || to define values with a default fallback, and using &amp;&amp; to conditionally render JSX components only when required props are defined." />
+ using ?? instead of || to define values with a default fallback, and using &amp;&amp; to conditionally render JSX components only when required props are defined." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/20211229-javascript-gotchas/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-12-29T11:39:50+10:00" />
@@ -96,7 +96,7 @@ if (!doNotTrack) {
 <main class="main" role="main">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">JS Gotchas with logical operators || and &amp;&amp;</h1>
+			<h1 class="post__title">JS Gotchas with logical operators ||, &amp;&amp;, and ??</h1>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
@@ -107,7 +107,7 @@ if (!doNotTrack) {
 			<p>Javascript&rsquo;s logical OR <code>||</code> and logical AND <code>&amp;&amp;</code> operators are useful in contexts other than creating <code>if</code>, <code>else</code>, <code>while</code> etc. statements, but there are some edge cases that that I see many devs (myself included) getting caught out by.</p>
 <p>This article explores common pitfalls, and provides recommendations for:</p>
 <ol>
-<li>using <code>||</code> to define values with a default fallback, and</li>
+<li>using <code>??</code> instead of <code>||</code> to define values with a default fallback, and</li>
 <li>using <code>&amp;&amp;</code> to conditionally render JSX components only when required props are defined.</li>
 </ol>
 <p>A table of basic results for <code>||</code>, <code>&amp;&amp;</code>, and <code>??</code> is also provided as a quick reference.</p>
@@ -226,7 +226,7 @@ if (!doNotTrack) {
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 <br/>
 
-<p>Including results for a new function <code>const logiAnd = (a, b) =&gt; a &amp;&amp; b</code> for the tests above helps clarify why this occurs:</p>
+<p>Including results for a new function <code>const logAnd = (a, b) =&gt; a &amp;&amp; b</code> for the tests above helps clarify why this occurs:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">┌──────────────────────┬───────────┬────────┬────────┐</span>
 </span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">│</span>        <span style="color:#a6e22e">inputs</span>        <span style="color:#960050;background-color:#1e0010">│</span>  <span style="color:#a6e22e">logAnd</span>   <span style="color:#960050;background-color:#1e0010">│</span> <span style="color:#a6e22e">condOr</span> <span style="color:#960050;background-color:#1e0010">│</span> <span style="color:#a6e22e">nullCo</span> <span style="color:#960050;background-color:#1e0010">│</span>
 </span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">├──────────────────────┼───────────┼────────┼────────┤</span>
@@ -304,7 +304,7 @@ if (!doNotTrack) {
 		<ul class="widget__list">
 			<li class="widget__item"><a class="widget__link" href="/post/2022-05-15-push-or-pull-state-react-context/">Push or Pull State with React Context (useContext, useState, useRef, useCallback)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2022-05-14-higher-order-components-hocs/">Higher-Order Functional Components (HOCs) in React (with Typescript)</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/20211229-javascript-gotchas/">JS Gotchas with logical operators || and &amp;&amp;</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/20211229-javascript-gotchas/">JS Gotchas with logical operators ||, &amp;&amp;, and ??</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20210701-streamline-web-automation-development-python-selenium/">Streamline web automation development (Python &#43; Selenium)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/20200907-browser-debugging-with-bookmarklets/">Browser debugging with bookmarklets</a></li>
 		</ul>
@@ -375,7 +375,7 @@ if (!doNotTrack) {
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2022 Chris Palmieri
+			&copy; 2023 Chris Palmieri
 		</div>
 	</div>
 </footer>
