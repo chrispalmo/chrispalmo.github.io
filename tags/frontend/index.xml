@@ -6,7 +6,11 @@
     <description>Recent content in Frontend on Chris Palmieri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 15 May 2022 09:21:22 +1000</lastBuildDate><atom:link href="/tags/frontend/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 May 2022 09:21:22 +1000</lastBuildDate>
+    
+	<atom:link href="/tags/frontend/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Push or Pull State with React Context (useContext, useState, useRef, useCallback)</title>
       <link>/post/20220515-push-or-pull-state-react-context/</link>
@@ -25,7 +29,7 @@ This article:
       <pubDate>Sat, 14 May 2022 14:20:16 +1000</pubDate>
       
       <guid>/post/20220514-higher-order-components-hocs/</guid>
-      <description>Higher-Order Components are &amp;ldquo;functions that take a component and return a new component&amp;rdquo;, and while they are not part of the React API, &amp;ldquo;they are a pattern that emerges from React&amp;rsquo;s compositional nature&amp;rdquo; (React docs).
+      <description>Higher-Order Components are &amp;ldquo;functions that take a component and return a new component&amp;rdquo;, and while they are not part of the React API, &amp;ldquo;they are a pattern that emerges from React&#39;s compositional nature&amp;rdquo; (React docs).
 HOCs can be used to avoid repeated code in many scenarios such as:
  showing a loader, while waiting for data, conditionally rendering components, managing common user-interactions states, providing components with specific styles, and more generally, providing a component with any prop.</description>
     </item>
@@ -45,17 +49,8 @@ HOCs can be used to avoid repeated code in many scenarios such as:
       <pubDate>Tue, 18 Feb 2020 14:49:56 +1000</pubDate>
       
       <guid>/post/20200218-human-readable-time-intervals-python/</guid>
-      <description>Expressing time intervals in a format that is readable by humans is an old problem that every frontend developer will eventually face. While there are plenty of solutions available (this one is my favourite), I required a function that could provide different levels of granularity in it&amp;rsquo;s &amp;ldquo;human-readable&amp;rdquo; description of time.
+      <description>Expressing time intervals in a format that is readable by humans is an old problem that every frontend developer will eventually face. While there are plenty of solutions available (this one is my favourite), I required a function that could provide different levels of granularity in it&#39;s &amp;ldquo;human-readable&amp;rdquo; description of time.
 Take, for example, a component that tells the user how long in aggregate they have been using a service. If they have been using it for a few hours, it would be appropriate to display ## hours, ## minutes, ignoring the seconds and milliseconds.</description>
-    </item>
-    
-    <item>
-      <title>Event review: BrisJs - Introducing the typescript compiler; Atomic design; Scrutinising the norm</title>
-      <link>/post/20200204-brisjs-meetup/</link>
-      <pubDate>Tue, 04 Feb 2020 09:06:05 +1000</pubDate>
-      
-      <guid>/post/20200204-brisjs-meetup/</guid>
-      <description>I attended the first BrisJS meetup of the year last night. This was my first time attending a &amp;ldquo;programming language-centric&amp;rdquo; meetup, and I was surprised to find around 100 people in attendance. All presenters and the majority of the crowd looked to be in their 20&amp;rsquo;s, and while the presentations didn&amp;rsquo;t have the level of polish that I would usually expect for an event of this size, I was still able to learn a few things, and more importantly, have some interesting conversations with other developers about projects they are working on and opportunities in the market.</description>
     </item>
     
   </channel>

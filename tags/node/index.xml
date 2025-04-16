@@ -6,7 +6,11 @@
     <description>Recent content in Node on Chris Palmieri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 15 May 2022 09:21:22 +1000</lastBuildDate><atom:link href="/tags/node/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 May 2022 09:21:22 +1000</lastBuildDate>
+    
+	<atom:link href="/tags/node/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Push or Pull State with React Context (useContext, useState, useRef, useCallback)</title>
       <link>/post/20220515-push-or-pull-state-react-context/</link>
@@ -25,7 +29,7 @@ This article:
       <pubDate>Wed, 29 Dec 2021 11:39:50 +1000</pubDate>
       
       <guid>/post/20211229-javascript-gotchas/</guid>
-      <description>Javascript&amp;rsquo;s logical OR || and logical AND &amp;amp;&amp;amp; operators are useful in contexts other than creating if, else, while etc. statements, but there are some edge cases that that I see many devs (myself included) getting caught out by.
+      <description>Javascript&#39;s logical OR || and logical AND &amp;amp;&amp;amp; operators are useful in contexts other than creating if, else, while etc. statements, but there are some edge cases that that I see many devs (myself included) getting caught out by.
 This article explores common pitfalls, and provides recommendations for:
  using ?? instead of || to define values with a default fallback, and using &amp;amp;&amp;amp; to conditionally render JSX components only when required props are defined.</description>
     </item>

@@ -1,137 +1,212 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
   <url>
     <loc>/categories/</loc>
     <lastmod>2022-05-15T09:21:22+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/</loc>
     <lastmod>2022-05-15T09:21:22+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/categories/code-automation/</loc>
     <lastmod>2022-05-15T09:21:22+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/tags/frontend/</loc>
     <lastmod>2022-05-15T09:21:22+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/tags/js/</loc>
     <lastmod>2022-05-15T09:21:22+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/tags/node/</loc>
     <lastmod>2022-05-15T09:21:22+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/tags/performance/</loc>
     <lastmod>2022-05-15T09:21:22+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/post/</loc>
     <lastmod>2022-05-15T09:21:22+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/post/20220515-push-or-pull-state-react-context/</loc>
     <lastmod>2022-05-15T09:21:22+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/tags/react/</loc>
     <lastmod>2022-05-15T09:21:22+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/tags/</loc>
     <lastmod>2022-05-15T09:21:22+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/tags/typescript/</loc>
     <lastmod>2022-05-15T09:21:22+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/post/20220514-higher-order-components-hocs/</loc>
     <lastmod>2022-05-14T14:20:16+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/post/20211229-javascript-gotchas/</loc>
     <lastmod>2021-12-29T11:39:50+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/tags/hack/</loc>
     <lastmod>2021-07-01T13:47:07+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/tags/python/</loc>
     <lastmod>2021-07-01T13:47:07+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/tags/selenium/</loc>
     <lastmod>2021-07-01T13:47:07+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/post/20210701-streamline-web-automation-development-python-selenium/</loc>
     <lastmod>2021-07-01T13:47:07+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/post/20200907-browser-debugging-with-bookmarklets/</loc>
     <lastmod>2020-09-07T16:48:39+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/post/20200823-typr-typing-tutor-web-app/</loc>
     <lastmod>2020-08-23T21:05:48+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/tags/mongodb/</loc>
     <lastmod>2020-08-23T21:05:48+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/categories/projects/</loc>
     <lastmod>2020-08-23T21:05:48+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/tags/redux/</loc>
     <lastmod>2020-08-23T21:05:48+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/tags/data/</loc>
     <lastmod>2020-08-23T11:37:43+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/post/20200823-type-at-100-wpm-in-two-weeks/</loc>
     <lastmod>2020-08-23T11:37:43+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/post/20200420-idea-machine-clipchamp/</loc>
     <lastmod>2020-04-20T13:21:27+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/categories/random/</loc>
     <lastmod>2020-04-20T13:21:27+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/post/20200224-manage-selenium-web-scrapers-with-auto-scrape/</loc>
     <lastmod>2020-02-23T22:49:26+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/tags/flask/</loc>
     <lastmod>2020-02-23T22:49:26+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/tags/sql/</loc>
     <lastmod>2020-02-23T22:49:26+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/post/20200218-human-readable-time-intervals-python/</loc>
     <lastmod>2020-02-18T14:49:56+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/tags/backend/</loc>
     <lastmod>2020-02-17T16:17:10+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/post/20200217-sql-to-csv-in-python/</loc>
     <lastmod>2020-02-17T16:17:10+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/tags/devops/</loc>
     <lastmod>2020-02-09T20:31:46+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/tags/powershell/</loc>
     <lastmod>2020-02-09T20:31:46+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/post/20200210-use-powershell-profile-like-a-pro/</loc>
     <lastmod>2020-02-09T20:31:46+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/post/20200209-search-google-from-powershell/</loc>
     <lastmod>2020-02-09T18:09:03+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/post/20200207-automating-deployment-hugo-github-pages/</loc>
     <lastmod>2020-02-07T15:12:54+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/tags/cloudflare/</loc>
     <lastmod>2020-02-07T15:12:54+10:00</lastmod>
-  </url><url>
-    <loc>/tags/event/</loc>
-    <lastmod>2020-02-04T09:06:05+10:00</lastmod>
-  </url><url>
-    <loc>/post/20200204-brisjs-meetup/</loc>
-    <lastmod>2020-02-04T09:06:05+10:00</lastmod>
-  </url><url>
-    <loc>/post/20200131-collaborate-at-rcl/</loc>
-    <lastmod>2020-01-31T12:31:33+10:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/about/</loc>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/contact/</loc>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>/projects/</loc>
   </url>
+  
 </urlset>

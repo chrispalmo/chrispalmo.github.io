@@ -6,7 +6,11 @@
     <description>Recent content in Posts on Chris Palmieri</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 15 May 2022 09:21:22 +1000</lastBuildDate><atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 May 2022 09:21:22 +1000</lastBuildDate>
+    
+	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Push or Pull State with React Context (useContext, useState, useRef, useCallback)</title>
       <link>/post/20220515-push-or-pull-state-react-context/</link>
@@ -25,7 +29,7 @@ This article:
       <pubDate>Sat, 14 May 2022 14:20:16 +1000</pubDate>
       
       <guid>/post/20220514-higher-order-components-hocs/</guid>
-      <description>Higher-Order Components are &amp;ldquo;functions that take a component and return a new component&amp;rdquo;, and while they are not part of the React API, &amp;ldquo;they are a pattern that emerges from React&amp;rsquo;s compositional nature&amp;rdquo; (React docs).
+      <description>Higher-Order Components are &amp;ldquo;functions that take a component and return a new component&amp;rdquo;, and while they are not part of the React API, &amp;ldquo;they are a pattern that emerges from React&#39;s compositional nature&amp;rdquo; (React docs).
 HOCs can be used to avoid repeated code in many scenarios such as:
  showing a loader, while waiting for data, conditionally rendering components, managing common user-interactions states, providing components with specific styles, and more generally, providing a component with any prop.</description>
     </item>
@@ -36,7 +40,7 @@ HOCs can be used to avoid repeated code in many scenarios such as:
       <pubDate>Wed, 29 Dec 2021 11:39:50 +1000</pubDate>
       
       <guid>/post/20211229-javascript-gotchas/</guid>
-      <description>Javascript&amp;rsquo;s logical OR || and logical AND &amp;amp;&amp;amp; operators are useful in contexts other than creating if, else, while etc. statements, but there are some edge cases that that I see many devs (myself included) getting caught out by.
+      <description>Javascript&#39;s logical OR || and logical AND &amp;amp;&amp;amp; operators are useful in contexts other than creating if, else, while etc. statements, but there are some edge cases that that I see many devs (myself included) getting caught out by.
 This article explores common pitfalls, and provides recommendations for:
  using ?? instead of || to define values with a default fallback, and using &amp;amp;&amp;amp; to conditionally render JSX components only when required props are defined.</description>
     </item>
@@ -48,7 +52,7 @@ This article explores common pitfalls, and provides recommendations for:
       
       <guid>/post/20210701-streamline-web-automation-development-python-selenium/</guid>
       <description>tl;dr When using Python to write web scraping / general automation scripts, run Python using the -i flag preserve and interact with the latest state (i.e python -i script.py).
-This let&amp;rsquo;s you avoid re-running the whole script every time a change is made.
+This let&#39;s you avoid re-running the whole script every time a change is made.
 Problem When developing a bot or web scraper that operates behind a login screen, development, testing, and debugging can take longer than you might expect. The process of write code --&amp;gt; test --&amp;gt; debug --&amp;gt; repeat hits a bottleneck every time the browser starts, pages load, login details are entered, the welcome page loads, and so on.</description>
     </item>
     
@@ -77,7 +81,7 @@ Problem When developing a bot or web scraper that operates behind a login screen
       <pubDate>Sun, 23 Aug 2020 11:37:43 +1000</pubDate>
       
       <guid>/post/20200823-type-at-100-wpm-in-two-weeks/</guid>
-      <description>tl;dr  It&amp;rsquo;s hard to underestimate the importance of typing. Unless you are a journalist, legal secretary, or professional writer, you probably don&amp;rsquo;t get enough practice to ever become truly fast. I built Typr and used it to simultaneously read &amp;amp; type &amp;ldquo;Surely You&amp;rsquo;re Joking, Mr. Feynman!&amp;rdquo;. Two weeks and 100,195 words later, I was maintaining between 100-110 WPM after starting out at 50 WPM. If you like reading, kill two birds with one stone by using Typr to practice typing material you would otherwise be reading.</description>
+      <description>tl;dr  It&#39;s hard to underestimate the importance of typing. Unless you are a journalist, legal secretary, or professional writer, you probably don&#39;t get enough practice to ever become truly fast. I built Typr and used it to simultaneously read &amp;amp; type &amp;ldquo;Surely You&#39;re Joking, Mr. Feynman!&amp;quot;. Two weeks and 100,195 words later, I was maintaining between 100-110 WPM after starting out at 50 WPM. If you like reading, kill two birds with one stone by using Typr to practice typing material you would otherwise be reading.</description>
     </item>
     
     <item>
@@ -95,7 +99,7 @@ Problem When developing a bot or web scraper that operates behind a login screen
       <pubDate>Sun, 23 Feb 2020 22:49:26 +1000</pubDate>
       
       <guid>/post/20200224-manage-selenium-web-scrapers-with-auto-scrape/</guid>
-      <description>tldr: Auto-scrape let&amp;rsquo;s you focus on writing web scraping scripts, while it takes care of logging, data persistance, data presentation and data export, all through a modern browser-based UI. It can be run locally or deployed remotely.
+      <description>tldr: Auto-scrape let&#39;s you focus on writing web scraping scripts, while it takes care of logging, data persistance, data presentation and data export, all through a modern browser-based UI. It can be run locally or deployed remotely.
  Here are some screencasts of the UI. Get it on Github.  Why scrape the web? Building a Selenium web scraper is almost a rite of passage for programmers starting out. Watching a computer fill out forms, click links and collect data before your eyes is not only a highly satisfying and suitably non-abstract exercise for beginners to complete - browser automation forms a foundation for frontend testing, can be used for automated research, and of course can be used to replace those expensive and unreliable humans to accomplish a wide range of business-related tasks.</description>
     </item>
     
@@ -105,7 +109,7 @@ Problem When developing a bot or web scraper that operates behind a login screen
       <pubDate>Tue, 18 Feb 2020 14:49:56 +1000</pubDate>
       
       <guid>/post/20200218-human-readable-time-intervals-python/</guid>
-      <description>Expressing time intervals in a format that is readable by humans is an old problem that every frontend developer will eventually face. While there are plenty of solutions available (this one is my favourite), I required a function that could provide different levels of granularity in it&amp;rsquo;s &amp;ldquo;human-readable&amp;rdquo; description of time.
+      <description>Expressing time intervals in a format that is readable by humans is an old problem that every frontend developer will eventually face. While there are plenty of solutions available (this one is my favourite), I required a function that could provide different levels of granularity in it&#39;s &amp;ldquo;human-readable&amp;rdquo; description of time.
 Take, for example, a component that tells the user how long in aggregate they have been using a service. If they have been using it for a few hours, it would be appropriate to display ## hours, ## minutes, ignoring the seconds and milliseconds.</description>
     </item>
     
@@ -115,8 +119,8 @@ Take, for example, a component that tells the user how long in aggregate they ha
       <pubDate>Mon, 17 Feb 2020 16:17:10 +1000</pubDate>
       
       <guid>/post/20200217-sql-to-csv-in-python/</guid>
-      <description>This function takes an SQLAlchemy query object as it&amp;rsquo;s input (SQLAlchemy is a popular Python SQL toolkit and Object Relational Mapper). It&amp;rsquo;s strength lies in not needing to hard-code column names, making it scaleable and suitable to &amp;ldquo;set-and-forget&amp;rdquo;.
-While developing enterprise software, every developer has surely have been faced with a client asking &amp;ldquo;how do I get the data out of the system?&amp;rdquo;, and after digging a bit deeper, it becomes clear they want the ability to save a snapshot of data as an Excel spreadsheet.</description>
+      <description>This function takes an SQLAlchemy query object as it&#39;s input (SQLAlchemy is a popular Python SQL toolkit and Object Relational Mapper). It&#39;s strength lies in not needing to hard-code column names, making it scaleable and suitable to &amp;ldquo;set-and-forget&amp;rdquo;.
+While developing enterprise software, every developer has surely have been faced with a client asking &amp;ldquo;how do I get the data out of the system?&amp;quot;, and after digging a bit deeper, it becomes clear they want the ability to save a snapshot of data as an Excel spreadsheet.</description>
     </item>
     
     <item>
@@ -125,7 +129,7 @@ While developing enterprise software, every developer has surely have been faced
       <pubDate>Sun, 09 Feb 2020 20:31:46 +1000</pubDate>
       
       <guid>/post/20200210-use-powershell-profile-like-a-pro/</guid>
-      <description>If you do any software development in a Windows environment, you&amp;rsquo;ll be spending enough time inside the Powershell (PS) console that it will be worth customizing the PS Profile to speed up your workflow.
+      <description>If you do any software development in a Windows environment, you&#39;ll be spending enough time inside the Powershell (PS) console that it will be worth customizing the PS Profile to speed up your workflow.
 The PS Profile is essentially a .ps1 script that is run whenever a new PS console is opened. Without going too deep into how a sysadmin might use it, the average developer will probably want to use it to quickly do a few basic things:</description>
     </item>
     
@@ -135,7 +139,7 @@ The PS Profile is essentially a .ps1 script that is run whenever a new PS consol
       <pubDate>Sun, 09 Feb 2020 18:09:03 +1000</pubDate>
       
       <guid>/post/20200209-search-google-from-powershell/</guid>
-      <description>You may have seen people walking around with those awkwardEat; Sleep; Code; Repeat; brogrammer shirts. I don&amp;rsquo;t like them - between the many other things that developing software requires, when I actually sit down to write code the workflow would more accurately be described as Code; Compile; Google Error; Repeat;.
+      <description>You may have seen people walking around with those awkwardEat; Sleep; Code; Repeat; brogrammer shirts. I don&#39;t like them - between the many other things that developing software requires, when I actually sit down to write code the workflow would more accurately be described as Code; Compile; Google Error; Repeat;.
 This short post explains how the below gg.ps1 Powershell script can increase your productivity by opening a chrome browser and executing a Google search straight from the Powershell console.</description>
     </item>
     
@@ -147,26 +151,6 @@ This short post explains how the below gg.ps1 Powershell script can increase you
       <guid>/post/20200207-automating-deployment-hugo-github-pages/</guid>
       <description>Overview The following article describes how this blog is automatically deployed. The technology stack for this blog is:
  Source content written within the Hugo framework (a static website generator written in the Go language. Hosted by GitHub Pages, directly from this repository which contains the website build (the source code is in a separate repository). Cloudflare for cached content delivery (along with many other things).  If the technology stack for your project is completely different, this article should still provide you with:</description>
-    </item>
-    
-    <item>
-      <title>Event review: BrisJs - Introducing the typescript compiler; Atomic design; Scrutinising the norm</title>
-      <link>/post/20200204-brisjs-meetup/</link>
-      <pubDate>Tue, 04 Feb 2020 09:06:05 +1000</pubDate>
-      
-      <guid>/post/20200204-brisjs-meetup/</guid>
-      <description>I attended the first BrisJS meetup of the year last night. This was my first time attending a &amp;ldquo;programming language-centric&amp;rdquo; meetup, and I was surprised to find around 100 people in attendance. All presenters and the majority of the crowd looked to be in their 20&amp;rsquo;s, and while the presentations didn&amp;rsquo;t have the level of polish that I would usually expect for an event of this size, I was still able to learn a few things, and more importantly, have some interesting conversations with other developers about projects they are working on and opportunities in the market.</description>
-    </item>
-    
-    <item>
-      <title>Event review: Collaborate at RCL</title>
-      <link>/post/20200131-collaborate-at-rcl/</link>
-      <pubDate>Fri, 31 Jan 2020 12:31:33 +1000</pubDate>
-      
-      <guid>/post/20200131-collaborate-at-rcl/</guid>
-      <description>I attended &amp;ldquo;Collaborate at RCL&amp;rdquo; last night, an event hosted by River City Labs, described as follows:
- What do you do when you have an amazing business idea, but you don&amp;rsquo;t have the skills or resources to make it happen? Help others with their ideas, and they&amp;rsquo;ll help you with yours!
-That&amp;rsquo;s the idea behind Collaborate @ RCL. Meet some great people, learn some new skills, and work on some fantastic businesses - all at the same time.</description>
     </item>
     
   </channel>
