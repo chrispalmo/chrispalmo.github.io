@@ -24,7 +24,7 @@
 
 
 <meta property="og:title" content="Higher-Order Functional Components (HOCs) in React (with Typescript)">
-<meta property="og:description" content="Higher-Order Components are &quot;functions that take a component and return a new component&quot;, and while they are not part of the React API, &quot;they are a pattern that emerges from React&#39;s compositional nature&quot; ( React docs ). HOCs can be used to avoid repeated code in many scenarios such as: showing a loader, while waiting for data, conditionally rendering components, managing common user-interactions states, providing components with specific styles, and more generally, providing a component with any prop.">
+<meta property="og:description" content="Higher-Order Components are &quot;functions that take a component and return a new component&quot;, and while they are not part of the React API, &quot;they are a pattern that emerges from React&#39;s compositional nature&quot; ( React docs ). HOCs can be used to avoid repeated code in many scenarios such as: showing a loader, while waiting for data, conditionally rendering components, managing common user-interaction states, providing components with specific styles, and more generally, providing a component with any prop.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="/post/20220514-higher-order-components-hocs/">
 
@@ -122,13 +122,23 @@
 <ul>
 <li>showing a loader, while waiting for data,</li>
 <li>conditionally rendering components,</li>
-<li>managing common user-interactions states,</li>
+<li>managing common user-interaction states,</li>
 <li>providing components with specific styles,</li>
 <li>and more generally, providing a component with any prop.</li>
 </ul>
 <p>The example detailed here will act as a useful template for building out HOCs to deal with any of the above scenarios.</p>
+<blockquote>
+<p><strong>Note (2026):</strong> Today, I’d qualify the paragraph above: most of these scenarios are now usually handled with custom hooks and component composition instead of HOCs. Fetching data, toggling UI state, and applying shared behaviour are typically clearer as hooks that a component calls directly.</p>
+<p>HOCs are still useful when you want to change a component’s public interface or rendering boundary from outside the component, for example:</p>
+<ul>
+<li>replacing a required <code>data</code> prop with a <code>dataId</code> the parent already has,</li>
+<li>showing a loader (or throwing / redirecting) before the wrapped child mounts,</li>
+<li>injecting props or wrappers the child should not know how to obtain itself.</li>
+</ul>
+<p>The <code>withData</code> example below does the first two, which is why an HOC still fits. Treat this post as a typed HOC template for those cases, not as the default way to share logic in a new React codebase.</p>
+</blockquote>
 <h3 id="motivation">Motivation</h3>
-<p>While where is <a href="https://sebhastian.com/react-higher-order-components/">no shortage</a> of <a href="https://medium.com/geekculture/understanding-react-higher-order-component-hoc-8e7a96820205">examples</a> and <a href="https://blog.openreplay.com/what-are-higher-order-components-in-react">guides</a> on <a href="https://www.geeksforgeeks.org/react-js-higher-order-components/">HOCs</a> in <a href="https://flexiple.com/react/introduction-to-higher-order-components-in-react-by-example/">React</a> available, at the time of writing this there is (as with many React resources) <strong>a lack of examples that include Typescript</strong>, and even less that <strong>use functional components</strong> – both of which have overwhelmingly become industry standards over the past few years.</p>
+<p>While there is <a href="https://sebhastian.com/react-higher-order-components/">no shortage</a> of <a href="https://medium.com/geekculture/understanding-react-higher-order-component-hoc-8e7a96820205">examples</a> and <a href="https://blog.openreplay.com/what-are-higher-order-components-in-react">guides</a> on <a href="https://www.geeksforgeeks.org/react-js-higher-order-components/">HOCs</a> in <a href="https://flexiple.com/react/introduction-to-higher-order-components-in-react-by-example/">React</a> available, at the time of writing this there is (as with many React resources) <strong>a lack of examples that include Typescript</strong>, and even less that <strong>use functional components</strong> – both of which have overwhelmingly become industry standards over the past few years.</p>
 <h2 id="example">Example</h2>
 <p>Say you have multiple components that require some object <code>data: Data | undefined</code> that can only be fetched asynchronously. The <code>withData</code> HOC &quot;wraps&quot; the base <code>Component</code>, returning a new <code>WrappedComponent</code> with the <code>data: Data</code> prop replaced by <code>dataId: string</code>:</p>
 <pre><code class="language-tsx">type WithDataProps&lt;TProps&gt; = Omit&lt;TProps, &quot;data&quot;&gt; &amp; {
@@ -138,7 +148,7 @@
 
 export function withData&lt;TProps&gt;(
   Component: React.ComponentType&lt;TProps&gt;,
-  isValid?: (data: any) =&gt; boolean
+  isValid?: (data: any) =&gt; boolean,
 ) {
   // eslint-disable-next-line react/display-name
   return ({ dataId, ...rest }: WithDataProps&lt;TProps&gt;) =&gt; {
@@ -146,7 +156,7 @@ export function withData&lt;TProps&gt;(
     if (!data) {
       return &lt;Loading /&gt;;
     }
-    if (!isValid(data)) {
+    if (isValid &amp;&amp; !isValid(data)) {
       throw new Error(&quot;data not valid&quot;);
     }
     // typecasting should generally be avoided, but the typescript compiler
@@ -157,11 +167,12 @@ export function withData&lt;TProps&gt;(
   };
 }
 </code></pre>
-<p>The <code>withData</code> wrapper can now be used as follows:</p>
-<pre><code class="language-tsx">const Parent = ({ dataId }: { dataId: string }) =&gt; {
-  const Widget = withData(WidgetBase);
-  const Doodad = withData(DoodadBase);
-  const Gizmo = withData(GizmoBase);
+<p>The <code>withData</code> wrapper can now be used as follows (define wrapped components outside the parent so React keeps a stable component type across renders):</p>
+<pre><code class="language-tsx">const Widget = withData(WidgetBase);
+const Doodad = withData(DoodadBase);
+const Gizmo = withData(GizmoBase);
+
+const Parent = ({ dataId }: { dataId: string }) =&gt; {
   return (
     &lt;Widget dataId={dataId}&gt;
       &lt;Doodad dataId={dataId} /&gt;
@@ -316,7 +327,7 @@ export function withData&lt;TProps&gt;(
 			<a class="widget-taglist__link widget__link btn" href="/tags/mongodb/" title="MongoDB">MongoDB (1)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/node/" title="Node">Node (3)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/performance/" title="Performance">Performance (1)</a>
-			<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="Powershell">Powershell (3)</a>
+			<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell (3)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python (5)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/react/" title="React">React (4)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/redux/" title="Redux">Redux (1)</a>

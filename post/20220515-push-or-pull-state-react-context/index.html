@@ -24,7 +24,7 @@
 
 
 <meta property="og:title" content="Push or Pull State with React Context (useContext, useState, useRef, useCallback)">
-<meta property="og:description" content="tldr: this CodeSandbox demonstrates a way to fetch state via a context only when required, eliminating unnecessary renders. Overview The React Context API has made accessing state anywhere in the component tree (and writing clean code without prop drilling ) easier than ever before. This article: examines a typical pattern for sharing state using the Context API, and discusses performance implications of the above pattern, and proposes a simple modification using the useRef and useCallback hooks to eliminates unnecessary renders.">
+<meta property="og:description" content="tldr: this CodeSandbox demonstrates a way to fetch state via a context only when required, eliminating unnecessary renders. Overview The React Context API has made accessing state anywhere in the component tree (and writing clean code without prop drilling ) easier than ever before. This article: examines a typical pattern for sharing state using the Context API, and discusses performance implications of the above pattern, and proposes a simple modification using the useRef and useCallback hooks to eliminate unnecessary renders.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="/post/20220515-push-or-pull-state-react-context/">
 
@@ -123,13 +123,13 @@
 <p>This article:</p>
 <ol>
 <li>examines a <a href="#basic-pattern">typical pattern</a> for sharing state using the Context API, and</li>
-<li><a href="#performance-implications">discusses performance implications</a> of the above pattern, and proposes <a href="#improved-pattern">a simple modification</a> using the <code>useRef</code> and <code>useCallback</code> hooks to eliminates unnecessary renders.</li>
+<li><a href="#performance-implications">discusses performance implications</a> of the above pattern, and proposes <a href="#improved-pattern">a simple modification</a> using the <code>useRef</code> and <code>useCallback</code> hooks to eliminate unnecessary renders.</li>
 </ol>
 <h2 id="basic-pattern">The basic pattern</h2>
 <p>The basic pattern for making some <code>value</code> and the corresponding <code>setValue</code> function globally available is based around the below <code>ValueProvider</code>:</p>
 <pre><code class="language-tsx">const ValueContext = createContext&lt;number | null&gt;(null);
 const SetValueContext = createContext&lt;Dispatch&lt;SetStateAction&lt;number&gt;&gt; | null&gt;(
-  null
+  null,
 );
 
 const ValueProvider = ({ children }: { children: React.ReactNode }) =&gt; {
@@ -184,10 +184,10 @@ export const App = () =&gt; (
   &lt;/ValueProvider&gt;
 );
 </code></pre>
-<p>Note the buttons are wrapped in <code>ButtonsWithRenderCount</code>, which (just for the purpose of <a href="#demo">the below demo</a>) displays the render count adjacent the button.</p>
+<p>Note the buttons are wrapped in <code>ButtonWithRenderCount</code>, which (just for the purpose of <a href="#demo">the below demo</a>) displays the render count adjacent to the button.</p>
 <pre><code class="language-tsx">const ButtonWithRenderCount = ({
   text,
-  onClick
+  onClick,
 }: {
   text: string;
   onClick: () =&gt; void;
@@ -223,7 +223,7 @@ export const App = () =&gt; (
 <p>Imagine a use case where <code>value</code> changes frequently (i.e tracking cursor position, the scroll position of a container, or perhaps the completion progress of a background process). Now additionally imagine there are a large number of these <code>LogValueButtons</code>, say, on each line in a list of search results.</p>
 <p><strong>React renders are not free</strong> (even if the final result is &quot;no changes, do not update the DOM&quot;), so an app using this pattern in this type of scenario would suffer from performance issues.</p>
 <h2 id="improved-pattern">The improved pattern</h2>
-<p>The <code>LogValueButton</code> doesn't need to always know the current <code>value</code> – only where to get it when clicked. We could say the above pattern causes the <code>LogValueButton</code> to &quot;subscribe&quot; to the state (the &quot;Push&quot; pattern), while a more efficient pattern would allow it to &quot;get&quot; the state when required (the &quot;Pull&quot; pattern).</p>
+<p>The <code>LogValueButton</code> doesn't need to always know the current <code>value</code> – it only needs to know where to get it when clicked. We could say the above pattern causes the <code>LogValueButton</code> to &quot;subscribe&quot; to the state (the &quot;Push&quot; pattern), while a more efficient pattern would allow it to &quot;get&quot; the state when required (the &quot;Pull&quot; pattern).</p>
 <p>To enable an option to consume <code>value</code> via the &quot;Pull&quot; pattern, <code>ValueProvider</code> can be updated as follows:</p>
 <pre><code class="language-diff">  const ValueContext = createContext&lt;number | null&gt;(null);
 + const ValueRefContext = createContext&lt;MutableRefObject&lt;number&gt; | null&gt;(null);
@@ -436,7 +436,7 @@ export const App = () =&gt; (
 			<a class="widget-taglist__link widget__link btn" href="/tags/mongodb/" title="MongoDB">MongoDB (1)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/node/" title="Node">Node (3)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/performance/" title="Performance">Performance (1)</a>
-			<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="Powershell">Powershell (3)</a>
+			<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell (3)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python (5)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/react/" title="React">React (4)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/redux/" title="Redux">Redux (1)</a>

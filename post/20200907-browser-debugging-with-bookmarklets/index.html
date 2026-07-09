@@ -24,7 +24,7 @@
 
 
 <meta property="og:title" content="Browser debugging with bookmarklets">
-<meta property="og:description" content="tl;dr Bookmarklet are browser bookmarks that, instead of linking to a web page, inject custom javascript into the current page. Here are a couple of bookmarklets I use regularly - to add them to your browser simply copy the minified code directly into the URL field for a new bookmark (remember to include the javascript: prefix). Track current mouse coordinates Use the below script to display the current mouse coordinates in the current tab title:">
+<meta property="og:description" content="tl;dr Bookmarklets are browser bookmarks that, instead of linking to a web page, inject custom JavaScript into the current page. Here are a couple of bookmarklets I use regularly - to add them to your browser simply copy the minified code directly into the URL field for a new bookmark (remember to include the javascript: prefix). Track current mouse coordinates Use the below script to display the current mouse coordinates in the current tab title:">
 <meta property="og:type" content="article">
 <meta property="og:url" content="/post/20200907-browser-debugging-with-bookmarklets/">
 
@@ -119,7 +119,7 @@
 		<div class="content post__content clearfix">
 			<h2 id="tldr">tl;dr</h2>
 <ul>
-<li>Bookmarklet are browser bookmarks that, instead of linking to a web page, inject custom javascript into the current page.</li>
+<li>Bookmarklets are browser bookmarks that, instead of linking to a web page, inject custom JavaScript into the current page.</li>
 <li>Here are a couple of bookmarklets I use regularly - to add them to your browser simply copy the minified code directly into the <code>URL</code> field for a new bookmark (remember to include the <code>javascript:</code> prefix).</li>
 </ul>
 <h2 id="track-current-mouse-coordinates">Track current mouse coordinates</h2>
@@ -130,7 +130,7 @@
 </code></pre>
 <p>It simply adds an event listener which updates the document title when the mouse moves.</p>
 <h2 id="set-the-browser-debugger-to-start-after-a-countdown">Set the browser debugger to start after a countdown</h2>
-<p>The <code>debugger</code> command freezes all javascript execution on the current page. Often I want to freeze and inspect transient DOM states that only exist when the cursor is positioned over a component.</p>
+<p>The <code>debugger</code> command freezes all JavaScript execution on the current page. Often I want to freeze and inspect transient DOM states that only exist when the cursor is positioned over a component.</p>
 <p>While in most cases a solution is simply to press <code>F8</code> to pause execution, this sometimes doesn't work if, for example, <code>keydown</code> event listeners are modifying parts of the DOM you are interested in. You could alternatively try <a href="https://developer.mozilla.org/en-US/docs/Tools/Debugger/Break_on_DOM_mutation#:~:text=A%20DOM%20Mutation%20Breakpoint%20pauses,menu%20to%20set%20the%20breakpoint.">putting a breakpoint on DOM mutations</a>, but using a <code>setTimeout</code> to trigger the <code>debugger</code> is often more convenient.</p>
 <p>Here is a script that prompts the user for the length of the countdown, and displays the countdown until the <code>debugger</code> is started in the console:</p>
 <pre><code class="language-js">{
@@ -299,7 +299,7 @@
 			<a class="widget-taglist__link widget__link btn" href="/tags/mongodb/" title="MongoDB">MongoDB (1)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/node/" title="Node">Node (3)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/performance/" title="Performance">Performance (1)</a>
-			<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="Powershell">Powershell (3)</a>
+			<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell (3)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python (5)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/react/" title="React">React (4)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/redux/" title="Redux">Redux (1)</a>

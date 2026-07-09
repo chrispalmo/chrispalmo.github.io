@@ -24,7 +24,7 @@
 
 
 <meta property="og:title" content="Human-readable time intervals in Python">
-<meta property="og:description" content="Expressing time intervals in a format that is readable by humans is an old problem that every frontend developer will eventually face. While there are plenty of solutions available ( this one is my favourite), I required a function that could provide different levels of granularity in it&#39;s &quot;human-readable&quot; description of time. Take, for example, a component that tells the user how long in aggregate they have been using a service.">
+<meta property="og:description" content="Expressing time intervals in a format that is readable by humans is an old problem that every frontend developer will eventually face. While there are plenty of solutions available ( this one is my favourite), I required a function that could provide different levels of granularity in its &quot;human-readable&quot; description of time. Take, for example, a component that tells the user how long in aggregate they have been using a service.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="/post/20200218-human-readable-time-intervals-python/">
 
@@ -117,7 +117,7 @@
 		</header>
 		
 		<div class="content post__content clearfix">
-			<p>Expressing time intervals in a format that is readable by humans is an old problem that every frontend developer will eventually face. While there are <a href="https://stackoverflow.com/questions/6574329/how-can-i-produce-a-human-readable-difference-when-subtracting-two-unix-timestam">plenty of solutions</a> available (<a href="https://stackoverflow.com/questions/6574329/how-can-i-produce-a-human-readable-difference-when-subtracting-two-unix-timestam#answer-26781642">this</a> one is my favourite), I required a function that could provide different levels of granularity in it's &quot;human-readable&quot; description of time.</p>
+			<p>Expressing time intervals in a format that is readable by humans is an old problem that every frontend developer will eventually face. While there are <a href="https://stackoverflow.com/questions/6574329/how-can-i-produce-a-human-readable-difference-when-subtracting-two-unix-timestam">plenty of solutions</a> available (<a href="https://stackoverflow.com/questions/6574329/how-can-i-produce-a-human-readable-difference-when-subtracting-two-unix-timestam#answer-26781642">this</a> one is my favourite), I required a function that could provide different levels of granularity in its &quot;human-readable&quot; description of time.</p>
 <p>Take, for example, a component that tells the user how long in aggregate they have been using a service. If they have been using it for a few hours, it would be appropriate to display <code>## hours, ## minutes</code>, ignoring the seconds and milliseconds. If they have been using the service for several years, it would probably not make sense to provide minute-level-accuracy -- simply <code>## years, ## days</code> would suffice. So for this situation, <code>granularity=2</code> seems appropriate.</p>
 <p>If you are creating a countdown timer however, it may be more useful to have a higher level of granularity, displaying days, hours, minutes and seconds (<code>granularity=4</code>).</p>
 <p>The below script contains two functions: <code>time_breakdown</code>, which handles the unit conversions, and <code>time_breakdown_string</code>, which handles the &quot;human readability&quot; logic:</p>
@@ -126,19 +126,19 @@
 
 def time_breakdown(ms):
  &quot;&quot;&quot;Converts an integer representing number of milliseconds into a dictionary
- representing days, hours, minutes, seconds and milliseconds. Output is
+ representing years, days, hours, minutes, seconds and milliseconds. Output is
  rounded down to the nearest whole number.
 
  Parameters:
   ms (integer): number of milliseconds.
 
  Returns:
-  (dictionary): breakdown of total days, hours, minutes, seconds and
+  (dictionary): breakdown of total years, days, hours, minutes, seconds and
   milliseconds.
 
  Example usage:
   &gt;&gt;&gt; time_breakdown = time_breakdown(123456789)
-  {'day': 1, 'hr': 10, 'min': 17, 'sec': 36, 'ms': 789}
+  {'year': 0, 'day': 1, 'hr': 10, 'min': 17, 'sec': 36, 'ms': 789}
  &quot;&quot;&quot;
 
  ms_out = ms % 1000;
@@ -148,8 +148,10 @@ def time_breakdown(ms):
  day = floor(
   (ms % (1000 * 60 * 60 * 24 * 365)) / 1000 / 60 / 60 / 24
  )
+ year = floor(ms / (1000 * 60 * 60 * 24 * 365))
 
  return {
+  &quot;year&quot;: year,
   &quot;day&quot;: day,
   &quot;hr&quot;: hr,
   &quot;min&quot;: min,
@@ -157,7 +159,7 @@ def time_breakdown(ms):
   &quot;ms&quot;: round(ms_out)
  }
 
-def time_breakdown_string(ms, granularity=5):
+def time_breakdown_string(ms, granularity=6):
  &quot;&quot;&quot;Converts an integer representing number of milliseconds into a string that
  uses natural language to represent the time quantity.
 
@@ -183,8 +185,13 @@ def time_breakdown_string(ms, granularity=5):
  time = time_breakdown(ms)
  time_string = &quot;&quot;
 
+ if time[&quot;year&quot;] != 0:
+  time_string += str(time[&quot;year&quot;]) + &quot; year&quot;
+  if time[&quot;year&quot;] != 1:
+   time_string += &quot;s&quot;
+
  if time[&quot;day&quot;] != 0:
-  time_string += str(time[&quot;day&quot;]) + &quot; day&quot;
+  time_string += &quot; &quot; + str(time[&quot;day&quot;]) + &quot; day&quot;
   if time[&quot;day&quot;] != 1:
    time_string += &quot;s&quot;
 
@@ -270,7 +277,7 @@ if __name__ == &quot;__main__&quot;:
 <h3 id="example-output">Example output</h3>
 <pre><code>To orbit the sun, it takes Mercury:
 
-        {'day': 87, 'hr': 23, 'min': 16, 'sec': 48, 'ms': 0}
+        {'year': 0, 'day': 87, 'hr': 23, 'min': 16, 'sec': 48, 'ms': 0}
         87 days
         87 days 23 hours
         87 days 23 hours 16 minutes
@@ -279,16 +286,16 @@ if __name__ == &quot;__main__&quot;:
 
 Ignores 'zero' units:
 
-        {'day': 0, 'hr': 23, 'min': 59, 'sec': 59, 'ms': 0}
+        {'year': 0, 'day': 0, 'hr': 23, 'min': 59, 'sec': 59, 'ms': 0}
         23 hours 59 minutes 59 seconds
 
-        {'day': 1, 'hr': 0, 'min': 0, 'sec': 0, 'ms': 0}
+        {'year': 0, 'day': 1, 'hr': 0, 'min': 0, 'sec': 0, 'ms': 0}
         1 day
 
-        {'day': 1, 'hr': 0, 'min': 0, 'sec': 1, 'ms': 0}
+        {'year': 0, 'day': 1, 'hr': 0, 'min': 0, 'sec': 1, 'ms': 0}
         1 day 1 second
 
-        {'day': 1, 'hr': 0, 'min': 1, 'sec': 0, 'ms': 0}
+        {'year': 0, 'day': 1, 'hr': 0, 'min': 1, 'sec': 0, 'ms': 0}
         1 day 1 minute
 
 
@@ -435,7 +442,7 @@ Plurality is considered:
 			<a class="widget-taglist__link widget__link btn" href="/tags/mongodb/" title="MongoDB">MongoDB (1)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/node/" title="Node">Node (3)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/performance/" title="Performance">Performance (1)</a>
-			<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="Powershell">Powershell (3)</a>
+			<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell (3)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python (5)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/react/" title="React">React (4)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/redux/" title="Redux">Redux (1)</a>

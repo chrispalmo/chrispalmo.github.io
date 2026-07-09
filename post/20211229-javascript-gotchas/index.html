@@ -24,7 +24,7 @@
 
 
 <meta property="og:title" content="JS Gotchas with logical operators ||, &amp;&amp;, and ??">
-<meta property="og:description" content="Javascript&#39;s logical OR || and logical AND &amp;&amp; operators are useful in contexts other than creating if, else, while etc. statements, but there are some edge cases that that I see many devs (myself included) getting caught out by. This article explores common pitfalls, and provides recommendations for: using?? instead of || to define values with a default fallback, and using &amp;&amp; to conditionally render JSX components only when required props are defined.">
+<meta property="og:description" content="JavaScript&#39;s logical OR || and logical AND &amp;&amp; operators are useful in contexts other than creating if, else, while etc. statements, but there are some edge cases that I see many devs (myself included) getting caught out by. This article explores common pitfalls, and provides recommendations for: using?? instead of || to define values with a default fallback, and using &amp;&amp; to conditionally render JSX components only when required props are defined.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="/post/20211229-javascript-gotchas/">
 
@@ -105,7 +105,7 @@
 		</header>
 		
 		<div class="content post__content clearfix">
-			<p>Javascript's logical OR <code>||</code> and logical AND <code>&amp;&amp;</code> operators are useful in contexts other than creating <code>if</code>, <code>else</code>, <code>while</code> etc. statements, but there are some edge cases that that I see many devs (myself included) getting caught out by.</p>
+			<p>JavaScript's logical OR <code>||</code> and logical AND <code>&amp;&amp;</code> operators are useful in contexts other than creating <code>if</code>, <code>else</code>, <code>while</code> etc. statements, but there are some edge cases that I see many devs (myself included) getting caught out by.</p>
 <p>This article explores common pitfalls, and provides recommendations for:</p>
 <ol>
 <li>using <code>??</code> instead of <code>||</code> to define values with a default fallback, and</li>
@@ -115,7 +115,7 @@
 <h2 id="tldr">tl;dr</h2>
 <ol>
 <li>Use the nullish coalescing (<code>??</code>) operator, not the logical OR (<code>||</code>) operator to initialize variables with a default value as a fallback (i.e <code>const value = input ?? DEFAULT_VALUE</code>).</li>
-<li>To conditionally render a component in JSX only when it's prop(s) are defined, <code>{ prop &amp;&amp; &lt;Component prop={prop} /&gt; }</code> is very convenient, but exercise caution when <code>typeof prop === 'string'</code>, and when <code>typeof prop === 'number'</code>, use <code>{ prop !== undefined &amp;&amp; prop !== null &amp;&amp; &lt;Component prop={prop} /&gt; }</code> instead.</li>
+<li>To conditionally render a component in JSX only when its prop(s) are defined, <code>{ prop &amp;&amp; &lt;Component prop={prop} /&gt; }</code> is very convenient, but exercise caution when <code>typeof prop === 'string'</code>, and when <code>typeof prop === 'number'</code>, use <code>{ prop !== undefined &amp;&amp; prop !== null &amp;&amp; &lt;Component prop={prop} /&gt; }</code> instead.</li>
 <li>Basic results for <code>||</code>, <code>&amp;&amp;</code>, and <code>??</code> are tabulated as a quick reference:</li>
 </ol>
 <pre><code class="language-js">┌──────────────────────┬───────────┬────────┬────────┐
@@ -130,7 +130,7 @@
 </code></pre>
 <h2 id="the-gotchas">The Gotchas</h2>
 <h3 id="gotcha-1-using--instead-of--to-define-values-with-a-default-fallback">Gotcha #1: Using <code>||</code> instead of <code>??</code> to define values with a default fallback</h3>
-<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR">logical OR (<code>||</code>)</a> operator is part of the syntax you probably learned on your first day of writing javascript, and you would already be comfortable using it to write conditional <code>if</code>, <code>else</code>, <code>while</code> etc. statements.</p>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR">logical OR (<code>||</code>)</a> operator is part of the syntax you probably learned on your first day of writing JavaScript, and you would already be comfortable using it to write conditional <code>if</code>, <code>else</code>, <code>while</code> etc. statements.</p>
 <p>Then one day, you discover it can also be used to initialize variables to a default value:</p>
 <pre><code class="language-js">let userInput;
 const projectName = userInput || &quot;untitled project&quot;;
@@ -191,7 +191,7 @@ getScore(10, 0); // returns `7`, instead of the expected `10`
 const DEFAULT_TEXT = &quot;click to edit text&quot;;
 const labelText = (input: string) =&gt; input || DEFAULT_TEXT;
 // user tries to create a blank label / sign
-getText(&quot;&quot;); // returns &quot;click to edit text&quot;, instead of the expected &quot;&quot;
+labelText(&quot;&quot;); // returns &quot;click to edit text&quot;, instead of the expected &quot;&quot;
 </code></pre>
 <h4 id="recommendation">Recommendation</h4>
 <p>Of course there are cases where it is ok to use the <code>||</code> operator to fall back to a default value, but in my opinion the <code>??</code> operator should still be used, with any additional special handling for <em>falsy</em> values being explicitly defined, resulting in clear, readable code that is less likely to be broken by the next developer who may reasonably lack a complete knowledge of expected inputs or overlook the subtle implications of previous syntax choices.</p>
@@ -211,9 +211,9 @@ getText(&quot;&quot;); // returns &quot;click to edit text&quot;, instead of the
 };
 </code></pre>
 <p>This is a very convenient and concise way to write JSX. If <code>errorText === undefined</code> or <code>errorText === null</code>, the left-hand operator is a <em>falsy</em> value, so <code>undefined</code> or <code>null</code> is returned instead of the <code>&lt;ErrorDetails /&gt;</code> component, which the compiler then ignores when converting the JSX to HTML. Woo! I love JSX 🥳</p>
-<p>But don't party to hard just yet, because there are a a coupe of edge cases to be aware of...</p>
+<p>But don't party too hard just yet, because there are a couple of edge cases to be aware of...</p>
 <h4 id="the-component-wont-render-if-errortext--">The component won't render if <code>errorText === ''</code></h4>
-<p>If you read the previous gotcha, you are already step ahead and know that if <code>errorText === ''</code>, the component will not render, and the empty string returned instead of the <code>ErrorDetails /&gt;</code> results in nothing being rendered.</p>
+<p>If you read the previous gotcha, you are already a step ahead and know that if <code>errorText === ''</code>, the component will not render, and the empty string returned instead of the <code>&lt;ErrorDetails /&gt;</code> results in nothing being rendered.</p>
 <h4 id="mysterious-0s-and-nans-appearing-in-the-ui">Mysterious <code>0</code>s and <code>NaN</code>s appearing in the UI</h4>
 <p>In addition to the effects of <code>''</code>, <code>0</code>, and <code>NaN</code> being <em>falsy</em>, we additionally see some interesting behavior when the left-hand operator is <code>NaN</code> or <code>0</code>. The below example essentially uses the below JSX for conditional rendering:</p>
 <pre><code class="language-jsx">return &lt;&gt;
@@ -240,7 +240,7 @@ getText(&quot;&quot;); // returns &quot;click to edit text&quot;, instead of the
 │    [ NaN, 'foo' ]    │    NaN    │ 'foo'  │  NaN   │
 └──────────────────────┴───────────┴────────┴────────┘
 </code></pre>
-<p>Just as <code>'' &amp;&amp; &lt;Component /&gt;</code> returns <code>''</code>, the <em>falsey</em> left-hand operator is also returned for <code>NaN &amp;&amp; &lt;Component /&gt;</code> and <code>0 &amp;&amp; &lt;Component /&gt;</code>. The problem is that <code>0</code> and <code>NaN</code> are both <code>'number'</code> types, which are included in the HTML output as visible elements.</p>
+<p>Just as <code>'' &amp;&amp; &lt;Component /&gt;</code> returns <code>''</code>, the <em>falsy</em> left-hand operator is also returned for <code>NaN &amp;&amp; &lt;Component /&gt;</code> and <code>0 &amp;&amp; &lt;Component /&gt;</code>. The problem is that <code>0</code> and <code>NaN</code> are both <code>'number'</code> types, which are included in the HTML output as visible elements.</p>
 <h4 id="recommendation-1">Recommendation</h4>
 <p>Using <code>prop &amp;&amp; &lt;Component prop={prop}/&gt;</code> is convenient, concise, and works most of the time, but can cause surprises if used without caution. When <code>typeof prop === 'number'</code>, a robust way to conditionally render the component without sacrificing too much brevity would be:</p>
 <pre><code class="language-tsx">prop !== undefined &amp;&amp; prop !== null &amp;&amp; &lt;Component prop={prop} /&gt;;
@@ -386,7 +386,7 @@ getText(&quot;&quot;); // returns &quot;click to edit text&quot;, instead of the
 			<a class="widget-taglist__link widget__link btn" href="/tags/mongodb/" title="MongoDB">MongoDB (1)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/node/" title="Node">Node (3)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/performance/" title="Performance">Performance (1)</a>
-			<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="Powershell">Powershell (3)</a>
+			<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell (3)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python (5)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/react/" title="React">React (4)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/redux/" title="Redux">Redux (1)</a>
