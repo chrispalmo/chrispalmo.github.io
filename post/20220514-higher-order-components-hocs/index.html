@@ -127,9 +127,9 @@
 <li>and more generally, providing a component with any prop.</li>
 </ul>
 <p>The example detailed here will act as a useful template for building out HOCs to deal with any of the above scenarios.</p>
-<h3>Motivation</h3>
+<h3 id="motivation">Motivation</h3>
 <p>While where is <a href="https://sebhastian.com/react-higher-order-components/">no shortage</a> of <a href="https://medium.com/geekculture/understanding-react-higher-order-component-hoc-8e7a96820205">examples</a> and <a href="https://blog.openreplay.com/what-are-higher-order-components-in-react">guides</a> on <a href="https://www.geeksforgeeks.org/react-js-higher-order-components/">HOCs</a> in <a href="https://flexiple.com/react/introduction-to-higher-order-components-in-react-by-example/">React</a> available, at the time of writing this there is (as with many React resources) <strong>a lack of examples that include Typescript</strong>, and even less that <strong>use functional components</strong> – both of which have overwhelmingly become industry standards over the past few years.</p>
-<h2>Example</h2>
+<h2 id="example">Example</h2>
 <p>Say you have multiple components that require some object <code>data: Data | undefined</code> that can only be fetched asynchronously. The <code>withData</code> HOC &quot;wraps&quot; the base <code>Component</code>, returning a new <code>WrappedComponent</code> with the <code>data: Data</code> prop replaced by <code>dataId: string</code>:</p>
 <pre><code class="language-tsx">type WithDataProps&lt;TProps&gt; = Omit&lt;TProps, &quot;data&quot;&gt; &amp; {
   dataId: string;
@@ -171,11 +171,11 @@ export function withData&lt;TProps&gt;(
 };
 </code></pre>
 <p>The obvious advantage of this approach is that the data fetching, null check and conditional rendering doesn't need to be repeated across multiple components – but there is an additional reason you may consider using this pattern:</p>
-<h3>Less Renders</h3>
+<h3 id="less-renders">Less Renders</h3>
 <p>If a component calling <code>useData</code> also calls <code>setState</code> for some unrelated reason, the <code>useData(dataId)</code> hook will render again, and even if <code>dataId</code> hasn't changed, a new reference to an otherwise identical <code>data</code> object will be returned (remember: <code>{ dataId: 123 } !== { dataId: 123 }</code>).</p>
 <p>React uses strict equality to determine if props have changed, so if the <code>data</code> object is being passed as a prop to any child components, renders will be triggered in those child components <em>even if the properties of <code>data</code> are unchanged</em>.</p>
 <p>By wrapping the components in a state-providing wrapper, not only are we achieving <a href="https://nalexn.github.io/separation-of-concerns/">Separation of Concerns</a> (a Good Thing™️ for any codebase), we are also allowing React to make better decisions about when to render, leading to less memory usage and a smoother user experience.</p>
-<h2>Questions?</h2>
+<h2 id="questions">Questions?</h2>
 <p>Do you have any questions or feedback? Feel free to leave a comment below, or to <a href="/contact/">reach out to me directly</a>.</p>
 
 		</div>

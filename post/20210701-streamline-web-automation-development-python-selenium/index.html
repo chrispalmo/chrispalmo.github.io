@@ -117,13 +117,13 @@
 		</header>
 		
 		<div class="content post__content clearfix">
-			<h2>tl;dr</h2>
+			<h2 id="tl-dr">tl;dr</h2>
 <p>When using Python to write web scraping / general automation scripts, run Python using the <code>-i</code> flag preserve and interact with the latest state (i.e <code>python -i script.py</code>).</p>
 <p>This let's you avoid re-running the whole script every time a change is made.</p>
-<h2>Problem</h2>
+<h2 id="problem">Problem</h2>
 <p>When developing a bot or web scraper that operates behind a login screen, development, testing, and debugging can take longer than you might expect. The process of <code>write code --&gt; test --&gt; debug --&gt; repeat</code> hits a bottleneck every time the browser starts, pages load, login details are entered, the welcome page loads, and so on. In the worst cases, it may take several minutes or hours before the error appears.</p>
 <p>Wouldn't it be great if, when the script completes (or under certain error conditions), instead of closing the browser driver and Python, the browser stayed open along with a Python <a href="https://en.wikipedia.org/wiki/Command-line_interface">CLI</a> allowing the session to be continued manually, one line of code at a time?</p>
-<h2>Solution</h2>
+<h2 id="solution">Solution</h2>
 <p>Suppose you have a simple Python script, <code>bot.py</code>:</p>
 <pre><code class="language-python">from selenium import webdriver
 
@@ -146,7 +146,7 @@ submit_button.click()
 # do automated bot stuff
 </code></pre>
 <p>Instead of running <code>pyton bot.py</code>, run <code>python -i bot.py</code> so keep an interactive session running when the script completes.</p>
-<h3>For multiple sessions</h3>
+<h3 id="for-multiple-sessions">For multiple sessions</h3>
 <p>You can also use this while running a multiple concurrent browser sessions, using a single script as an entry point, <code>run.py</code>:</p>
 <pre><code class="language-python">from bot1 import driver as driver1
 from bot2 import driver as driver2
@@ -158,7 +158,7 @@ from bot2 import driver as driver2
     driver2.quit()
     exit()
 </code></pre>
-<h2>Questions?</h2>
+<h2 id="questions">Questions?</h2>
 <p>Do you have any questions or feedback? Feel free to leave a comment below, or to <a href="/contact/">reach out to me directly</a>.</p>
 
 		</div>

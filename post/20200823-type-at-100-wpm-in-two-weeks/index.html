@@ -117,7 +117,7 @@
 		</header>
 		
 		<div class="content post__content clearfix">
-			<h2>tl;dr</h2>
+			<h2 id="tl-dr">tl;dr</h2>
 <ul>
 <li>It's hard to underestimate the importance of typing.</li>
 <li>Unless you are a journalist, legal secretary, or professional writer, you probably don't get enough practice to ever become truly fast.</li>
@@ -125,14 +125,14 @@
 <li>If you like reading, kill two birds with one stone by using <a href="https://github.com/chrispalmo/typr-desktop">Typr</a> to practice typing material you would otherwise be reading.</li>
 <li>Looking for something more modern, web-based, and just overall better? Check out the newer and improved <a href="/post/20200823-typr-typing-tutor-web-app/">Typr (web-app)</a>.</li>
 </ul>
-<h2>Background</h2>
+<h2 id="background">Background</h2>
 <p>Despite the rise of mobile tech and associated input modes such as voice-recognition, &quot;swipe&quot; typing and various other touch-screen keyboards, the mechanical keyboard is still by far the fastest, most accurate and most widely-used input device used to communicate with computers. While typing is not the most exciting topic, it's difficult to understate the centrality to modern life.</p>
 <p>Acknowledging this, I have at various stages had made efforts to increase my typing speed by trying various online typing exercises, even going as far as forcing myself to type engineering reports with a towel covering my hands and keyboard so I couldn't cheat by looking at the keys. A few weeks of doing this on-and-off took me from being completely unable to touch-type to being able to touch-type with moderate accuracy at around 50 WPM (the typing speed of the average person), but after this I hit a glass ceiling - the online exercises were boring, repetitive and generic, and I would find myself slipping back into old habits whenever I was under any sort of pressure.</p>
 <p>I wasn't satisfied with having an average typing speed - I wanted to master the skill so I could take detailed notes without breaking concentration, write emails at the speed of thought, or simply carry on typing while talking on the phone. Of course, this was going to require putting in some solid hours in front of a keyboard.</p>
-<h2>Getting mileage</h2>
+<h2 id="getting-mileage">Getting mileage</h2>
 <p>It's almost impossible to master a skill that relies so heavily on muscle-memory without putting in solid hours, and most people who could benefit greatly from the above skills don't get the opportunity to spend large amounts of uninterrupted time typing like a journalist or legal secretary might.</p>
 <p>Something I <em>do</em> spend a lot of time engaged in is reading, so I looked around for a typing tutor app that would let me import my own reading material. There are a few apps that let users copy-paste their own material to create custom tests, but they came with crappy uner interfaces while I was hoping to find something modern and useable that approached &quot;eBook reader&quot;-like experience, paired with the additional functionality layer of a built-in typing tutor.</p>
-<h2>If it doesn't exist, build it</h2>
+<h2 id="if-it-doesn-t-exist-build-it">If it doesn't exist, build it</h2>
 <p>It turns out this product doesn't exist, so as any self-respecting engineer would do, I built it. The <a href="https://github.com/chrispalmo/typr-desktop">first version</a> was cobbled together in Python:</p>
 <figure><img src="typr-desktop.PNG" alt="Screenshot of Typr (desktop version) with the Autobiography of Ben Franklin"><figcaption>Reading & Typing the Autobiography of Ben Franklin</figcaption></figure>
 <p>After building the basic interface, figuring out how to extract the text body from .EPUB files (<em>hint: it's just a .ZIP file full of .HTML files</em>), building in navigation, bookmarks, keystroke recording, and live WPM reporting, I started typing <a href="https://www.goodreads.com/book/show/35167685-surely-you-re-joking-mr-feynman">&quot;Surely You're Joking, Mr. Feynman!&quot;</a>, a book I had been meaning to read for a long time.</p>
@@ -140,17 +140,17 @@
 <p>I was really enjoying the book however and persisted, finding that although my average speed hadn't increased much, I was able to fall into a constant rhythm making almost no mistakes, and eventually realized that (except for numbers and special punctuation), the typing had become almost completely subconscious. It was around this time that I realised I could actually type faster - a <em>lot</em> faster - than I had been. Over the course of an afternoon, my average speed shot up from around 65 WPM to over 90 WPM.</p>
 <p>Being able to now move through the book at a more reasonable pace not only made the experience a lot more enjoyable - it also meant I was able to fit significantly more practice into a shorter period of time (further compounding the benefits). After a couple of weeks, I had finished typing the book, and considering it contained just over 100,000 words it shouldn't have been such a surprise that I was consistently typing at speeds over 100 WPM, with short bursts of 120+ WPM.</p>
 <p>I had not only obtained about 20 hours of solid and focused practice - I really enjoyed the book. Comparing this with the my initial attempts at improving my typing where I might have spent a maximum of 15 minutes per session of unfocused practice typing boring material using an online typing tutor, it would probably take a year to clock this amount of practice assuming I didn't drive myself crazy in the meantime.</p>
-<h2>A step further (key insights)</h2>
+<h2 id="a-step-further-key-insights">A step further (key insights)</h2>
 <p>Excuse the pun. Also fair warning: this is your last chance to go back before things get nerdy.</p>
 <p>After typing a 352 page book, I had accumulated interesting keystroke data which visualized as a bubble plot provided some clear insights:</p>
-<h5>Expected trends</h5>
+<h5 id="expected-trends">Expected trends</h5>
 <p>Some expected trends were confirmed:</p>
 <ul>
 <li>Speed for numbers (black) and capital letters (blue) was generally lower than lowercase letters.</li>
 <li>Characters I had practiced more (larger bubbles) were generally both faster and (to a lesser degree) more accurate.</li>
 <li>A wide spread of results for non-alphanumeric characters, with speed and accuracy roughly correlating to occurence rate.</li>
 </ul>
-<h5>Interesting revealing areas for improvement</h5>
+<h5 id="interesting-revealing-areas-for-improvement">Interesting revealing areas for improvement</h5>
 <p>The most interesting data appears in the top-right quadrant:</p>
 <ul>
 <li>Lowercase &quot;x&quot;, &quot;c&quot; and &quot;b&quot; (and to a less-degree &quot;i&quot;, &quot;p&quot;, &quot;m&quot; and &quot;m&quot;), despite a high occurence rate, exhibited relatively low speed and accuracy for the &quot;lowercase-letter&quot; category.</li>
@@ -952,7 +952,7 @@ labelString: &quot;Accuracy (%)&quot;
 });
 </script></p>
 </div>
-<h2>Still scrolling?</h2>
+<h2 id="still-scrolling">Still scrolling?</h2>
 <p>Like me, you might need a new hobby. But seems you're still here -- have you ever used any strange tools or hacks you to achieve accelerated learning? Or maybe you have a great idea for a learning tool but don't know how to go about building it, or whether it is even possible. If so I would love to hear from you. Feel free to leave a comment below, or to <a href="/contact/">reach out to me directly</a>.</p>
 
 		</div>

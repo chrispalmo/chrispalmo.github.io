@@ -124,7 +124,7 @@
 <li>create shortcuts to favourite directories</li>
 <li>automatically import custom <code>.ps1</code> scripts that you wrote or downloaded.</li>
 </ul>
-<h2>Locating profile.ps1</h2>
+<h2 id="locating-profile-ps1">Locating profile.ps1</h2>
 <p>The <code>$PROFILE</code> variable should return the path to the profile for the current user (the <code>&gt;</code> symbol is used to denote console input):</p>
 <pre><code class="language-powershell">&gt; $PROFILE
 C:\Users\chris\Documents\WindowsPowerShell\profile.ps1
@@ -132,13 +132,13 @@ C:\Users\chris\Documents\WindowsPowerShell\profile.ps1
 <p>Now that you know where Windows is looking to load the profile from, you can use your text editor of choice to create or modify it:</p>
 <pre><code class="language-powershell">notepad $PROFILE
 </code></pre>
-<h2>Let's configure the profile</h2>
+<h2 id="let-s-configure-the-profile">Let's configure the profile</h2>
 <p>Add the below code to <code>profile.ps1</code>, which will be executed when a new console is opened.</p>
-<h5>Set the starting directory</h5>
+<h5 id="set-the-starting-directory">Set the starting directory</h5>
 <pre><code class="language-powershell"># Navigate to the default startup folder
 cd &quot;C:\PATH\TO\YOUR\PREFERRED\STARTUP\FOLDER\&quot;
 </code></pre>
-<h5>Use a more succinct prompt</h5>
+<h5 id="use-a-more-succinct-prompt">Use a more succinct prompt</h5>
 <p>The default prompt contains the entire path to the current working directory which can take up a lot of space. To show only the name of the current folder, the default <code>prompt</code> function can be overwritten by adding:</p>
 <pre><code class="language-powershell"># Show current directory (instead of entire path) in prompt:
 Function prompt {
@@ -153,7 +153,7 @@ Function prompt {
 <pre><code class="language-powershell">directory&gt;
 </code></pre>
 <p>This clears up the console, and if you ever need to check exactly where you are, just use <code>Get-Location</code> or it's alis <code>pwd</code>.</p>
-<h5>Create shortcuts to favourite directories</h5>
+<h5 id="create-shortcuts-to-favourite-directories">Create shortcuts to favourite directories</h5>
 <p>I added the below functions to navigate to my development directory by just typing <code>dev</code>, or to my blog working directory by typing <code>blog</code>:</p>
 <pre><code class="language-powershell"># cd to dev folder
 function dev {
@@ -164,7 +164,7 @@ function blog {
     cd &quot;C:\Users\chris\webdev\myblog\blog&quot;
 }
 </code></pre>
-<h5>Automatically import custom scripts</h5>
+<h5 id="automatically-import-custom-scripts">Automatically import custom scripts</h5>
 <p>I prefer to store custom scripts that I have written or borrowed from others within my local development folder. This makes it easy to manage and keep synchronized with a git repository.</p>
 <p>I added the below script to <code>profile.ps1</code> to look inside this folder and import all <code>.ps1</code> files:</p>
 <pre><code class="language-powershell"># Import custom powershell scripts
@@ -179,12 +179,12 @@ Get-ChildItem `
  Foreach-Object `
  { Import-Module ($custom_script_dir + $_) }
 </code></pre>
-<h5>Set the execution policy to allow scripts to run</h5>
+<h5 id="set-the-execution-policy-to-allow-scripts-to-run">Set the execution policy to allow scripts to run</h5>
 <p>According to the <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7">official docs</a>, &quot;PowerShell's execution policy is a safety feature that controls the conditions under which PowerShell loads configuration files and runs scripts. This feature helps prevent the execution of malicious scripts.&quot;</p>
 <p>Press the <code>Windows</code> key and search for <code>Powershell</code>, right-click and select <code>Run as administrator</code> then enter the following commad:</p>
 <pre><code class="language-powershell">Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
 </code></pre>
-<h5>Try it out</h5>
+<h5 id="try-it-out">Try it out</h5>
 <p>To try it out simply place some custom scripts in the directory specified above and open a new PowerShell instance.</p>
 <p>If you want a useful script to try this out on, check out <a href="/post/20200209-search-google-from-powershell/">my script that searches Google from the powershell console</a>.</p>
 

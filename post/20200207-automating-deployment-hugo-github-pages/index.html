@@ -117,7 +117,7 @@
 		</header>
 		
 		<div class="content post__content clearfix">
-			<h2>Overview</h2>
+			<h2 id="overview">Overview</h2>
 <p>The following article describes how this blog is automatically deployed. The technology stack for this blog is:</p>
 <ul>
 <li>Source content written within the <a href="https://gohugo.io/">Hugo</a> framework (a static website generator written in the Go language.</li>
@@ -129,7 +129,7 @@
 <li>Inspiration for how you could automate your production workflow, and</li>
 <li>Some useful Powershell scripting tips.</li>
 </ul>
-<h2>The Code</h2>
+<h2 id="the-code">The Code</h2>
 <p>Because of the simplicity of this static website, I do not have separate development and production deployments, so after I have written an article or edited the template and previewed it using <code>hugo server</code>, the website is pushed straight into production.</p>
 <p>The production automation script comprises three files:</p>
 <ul>
@@ -137,7 +137,7 @@
 <li><strong><code>publish.ps1</code></strong>: imports secret keys and passes them as parameters when calling the main script.</li>
 <li><strong><code>build_commit_push_clear_cache.ps1</code></strong>: builds the website, uploads to server (in this case, via a git commit to GitHub), clears Cloudflare content delivery cache.</li>
 </ul>
-<h3><strong><code>config.json</code></strong></h3>
+<h3 id="config-json"><strong><code>config.json</code></strong></h3>
 <pre><code class="language-powershell">{
    'production_build_directory': 'PATH//TO//PRODUCTION//BUILD//DIRECTORY',
    'CloudflareAdminEmail': 'YOUR_CLOUDFLARE_ADMIN_EMAIL',
@@ -146,7 +146,7 @@
 }
 </code></pre>
 <p>Note the double backslashes <code>\\</code> in the <code>production_build_directory</code> path. The first backslash is an escape character used by the Powershell <code>ConvertFrom-Json</code> parser.</p>
-<h3><strong><code>publish.ps1</code></strong></h3>
+<h3 id="publish-ps1"><strong><code>publish.ps1</code></strong></h3>
 <pre><code class="language-powershell"># Import configurations and secret keys from config.json
 
 $config = Get-Content -Raw -Path .\scripts\config.json | ConvertFrom-Json
@@ -161,7 +161,7 @@ $config = Get-Content -Raw -Path .\scripts\config.json | ConvertFrom-Json
 </code></pre>
 <p>Note that the <code>production_build_directory</code> is a separate git repository to the Hugo source code, in order to comply with Github Pages hosting requirements.</p>
 <p>The real work is done by <code>build_commit_push_clear_cache.ps1</code>:</p>
-<h3><strong><code>build_commit_push_clear_cache.ps1</code></strong></h3>
+<h3 id="build-commit-push-clear-cache-ps1"><strong><code>build_commit_push_clear_cache.ps1</code></strong></h3>
 <pre><code class="language-powershell">Param(
     [parameter(Mandatory=$true)]
     [string] $production_build_directory,
@@ -216,7 +216,7 @@ Invoke-RestMethod `
     -Headers $requestHeader `
     -Body $RequestBody
 </code></pre>
-<h2>Notes</h2>
+<h2 id="notes">Notes</h2>
 <ul>
 <li><code>Read-Host -Prompt</code> statements are used to inform the user of impending actions and provide a chance to abort. It is also used to set the Git commit message. Important if there is a chance that a script will be re-used in a setting where <code>{number_of_users} &gt; 1</code>, or if a less-technical client will be using it -- UX is not just for front-end design!</li>
 <li><code>git -C &lt;path&gt;</code> runs commands as if git was started in the <path> directory instead of the current working directory.</li>

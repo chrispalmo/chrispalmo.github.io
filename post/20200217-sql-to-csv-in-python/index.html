@@ -119,7 +119,7 @@
 		<div class="content post__content clearfix">
 			<p>This function takes an SQLAlchemy query object as it's input (<a href="https://www.sqlalchemy.org/">SQLAlchemy</a> is a popular Python SQL toolkit and Object Relational Mapper). It's strength lies in not needing to hard-code column names, making it <strong>scaleable and suitable to &quot;set-and-forget&quot;.</strong></p>
 <p>While developing enterprise software, every developer has surely have been faced with a client asking &quot;how do I get the data out of the system?&quot;, and after digging a bit deeper, it becomes clear they want the ability to save a snapshot of data as an Excel spreadsheet. While it may be a good idea in the longer term to sit down with the client to figure out how the application might be extended to automate these additional steps, here is a handy python script that will &quot;get the data&quot; from a SQL database interfaced with SQLAlchemy and output a CSV file.</p>
-<h3>sql_query_to_csv.py</h3>
+<h3 id="sql-query-to-csv-py">sql_query_to_csv.py</h3>
 <pre><code class="language-python">def sql_query_to_csv(query_output, columns_to_exclude=&quot;&quot;):
  &quot;&quot;&quot; Converts output from a SQLAlchemy query to a .csv string.
 
@@ -159,7 +159,7 @@
 
  return csv
 </code></pre>
-<h3>Example implementation</h3>
+<h3 id="example-implementation">Example implementation</h3>
 <pre><code class="language-python">from datetime import datetime
 
 from sqlalchemy import create_engine
@@ -214,7 +214,7 @@ print(csv_1)
 csv_2 = sql_query_to_csv(query, [&quot;birth&quot;, &quot;id&quot;, &quot;_sa_instance_state&quot;])
 print(csv_2)
 </code></pre>
-<h3>Example output</h3>
+<h3 id="example-output">Example output</h3>
 <pre><code>_sa_instance_state, birth, fullname, id, name
 &quot;&lt;sqlalchemy.orm.state.InstanceState object at 0x00000230B14AB2C8&gt;&quot;,&quot;1942-11-27 00:00:00&quot;,&quot;Jimi Hendrix&quot;,&quot;1&quot;,&quot;JH&quot;,
 &quot;&lt;sqlalchemy.orm.state.InstanceState object at 0x00000230B07985C8&gt;&quot;,&quot;1943-12-08 00:00:00&quot;,&quot;Robert Johnson&quot;,&quot;2&quot;,&quot;RJ&quot;,
