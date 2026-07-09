@@ -6,6 +6,22 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Browser debugging with bookmarklets - Chris Palmieri</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<script>
+	(function(){try{
+		var themeKey="palmo-theme", userAtKey="palmo-theme-user-at", systemAtKey="palmo-theme-system-at";
+		var stored=localStorage.getItem(themeKey);
+		var userAt=parseInt(localStorage.getItem(userAtKey),10)||0;
+		var systemAt=parseInt(localStorage.getItem(systemAtKey),10)||0;
+		var system="dark";
+		try{system=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}catch(e){system="dark"}
+		var theme=system;
+		if((stored==="light"||stored==="dark")&&userAt>systemAt){theme=stored}
+		else if(system){theme=system}
+		else{theme="dark"}
+		document.documentElement.setAttribute("data-theme",theme);
+		document.documentElement.classList.add("theme-booting");
+	}catch(e){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("theme-booting")}})();
+	</script>
 	<meta name="description" content="What I&#39;m working on, what I&#39;ve learned, and thinking out loud">
 	
 
@@ -34,6 +50,7 @@
 	
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
 	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/theme-toggles.css">
 	<link rel="stylesheet" href="/css/custom.css">
 	<link rel="shortcut icon" href="/favicon.ico">
 	
@@ -61,13 +78,38 @@
 	<div class="container container--outer">
 		<header class="header">
 	<div class="container">
-		<div class="logo">
-			<a class="logo__link" href="/" title="Chris Palmieri" rel="home">
-				<div class="logo__title">
-					<img src="/img/cp-logo-200.png" style="height:1em" alt=""/>
-					Chris Palmieri
-				</div>
-			</a>
+		<div class="header__top">
+			<div class="logo">
+				<a class="logo__link" href="/" title="Chris Palmieri" rel="home">
+					<div class="logo__title">
+						<img src="/img/cp-logo-200.png" style="height:1em" alt=""/>
+						Chris Palmieri
+					</div>
+				</a>
+			</div>
+			<div class="theme-toggle-wrap">
+				
+				<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
+					<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" fill="currentColor" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32">
+  <clipPath id="theme-toggle__classic__cutout-classic">
+    <path d="M0-5h30a1 1 0 0 0 9 13v24H0Z"/>
+  </clipPath>
+  <g clip-path="url(#theme-toggle__classic__cutout-classic)">
+    <circle cx="16" cy="16" r="9.34"/>
+    <g stroke="currentColor" stroke-width="1.5">
+      <path d="M16 5.5v-4"/>
+      <path d="M16 30.5v-4"/>
+      <path d="M1.5 16h4"/>
+      <path d="M26.5 16h4"/>
+      <path d="m23.4 8.6 2.8-2.8"/>
+      <path d="m5.7 26.3 2.9-2.9"/>
+      <path d="m5.8 5.8 2.8 2.8"/>
+      <path d="m23.4 23.4 2.9 2.9"/>
+    </g>
+  </g>
+</svg>
+				</button>
+			</div>
 		</div>
 		<nav class="menu">
 	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
@@ -362,6 +404,7 @@
 
 	</div>
 	<script async defer src="/js/menu.js"></script>
+	<script defer src="/js/theme.js"></script>
 	<script async defer src="/js/analytics.js"></script>
 </body>
 </html>

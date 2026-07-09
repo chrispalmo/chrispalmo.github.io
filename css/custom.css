@@ -1,3 +1,281 @@
+/* Header row: logo left, theme toggle mirrored right (same padding/height) */
+.header__top {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.header__top .logo {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+/* Mirror of .logo { padding: 25px } — same box on the right */
+.theme-toggle-wrap {
+	flex: 0 0 auto;
+	display: flex;
+	align-items: center;
+	padding: 25px;
+}
+
+/*
+ * Classic sun/moon from theme-toggles (MIT) — src/css/theme-toggles.css
+ * Icon morph animation stays on the button; page chrome uses the theme-switching gate.
+ */
+.theme-toggle-wrap .theme-toggle {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	width: 2rem;
+	height: 2rem;
+	margin: 0;
+	padding: 0;
+	font-size: 1.35rem;
+	line-height: 1;
+	color: #111;
+	background: transparent;
+	border: 0;
+	cursor: pointer;
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+.theme-toggle-wrap .theme-toggle:hover,
+.theme-toggle-wrap .theme-toggle:focus-visible {
+	color: #e22d30;
+	outline: 0;
+}
+
+.theme-toggle-wrap .theme-toggle svg {
+	display: block;
+	width: 1em;
+	height: 1em;
+	pointer-events: none;
+}
+
+@media screen and (max-width: 900px) {
+	.theme-toggle-wrap {
+		padding: 20px;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.theme-toggle-wrap {
+		padding: 15px;
+	}
+}
+
+/* Kill hover transitions on header tabs + tags (keep theme-toggle morph + theme gate) */
+.menu__item,
+.btn,
+.tags__item {
+	transition: none;
+}
+
+@property --palmo-heading {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: #000;
+}
+
+@property --palmo-body {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: #000;
+}
+
+@property --palmo-muted {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: #666;
+}
+
+@property --palmo-surface {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: #fff;
+}
+
+@property --palmo-page {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: #f7f7f7;
+}
+
+/* Theme color tokens — headings inherit so they tween with the gate */
+:root,
+html[data-theme="light"] {
+	--palmo-heading: #000;
+	--palmo-body: #000;
+	--palmo-muted: #666;
+	--palmo-surface: #fff;
+	--palmo-page: #f7f7f7;
+}
+
+html[data-theme="dark"] {
+	--palmo-heading: #f0f0f0;
+	--palmo-body: #e6e6e6;
+	--palmo-muted: #a0a0a0;
+	--palmo-surface: #1a1a1a;
+	--palmo-page: #121212;
+}
+
+body {
+	background: var(--palmo-page);
+	color: var(--palmo-body);
+}
+
+.wrapper,
+.header {
+	background: var(--palmo-surface);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.post__title,
+.list__title,
+.widget__title,
+.logo__title {
+	color: var(--palmo-heading);
+}
+
+/*
+ * Theme-switching gate: color transitions only while html.is-theme-switching
+ * (added briefly by theme.js). Keeps normal hover states snappy.
+ */
+html.is-theme-switching {
+	transition-property: --palmo-heading, --palmo-body, --palmo-muted, --palmo-surface, --palmo-page;
+	transition-duration: 800ms;
+	transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); /* easeOutExpo */
+}
+
+html.is-theme-switching body,
+html.is-theme-switching .wrapper,
+html.is-theme-switching .header,
+html.is-theme-switching .container--outer,
+html.is-theme-switching .footer,
+html.is-theme-switching .logo__title,
+html.is-theme-switching a,
+html.is-theme-switching h1,
+html.is-theme-switching h2,
+html.is-theme-switching h3,
+html.is-theme-switching h4,
+html.is-theme-switching h5,
+html.is-theme-switching h6,
+html.is-theme-switching .post__title,
+html.is-theme-switching .list__title,
+html.is-theme-switching .meta,
+html.is-theme-switching .meta a,
+html.is-theme-switching .meta__text,
+html.is-theme-switching .meta__icon,
+html.is-theme-switching time,
+html.is-theme-switching figcaption,
+html.is-theme-switching pre,
+html.is-theme-switching code,
+html.is-theme-switching .toc,
+html.is-theme-switching .widget,
+html.is-theme-switching .widget__title,
+html.is-theme-switching .widget__item,
+html.is-theme-switching .authorbox,
+html.is-theme-switching .list__item,
+html.is-theme-switching .pager__item a,
+html.is-theme-switching .pagination__item,
+html.is-theme-switching input,
+html.is-theme-switching textarea,
+html.is-theme-switching select,
+html.is-theme-switching th,
+html.is-theme-switching td,
+html.is-theme-switching hr,
+html.is-theme-switching .menu__list,
+html.is-theme-switching .menu__item,
+html.is-theme-switching .menu__link,
+html.is-theme-switching .tags__item,
+html.is-theme-switching .tags__link,
+html.is-theme-switching .widget-taglist__link {
+	transition-property: background-color, color, border-color, fill, stroke, box-shadow;
+	transition-duration: 800ms;
+	transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); /* easeOutExpo */
+}
+
+/* Stable sun/moon on navigation: no morph until boot finishes / user toggles */
+html.theme-booting .theme-toggle,
+html.theme-booting .theme-toggle * {
+	transition: none !important;
+}
+
+/* Drive classic morph from data-theme so first paint matches without waiting for JS class */
+html[data-theme="dark"] .theme-toggle:not(label).theme-toggle .theme-toggle__classic g path {
+	transform: scale(.5) rotate(45deg);
+	opacity: 0;
+	transition-delay: 0s;
+}
+
+html[data-theme="dark"] .theme-toggle:not(label).theme-toggle .theme-toggle__classic :first-child path {
+	d: path("M-12 5h30a1 1 0 0 0 9 13v24h-39Z");
+	transition-delay: calc(var(--theme-toggle__classic--duration, 500ms) * 0.2);
+}
+
+@supports not (d: path("")) {
+	html[data-theme="dark"] .theme-toggle:not(label).theme-toggle .theme-toggle__classic :first-child path {
+		transform: translate3d(-12px, 10px, 0);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html.is-theme-switching,
+	html.is-theme-switching body,
+	html.is-theme-switching .wrapper,
+	html.is-theme-switching .header,
+	html.is-theme-switching .container--outer,
+	html.is-theme-switching .footer,
+	html.is-theme-switching .logo__title,
+	html.is-theme-switching a,
+	html.is-theme-switching h1,
+	html.is-theme-switching h2,
+	html.is-theme-switching h3,
+	html.is-theme-switching h4,
+	html.is-theme-switching h5,
+	html.is-theme-switching h6,
+	html.is-theme-switching .post__title,
+	html.is-theme-switching .list__title,
+	html.is-theme-switching .meta,
+	html.is-theme-switching .meta a,
+	html.is-theme-switching .meta__text,
+	html.is-theme-switching .meta__icon,
+	html.is-theme-switching time,
+	html.is-theme-switching figcaption,
+	html.is-theme-switching pre,
+	html.is-theme-switching code,
+	html.is-theme-switching .toc,
+	html.is-theme-switching .widget,
+	html.is-theme-switching .widget__title,
+	html.is-theme-switching .widget__item,
+	html.is-theme-switching .authorbox,
+	html.is-theme-switching .list__item,
+	html.is-theme-switching .pager__item a,
+	html.is-theme-switching .pagination__item,
+	html.is-theme-switching input,
+	html.is-theme-switching textarea,
+	html.is-theme-switching select,
+	html.is-theme-switching th,
+	html.is-theme-switching td,
+	html.is-theme-switching hr,
+	html.is-theme-switching .menu__list,
+	html.is-theme-switching .menu__item,
+	html.is-theme-switching .menu__link,
+	html.is-theme-switching .tags__item,
+	html.is-theme-switching .tags__link,
+	html.is-theme-switching .widget-taglist__link {
+		transition: none !important;
+	}
+}
+
+/* Light-theme link overrides (existing) */
 h3 a {
 	color: black !important;
 }
@@ -28,4 +306,215 @@ a.list__footer-readmore:hover {
 
 figcaption {
 	text-align: center;
+}
+
+/* Dark theme — palette swap over Mainroad surfaces */
+html[data-theme="dark"] {
+	color-scheme: dark;
+}
+
+html[data-theme="dark"] .container--outer {
+	box-shadow: 0 0 10px rgba(0, 0, 0, .45);
+}
+
+html[data-theme="dark"] a {
+	color: #f0f0f0;
+}
+
+html[data-theme="dark"] a:hover {
+	color: #ff5a5d;
+}
+
+html[data-theme="dark"] h3 a {
+	color: #f0f0f0 !important;
+}
+
+html[data-theme="dark"] h3 a:hover {
+	color: #ff5a5d !important;
+}
+
+html[data-theme="dark"] a.list__footer-readmore {
+	color: #f0f0f0 !important;
+}
+
+html[data-theme="dark"] a.list__footer-readmore:hover {
+	color: #ff5a5d !important;
+}
+
+html[data-theme="dark"] .meta,
+html[data-theme="dark"] .meta a,
+html[data-theme="dark"] .meta__text,
+html[data-theme="dark"] time.meta__text,
+html[data-theme="dark"] figcaption,
+html[data-theme="dark"] .empty-subtitle {
+	color: #a0a0a0;
+}
+
+html[data-theme="dark"] .meta__icon {
+	fill: #888;
+}
+
+html[data-theme="dark"] hr {
+	border-top-color: #333;
+}
+
+html[data-theme="dark"] .logo__tagline {
+	border-top-color: #333;
+}
+
+/* Dark-mode toggle chrome */
+html[data-theme="dark"] .theme-toggle-wrap .theme-toggle {
+	color: #f0f0f0;
+}
+
+html[data-theme="dark"] .theme-toggle-wrap .theme-toggle:hover,
+html[data-theme="dark"] .theme-toggle-wrap .theme-toggle:focus-visible {
+	color: #ff5a5d;
+}
+
+/* Header tabs + tags: stay white on hover in dark mode (override global a:hover red) */
+html[data-theme="dark"] .menu__link,
+html[data-theme="dark"] .menu__link:hover,
+html[data-theme="dark"] .menu__item:hover .menu__link,
+html[data-theme="dark"] .menu__item--active .menu__link,
+html[data-theme="dark"] .tags__link,
+html[data-theme="dark"] .tags__link:hover,
+html[data-theme="dark"] .tags__item:hover .tags__link,
+html[data-theme="dark"] .widget-taglist__link,
+html[data-theme="dark"] .widget-taglist__link:hover {
+	color: #fff !important;
+}
+
+html[data-theme="dark"] .logo__title img {
+	filter: brightness(1.15);
+}
+
+html[data-theme="dark"] pre,
+html[data-theme="dark"] code {
+	background-color: #111;
+	border-color: #333;
+	color: #e6e6e6;
+}
+
+html[data-theme="dark"] pre code {
+	background: inherit;
+	border: 0;
+}
+
+html[data-theme="dark"] kbd {
+	color: #fff;
+	background-color: #2a2a2a;
+}
+
+html[data-theme="dark"] blockquote {
+	border-left-color: #e22d30;
+	color: #cfcfcf;
+}
+
+html[data-theme="dark"] mark {
+	background-color: #5c4a00;
+	color: #fff3bf;
+}
+
+html[data-theme="dark"] .toc {
+	background: #1a1a1a;
+	border-color: #333;
+	color: #a0a0a0;
+}
+
+html[data-theme="dark"] .toc__menu a {
+	color: #e6e6e6;
+	border-bottom-color: #333;
+}
+
+/* Sidebar widgets + authorbox: no fill in light mode — keep transparent in dark too.
+   Do not restyle contact form fields here (inputs/textarea keep their own dark styles). */
+html[data-theme="dark"] .authorbox,
+html[data-theme="dark"] .widget,
+html[data-theme="dark"] .related-posts,
+html[data-theme="dark"] .page-info {
+	background: transparent;
+	border-color: #333;
+}
+
+html[data-theme="dark"] .authorbox {
+	border-top-color: #333;
+	border-bottom-color: #333;
+}
+
+html[data-theme="dark"] .authorbox__avatar {
+	border-color: #333;
+}
+
+/* Keep the red accent underline — tweening it to gray made titles look late */
+html[data-theme="dark"] .widget__title {
+	border-bottom-color: #e22d30;
+}
+
+html[data-theme="dark"] .authorbox__title,
+html[data-theme="dark"] .related-posts__title {
+	color: var(--palmo-heading);
+}
+
+html[data-theme="dark"] .widget__item {
+	border-bottom-color: #333;
+}
+
+html[data-theme="dark"] .list__item,
+html[data-theme="dark"] .post__meta,
+html[data-theme="dark"] .pagination,
+html[data-theme="dark"] .main__header {
+	border-color: #333;
+}
+
+html[data-theme="dark"] table,
+html[data-theme="dark"] th,
+html[data-theme="dark"] td {
+	border-color: #333;
+}
+
+html[data-theme="dark"] th {
+	background: #141414;
+}
+
+html[data-theme="dark"] .warning {
+	border-color: #444;
+}
+
+html[data-theme="dark"] .warning__icon {
+	fill: #555;
+}
+
+html[data-theme="dark"] .pager__item a,
+html[data-theme="dark"] .pagination__item {
+	background: #3a3a3a;
+	border-color: #555;
+	color: #fff;
+}
+
+html[data-theme="dark"] .pager__item a:hover,
+html[data-theme="dark"] .pagination__item:hover {
+	background: #4a4a4a;
+	color: #fff;
+}
+
+html[data-theme="dark"] .pager__item--current a,
+html[data-theme="dark"] .pagination__item--current {
+	background: #e22d30;
+	color: #fff;
+	border-color: #e22d30;
+}
+
+html[data-theme="dark"] input,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select {
+	color: #e6e6e6;
+	background: #111;
+	border-color: #444;
+}
+
+html[data-theme="dark"] .highlight,
+html[data-theme="dark"] .highlighttable {
+	background: #111;
+	border-color: #333;
 }
