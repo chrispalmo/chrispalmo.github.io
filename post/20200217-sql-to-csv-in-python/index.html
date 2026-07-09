@@ -24,7 +24,7 @@
 
 
 <meta property="og:title" content="Convert SQL query to CSV file in Python">
-<meta property="og:description" content="This function takes an SQLAlchemy query object as its input ( SQLAlchemy is a popular Python SQL toolkit and Object Relational Mapper). Its strength lies in not needing to hard-code column names, making it scalable and suitable to &quot;set-and-forget&quot;. While developing enterprise software, every developer has surely been faced with a client asking &quot;how do I get the data out of the system?&quot;, and after digging a bit deeper, it becomes clear they want the ability to save a snapshot of data as an Excel spreadsheet.">
+<meta property="og:description" content="This function takes an SQLAlchemy query object as it&#39;s input ( SQLAlchemy is a popular Python SQL toolkit and Object Relational Mapper). It&#39;s strength lies in not needing to hard-code column names, making it scaleable and suitable to &quot;set-and-forget&quot;. While developing enterprise software, every developer has surely have been faced with a client asking &quot;how do I get the data out of the system?&quot;, and after digging a bit deeper, it becomes clear they want the ability to save a snapshot of data as an Excel spreadsheet.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="/post/20200217-sql-to-csv-in-python/">
 
@@ -117,8 +117,8 @@
 		</header>
 		
 		<div class="content post__content clearfix">
-			<p>This function takes an SQLAlchemy query object as its input (<a href="https://www.sqlalchemy.org/">SQLAlchemy</a> is a popular Python SQL toolkit and Object Relational Mapper). Its strength lies in not needing to hard-code column names, making it <strong>scalable and suitable to &quot;set-and-forget&quot;.</strong></p>
-<p>While developing enterprise software, every developer has surely been faced with a client asking &quot;how do I get the data out of the system?&quot;, and after digging a bit deeper, it becomes clear they want the ability to save a snapshot of data as an Excel spreadsheet. While it may be a good idea in the longer term to sit down with the client to figure out how the application might be extended to automate these additional steps, here is a handy python script that will &quot;get the data&quot; from a SQL database interfaced with SQLAlchemy and output a CSV file.</p>
+			<p>This function takes an SQLAlchemy query object as it's input (<a href="https://www.sqlalchemy.org/">SQLAlchemy</a> is a popular Python SQL toolkit and Object Relational Mapper). It's strength lies in not needing to hard-code column names, making it <strong>scaleable and suitable to &quot;set-and-forget&quot;.</strong></p>
+<p>While developing enterprise software, every developer has surely have been faced with a client asking &quot;how do I get the data out of the system?&quot;, and after digging a bit deeper, it becomes clear they want the ability to save a snapshot of data as an Excel spreadsheet. While it may be a good idea in the longer term to sit down with the client to figure out how the application might be extended to automate these additional steps, here is a handy python script that will &quot;get the data&quot; from a SQL database interfaced with SQLAlchemy and output a CSV file.</p>
 <h3 id="sql-query-to-csvpy">sql_query_to_csv.py</h3>
 <pre><code class="language-python">def sql_query_to_csv(query_output, columns_to_exclude=&quot;&quot;):
  &quot;&quot;&quot; Converts output from a SQLAlchemy query to a .csv string.
@@ -132,7 +132,7 @@
 
  Example usage:
   users = db.Users.query.filter_by(user_id=123)
-  csv = sql_query_to_csv(users, [&quot;id&quot;, &quot;age&quot;, &quot;address&quot;])
+  csv = sql_query_to_csv(users, [&quot;id&quot;, &quot;age&quot;, &quot;address&quot;]
  &quot;&quot;&quot;
  rows = query_output
  columns_to_exclude = set(columns_to_exclude)
@@ -148,15 +148,14 @@
 
  #add rows of data to csv
  for row in rows:
-  cells = []
   for column_name in column_names:
    if column_name not in columns_to_exclude:
     data = str(row.__dict__[column_name])
-    #Escape (&quot;) symbol by preceding with another (&quot;)
-    data = data.replace('&quot;','&quot;&quot;')
+    #Escape (&quot;) symbol by preceeding with another (&quot;)
+    data.replace('&quot;','&quot;&quot;')
     #Enclose each datum in double quotes so commas within are not treated as separators
-    cells.append('&quot;' + data + '&quot;')
-  csv += &quot;,&quot;.join(cells) + &quot;\n&quot;
+    csv += '&quot;' + data + '&quot;' + &quot;,&quot;
+  csv += &quot;\n&quot;
 
  return csv
 </code></pre>
@@ -217,14 +216,14 @@ print(csv_2)
 </code></pre>
 <h3 id="example-output">Example output</h3>
 <pre><code>_sa_instance_state, birth, fullname, id, name
-&quot;&lt;sqlalchemy.orm.state.InstanceState object at 0x00000230B14AB2C8&gt;&quot;,&quot;1942-11-27 00:00:00&quot;,&quot;Jimi Hendrix&quot;,&quot;1&quot;,&quot;JH&quot;
-&quot;&lt;sqlalchemy.orm.state.InstanceState object at 0x00000230B07985C8&gt;&quot;,&quot;1943-12-08 00:00:00&quot;,&quot;Robert Johnson&quot;,&quot;2&quot;,&quot;RJ&quot;
-&quot;&lt;sqlalchemy.orm.state.InstanceState object at 0x00000230B14D8C48&gt;&quot;,&quot;1911-05-08 00:00:00&quot;,&quot;Jim Morrison&quot;,&quot;3&quot;,&quot;JM&quot;
+&quot;&lt;sqlalchemy.orm.state.InstanceState object at 0x00000230B14AB2C8&gt;&quot;,&quot;1942-11-27 00:00:00&quot;,&quot;Jimi Hendrix&quot;,&quot;1&quot;,&quot;JH&quot;,
+&quot;&lt;sqlalchemy.orm.state.InstanceState object at 0x00000230B07985C8&gt;&quot;,&quot;1943-12-08 00:00:00&quot;,&quot;Robert Johnson&quot;,&quot;2&quot;,&quot;RJ&quot;,
+&quot;&lt;sqlalchemy.orm.state.InstanceState object at 0x00000230B14D8C48&gt;&quot;,&quot;1911-05-08 00:00:00&quot;,&quot;Jim Morrison&quot;,&quot;3&quot;,&quot;JM&quot;,
 
 fullname, name
-&quot;Jimi Hendrix&quot;,&quot;JH&quot;
-&quot;Robert Johnson&quot;,&quot;RJ&quot;
-&quot;Jim Morrison&quot;,&quot;JM&quot;
+&quot;Jimi Hendrix&quot;,&quot;JH&quot;,
+&quot;Robert Johnson&quot;,&quot;RJ&quot;,
+&quot;Jim Morrison&quot;,&quot;JM&quot;,
 </code></pre>
 
 		</div>
@@ -363,7 +362,7 @@ fullname, name
 			<a class="widget-taglist__link widget__link btn" href="/tags/mongodb/" title="MongoDB">MongoDB (1)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/node/" title="Node">Node (3)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/performance/" title="Performance">Performance (1)</a>
-			<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell (3)</a>
+			<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="Powershell">Powershell (3)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python (5)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/react/" title="React">React (4)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/redux/" title="Redux">Redux (1)</a>

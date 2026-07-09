@@ -24,7 +24,7 @@
 
 
 <meta property="og:title" content="Build and manage Selenium web scrapers with Auto-Scrape">
-<meta property="og:description" content="tldr: Auto-scrape lets you focus on writing web scraping scripts, while it takes care of logging, data persistence, data presentation and data export, all through a modern browser-based UI. It can be run locally or deployed remotely. Here are some screencasts of the UI. Get it on GitHub. Why scrape the web? Building a Selenium web scraper is almost a rite of passage for programmers starting out. Watching a computer fill out forms, click links and collect data before your eyes is not only a highly satisfying and suitably non-abstract exercise for beginners to complete - browser automation forms a foundation for frontend testing, can be used for automated research, and of course can be used to replace those expensive and unreliable humans to accomplish a wide range of business-related tasks.">
+<meta property="og:description" content="tldr: Auto-scrape let&#39;s you focus on writing web scraping scripts, while it takes care of logging, data persistance, data presentation and data export, all through a modern browser-based UI. It can be run locally or deployed remotely. Here are some screencasts of the UI. Get it on Github. Why scrape the web? Building a Selenium web scraper is almost a rite of passage for programmers starting out. Watching a computer fill out forms, click links and collect data before your eyes is not only a highly satisfying and suitably non-abstract exercise for beginners to complete - browser automation forms a foundation for frontend testing, can be used for automated research, and of course can be used to replace those expensive and unreliable humans to accomplish a wide range of business-related tasks.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="/post/20200224-manage-selenium-web-scrapers-with-auto-scrape/">
 
@@ -120,25 +120,25 @@
 		</header>
 		
 		<div class="content post__content clearfix">
-			<p><strong>tldr:</strong> <a href="https://github.com/chrispalmo/auto-scrape">Auto-scrape</a> lets you focus on writing web scraping scripts, while it takes care of logging, data persistence, data presentation and data export, all through a modern browser-based UI. It can be run locally or deployed remotely.</p>
+			<p><strong>tldr:</strong> <a href="https://github.com/chrispalmo/auto-scrape">Auto-scrape</a> let's you focus on writing web scraping scripts, while it takes care of logging, data persistance, data presentation and data export, all through a modern browser-based UI. It can be run locally or deployed remotely.</p>
 <ul>
 <li>Here are some <a href="#user-interface-overview">screencasts of the UI</a>.</li>
-<li>Get it on <a href="https://github.com/chrispalmo/auto-scrape">GitHub</a>.</li>
+<li>Get it on <a href="https://github.com/chrispalmo/auto-scrape">Github</a>.</li>
 </ul>
 <h2 id="why-scrape-the-web">Why scrape the web?</h2>
 <p>Building a Selenium web scraper is almost a rite of passage for programmers starting out. Watching a computer fill out forms, click links and collect data before your eyes is not only a highly satisfying and suitably non-abstract exercise for beginners to complete - browser automation forms a foundation for frontend testing, can be used for automated research, and of course can be used to replace those expensive and unreliable humans to accomplish a wide range of business-related tasks.</p>
 <p>I have built web scrapers to collect sales leads, conduct market research on the Australian tertiary education tuition market, gather market statistics for second-hand vehicle sales, and to aggregate stock market data to provide share portfolio balancing recommendations.</p>
 <p>Experience using web scrapers for these types of projects has taught me a few things:</p>
 <ul>
-<li>It's difficult to debug a scraper without proper logging.</li>
+<li>It's difficult to debug a scraper without propper logging.</li>
 <li>The structure of collected data is (almost) always 2D or 3D and doesn't require re-inventing of the wheel for each application.</li>
 <li>A client might want the ability to re-run a scraper at certain times, potentially with different parameters. Installing Python on their machine so they can run <code>some_script.py</code> is <em>not</em> the answer.</li>
 <li>Most clients will want data delivered in a spreadsheet.</li>
 <li>If you or a client are running multiple scrapers daily, you really want them to be running on a remote server.</li>
 </ul>
-<p>In order to speed up delivery time and provide a better product for future projects, I decided to build an (open source 👍) platform that solves the common problems that arise, allowing me to focus on simply <em>writing the scraping script</em>.</p>
+<p>In order to speed up delivery time and provide a better product for future projects, I decided to build a (open source 👍) platform that solves the common problems that arise, allowing me to focus on simply <em>writing the scraping script</em>.</p>
 <h2 id="introducing-auto-scrape">Introducing auto-scrape</h2>
-<p>Auto-scrape is a platform for building, managing and remotely deploying web scrapers. It provides the &quot;essential infrastructure&quot; for web scraping while allowing developers to focus on writing Selenium web scraping scripts in a simple and familiar way.</p>
+<p>Auto-scrape is a platform for building, managing and remotely deploying web scrapers. It provides the &quot;essential infrastructure&quot; for web scraping while allowing developers to focus on writng Selenium web scraping scripts in a simple and familiar way.</p>
 <p>It is built using the <a href="https://palletsprojects.com/p/flask/">Flask</a> framework and uses <a href="https://www.sqlalchemy.org/">SQLAlchemy</a> to interface with the SQL database of your choice.</p>
 <p><strong>Features include:</strong></p>
 <ul>
@@ -147,10 +147,10 @@
 <li>CSV export</li>
 <li>multiple simultaneous scrapers</li>
 <li>basic resource management</li>
-<li>basic user authentication for remote deployments.</li>
+<li>basic user authenticalion for remote deployments.</li>
 </ul>
 <h2 id="user-interface-overview">User interface overview</h2>
-<p>The dashboard provides an overview of &quot;Active Sessions&quot; (daemon browser instances in the process of scraping) and &quot;Past Sessions&quot; (that are either completed or were prematurely terminated).</p>
+<p>The dashboard provides an overview of &quot;Active Sessions&quot; (daemon browser instances in the process of scraping) and &quot;Past Sessions&quot; (that are either completed or were prematurely terminated.</p>
 <h3 id="live-logging">Live logging</h3>
 <p>The below screencast shows live logs that allow the progress of an active session to be tracked in real time. Scraped data can also be previewed while a scraper is in progress:</p>
 <figure><img src="live-logging.gif" alt="Live logging"><figcaption>Live logging</figcaption></figure>
@@ -159,7 +159,7 @@
 <figure><img src="export-data.gif" alt="Data export to CSV"><figcaption>Data export to CSV</figcaption></figure>
 <p>Check out the data exported from a scrape of the YC Hacker News front page post <a href="/post/20200224-manage-selenium-web-scrapers-with-auto-scrape/20200224_155305_session_15.csv">here</a>. If a session is prematurely terminated, the status is recorded as &quot;Aborted&quot;, with the logs and saved data remaining available.</p>
 <h2 id="multiple-simultaneous-scrapers">Multiple simultaneous scrapers</h2>
-<p>The below screencast shows multiple simultaneous scrapers running. In the below example we have <code>max_active_sessions = 3</code>, but this can be easily adjusted depending on available system resources:</p>
+<p>The below screencase shows multiple simultaneous scrapers running. In the below example we have <code>max_active_sessions = 3</code>, but this can be easily adjusted depending on available system resources:</p>
 <figure><img src="multiple-simultaneous-scrapers.gif" alt="Multiple simultaneous scrapers"><figcaption>Multiple simultaneous scrapers</figcaption></figure>
 <h2 id="questions">Questions?</h2>
 <p>Have you used auto-scrape for one of your projects, or do you have any questions? Feel free to leave a comment below, or to <a href="/contact/">reach out to me directly</a>.</p>
@@ -302,7 +302,7 @@
 			<a class="widget-taglist__link widget__link btn" href="/tags/mongodb/" title="MongoDB">MongoDB (1)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/node/" title="Node">Node (3)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/performance/" title="Performance">Performance (1)</a>
-			<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell (3)</a>
+			<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="Powershell">Powershell (3)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python (5)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/react/" title="React">React (4)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/redux/" title="Redux">Redux (1)</a>

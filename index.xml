@@ -13,7 +13,7 @@
       <link>https://palmo.xyz/post/20220515-push-or-pull-state-react-context/</link>
       <pubDate>2022-05-15T09:21:22</pubDate>
       <guid>https://palmo.xyz/post/20220515-push-or-pull-state-react-context/</guid>
-      <description>tldr: this CodeSandbox demonstrates a way to fetch state via a context only when required, eliminating unnecessary renders. Overview The React Context API has made accessing state anywhere in the component tree (and writing clean code without prop drilling ) easier than ever before. This article: examines a typical pattern for sharing state using the Context API, and discusses performance implications of the above pattern, and proposes a simple modification using the useRef and useCallback hooks to eliminate unnecessary renders.</description>
+      <description>tldr: this CodeSandbox demonstrates a way to fetch state via a context only when required, eliminating unnecessary renders. Overview The React Context API has made accessing state anywhere in the component tree (and writing clean code without prop drilling ) easier than ever before. This article: examines a typical pattern for sharing state using the Context API, and discusses performance implications of the above pattern, and proposes a simple modification using the useRef and useCallback hooks to eliminates unnecessary renders.</description>
     </item>
     
     <item>
@@ -21,7 +21,7 @@
       <link>https://palmo.xyz/post/20220514-higher-order-components-hocs/</link>
       <pubDate>2022-05-14T14:20:16</pubDate>
       <guid>https://palmo.xyz/post/20220514-higher-order-components-hocs/</guid>
-      <description>Higher-Order Components are &quot;functions that take a component and return a new component&quot;, and while they are not part of the React API, &quot;they are a pattern that emerges from React&#39;s compositional nature&quot; ( React docs ). HOCs can be used to avoid repeated code in many scenarios such as: showing a loader, while waiting for data, conditionally rendering components, managing common user-interaction states, providing components with specific styles, and more generally, providing a component with any prop.</description>
+      <description>Higher-Order Components are &quot;functions that take a component and return a new component&quot;, and while they are not part of the React API, &quot;they are a pattern that emerges from React&#39;s compositional nature&quot; ( React docs ). HOCs can be used to avoid repeated code in many scenarios such as: showing a loader, while waiting for data, conditionally rendering components, managing common user-interactions states, providing components with specific styles, and more generally, providing a component with any prop.</description>
     </item>
     
     <item>
@@ -29,7 +29,7 @@
       <link>https://palmo.xyz/post/20211229-javascript-gotchas/</link>
       <pubDate>2021-12-29T11:39:50</pubDate>
       <guid>https://palmo.xyz/post/20211229-javascript-gotchas/</guid>
-      <description>JavaScript&#39;s logical OR || and logical AND &amp;&amp; operators are useful in contexts other than creating if, else, while etc. statements, but there are some edge cases that I see many devs (myself included) getting caught out by. This article explores common pitfalls, and provides recommendations for: using?? instead of || to define values with a default fallback, and using &amp;&amp; to conditionally render JSX components only when required props are defined.</description>
+      <description>Javascript&#39;s logical OR || and logical AND &amp;&amp; operators are useful in contexts other than creating if, else, while etc. statements, but there are some edge cases that that I see many devs (myself included) getting caught out by. This article explores common pitfalls, and provides recommendations for: using?? instead of || to define values with a default fallback, and using &amp;&amp; to conditionally render JSX components only when required props are defined.</description>
     </item>
     
     <item>
@@ -37,7 +37,7 @@
       <link>https://palmo.xyz/post/20210701-streamline-web-automation-development-python-selenium/</link>
       <pubDate>2021-07-01T13:47:07</pubDate>
       <guid>https://palmo.xyz/post/20210701-streamline-web-automation-development-python-selenium/</guid>
-      <description>tl;dr When using Python to write web scraping / general automation scripts, run Python using the -i flag to preserve and interact with the latest state (i.e python -i script.py ). This lets you avoid re-running the whole script every time a change is made. Problem When developing a bot or web scraper that operates behind a login screen, development, testing, and debugging can take longer than you might expect.</description>
+      <description>tl;dr When using Python to write web scraping / general automation scripts, run Python using the -i flag preserve and interact with the latest state (i.e python -i script.py ). This let&#39;s you avoid re-running the whole script every time a change is made. Problem When developing a bot or web scraper that operates behind a login screen, development, testing, and debugging can take longer than you might expect. The process of write code --&gt; test --&gt; debug --&gt; repeat hits a bottleneck every time the browser starts, pages load, login details are entered, the welcome page loads, and so on.</description>
     </item>
     
     <item>
@@ -45,7 +45,7 @@
       <link>https://palmo.xyz/post/20200907-browser-debugging-with-bookmarklets/</link>
       <pubDate>2020-09-07T16:48:39</pubDate>
       <guid>https://palmo.xyz/post/20200907-browser-debugging-with-bookmarklets/</guid>
-      <description>tl;dr Bookmarklets are browser bookmarks that, instead of linking to a web page, inject custom JavaScript into the current page. Here are a couple of bookmarklets I use regularly - to add them to your browser simply copy the minified code directly into the URL field for a new bookmark (remember to include the javascript: prefix). Track current mouse coordinates Use the below script to display the current mouse coordinates in the current tab title:</description>
+      <description>tl;dr Bookmarklet are browser bookmarks that, instead of linking to a web page, inject custom javascript into the current page. Here are a couple of bookmarklets I use regularly - to add them to your browser simply copy the minified code directly into the URL field for a new bookmark (remember to include the javascript: prefix). Track current mouse coordinates Use the below script to display the current mouse coordinates in the current tab title:</description>
     </item>
     
     <item>
@@ -53,7 +53,7 @@
       <link>https://palmo.xyz/post/20200823-typr-typing-tutor-web-app/</link>
       <pubDate>2020-08-23T21:05:48</pubDate>
       <guid>https://palmo.xyz/post/20200823-typr-typing-tutor-web-app/</guid>
-      <description>tl;dr Typr is a simple web-based typing tutor that lets you practice typing using your own material. It also provides live feedback on typing speed, and in the future will include detailed statistics and algorithmically-generated custom exercises. Create an account and use it for free here. Check out some screencasts of the UI. Check out the source code on GitHub. For those interested in the motivation and background of this project, I wrote about how I built (an earlier version of) this app and learned to type at 100 wpm in two weeks.</description>
+      <description>tl;dr Typr is a simple web-based typing tutor that lets you practice typing using your own material. It also provides live feedback on typing speed, and in the future will include detailed statistics and algorithmically-generated custom exercises. Create an account and use it for free here. Check out some screencasts of the UI. Check out the source code on Github. The demo is currently hosted on a Heroku free-tier server which treats itself to a nap when there is no traffic and can take up to 30 seconds to wake up, so please be patient!</description>
     </item>
     
     <item>
@@ -61,7 +61,7 @@
       <link>https://palmo.xyz/post/20200823-type-at-100-wpm-in-two-weeks/</link>
       <pubDate>2020-08-23T11:37:43</pubDate>
       <guid>https://palmo.xyz/post/20200823-type-at-100-wpm-in-two-weeks/</guid>
-      <description>tl;dr It&#39;s hard to overestimate the importance of typing. Unless you are a journalist, legal secretary, or professional writer, you probably don&#39;t get enough practice to ever become truly fast. I built Typr and used it to simultaneously read &amp; type &quot;Surely You&#39;re Joking, Mr. Feynman!&quot;. Two weeks and 100,195 words later, I was maintaining between 100-110 WPM after starting out at 50 WPM. If you like reading, kill two birds with one stone by using Typr to practice typing material you would otherwise be reading.</description>
+      <description>tl;dr It&#39;s hard to underestimate the importance of typing. Unless you are a journalist, legal secretary, or professional writer, you probably don&#39;t get enough practice to ever become truly fast. I built Typr and used it to simultaneously read &amp; type &quot;Surely You&#39;re Joking, Mr. Feynman!&quot;. Two weeks and 100,195 words later, I was maintaining between 100-110 WPM after starting out at 50 WPM. If you like reading, kill two birds with one stone by using Typr to practice typing material you would otherwise be reading.</description>
     </item>
     
     <item>
@@ -77,7 +77,7 @@
       <link>https://palmo.xyz/post/20200224-manage-selenium-web-scrapers-with-auto-scrape/</link>
       <pubDate>2020-02-23T22:49:26</pubDate>
       <guid>https://palmo.xyz/post/20200224-manage-selenium-web-scrapers-with-auto-scrape/</guid>
-      <description>tldr: Auto-scrape lets you focus on writing web scraping scripts, while it takes care of logging, data persistence, data presentation and data export, all through a modern browser-based UI. It can be run locally or deployed remotely. Here are some screencasts of the UI. Get it on GitHub. Why scrape the web? Building a Selenium web scraper is almost a rite of passage for programmers starting out. Watching a computer fill out forms, click links and collect data before your eyes is not only a highly satisfying and suitably non-abstract exercise for beginners to complete - browser automation forms a foundation for frontend testing, can be used for automated research, and of course can be used to replace those expensive and unreliable humans to accomplish a wide range of business-related tasks.</description>
+      <description>tldr: Auto-scrape let&#39;s you focus on writing web scraping scripts, while it takes care of logging, data persistance, data presentation and data export, all through a modern browser-based UI. It can be run locally or deployed remotely. Here are some screencasts of the UI. Get it on Github. Why scrape the web? Building a Selenium web scraper is almost a rite of passage for programmers starting out. Watching a computer fill out forms, click links and collect data before your eyes is not only a highly satisfying and suitably non-abstract exercise for beginners to complete - browser automation forms a foundation for frontend testing, can be used for automated research, and of course can be used to replace those expensive and unreliable humans to accomplish a wide range of business-related tasks.</description>
     </item>
     
     <item>
@@ -85,7 +85,7 @@
       <link>https://palmo.xyz/post/20200218-human-readable-time-intervals-python/</link>
       <pubDate>2020-02-18T14:49:56</pubDate>
       <guid>https://palmo.xyz/post/20200218-human-readable-time-intervals-python/</guid>
-      <description>Expressing time intervals in a format that is readable by humans is an old problem that every frontend developer will eventually face. While there are plenty of solutions available ( this one is my favourite), I required a function that could provide different levels of granularity in its &quot;human-readable&quot; description of time. Take, for example, a component that tells the user how long in aggregate they have been using a service.</description>
+      <description>Expressing time intervals in a format that is readable by humans is an old problem that every frontend developer will eventually face. While there are plenty of solutions available ( this one is my favourite), I required a function that could provide different levels of granularity in it&#39;s &quot;human-readable&quot; description of time. Take, for example, a component that tells the user how long in aggregate they have been using a service.</description>
     </item>
     
     <item>
@@ -93,31 +93,31 @@
       <link>https://palmo.xyz/post/20200217-sql-to-csv-in-python/</link>
       <pubDate>2020-02-17T16:17:10</pubDate>
       <guid>https://palmo.xyz/post/20200217-sql-to-csv-in-python/</guid>
-      <description>This function takes an SQLAlchemy query object as its input ( SQLAlchemy is a popular Python SQL toolkit and Object Relational Mapper). Its strength lies in not needing to hard-code column names, making it scalable and suitable to &quot;set-and-forget&quot;. While developing enterprise software, every developer has surely been faced with a client asking &quot;how do I get the data out of the system?&quot;, and after digging a bit deeper, it becomes clear they want the ability to save a snapshot of data as an Excel spreadsheet.</description>
+      <description>This function takes an SQLAlchemy query object as it&#39;s input ( SQLAlchemy is a popular Python SQL toolkit and Object Relational Mapper). It&#39;s strength lies in not needing to hard-code column names, making it scaleable and suitable to &quot;set-and-forget&quot;. While developing enterprise software, every developer has surely have been faced with a client asking &quot;how do I get the data out of the system?&quot;, and after digging a bit deeper, it becomes clear they want the ability to save a snapshot of data as an Excel spreadsheet.</description>
     </item>
     
     <item>
-      <title>Use PowerShell profiles like a pro</title>
+      <title>Use powershell profiles like a pro</title>
       <link>https://palmo.xyz/post/20200210-use-powershell-profile-like-a-pro/</link>
       <pubDate>2020-02-09T20:31:46</pubDate>
       <guid>https://palmo.xyz/post/20200210-use-powershell-profile-like-a-pro/</guid>
-      <description>If you do any software development in a Windows environment, you&#39;ll be spending enough time inside the PowerShell (PS) console that it will be worth customizing the PS Profile to speed up your workflow. The PS Profile is essentially a.ps1 script that is run whenever a new PS console is opened. Without going too deep into how a sysadmin might use it, the average developer will probably want to use it to quickly do a few basic things:</description>
+      <description>If you do any software development in a Windows environment, you&#39;ll be spending enough time inside the Powershell (PS) console that it will be worth customizing the PS Profile to speed up your workflow. The PS Profile is essentially a.ps1 script that is run whenever a new PS console is opened. Without going too deep into how a sysadmin might use it, the average developer will probably want to use it to quickly do a few basic things:</description>
     </item>
     
     <item>
-      <title>Search Google from the PowerShell console</title>
+      <title>Search Google from the powershell console</title>
       <link>https://palmo.xyz/post/20200209-search-google-from-powershell/</link>
       <pubDate>2020-02-09T18:09:03</pubDate>
       <guid>https://palmo.xyz/post/20200209-search-google-from-powershell/</guid>
-      <description>You may have seen people walking around with those awkward Eat; Sleep; Code; Repeat; brogrammer shirts. I don&#39;t like them - between the many other things that developing software requires, when I actually sit down to write code the workflow would more accurately be described as Code; Compile; Google Error; Repeat;. This short post explains how the below gg.ps1 PowerShell script can increase your productivity by opening a chrome browser and executing a Google search straight from the PowerShell console.</description>
+      <description>You may have seen people walking around with those awkward Eat; Sleep; Code; Repeat; brogrammer shirts. I don&#39;t like them - between the many other things that developing software requires, when I actually sit down to write code the workflow would more accurately be described as Code; Compile; Google Error; Repeat;. This short post explains how the below gg.ps1 Powershell script can increase your productivity by opening a chrome browser and executing a Google search straight from the Powershell console.</description>
     </item>
     
     <item>
-      <title>Automating deployment of a Hugo website to GitHub Pages using PowerShell scripts</title>
+      <title>Automating deployment of a Hugo website to Github Pages using powershell scripts</title>
       <link>https://palmo.xyz/post/20200207-automating-deployment-hugo-github-pages/</link>
       <pubDate>2020-02-07T15:12:54</pubDate>
       <guid>https://palmo.xyz/post/20200207-automating-deployment-hugo-github-pages/</guid>
-      <description>Overview Note (2026): This post describes the 2020 Hugo + PowerShell publish workflow. The site has since moved to Eleventy, and production deploys now use a bash/ npm run publish pipeline. The following article describes how this blog was automatically deployed at the time of writing. The technology stack was: Source content written within the Hugo framework (a static website generator written in the Go language). Hosted by GitHub Pages, directly from this repository which contains the website build (the source code is in a separate repository).</description>
+      <description>Overview The following article describes how this blog is automatically deployed. The technology stack for this blog is: Source content written within the Hugo framework (a static website generator written in the Go language. Hosted by GitHub Pages, directly from this repository which contains the website build (the source code is in a separate repository). Cloudflare for cached content delivery (along with many other things ). If the technology stack for your project is completely different, this article should still provide you with:</description>
     </item>
     
   </channel>

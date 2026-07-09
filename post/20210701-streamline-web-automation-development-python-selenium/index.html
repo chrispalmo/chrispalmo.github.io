@@ -24,7 +24,7 @@
 
 
 <meta property="og:title" content="Streamline web automation development (Python + Selenium)">
-<meta property="og:description" content="tl;dr When using Python to write web scraping / general automation scripts, run Python using the -i flag to preserve and interact with the latest state (i.e python -i script.py ). This lets you avoid re-running the whole script every time a change is made. Problem When developing a bot or web scraper that operates behind a login screen, development, testing, and debugging can take longer than you might expect.">
+<meta property="og:description" content="tl;dr When using Python to write web scraping / general automation scripts, run Python using the -i flag preserve and interact with the latest state (i.e python -i script.py ). This let&#39;s you avoid re-running the whole script every time a change is made. Problem When developing a bot or web scraper that operates behind a login screen, development, testing, and debugging can take longer than you might expect. The process of write code --&gt; test --&gt; debug --&gt; repeat hits a bottleneck every time the browser starts, pages load, login details are entered, the welcome page loads, and so on.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="/post/20210701-streamline-web-automation-development-python-selenium/">
 
@@ -118,41 +118,40 @@
 		
 		<div class="content post__content clearfix">
 			<h2 id="tldr">tl;dr</h2>
-<p>When using Python to write web scraping / general automation scripts, run Python using the <code>-i</code> flag to preserve and interact with the latest state (i.e <code>python -i script.py</code>).</p>
-<p>This lets you avoid re-running the whole script every time a change is made.</p>
+<p>When using Python to write web scraping / general automation scripts, run Python using the <code>-i</code> flag preserve and interact with the latest state (i.e <code>python -i script.py</code>).</p>
+<p>This let's you avoid re-running the whole script every time a change is made.</p>
 <h2 id="problem">Problem</h2>
 <p>When developing a bot or web scraper that operates behind a login screen, development, testing, and debugging can take longer than you might expect. The process of <code>write code --&gt; test --&gt; debug --&gt; repeat</code> hits a bottleneck every time the browser starts, pages load, login details are entered, the welcome page loads, and so on. In the worst cases, it may take several minutes or hours before the error appears.</p>
 <p>Wouldn't it be great if, when the script completes (or under certain error conditions), instead of closing the browser driver and Python, the browser stayed open along with a Python <a href="https://en.wikipedia.org/wiki/Command-line_interface">CLI</a> allowing the session to be continued manually, one line of code at a time?</p>
 <h2 id="solution">Solution</h2>
 <p>Suppose you have a simple Python script, <code>bot.py</code>:</p>
 <pre><code class="language-python">from selenium import webdriver
-from selenium.webdriver.common.by import By
 
-# start browser (Selenium 4 can manage the driver for you)
-driver = webdriver.Chrome()
-driver.get(&quot;https://website.com/login&quot;)
+# start browser
+driver.get(&quot;https://website.com/login)
+driver = webdriver.Chrome('./chromedriver')
 
 # login
-email_input = driver.find_element(By.XPATH, &quot;//input[@id='Email']&quot;)
+email_input= driver.find_element_by_xpath(&quot;//input[@id='Email']&quot;)
 email_input.click()
 email_input.send_keys(&quot;happyUser888&quot;)
 
-password_input = driver.find_element(By.XPATH, &quot;//input[@id='Password']&quot;)
+password_input = driver.find_element_by_xpath(&quot;//input[@id='Password']&quot;)
 password_input.click()
-password_input.send_keys(&quot;Password123&quot;)
+password_input.send_keys(&quot;Password123)
 
-submit_button = driver.find_element(By.XPATH, &quot;//input[@id='Submit']&quot;)
+submit_button = driver.find_element_by_xpath(&quot;//input[@id='Submit']&quot;)
 submit_button.click()
 
 # do automated bot stuff
 </code></pre>
-<p>Instead of running <code>python bot.py</code>, run <code>python -i bot.py</code> to keep an interactive session running when the script completes.</p>
+<p>Instead of running <code>pyton bot.py</code>, run <code>python -i bot.py</code> so keep an interactive session running when the script completes.</p>
 <h3 id="for-multiple-sessions">For multiple sessions</h3>
 <p>You can also use this while running a multiple concurrent browser sessions, using a single script as an entry point, <code>run.py</code>:</p>
 <pre><code class="language-python">from bot1 import driver as driver1
 from bot2 import driver as driver2
 </code></pre>
-<p>Running <code>python -i run.py</code> will spin up both sessions and leaves you with <code>driver1</code> and <code>driver2</code> available to play with via the Python CLI. Unfortunately this won't run both scrapers simultaneously - we would need <a href="https://stackoverflow.com/questions/27435284/multiprocessing-vs-multithreading-vs-asyncio-in-python-3">asyncio, threading, or multiprocessing</a> for that and have instead kept this example as simple as possible for the purposes of this post.</p>
+<p>Running <code>python -i run.py</code> will spin up both sessions and leaves you with <code>driver1</code> and <code>driver2</code> available to play with via the Python CLI. Unfortunately this wont run both scrapers simultaneously - we would need <a href="https://stackoverflow.com/questions/27435284/multiprocessing-vs-multithreading-vs-asyncio-in-python-3">asyncio, threading, or multiprocessing</a> for that and have instead kept this example as simple as possible for the purposes of this post.</p>
 <p>As a bonus, the below function could also be defined in <code>run.py</code> to cleanly terminate the sessions, avoiding the memory leaks that occur when manually closing the browser windows or exiting Python:</p>
 <pre><code class="language-python">def quit():
     driver1.quit()
@@ -298,7 +297,7 @@ from bot2 import driver as driver2
 			<a class="widget-taglist__link widget__link btn" href="/tags/mongodb/" title="MongoDB">MongoDB (1)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/node/" title="Node">Node (3)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/performance/" title="Performance">Performance (1)</a>
-			<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell (3)</a>
+			<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="Powershell">Powershell (3)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python (5)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/react/" title="React">React (4)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/redux/" title="Redux">Redux (1)</a>

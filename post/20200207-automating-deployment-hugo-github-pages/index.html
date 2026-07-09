@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Automating deployment of a Hugo website to GitHub Pages using PowerShell scripts - Chris Palmieri</title>
+	<title>Automating deployment of a Hugo website to Github Pages using powershell scripts - Chris Palmieri</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="What I&#39;m working on, what I&#39;ve learned, and thinking out loud">
 	
@@ -23,8 +23,8 @@
 	
 
 
-<meta property="og:title" content="Automating deployment of a Hugo website to GitHub Pages using PowerShell scripts">
-<meta property="og:description" content="Overview Note (2026): This post describes the 2020 Hugo + PowerShell publish workflow. The site has since moved to Eleventy, and production deploys now use a bash/ npm run publish pipeline. The following article describes how this blog was automatically deployed at the time of writing. The technology stack was: Source content written within the Hugo framework (a static website generator written in the Go language). Hosted by GitHub Pages, directly from this repository which contains the website build (the source code is in a separate repository).">
+<meta property="og:title" content="Automating deployment of a Hugo website to Github Pages using powershell scripts">
+<meta property="og:description" content="Overview The following article describes how this blog is automatically deployed. The technology stack for this blog is: Source content written within the Hugo framework (a static website generator written in the Go language. Hosted by GitHub Pages, directly from this repository which contains the website build (the source code is in a separate repository). Cloudflare for cached content delivery (along with many other things ). If the technology stack for your project is completely different, this article should still provide you with:">
 <meta property="og:type" content="article">
 <meta property="og:url" content="/post/20200207-automating-deployment-hugo-github-pages/">
 
@@ -90,7 +90,7 @@
 				<main class="main" role="main">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">Automating deployment of a Hugo website to GitHub Pages using PowerShell scripts</h1>
+			<h1 class="post__title">Automating deployment of a Hugo website to Github Pages using powershell scripts</h1>
 			
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
@@ -118,19 +118,16 @@
 		
 		<div class="content post__content clearfix">
 			<h2 id="overview">Overview</h2>
-<blockquote>
-<p><strong>Note (2026):</strong> This post describes the <strong>2020</strong> Hugo + PowerShell publish workflow. The site has since moved to Eleventy, and production deploys now use a bash/<code>npm run publish</code> pipeline.</p>
-</blockquote>
-<p>The following article describes how this blog was automatically deployed at the time of writing. The technology stack was:</p>
+<p>The following article describes how this blog is automatically deployed. The technology stack for this blog is:</p>
 <ul>
-<li>Source content written within the <a href="https://gohugo.io/">Hugo</a> framework (a static website generator written in the Go language).</li>
+<li>Source content written within the <a href="https://gohugo.io/">Hugo</a> framework (a static website generator written in the Go language.</li>
 <li>Hosted by <a href="https://pages.github.com/">GitHub Pages</a>, directly from <a href="https://github.com/chrispalmo/chrispalmo.github.io">this repository</a> which contains the website build (the source code is in a separate repository).</li>
 <li><a href="https://www.cloudflare.com/en-au/">Cloudflare</a> for cached content delivery (along with <a href="https://support.cloudflare.com/hc/en-us/articles/205177068-How-does-Cloudflare-work-">many other things</a>).</li>
 </ul>
 <p>If the technology stack for your project is completely different, this article should still provide you with:</p>
 <ul>
 <li>Inspiration for how you could automate your production workflow, and</li>
-<li>Some useful PowerShell scripting tips.</li>
+<li>Some useful Powershell scripting tips.</li>
 </ul>
 <h2 id="the-code">The Code</h2>
 <p>Because of the simplicity of this static website, I do not have separate development and production deployments, so after I have written an article or edited the template and previewed it using <code>hugo server</code>, the website is pushed straight into production.</p>
@@ -148,7 +145,7 @@
    'CloudflareZoneId': 'YOUR_CLOUDFLARE_ZONE_ID'
 }
 </code></pre>
-<p>Note the double backslashes <code>\\</code> in the <code>production_build_directory</code> path. The first backslash is an escape character used by the PowerShell <code>ConvertFrom-Json</code> parser.</p>
+<p>Note the double backslashes <code>\\</code> in the <code>production_build_directory</code> path. The first backslash is an escape character used by the Powershell <code>ConvertFrom-Json</code> parser.</p>
 <h3 id="publishps1"><strong><code>publish.ps1</code></strong></h3>
 <pre><code class="language-powershell"># Import configurations and secret keys from config.json
 
@@ -162,7 +159,7 @@ $config = Get-Content -Raw -Path .\scripts\config.json | ConvertFrom-Json
  -CloudflareApiKey $config.CloudflareApiKey `
  -CloudflareZoneId $config.CloudflareZoneId
 </code></pre>
-<p>Note that the <code>production_build_directory</code> is a separate git repository from the Hugo source code, in order to comply with GitHub Pages hosting requirements.</p>
+<p>Note that the <code>production_build_directory</code> is a separate git repository to the Hugo source code, in order to comply with Github Pages hosting requirements.</p>
 <p>The real work is done by <code>build_commit_push_clear_cache.ps1</code>:</p>
 <h3 id="build-commit-push-clear-cacheps1"><strong><code>build_commit_push_clear_cache.ps1</code></strong></h3>
 <pre><code class="language-powershell">Param(
@@ -224,7 +221,7 @@ Invoke-RestMethod `
 <li><code>Read-Host -Prompt</code> statements are used to inform the user of impending actions and provide a chance to abort. It is also used to set the Git commit message. Important if there is a chance that a script will be re-used in a setting where <code>{number_of_users} &gt; 1</code>, or if a less-technical client will be using it -- UX is not just for front-end design!</li>
 <li><code>git -C &lt;path&gt;</code> runs commands as if git was started in the <path> directory instead of the current working directory.</li>
 <li>Backticks <code>`</code> are used to split single commands over multiple lines for readability.</li>
-<li>Credit to <a href="https://swimburger.net/blog/powershell/powershell-snippet-clearing-cloudflare-cache-with-cloudflares-api">Niels Swimberghe</a> for sharing his PowerShell script for clearing the Cloudflare cache via the Cloudflare API.</li>
+<li>Credit to <a href="https://swimburger.net/blog/powershell/powershell-snippet-clearing-cloudflare-cache-with-cloudflares-api">Niels Swimberghe</a> for sharing his Powershell script for clearing the Cloudflare cache via the Cloudflare API.</li>
 </ul>
 
 		</div>
@@ -238,7 +235,7 @@ Invoke-RestMethod `
 					
 					<li class="tags__item"><a class="tags__link btn" href="/tags/devops/" rel="tag">DevOps</a></li>
 					
-					<li class="tags__item"><a class="tags__link btn" href="/tags/powershell/" rel="tag">PowerShell</a></li>
+					<li class="tags__item"><a class="tags__link btn" href="/tags/powershell/" rel="tag">Powershell</a></li>
 					
 					<li class="tags__item"><a class="tags__link btn" href="/tags/cloudflare/" rel="tag">Cloudflare</a></li>
 					
@@ -363,7 +360,7 @@ Invoke-RestMethod `
 			<a class="widget-taglist__link widget__link btn" href="/tags/mongodb/" title="MongoDB">MongoDB (1)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/node/" title="Node">Node (3)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/performance/" title="Performance">Performance (1)</a>
-			<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell (3)</a>
+			<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="Powershell">Powershell (3)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/python/" title="Python">Python (5)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/react/" title="React">React (4)</a>
 			<a class="widget-taglist__link widget__link btn" href="/tags/redux/" title="Redux">Redux (1)</a>
