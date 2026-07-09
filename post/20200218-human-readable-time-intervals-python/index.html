@@ -121,7 +121,7 @@
 <p>Take, for example, a component that tells the user how long in aggregate they have been using a service. If they have been using it for a few hours, it would be appropriate to display <code>## hours, ## minutes</code>, ignoring the seconds and milliseconds. If they have been using the service for several years, it would probably not make sense to provide minute-level-accuracy -- simply <code>## years, ## days</code> would suffice. So for this situation, <code>granularity=2</code> seems appropriate.</p>
 <p>If you are creating a countdown timer however, it may be more useful to have a higher level of granularity, displaying days, hours, minutes and seconds (<code>granularity=4</code>).</p>
 <p>The below script contains two functions: <code>time_breakdown</code>, which handles the unit conversions, and <code>time_breakdown_string</code>, which handles the &quot;human readability&quot; logic:</p>
-<h3 id="semantic-time-py">semantic_time.py</h3>
+<h3 id="semantic-timepy">semantic_time.py</h3>
 <pre><code class="language-python">from math import floor
 
 def time_breakdown(ms):

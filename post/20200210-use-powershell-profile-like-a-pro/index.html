@@ -124,7 +124,7 @@
 <li>create shortcuts to favourite directories</li>
 <li>automatically import custom <code>.ps1</code> scripts that you wrote or downloaded.</li>
 </ul>
-<h2 id="locating-profile-ps1">Locating profile.ps1</h2>
+<h2 id="locating-profileps1">Locating profile.ps1</h2>
 <p>The <code>$PROFILE</code> variable should return the path to the profile for the current user (the <code>&gt;</code> symbol is used to denote console input):</p>
 <pre><code class="language-powershell">&gt; $PROFILE
 C:\Users\chris\Documents\WindowsPowerShell\profile.ps1
@@ -132,7 +132,7 @@ C:\Users\chris\Documents\WindowsPowerShell\profile.ps1
 <p>Now that you know where Windows is looking to load the profile from, you can use your text editor of choice to create or modify it:</p>
 <pre><code class="language-powershell">notepad $PROFILE
 </code></pre>
-<h2 id="let-s-configure-the-profile">Let's configure the profile</h2>
+<h2 id="lets-configure-the-profile">Let's configure the profile</h2>
 <p>Add the below code to <code>profile.ps1</code>, which will be executed when a new console is opened.</p>
 <h5 id="set-the-starting-directory">Set the starting directory</h5>
 <pre><code class="language-powershell"># Navigate to the default startup folder
