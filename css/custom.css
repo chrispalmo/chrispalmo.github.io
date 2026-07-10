@@ -42,27 +42,114 @@
 }
 
 /*
- * Red accents only for real fine-pointer hover / keyboard focus.
- * iPhone Safari keeps :hover and :focus-visible sticky after tap;
- * Chrome device-mode often does not, which hid the bug.
+ * Sticky red hover on touch (iPhone Safari): neutralize Mainroad + custom
+ * red-on-hover for links/nav/tags, then restore only for fine pointers.
+ * Chrome device-mode often does not stick :hover, which hid earlier bugs.
  */
 .theme-toggle-wrap .theme-toggle:focus-visible {
 	outline: 0;
 }
 
-/* Mainroad .menu__item:hover is red — neutralize sticky tap on touch. */
+/* Resting colors while :hover is stuck after tap */
+a:hover {
+	color: #000;
+}
+
+.meta a:hover {
+	color: #666;
+	text-decoration: none !important;
+}
+
+h3 a:hover {
+	color: black !important;
+	text-decoration: none !important;
+}
+
+a.list__footer-readmore:hover {
+	color: black !important;
+	text-decoration: none !important;
+}
+
+/* Already red / white at rest — don't flip them on sticky hover */
+.content a:hover,
+.warning a:hover,
+.toc__menu a:hover {
+	color: #e22d30;
+}
+
+.menu__link:hover,
+.footer a:hover,
+.tags__link:hover,
+.widget-taglist__link:hover {
+	color: #fff;
+}
+
 .menu__item:hover:not(.menu__item--active) {
 	background: transparent;
 }
 
+.tags__item:hover {
+	background: #2a2a2a;
+}
+
+html[data-theme="dark"] a:hover {
+	color: #f0f0f0;
+}
+
+html[data-theme="dark"] .meta a:hover {
+	color: #a0a0a0;
+}
+
+html[data-theme="dark"] h3 a:hover {
+	color: #f0f0f0 !important;
+}
+
+html[data-theme="dark"] a.list__footer-readmore:hover {
+	color: #f0f0f0 !important;
+}
+
 @media (hover: hover) and (pointer: fine) {
+	a:hover {
+		color: #e22d30;
+	}
+
+	.meta a:hover {
+		color: #e22d30;
+	}
+
+	h3 a:hover {
+		color: red !important;
+	}
+
+	a.list__footer-readmore:hover {
+		color: red !important;
+	}
+
 	.theme-toggle-wrap .theme-toggle:hover,
 	.theme-toggle-wrap .theme-toggle:focus-visible {
 		color: #e22d30;
 	}
 
-	.menu__item:hover {
+	.menu__item:hover,
+	.tags__item:hover {
 		background: #e22d30;
+	}
+
+	html[data-theme="dark"] a:hover {
+		color: #ff5a5d;
+	}
+
+	html[data-theme="dark"] h3 a:hover {
+		color: #ff5a5d !important;
+	}
+
+	html[data-theme="dark"] a.list__footer-readmore:hover {
+		color: #ff5a5d !important;
+	}
+
+	html[data-theme="dark"] .theme-toggle-wrap .theme-toggle:hover,
+	html[data-theme="dark"] .theme-toggle-wrap .theme-toggle:focus-visible {
+		color: #ff5a5d;
 	}
 }
 
@@ -299,28 +386,14 @@ h3 a {
 	color: black !important;
 }
 
-h3 a:hover {
-	color: red !important;
-	text-decoration: none !important;
-}
-
 .meta a {
 	color: #666;
 	font-weight: normal !important;
 }
 
-.meta a:hover {
-	text-decoration: none !important
-}
-
 a.list__footer-readmore {
 	font-weight: normal !important;
 	color: black !important;
-}
-
-a.list__footer-readmore:hover {
-	color: red !important;
-	text-decoration: none !important;
 }
 
 figcaption {
@@ -340,24 +413,12 @@ html[data-theme="dark"] a {
 	color: #f0f0f0;
 }
 
-html[data-theme="dark"] a:hover {
-	color: #ff5a5d;
-}
-
 html[data-theme="dark"] h3 a {
 	color: #f0f0f0 !important;
 }
 
-html[data-theme="dark"] h3 a:hover {
-	color: #ff5a5d !important;
-}
-
 html[data-theme="dark"] a.list__footer-readmore {
 	color: #f0f0f0 !important;
-}
-
-html[data-theme="dark"] a.list__footer-readmore:hover {
-	color: #ff5a5d !important;
 }
 
 html[data-theme="dark"] .meta,
@@ -384,13 +445,6 @@ html[data-theme="dark"] .logo__tagline {
 /* Dark-mode toggle chrome */
 html[data-theme="dark"] .theme-toggle-wrap .theme-toggle {
 	color: #f0f0f0;
-}
-
-@media (hover: hover) and (pointer: fine) {
-	html[data-theme="dark"] .theme-toggle-wrap .theme-toggle:hover,
-	html[data-theme="dark"] .theme-toggle-wrap .theme-toggle:focus-visible {
-		color: #ff5a5d;
-	}
 }
 
 /* Header tabs + tags: stay white on hover in dark mode (override global a:hover red) */
