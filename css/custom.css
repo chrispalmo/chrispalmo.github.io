@@ -47,6 +47,13 @@
 	outline: 0;
 }
 
+/* Touch: no red hover (sticky :hover after tap). Desktop unchanged. */
+@media (hover: none) {
+	.theme-toggle-wrap .theme-toggle:hover {
+		color: #111;
+	}
+}
+
 .theme-toggle-wrap .theme-toggle svg {
 	display: block;
 	width: 1em;
@@ -370,6 +377,12 @@ html[data-theme="dark"] .theme-toggle-wrap .theme-toggle {
 html[data-theme="dark"] .theme-toggle-wrap .theme-toggle:hover,
 html[data-theme="dark"] .theme-toggle-wrap .theme-toggle:focus-visible {
 	color: #ff5a5d;
+}
+
+@media (hover: none) {
+	html[data-theme="dark"] .theme-toggle-wrap .theme-toggle:hover {
+		color: #f0f0f0;
+	}
 }
 
 /* Header tabs + tags: stay white on hover in dark mode (override global a:hover red) */
