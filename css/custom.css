@@ -41,16 +41,28 @@
 	appearance: none;
 }
 
-.theme-toggle-wrap .theme-toggle:hover,
+/*
+ * Red accents only for real fine-pointer hover / keyboard focus.
+ * iPhone Safari keeps :hover and :focus-visible sticky after tap;
+ * Chrome device-mode often does not, which hid the bug.
+ */
 .theme-toggle-wrap .theme-toggle:focus-visible {
-	color: #e22d30;
 	outline: 0;
 }
 
-/* Touch: no red hover (sticky :hover after tap). Desktop unchanged. */
-@media (hover: none) {
-	.theme-toggle-wrap .theme-toggle:hover {
-		color: #111;
+/* Mainroad .menu__item:hover is red — neutralize sticky tap on touch. */
+.menu__item:hover:not(.menu__item--active) {
+	background: transparent;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.theme-toggle-wrap .theme-toggle:hover,
+	.theme-toggle-wrap .theme-toggle:focus-visible {
+		color: #e22d30;
+	}
+
+	.menu__item:hover {
+		background: #e22d30;
 	}
 }
 
@@ -374,14 +386,10 @@ html[data-theme="dark"] .theme-toggle-wrap .theme-toggle {
 	color: #f0f0f0;
 }
 
-html[data-theme="dark"] .theme-toggle-wrap .theme-toggle:hover,
-html[data-theme="dark"] .theme-toggle-wrap .theme-toggle:focus-visible {
-	color: #ff5a5d;
-}
-
-@media (hover: none) {
-	html[data-theme="dark"] .theme-toggle-wrap .theme-toggle:hover {
-		color: #f0f0f0;
+@media (hover: hover) and (pointer: fine) {
+	html[data-theme="dark"] .theme-toggle-wrap .theme-toggle:hover,
+	html[data-theme="dark"] .theme-toggle-wrap .theme-toggle:focus-visible {
+		color: #ff5a5d;
 	}
 }
 
