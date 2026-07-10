@@ -45,10 +45,9 @@
 <meta property="og:url" content="/post/20210701-streamline-web-automation-development-python-selenium/">
 
 
-	<link rel="dns-prefetch" href="//fonts.googleapis.com">
-	<link rel="dns-prefetch" href="//fonts.gstatic.com">
 	
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="preload" href="/fonts/open-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="stylesheet" href="/css/fonts.css">
 	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" href="/css/theme-toggles.css">
 	<link rel="stylesheet" href="/css/custom.css">
@@ -56,6 +55,17 @@
 	
 	<script type="speculationrules">
 	{
+		"prefetch": [{
+			"where": {
+				"and": [
+					{ "href_matches": "/*" },
+					{ "not": { "href_matches": "/index.xml" } },
+					{ "not": { "href_matches": "/*.xml" } },
+					{ "not": { "selector_matches": "[download], [target=_blank]" } }
+				]
+			},
+			"eagerness": "eager"
+		}],
 		"prerender": [{
 			"where": {
 				"and": [
