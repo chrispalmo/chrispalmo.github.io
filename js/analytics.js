@@ -288,9 +288,22 @@
     },
   };
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
+  function whenActivated(fn) {
+    if (document.prerendering) {
+      document.addEventListener("prerenderingchange", fn, { once: true });
+    } else {
+      fn();
+    }
   }
+
+  function boot() {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init);
+    } else {
+      init();
+    }
+  }
+
+  /* Do not emit article_view / attach observers until the page is visible (not prerendered). */
+  whenActivated(boot);
 })();
