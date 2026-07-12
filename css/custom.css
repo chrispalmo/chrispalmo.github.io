@@ -1,4 +1,4 @@
-/* Header row: logo left, theme toggle mirrored right (same padding/height) */
+/* Header row: logo left, search + theme toggle mirrored right (same padding/height) */
 .header__top {
 	display: flex;
 	align-items: center;
@@ -10,12 +10,20 @@
 	min-width: 0;
 }
 
+.header__actions {
+	flex: 0 0 auto;
+	display: flex;
+	align-items: center;
+	gap: .5rem;
+	padding: 25px;
+}
+
 /* Mirror of .logo { padding: 25px } — same box on the right */
 .theme-toggle-wrap {
 	flex: 0 0 auto;
 	display: flex;
 	align-items: center;
-	padding: 25px;
+	padding: 0;
 }
 
 /*
@@ -33,7 +41,7 @@
 	padding: 0;
 	font-size: 1.35rem;
 	line-height: 1;
-	color: #111;
+	color: var(--palmo-body);
 	background: transparent;
 	border: 0;
 	cursor: pointer;
@@ -52,11 +60,11 @@
 
 /* Resting colors while :hover is stuck after tap */
 a:hover {
-	color: #000;
+	color: var(--palmo-body);
 }
 
 .meta a:hover {
-	color: #666;
+	color: var(--palmo-muted);
 	text-decoration: none !important;
 }
 
@@ -74,14 +82,14 @@ a.list__footer-readmore:hover {
 .content a:hover,
 .warning a:hover,
 .toc__menu a:hover {
-	color: #e22d30;
+	color: var(--palmo-red);
 }
 
 .menu__link:hover,
 .footer a:hover,
 .tags__link:hover,
 .widget-taglist__link:hover {
-	color: #fff;
+	color: var(--palmo-white);
 }
 
 .menu__item:hover:not(.menu__item--active) {
@@ -89,67 +97,80 @@ a.list__footer-readmore:hover {
 }
 
 .tags__item:hover {
-	background: #2a2a2a;
+	background: var(--palmo-chrome);
 }
 
 html[data-theme="dark"] a:hover {
-	color: #f0f0f0;
+	color: var(--palmo-link);
 }
 
 html[data-theme="dark"] .meta a:hover {
-	color: #a0a0a0;
+	color: var(--palmo-muted);
 }
 
 html[data-theme="dark"] h3 a:hover {
-	color: #f0f0f0 !important;
+	color: var(--palmo-heading) !important;
 }
 
 html[data-theme="dark"] a.list__footer-readmore:hover {
-	color: #f0f0f0 !important;
+	color: var(--palmo-heading) !important;
 }
 
 @media (hover: hover) and (pointer: fine) {
 	a:hover {
-		color: #e22d30;
+		color: var(--palmo-red);
 	}
 
 	.meta a:hover {
-		color: #e22d30;
+		color: var(--palmo-red);
 	}
 
 	h3 a:hover {
-		color: red !important;
+		color: var(--palmo-red) !important;
 	}
 
 	a.list__footer-readmore:hover {
-		color: red !important;
+		color: var(--palmo-red) !important;
 	}
 
 	.theme-toggle-wrap .theme-toggle:hover,
 	.theme-toggle-wrap .theme-toggle:focus-visible {
-		color: #e22d30;
+		color: var(--palmo-red);
 	}
 
 	.menu__item:hover,
+	.menu__item:hover:not(.menu__item--active),
 	.tags__item:hover {
-		background: #e22d30;
+		background: var(--palmo-red);
 	}
 
 	html[data-theme="dark"] a:hover {
-		color: #ff5a5d;
+		color: var(--palmo-link-hover);
+	}
+
+	html[data-theme="dark"] .meta a:hover {
+		color: var(--palmo-link-hover);
+	}
+
+	html[data-theme="dark"] .content a:hover,
+	html[data-theme="dark"] .warning a:hover,
+	html[data-theme="dark"] .toc__menu a:hover {
+		color: var(--palmo-link-hover);
 	}
 
 	html[data-theme="dark"] h3 a:hover {
-		color: #ff5a5d !important;
+		color: var(--palmo-link-hover) !important;
 	}
 
 	html[data-theme="dark"] a.list__footer-readmore:hover {
-		color: #ff5a5d !important;
+		color: var(--palmo-link-hover) !important;
 	}
 
-	html[data-theme="dark"] .theme-toggle-wrap .theme-toggle:hover,
-	html[data-theme="dark"] .theme-toggle-wrap .theme-toggle:focus-visible {
-		color: #ff5a5d;
+	/* Social / buttons: keep white label on red chip in dark mode */
+	html[data-theme="dark"] .btn:hover,
+	html[data-theme="dark"] .widget-social__link:hover,
+	html[data-theme="dark"] .widget-social__link:hover span {
+		color: var(--palmo-white) !important;
 	}
 }
 
@@ -161,13 +182,13 @@ html[data-theme="dark"] a.list__footer-readmore:hover {
 }
 
 @media screen and (max-width: 900px) {
-	.theme-toggle-wrap {
+	.header__actions {
 		padding: 20px;
 	}
 }
 
 @media screen and (max-width: 767px) {
-	.theme-toggle-wrap {
+	.header__actions {
 		padding: 15px;
 	}
 }
@@ -209,23 +230,68 @@ html[data-theme="dark"] a.list__footer-readmore:hover {
 	initial-value: #f7f7f7;
 }
 
-/* Theme color tokens — headings inherit so they tween with the gate */
-:root,
-html[data-theme="light"] {
-	--palmo-heading: #000;
-	--palmo-body: #000;
-	--palmo-muted: #666;
-	--palmo-surface: #fff;
-	--palmo-page: #f7f7f7;
+/* Inline code + search chrome — same gated interpolation as page tokens */
+@property --palmo-code-bg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: #f5f5f5;
 }
 
-html[data-theme="dark"] {
-	--palmo-heading: #f0f0f0;
-	--palmo-body: #e6e6e6;
-	--palmo-muted: #a0a0a0;
-	--palmo-surface: #1a1a1a;
-	--palmo-page: #121212;
+@property --palmo-code-border {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: #ebebeb;
 }
+
+@property --palmo-code-inline {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: #e22d30;
+}
+
+@property --palmo-code-block {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: #000;
+}
+
+@property --palmo-search-surface {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: #fff;
+}
+
+@property --palmo-search-text {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: #000;
+}
+
+@property --palmo-search-muted {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: #666;
+}
+
+@property --palmo-search-heading {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: #000;
+}
+
+@property --palmo-search-input-bg {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: #f7f7f7;
+}
+
+@property --palmo-search-input-border {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: #999999;
+}
+
+/* Theme values live in palette.css; registrations above enable their tween. */
 
 body {
 	background: var(--palmo-page);
@@ -250,42 +316,69 @@ h6,
 	color: var(--palmo-heading);
 }
 
+/* Drive Mainroad pre/code through gated tokens (highlighted blocks keep Monokai via highlight.css) */
+pre:not(.highlight),
+code:not(.hljs) {
+	background-color: var(--palmo-code-bg);
+	border-color: var(--palmo-code-border);
+}
+
+code:not(.hljs) {
+	color: var(--palmo-code-inline);
+}
+
+pre:not(.highlight) {
+	color: var(--palmo-code-block);
+}
+
+pre:not(.highlight) code {
+	background: inherit;
+	border: 0;
+	color: inherit;
+}
+
 /*
  * Theme-switching gate: color transitions only while html.is-theme-switching
  * (added briefly by theme.js). Keeps normal hover states snappy.
+ *
+ * Page tokens (--palmo-*) are @property-registered and tween on `html` alone.
+ * Elements that paint via those vars (body, surfaces, headings, inline code,
+ * search trigger) must NOT also get element-level color/background transitions —
+ * that double-easing made hardcoded-adjacent chrome lag behind code/search.
+ * This list is only for hardcoded Mainroad colors that still snap without it.
  */
 html.is-theme-switching {
-	transition-property: --palmo-heading, --palmo-body, --palmo-muted, --palmo-surface, --palmo-page;
+	transition-property:
+		--palmo-heading,
+		--palmo-body,
+		--palmo-muted,
+		--palmo-surface,
+		--palmo-page,
+		--palmo-code-bg,
+		--palmo-code-border,
+		--palmo-code-inline,
+		--palmo-code-block,
+		--palmo-search-surface,
+		--palmo-search-text,
+		--palmo-search-muted,
+		--palmo-search-heading,
+		--palmo-search-input-bg,
+		--palmo-search-input-border;
 	transition-duration: 800ms;
 	transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); /* easeOutExpo */
 }
 
-html.is-theme-switching body,
-html.is-theme-switching .wrapper,
-html.is-theme-switching .header,
 html.is-theme-switching .container--outer,
 html.is-theme-switching .footer,
-html.is-theme-switching .logo__title,
 html.is-theme-switching a,
-html.is-theme-switching h1,
-html.is-theme-switching h2,
-html.is-theme-switching h3,
-html.is-theme-switching h4,
-html.is-theme-switching h5,
-html.is-theme-switching h6,
-html.is-theme-switching .post__title,
-html.is-theme-switching .list__title,
 html.is-theme-switching .meta,
 html.is-theme-switching .meta a,
 html.is-theme-switching .meta__text,
 html.is-theme-switching .meta__icon,
 html.is-theme-switching time,
 html.is-theme-switching figcaption,
-html.is-theme-switching pre,
-html.is-theme-switching code,
 html.is-theme-switching .toc,
 html.is-theme-switching .widget,
-html.is-theme-switching .widget__title,
 html.is-theme-switching .widget__item,
 html.is-theme-switching .authorbox,
 html.is-theme-switching .list__item,
@@ -334,32 +427,17 @@ html[data-theme="dark"] .theme-toggle:not(label).theme-toggle .theme-toggle__cla
 
 @media (prefers-reduced-motion: reduce) {
 	html.is-theme-switching,
-	html.is-theme-switching body,
-	html.is-theme-switching .wrapper,
-	html.is-theme-switching .header,
 	html.is-theme-switching .container--outer,
 	html.is-theme-switching .footer,
-	html.is-theme-switching .logo__title,
 	html.is-theme-switching a,
-	html.is-theme-switching h1,
-	html.is-theme-switching h2,
-	html.is-theme-switching h3,
-	html.is-theme-switching h4,
-	html.is-theme-switching h5,
-	html.is-theme-switching h6,
-	html.is-theme-switching .post__title,
-	html.is-theme-switching .list__title,
 	html.is-theme-switching .meta,
 	html.is-theme-switching .meta a,
 	html.is-theme-switching .meta__text,
 	html.is-theme-switching .meta__icon,
 	html.is-theme-switching time,
 	html.is-theme-switching figcaption,
-	html.is-theme-switching pre,
-	html.is-theme-switching code,
 	html.is-theme-switching .toc,
 	html.is-theme-switching .widget,
-	html.is-theme-switching .widget__title,
 	html.is-theme-switching .widget__item,
 	html.is-theme-switching .authorbox,
 	html.is-theme-switching .list__item,
@@ -387,7 +465,7 @@ h3 a {
 }
 
 .meta a {
-	color: #666;
+	color: var(--palmo-muted);
 	font-weight: normal !important;
 }
 
@@ -410,15 +488,23 @@ html[data-theme="dark"] .container--outer {
 }
 
 html[data-theme="dark"] a {
-	color: #f0f0f0;
+	color: var(--palmo-link);
+}
+
+/* Dark body / TOC links: light resting text (hover handled in fine-pointer block). */
+html[data-theme="dark"] .content a,
+html[data-theme="dark"] .warning a,
+html[data-theme="dark"] .toc__menu a {
+	color: var(--palmo-link);
+	text-decoration: none;
 }
 
 html[data-theme="dark"] h3 a {
-	color: #f0f0f0 !important;
+	color: var(--palmo-heading) !important;
 }
 
 html[data-theme="dark"] a.list__footer-readmore {
-	color: #f0f0f0 !important;
+	color: var(--palmo-heading) !important;
 }
 
 html[data-theme="dark"] .meta,
@@ -427,24 +513,36 @@ html[data-theme="dark"] .meta__text,
 html[data-theme="dark"] time.meta__text,
 html[data-theme="dark"] figcaption,
 html[data-theme="dark"] .empty-subtitle {
-	color: #a0a0a0;
+	color: var(--palmo-muted);
 }
 
 html[data-theme="dark"] .meta__icon {
-	fill: #888;
+	fill: var(--palmo-muted);
 }
 
 html[data-theme="dark"] hr {
-	border-top-color: #333;
+	border-top-color: var(--palmo-border);
 }
 
 html[data-theme="dark"] .logo__tagline {
-	border-top-color: #333;
+	border-top-color: var(--palmo-border);
 }
 
-/* Dark-mode toggle chrome */
+/* Dark-mode toggle chrome (header surface follows theme) */
 html[data-theme="dark"] .theme-toggle-wrap .theme-toggle {
-	color: #f0f0f0;
+	color: var(--palmo-heading);
+}
+
+/*
+ * Icon hover follows the surface under the icon, not the page theme alone:
+ * light surfaces → --palmo-red; dark surfaces → --palmo-red-bright.
+ * Header toggle sits on --palmo-surface; toolbar icons sit on --palmo-chrome.
+ */
+@media (hover: hover) and (pointer: fine) {
+	html[data-theme="dark"] .theme-toggle-wrap--header .theme-toggle:hover,
+	html[data-theme="dark"] .theme-toggle-wrap--header .theme-toggle:focus-visible {
+		color: var(--palmo-red-bright);
+	}
 }
 
 /* Header tabs + tags: stay white on hover in dark mode (override global a:hover red) */
@@ -457,49 +555,36 @@ html[data-theme="dark"] .tags__link:hover,
 html[data-theme="dark"] .tags__item:hover .tags__link,
 html[data-theme="dark"] .widget-taglist__link,
 html[data-theme="dark"] .widget-taglist__link:hover {
-	color: #fff !important;
+	color: var(--palmo-white) !important;
 }
 
 html[data-theme="dark"] .logo__title img {
 	filter: brightness(1.15);
 }
 
-html[data-theme="dark"] pre,
-html[data-theme="dark"] code {
-	background-color: #111;
-	border-color: #333;
-	color: #e6e6e6;
-}
-
-html[data-theme="dark"] pre code {
-	background: inherit;
-	border: 0;
-}
-
 html[data-theme="dark"] kbd {
-	color: #fff;
-	background-color: #2a2a2a;
+	color: var(--palmo-white);
+	background-color: var(--palmo-raised);
 }
 
 html[data-theme="dark"] blockquote {
-	border-left-color: #e22d30;
-	color: #cfcfcf;
+	border-left-color: var(--palmo-red);
+	color: var(--palmo-body);
 }
 
-html[data-theme="dark"] mark {
-	background-color: #5c4a00;
-	color: #fff3bf;
+html[data-theme="dark"] mark:not(.site-search__match) {
+	background-color: var(--palmo-mark-bg);
+	color: var(--palmo-mark-text);
 }
 
 html[data-theme="dark"] .toc {
-	background: #1a1a1a;
-	border-color: #333;
-	color: #a0a0a0;
+	background: var(--palmo-surface);
+	border-color: var(--palmo-border);
+	color: var(--palmo-muted);
 }
 
 html[data-theme="dark"] .toc__menu a {
-	color: #e6e6e6;
-	border-bottom-color: #333;
+	border-bottom-color: var(--palmo-border);
 }
 
 /* Sidebar widgets + authorbox: no fill in light mode — keep transparent in dark too.
@@ -509,21 +594,21 @@ html[data-theme="dark"] .widget,
 html[data-theme="dark"] .related-posts,
 html[data-theme="dark"] .page-info {
 	background: transparent;
-	border-color: #333;
+	border-color: var(--palmo-border);
 }
 
 html[data-theme="dark"] .authorbox {
-	border-top-color: #333;
-	border-bottom-color: #333;
+	border-top-color: var(--palmo-border);
+	border-bottom-color: var(--palmo-border);
 }
 
 html[data-theme="dark"] .authorbox__avatar {
-	border-color: #333;
+	border-color: var(--palmo-border);
 }
 
 /* Keep the red accent underline — tweening it to gray made titles look late */
 html[data-theme="dark"] .widget__title {
-	border-bottom-color: #e22d30;
+	border-bottom-color: var(--palmo-red);
 }
 
 html[data-theme="dark"] .authorbox__title,
@@ -532,64 +617,65 @@ html[data-theme="dark"] .related-posts__title {
 }
 
 html[data-theme="dark"] .widget__item {
-	border-bottom-color: #333;
+	border-bottom-color: var(--palmo-border);
 }
 
 html[data-theme="dark"] .list__item,
 html[data-theme="dark"] .post__meta,
 html[data-theme="dark"] .pagination,
 html[data-theme="dark"] .main__header {
-	border-color: #333;
+	border-color: var(--palmo-border);
 }
 
 html[data-theme="dark"] table,
 html[data-theme="dark"] th,
 html[data-theme="dark"] td {
-	border-color: #333;
+	border-color: var(--palmo-border);
 }
 
 html[data-theme="dark"] th {
-	background: #141414;
+	background: var(--palmo-page);
 }
 
 html[data-theme="dark"] .warning {
-	border-color: #444;
+	border-color: var(--palmo-border);
 }
 
 html[data-theme="dark"] .warning__icon {
-	fill: #555;
+	fill: var(--palmo-border-strong);
 }
 
 html[data-theme="dark"] .pager__item a,
 html[data-theme="dark"] .pagination__item {
-	background: #3a3a3a;
-	border-color: #555;
-	color: #fff;
+	background: var(--palmo-hover);
+	border-color: var(--palmo-border-strong);
+	color: var(--palmo-white);
 }
 
 html[data-theme="dark"] .pager__item a:hover,
 html[data-theme="dark"] .pagination__item:hover {
-	background: #4a4a4a;
-	color: #fff;
+	background: color-mix(in srgb, var(--palmo-hover) 80%, var(--palmo-white));
+	color: var(--palmo-white);
 }
 
 html[data-theme="dark"] .pager__item--current a,
 html[data-theme="dark"] .pagination__item--current {
-	background: #e22d30;
-	color: #fff;
-	border-color: #e22d30;
+	background: var(--palmo-red);
+	color: var(--palmo-white);
+	border-color: var(--palmo-red);
 }
 
 html[data-theme="dark"] input,
 html[data-theme="dark"] textarea,
 html[data-theme="dark"] select {
-	color: #e6e6e6;
-	background: #111;
-	border-color: #444;
+	color: var(--palmo-body);
+	background: var(--palmo-page);
+	border-color: var(--palmo-border);
 }
 
 html[data-theme="dark"] .highlight,
 html[data-theme="dark"] .highlighttable {
-	background: #111;
-	border-color: #333;
+	/* Monokai block chrome is theme-stable; keep border aligned */
+	background: #272822;
+	border-color: #1d1e19;
 }

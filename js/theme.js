@@ -7,7 +7,7 @@
 	/* Locked: easings.net easeOutExpo @ 800ms (CSS gate matches) */
 	var THEME_MS = 800;
 	var root = document.documentElement;
-	var toggle = document.querySelector('[data-theme-toggle]');
+	var toggles = document.querySelectorAll('[data-theme-toggle]');
 	var ready = false;
 	var gateTimer = null;
 
@@ -113,14 +113,17 @@
 	}
 
 	function syncToggle(theme) {
-		if (!toggle) {
+		if (!toggles.length) {
 			return;
 		}
 		var isDark = theme === 'dark';
-		toggle.classList.toggle('theme-toggle--toggled', isDark);
-		toggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
-		toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-		toggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+		for (var i = 0; i < toggles.length; i++) {
+			var toggle = toggles[i];
+			toggle.classList.toggle('theme-toggle--toggled', isDark);
+			toggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+			toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+			toggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+		}
 	}
 
 	function toggleTheme() {
@@ -139,8 +142,10 @@
 		window.requestAnimationFrame(endBoot);
 	});
 
-	if (toggle) {
-		toggle.addEventListener('click', toggleTheme, false);
+	if (toggles.length) {
+		for (var i = 0; i < toggles.length; i++) {
+			toggles[i].addEventListener('click', toggleTheme, false);
+		}
 	}
 
 	try {

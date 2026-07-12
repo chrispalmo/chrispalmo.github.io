@@ -1,11 +1,38 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en-us">
+<html class="no-js" lang="en-us" data-search-placement="sidebar" data-search-mobile="menu-dropdown" data-search-highlight="red-on-black" data-search-icon="text-search">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Automating deployment of a Hugo website to Github Pages using powershell scripts - Chris Palmieri</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<script>
+	/* Hide restored open-search chrome ASAP on bfcache Back (before search.js runs). */
+	(function () {
+		window.addEventListener("pageshow", function (event) {
+			if (!event.persisted) return;
+			document.documentElement.classList.add("palmo-bfcache-restore");
+			document.documentElement.classList.remove("has-menu-search-query", "has-search-open");
+			var list = document.querySelector("[data-menu-list]") || document.querySelector(".menu__list");
+			if (list) list.classList.remove("menu__list--active", "menu__list--transition");
+			var btn = document.querySelector(".menu__btn");
+			if (btn) {
+				btn.classList.remove("menu__btn--active");
+				btn.setAttribute("aria-expanded", "false");
+			}
+			var backdrop = document.querySelector("[data-search-backdrop]");
+			if (backdrop) {
+				backdrop.hidden = true;
+				backdrop.setAttribute("hidden", "");
+			}
+			var menuBackdrop = document.querySelector("[data-menu-backdrop]");
+			if (menuBackdrop) {
+				menuBackdrop.hidden = true;
+				menuBackdrop.setAttribute("hidden", "");
+			}
+		}, true);
+	})();
+	</script>
 	<script>
 	(function(){try{
 		var themeKey="palmo-theme", userAtKey="palmo-theme-user-at", systemAtKey="palmo-theme-system-at";
@@ -48,9 +75,12 @@
 	
 	<link rel="preload" href="/fonts/open-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/palette.css">
 	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" href="/css/theme-toggles.css">
 	<link rel="stylesheet" href="/css/custom.css">
+	<link rel="stylesheet" href="/css/highlight.css">
+	<link rel="stylesheet" href="/css/search.css">
 	<link rel="shortcut icon" href="/favicon.ico">
 	
 	<script type="speculationrules">
@@ -115,21 +145,24 @@
 	<div class="container">
 		<div class="header__top">
 			<div class="logo">
-				<a class="logo__link" href="/" title="Chris Palmieri" rel="home">
+				<button type="button" class="logo__link logo__link--search" data-search-open aria-haspopup="dialog" aria-controls="site-search-dialog" aria-label="Search" title="Search">
 					<div class="logo__title">
 						<img src="/img/cp-logo-200.png" style="height:1em" alt=""/>
 						Chris Palmieri
 					</div>
-				</a>
+				</button>
 			</div>
-			<div class="theme-toggle-wrap">
-				
-				<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
-					<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" fill="currentColor" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32">
-  <clipPath id="theme-toggle__classic__cutout-classic">
+			<div class="header__actions">
+				<div class="theme-toggle-wrap theme-toggle-wrap--header">
+					
+					<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
+						
+						<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" fill="currentColor" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32">
+  
+  <clipPath id="theme-toggle-cutout-header">
     <path d="M0-5h30a1 1 0 0 0 9 13v24H0Z"/>
   </clipPath>
-  <g clip-path="url(#theme-toggle__classic__cutout-classic)">
+  <g clip-path="url(#theme-toggle-cutout-header)">
     <circle cx="16" cy="16" r="9.34"/>
     <g stroke="currentColor" stroke-width="1.5">
       <path d="M16 5.5v-4"/>
@@ -143,28 +176,83 @@
     </g>
   </g>
 </svg>
-				</button>
+
+					</button>
+				</div>
 			</div>
 		</div>
-		<nav class="menu">
-	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
-		<span class="menu__btn-title" tabindex="-1">Menu</span>
-	</button>
-	<ul class="menu__list">
+		<nav class="menu" data-site-menu>
+	<div class="menu__toolbar">
+		<button class="menu__btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Open menu" tabindex="0" data-menu-toggle>
+			<span class="menu__btn-title" tabindex="-1">≡</span>
+			<span class="menu__btn-icons" aria-hidden="true">
+				
+				<svg class="menu__btn-icon menu__btn-icon--open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 5H3"/><path d="M10 12H3"/><path d="M10 19H3"/><circle cx="17" cy="15" r="3"/><path d="m21 19-1.9-1.9"/></svg>
+				<svg class="menu__btn-icon menu__btn-icon--close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+			</span>
+		</button>
+		<div class="menu__brand">
+			<button type="button" class="menu__brand-toggle" data-menu-toggle aria-label="Toggle menu">
+				<img class="menu__brand-logo" src="/img/cp-logo-200.png" alt="" height="18" width="18"/>
+				<span class="menu__brand-title">Chris Palmieri</span>
+			</button>
+		</div>
+		<div class="theme-toggle-wrap theme-toggle-wrap--toolbar">
+			<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
+				
+				<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" fill="currentColor" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32">
+  
+  <clipPath id="theme-toggle-cutout-toolbar">
+    <path d="M0-5h30a1 1 0 0 0 9 13v24H0Z"/>
+  </clipPath>
+  <g clip-path="url(#theme-toggle-cutout-toolbar)">
+    <circle cx="16" cy="16" r="9.34"/>
+    <g stroke="currentColor" stroke-width="1.5">
+      <path d="M16 5.5v-4"/>
+      <path d="M16 30.5v-4"/>
+      <path d="M1.5 16h4"/>
+      <path d="M26.5 16h4"/>
+      <path d="m23.4 8.6 2.8-2.8"/>
+      <path d="m5.7 26.3 2.9-2.9"/>
+      <path d="m5.8 5.8 2.8 2.8"/>
+      <path d="m23.4 23.4 2.9 2.9"/>
+    </g>
+  </g>
+</svg>
+
+			</button>
+		</div>
+	</div>
+	<div class="menu__toolbar-spacer" data-menu-toolbar-spacer aria-hidden="true"></div>
+	<button type="button" class="menu__backdrop" data-menu-backdrop hidden aria-label="Close menu"></button>
+	<ul class="menu__list" data-menu-list>
+		<li class="menu__item menu__item--search" data-menu-search>
+			<label class="menu__search-field" for="site-search-input-menu">
+				<span class="menu__search-input-wrap">
+					<svg class="menu__search-magnifier" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+					<input class="menu__search-input" id="site-search-input-menu" data-search-input-menu type="text" autocomplete="off" spellcheck="false" placeholder="Search all pages..." aria-controls="site-search-results-menu" aria-autocomplete="list">
+					<button type="button" class="menu__search-clear" data-search-clear-menu hidden aria-label="Clear search">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+					</button>
+				</span>
+			</label>
+			<p class="menu__search-status" id="site-search-status-menu" data-search-status-menu role="status" aria-live="polite" hidden></p>
+			<ol class="menu__search-results" id="site-search-results-menu" data-search-results-menu role="listbox" aria-label="Search results" hidden></ol>
+		</li>
 		
-		<li class="menu__item menu__item--active">
+		<li class="menu__item menu__item--nav menu__item--active">
 			<a class="menu__link" href="/"><span class="menu__text">Blog</span></a>
 		</li>
 		
-		<li class="menu__item">
+		<li class="menu__item menu__item--nav">
 			<a class="menu__link" href="/about/"><span class="menu__text">About</span></a>
 		</li>
 		
-		<li class="menu__item">
+		<li class="menu__item menu__item--nav">
 			<a class="menu__link" href="/contact/" data-analytics-contact="/contact/"><span class="menu__text">Contact</span></a>
 		</li>
 		
-		<li class="menu__item">
+		<li class="menu__item menu__item--nav">
 			<a class="menu__link" href="/categories/projects/"><span class="menu__text">Projects</span></a>
 		</li>
 		
@@ -237,83 +325,83 @@
 <li><strong><code>build_commit_push_clear_cache.ps1</code></strong>: builds the website, uploads to server (in this case, via a git commit to GitHub), clears Cloudflare content delivery cache.</li>
 </ul>
 <h3 id="configjson"><strong><code>config.json</code></strong></h3>
-<pre><code class="language-powershell">{
-   'production_build_directory': 'PATH//TO//PRODUCTION//BUILD//DIRECTORY',
-   'CloudflareAdminEmail': 'YOUR_CLOUDFLARE_ADMIN_EMAIL',
-   'CloudflareApiKey': 'YOUR_CLOUDFLARE_API_KEY',
-   'CloudflareZoneId': 'YOUR_CLOUDFLARE_ZONE_ID'
+<pre class="highlight" tabindex="0"><code class="hljs language-powershell">{
+   <span class="hljs-string">&#x27;production_build_directory&#x27;</span>: <span class="hljs-string">&#x27;PATH//TO//PRODUCTION//BUILD//DIRECTORY&#x27;</span>,
+   <span class="hljs-string">&#x27;CloudflareAdminEmail&#x27;</span>: <span class="hljs-string">&#x27;YOUR_CLOUDFLARE_ADMIN_EMAIL&#x27;</span>,
+   <span class="hljs-string">&#x27;CloudflareApiKey&#x27;</span>: <span class="hljs-string">&#x27;YOUR_CLOUDFLARE_API_KEY&#x27;</span>,
+   <span class="hljs-string">&#x27;CloudflareZoneId&#x27;</span>: <span class="hljs-string">&#x27;YOUR_CLOUDFLARE_ZONE_ID&#x27;</span>
 }
 </code></pre>
 <p>Note the double backslashes <code>\\</code> in the <code>production_build_directory</code> path. The first backslash is an escape character used by the Powershell <code>ConvertFrom-Json</code> parser.</p>
 <h3 id="publishps1"><strong><code>publish.ps1</code></strong></h3>
-<pre><code class="language-powershell"># Import configurations and secret keys from config.json
+<pre class="highlight" tabindex="0"><code class="hljs language-powershell"><span class="hljs-comment"># Import configurations and secret keys from config.json</span>
 
-$config = Get-Content -Raw -Path .\scripts\config.json | ConvertFrom-Json
+<span class="hljs-variable">$config</span> = <span class="hljs-built_in">Get-Content</span> <span class="hljs-literal">-Raw</span> <span class="hljs-literal">-Path</span> .\scripts\config.json | <span class="hljs-built_in">ConvertFrom-Json</span>
 
-# Pass the configurations and secret keys as arguments into the script that does the actual work:
+<span class="hljs-comment"># Pass the configurations and secret keys as arguments into the script that does the actual work:</span>
 
-### **`./scripts/build_commit_push_clear_cache.ps1`**
- -production_build_directory $config.production_build_directory `
- -CloudflareAdminEmail $config.CloudflareAdminEmail `
- -CloudflareApiKey $config.CloudflareApiKey `
- -CloudflareZoneId $config.CloudflareZoneId
+<span class="hljs-comment">### **`./scripts/build_commit_push_clear_cache.ps1`**</span>
+ <span class="hljs-literal">-production_build_directory</span> <span class="hljs-variable">$config</span>.production_build_directory `
+ <span class="hljs-literal">-CloudflareAdminEmail</span> <span class="hljs-variable">$config</span>.CloudflareAdminEmail `
+ <span class="hljs-literal">-CloudflareApiKey</span> <span class="hljs-variable">$config</span>.CloudflareApiKey `
+ <span class="hljs-literal">-CloudflareZoneId</span> <span class="hljs-variable">$config</span>.CloudflareZoneId
 </code></pre>
 <p>Note that the <code>production_build_directory</code> is a separate git repository to the Hugo source code, in order to comply with Github Pages hosting requirements.</p>
 <p>The real work is done by <code>build_commit_push_clear_cache.ps1</code>:</p>
 <h3 id="build-commit-push-clear-cacheps1"><strong><code>build_commit_push_clear_cache.ps1</code></strong></h3>
-<pre><code class="language-powershell">Param(
-    [parameter(Mandatory=$true)]
-    [string] $production_build_directory,
-    [parameter(Mandatory=$true)]
-    [string] $AdminEmail,
-    [parameter(Mandatory=$true)]
-    [string] $ApiKey,
-    [parameter(Mandatory=$true)]
-    [string] $ZoneId
+<pre class="highlight" tabindex="0"><code class="hljs language-powershell"><span class="hljs-keyword">Param</span>(
+    [<span class="hljs-type">parameter</span>(<span class="hljs-type">Mandatory</span>=<span class="hljs-variable">$true</span>)]
+    [<span class="hljs-built_in">string</span>] <span class="hljs-variable">$production_build_directory</span>,
+    [<span class="hljs-type">parameter</span>(<span class="hljs-type">Mandatory</span>=<span class="hljs-variable">$true</span>)]
+    [<span class="hljs-built_in">string</span>] <span class="hljs-variable">$AdminEmail</span>,
+    [<span class="hljs-type">parameter</span>(<span class="hljs-type">Mandatory</span>=<span class="hljs-variable">$true</span>)]
+    [<span class="hljs-built_in">string</span>] <span class="hljs-variable">$ApiKey</span>,
+    [<span class="hljs-type">parameter</span>(<span class="hljs-type">Mandatory</span>=<span class="hljs-variable">$true</span>)]
+    [<span class="hljs-built_in">string</span>] <span class="hljs-variable">$ZoneId</span>
 );
 
-# Build the website
+<span class="hljs-comment"># Build the website</span>
 
-Read-Host -Prompt (&quot;Initializing production build. This will delete all files in &quot; `
- + $production_build_directory `
- + &quot;. Press any key to continue, or ctrl+c to abort&quot;)
+<span class="hljs-built_in">Read-Host</span> <span class="hljs-literal">-Prompt</span> (<span class="hljs-string">&quot;Initializing production build. This will delete all files in &quot;</span> `
+ + <span class="hljs-variable">$production_build_directory</span> `
+ + <span class="hljs-string">&quot;. Press any key to continue, or ctrl+c to abort&quot;</span>)
 
-hugo --cleanDestinationDir `
- --destination $production_build_directory
+hugo <span class="hljs-literal">--cleanDestinationDir</span> `
+ <span class="hljs-literal">--destination</span> <span class="hljs-variable">$production_build_directory</span>
 
-# Upload the website
+<span class="hljs-comment"># Upload the website</span>
 
-Read-Host -prompt (&quot;Initializing git commit and push for all files in &quot; `
- + $production_build_directory `
- + &quot;. Press any key to continue or ctrl+c to abort&quot;)
+<span class="hljs-built_in">Read-Host</span> <span class="hljs-literal">-prompt</span> (<span class="hljs-string">&quot;Initializing git commit and push for all files in &quot;</span> `
+ + <span class="hljs-variable">$production_build_directory</span> `
+ + <span class="hljs-string">&quot;. Press any key to continue or ctrl+c to abort&quot;</span>)
 
-git -C $production_build_directory add *
-git -C $production_build_directory status
+git <span class="hljs-literal">-C</span> <span class="hljs-variable">$production_build_directory</span> add *
+git <span class="hljs-literal">-C</span> <span class="hljs-variable">$production_build_directory</span> status
 
-$git_commit_message = Read-Host (&quot;Enter a short commit message, or ctrl+c to abort&quot;)
+<span class="hljs-variable">$git_commit_message</span> = <span class="hljs-built_in">Read-Host</span> (<span class="hljs-string">&quot;Enter a short commit message, or ctrl+c to abort&quot;</span>)
 
-git -C $production_build_directory checkout master
-git -C $production_build_directory commit -a -m $git_commit_message
-git -C $production_build_directory push
+git <span class="hljs-literal">-C</span> <span class="hljs-variable">$production_build_directory</span> checkout master
+git <span class="hljs-literal">-C</span> <span class="hljs-variable">$production_build_directory</span> commit <span class="hljs-literal">-a</span> <span class="hljs-literal">-m</span> <span class="hljs-variable">$git_commit_message</span>
+git <span class="hljs-literal">-C</span> <span class="hljs-variable">$production_build_directory</span> push
 
-# Clear the Cloudflare cache
-&lt;# Credit to [Niels Swimberghe]
-(https://swimburger.net/blog/powershell/powershell-snippet-clearing-cloudflare-cache-with-cloudflares-api) #&gt;
+<span class="hljs-comment"># Clear the Cloudflare cache</span>
+<span class="hljs-comment">&lt;# Credit to [Niels Swimberghe]
+(https://swimburger.net/blog/powershell/powershell-snippet-clearing-cloudflare-cache-with-cloudflares-api) #&gt;</span>
 
-Read-Host -Prompt &quot;About to clear the Cloudflare cache. Press any key to continue, or ctrl+c to abort&quot;
+<span class="hljs-built_in">Read-Host</span> <span class="hljs-literal">-Prompt</span> <span class="hljs-string">&quot;About to clear the Cloudflare cache. Press any key to continue, or ctrl+c to abort&quot;</span>
 
-$PurgeCacheUri = &quot;https://api.cloudflare.com/client/v4/zones/$ZoneId/purge_cache&quot;;
-$RequestHeader = @{
-    'X-Auth-Email' = $AdminEmail
-    'X-Auth-Key' = $ApiKey
+<span class="hljs-variable">$PurgeCacheUri</span> = <span class="hljs-string">&quot;https://api.cloudflare.com/client/v4/zones/<span class="hljs-variable">$ZoneId</span>/purge_cache&quot;</span>;
+<span class="hljs-variable">$RequestHeader</span> = <span class="hljs-selector-tag">@</span>{
+    <span class="hljs-string">&#x27;X-Auth-Email&#x27;</span> = <span class="hljs-variable">$AdminEmail</span>
+    <span class="hljs-string">&#x27;X-Auth-Key&#x27;</span> = <span class="hljs-variable">$ApiKey</span>
 };
-$RequestBody = '{&quot;purge_everything&quot;:true}';
-Invoke-RestMethod `
-    -Uri $PurgeCacheUri `
-    -Method Delete `
-    -ContentType  &quot;application/json&quot; `
-    -Headers $requestHeader `
-    -Body $RequestBody
+<span class="hljs-variable">$RequestBody</span> = <span class="hljs-string">&#x27;{&quot;purge_everything&quot;:true}&#x27;</span>;
+<span class="hljs-built_in">Invoke-RestMethod</span> `
+    <span class="hljs-literal">-Uri</span> <span class="hljs-variable">$PurgeCacheUri</span> `
+    <span class="hljs-literal">-Method</span> Delete `
+    <span class="hljs-literal">-ContentType</span>  <span class="hljs-string">&quot;application/json&quot;</span> `
+    <span class="hljs-literal">-Headers</span> <span class="hljs-variable">$requestHeader</span> `
+    <span class="hljs-literal">-Body</span> <span class="hljs-variable">$RequestBody</span>
 </code></pre>
 <h2 id="notes">Notes</h2>
 <ul>
@@ -384,6 +472,19 @@ Invoke-RestMethod `
 
 			</div>
 			<aside class="sidebar">
+	<div class="widget-search widget site-search-slot site-search-slot--sidebar">
+		
+		
+<button type="button" class="site-search__trigger site-search__trigger--sidebar" data-search-open aria-haspopup="dialog" aria-controls="site-search-dialog" aria-label="Search">
+	<span class="site-search__icons" aria-hidden="true">
+		<svg class="site-search__icon site-search__icon--text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 5H3"/><path d="M10 12H3"/><path d="M10 19H3"/><circle cx="17" cy="15" r="3"/><path d="m21 19-1.9-1.9"/></svg>
+	</span>
+	<span class="site-search__trigger-label">Search</span>
+	<span class="site-search__shortcut" aria-hidden="true">⌘K</span>
+</button>
+
+	</div>
+
 	<div class="widget-recent widget">
 		<h4 class="widget__title">Recent Posts</h4>
 		<div class="widget__content">
@@ -506,8 +607,34 @@ Invoke-RestMethod `
 </footer>
 
 	</div>
+	<div class="site-search" data-site-search>
+	<div class="site-search__backdrop" data-search-backdrop hidden>
+		<section class="site-search__dialog" id="site-search-dialog" role="dialog" aria-modal="true" aria-labelledby="site-search-title">
+			<div class="site-search__chrome">
+				<h2 class="site-search__title" id="site-search-title">Search</h2>
+				<button type="button" class="site-search__close" data-search-close aria-label="Close search">
+					<svg class="site-search__close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+				</button>
+			</div>
+			<label class="site-search__field" for="site-search-input">
+				<span class="site-search__input-wrap">
+					<svg class="site-search__magnifier" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+					<input class="site-search__input" id="site-search-input" data-search-input type="text" role="combobox" aria-autocomplete="list" aria-controls="site-search-results" aria-expanded="false" autocomplete="off" spellcheck="false" placeholder="Search all pages..." aria-describedby="site-search-status">
+					<button type="button" class="site-search__clear" data-search-clear hidden aria-label="Clear search">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+					</button>
+				</span>
+			</label>
+			<p class="site-search__status" id="site-search-status" data-search-status role="status" aria-live="polite" hidden></p>
+			<ol class="site-search__results" id="site-search-results" data-search-results role="listbox" aria-label="Search results"></ol>
+		</section>
+	</div>
+</div>
+
 	<script async defer src="/js/menu.js"></script>
 	<script defer src="/js/theme.js"></script>
 	<script async defer src="/js/analytics.js"></script>
+	<script defer src="/js/search-core.js"></script>
+	<script defer src="/js/search.js"></script>
 </body>
 </html>

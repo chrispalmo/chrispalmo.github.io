@@ -1,11 +1,38 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en-us">
+<html class="no-js" lang="en-us" data-search-placement="sidebar" data-search-mobile="menu-dropdown" data-search-highlight="red-on-black" data-search-icon="text-search">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Push or Pull State with React Context (useContext, useState, useRef, useCallback) - Chris Palmieri</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<script>
+	/* Hide restored open-search chrome ASAP on bfcache Back (before search.js runs). */
+	(function () {
+		window.addEventListener("pageshow", function (event) {
+			if (!event.persisted) return;
+			document.documentElement.classList.add("palmo-bfcache-restore");
+			document.documentElement.classList.remove("has-menu-search-query", "has-search-open");
+			var list = document.querySelector("[data-menu-list]") || document.querySelector(".menu__list");
+			if (list) list.classList.remove("menu__list--active", "menu__list--transition");
+			var btn = document.querySelector(".menu__btn");
+			if (btn) {
+				btn.classList.remove("menu__btn--active");
+				btn.setAttribute("aria-expanded", "false");
+			}
+			var backdrop = document.querySelector("[data-search-backdrop]");
+			if (backdrop) {
+				backdrop.hidden = true;
+				backdrop.setAttribute("hidden", "");
+			}
+			var menuBackdrop = document.querySelector("[data-menu-backdrop]");
+			if (menuBackdrop) {
+				menuBackdrop.hidden = true;
+				menuBackdrop.setAttribute("hidden", "");
+			}
+		}, true);
+	})();
+	</script>
 	<script>
 	(function(){try{
 		var themeKey="palmo-theme", userAtKey="palmo-theme-user-at", systemAtKey="palmo-theme-system-at";
@@ -48,9 +75,12 @@
 	
 	<link rel="preload" href="/fonts/open-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/palette.css">
 	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" href="/css/theme-toggles.css">
 	<link rel="stylesheet" href="/css/custom.css">
+	<link rel="stylesheet" href="/css/highlight.css">
+	<link rel="stylesheet" href="/css/search.css">
 	<link rel="shortcut icon" href="/favicon.ico">
 	
 	<script type="speculationrules">
@@ -115,21 +145,24 @@
 	<div class="container">
 		<div class="header__top">
 			<div class="logo">
-				<a class="logo__link" href="/" title="Chris Palmieri" rel="home">
+				<button type="button" class="logo__link logo__link--search" data-search-open aria-haspopup="dialog" aria-controls="site-search-dialog" aria-label="Search" title="Search">
 					<div class="logo__title">
 						<img src="/img/cp-logo-200.png" style="height:1em" alt=""/>
 						Chris Palmieri
 					</div>
-				</a>
+				</button>
 			</div>
-			<div class="theme-toggle-wrap">
-				
-				<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
-					<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" fill="currentColor" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32">
-  <clipPath id="theme-toggle__classic__cutout-classic">
+			<div class="header__actions">
+				<div class="theme-toggle-wrap theme-toggle-wrap--header">
+					
+					<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
+						
+						<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" fill="currentColor" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32">
+  
+  <clipPath id="theme-toggle-cutout-header">
     <path d="M0-5h30a1 1 0 0 0 9 13v24H0Z"/>
   </clipPath>
-  <g clip-path="url(#theme-toggle__classic__cutout-classic)">
+  <g clip-path="url(#theme-toggle-cutout-header)">
     <circle cx="16" cy="16" r="9.34"/>
     <g stroke="currentColor" stroke-width="1.5">
       <path d="M16 5.5v-4"/>
@@ -143,28 +176,83 @@
     </g>
   </g>
 </svg>
-				</button>
+
+					</button>
+				</div>
 			</div>
 		</div>
-		<nav class="menu">
-	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
-		<span class="menu__btn-title" tabindex="-1">Menu</span>
-	</button>
-	<ul class="menu__list">
+		<nav class="menu" data-site-menu>
+	<div class="menu__toolbar">
+		<button class="menu__btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Open menu" tabindex="0" data-menu-toggle>
+			<span class="menu__btn-title" tabindex="-1">≡</span>
+			<span class="menu__btn-icons" aria-hidden="true">
+				
+				<svg class="menu__btn-icon menu__btn-icon--open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 5H3"/><path d="M10 12H3"/><path d="M10 19H3"/><circle cx="17" cy="15" r="3"/><path d="m21 19-1.9-1.9"/></svg>
+				<svg class="menu__btn-icon menu__btn-icon--close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+			</span>
+		</button>
+		<div class="menu__brand">
+			<button type="button" class="menu__brand-toggle" data-menu-toggle aria-label="Toggle menu">
+				<img class="menu__brand-logo" src="/img/cp-logo-200.png" alt="" height="18" width="18"/>
+				<span class="menu__brand-title">Chris Palmieri</span>
+			</button>
+		</div>
+		<div class="theme-toggle-wrap theme-toggle-wrap--toolbar">
+			<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
+				
+				<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" fill="currentColor" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32">
+  
+  <clipPath id="theme-toggle-cutout-toolbar">
+    <path d="M0-5h30a1 1 0 0 0 9 13v24H0Z"/>
+  </clipPath>
+  <g clip-path="url(#theme-toggle-cutout-toolbar)">
+    <circle cx="16" cy="16" r="9.34"/>
+    <g stroke="currentColor" stroke-width="1.5">
+      <path d="M16 5.5v-4"/>
+      <path d="M16 30.5v-4"/>
+      <path d="M1.5 16h4"/>
+      <path d="M26.5 16h4"/>
+      <path d="m23.4 8.6 2.8-2.8"/>
+      <path d="m5.7 26.3 2.9-2.9"/>
+      <path d="m5.8 5.8 2.8 2.8"/>
+      <path d="m23.4 23.4 2.9 2.9"/>
+    </g>
+  </g>
+</svg>
+
+			</button>
+		</div>
+	</div>
+	<div class="menu__toolbar-spacer" data-menu-toolbar-spacer aria-hidden="true"></div>
+	<button type="button" class="menu__backdrop" data-menu-backdrop hidden aria-label="Close menu"></button>
+	<ul class="menu__list" data-menu-list>
+		<li class="menu__item menu__item--search" data-menu-search>
+			<label class="menu__search-field" for="site-search-input-menu">
+				<span class="menu__search-input-wrap">
+					<svg class="menu__search-magnifier" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+					<input class="menu__search-input" id="site-search-input-menu" data-search-input-menu type="text" autocomplete="off" spellcheck="false" placeholder="Search all pages..." aria-controls="site-search-results-menu" aria-autocomplete="list">
+					<button type="button" class="menu__search-clear" data-search-clear-menu hidden aria-label="Clear search">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+					</button>
+				</span>
+			</label>
+			<p class="menu__search-status" id="site-search-status-menu" data-search-status-menu role="status" aria-live="polite" hidden></p>
+			<ol class="menu__search-results" id="site-search-results-menu" data-search-results-menu role="listbox" aria-label="Search results" hidden></ol>
+		</li>
 		
-		<li class="menu__item menu__item--active">
+		<li class="menu__item menu__item--nav menu__item--active">
 			<a class="menu__link" href="/"><span class="menu__text">Blog</span></a>
 		</li>
 		
-		<li class="menu__item">
+		<li class="menu__item menu__item--nav">
 			<a class="menu__link" href="/about/"><span class="menu__text">About</span></a>
 		</li>
 		
-		<li class="menu__item">
+		<li class="menu__item menu__item--nav">
 			<a class="menu__link" href="/contact/" data-analytics-contact="/contact/"><span class="menu__text">Contact</span></a>
 		</li>
 		
-		<li class="menu__item">
+		<li class="menu__item menu__item--nav">
 			<a class="menu__link" href="/categories/projects/"><span class="menu__text">Projects</span></a>
 		</li>
 		
@@ -226,21 +314,21 @@
 </ol>
 <h2 id="basic-pattern">The basic pattern</h2>
 <p>The basic pattern for making some <code>value</code> and the corresponding <code>setValue</code> function globally available is based around the below <code>ValueProvider</code>:</p>
-<pre><code class="language-tsx">const ValueContext = createContext&lt;number | null&gt;(null);
-const SetValueContext = createContext&lt;Dispatch&lt;SetStateAction&lt;number&gt;&gt; | null&gt;(
-  null
+<pre class="highlight" tabindex="0"><code class="hljs language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title class_">ValueContext</span> = createContext&lt;<span class="hljs-built_in">number</span> | <span class="hljs-literal">null</span>&gt;(<span class="hljs-literal">null</span>);
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">SetValueContext</span> = createContext&lt;<span class="hljs-title class_">Dispatch</span>&lt;<span class="hljs-title class_">SetStateAction</span>&lt;<span class="hljs-built_in">number</span>&gt;&gt; | <span class="hljs-literal">null</span>&gt;(
+  <span class="hljs-literal">null</span>
 );
 
-const ValueProvider = ({ children }: { children: React.ReactNode }) =&gt; {
-  const INITIAL_VALUE = 0;
-  const [value, setValue] = useState&lt;number&gt;(INITIAL_VALUE);
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">ValueProvider</span> = (<span class="hljs-params">{ children }: { children: React.ReactNode }</span>) =&gt; {
+  <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">INITIAL_VALUE</span> = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">const</span> [value, setValue] = useState&lt;<span class="hljs-built_in">number</span>&gt;(<span class="hljs-variable constant_">INITIAL_VALUE</span>);
 
-  return (
-    &lt;ValueContext.Provider value={value}&gt;
-      &lt;SetValueContext.Provider value={setValue}&gt;
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ValueContext.Provider</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{value}</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">SetValueContext.Provider</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{setValue}</span>&gt;</span>
         {children}
-      &lt;/SetValueContext.Provider&gt;
-    &lt;/ValueContext.Provider&gt;
+      <span class="hljs-tag">&lt;/<span class="hljs-name">SetValueContext.Provider</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ValueContext.Provider</span>&gt;</span></span>
   );
 };
 </code></pre>
@@ -250,55 +338,55 @@ const ValueProvider = ({ children }: { children: React.ReactNode }) =&gt; {
 <li><code>LogValueButton</code>: logs the current <code>value</code> in the console when clicked, and</li>
 <li><code>ValueDisplay</code>: displays the current <code>value</code>.</li>
 </ul>
-<pre><code class="language-tsx">const SetValueButton = () =&gt; {
-  const setValue = useContext(SetValueContext);
-  return (
-    &lt;ButtonWithRenderCount
-      text=&quot;set random value&quot;
-      onClick={() =&gt; setValue &amp;&amp; setValue(Math.round(Math.random() * 100))}
-    /&gt;
+<pre class="highlight" tabindex="0"><code class="hljs language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">SetValueButton</span> = (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword">const</span> setValue = <span class="hljs-title function_">useContext</span>(<span class="hljs-title class_">SetValueContext</span>);
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ButtonWithRenderCount</span>
+      <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;set random value&quot;</span>
+      <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> setValue &amp;&amp; setValue(Math.round(Math.random() * 100))}
+    /&gt;</span>
   );
 };
 
-const LogValueButton = () =&gt; {
-  const value = useContext(ValueContext);
-  return (
-    &lt;ButtonWithRenderCount
-      text=&quot;console.log(value)&quot;
-      onClick={() =&gt; console.log(value)}
-    /&gt;
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">LogValueButton</span> = (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword">const</span> value = <span class="hljs-title function_">useContext</span>(<span class="hljs-title class_">ValueContext</span>);
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ButtonWithRenderCount</span>
+      <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;console.log(value)&quot;</span>
+      <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> console.log(value)}
+    /&gt;</span>
   );
 };
 
-const ValueDisplay = () =&gt; {
-  const value = useContext(ValueContext);
-  return &lt;div&gt;value: {value}&lt;/div&gt;;
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">ValueDisplay</span> = (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword">const</span> value = <span class="hljs-title function_">useContext</span>(<span class="hljs-title class_">ValueContext</span>);
+  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>value: {value}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
 };
 
-export const App = () =&gt; (
-  &lt;ValueProvider&gt;
-    &lt;SetValueButton /&gt;
-    &lt;LogValueButton /&gt;
-    &lt;ValueDisplay /&gt;
-  &lt;/ValueProvider&gt;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">App</span> = (<span class="hljs-params"></span>) =&gt; (
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ValueProvider</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">SetValueButton</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">LogValueButton</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ValueDisplay</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">ValueProvider</span>&gt;</span></span>
 );
 </code></pre>
 <p>Note the buttons are wrapped in <code>ButtonsWithRenderCount</code>, which (just for the purpose of <a href="#demo">the below demo</a>) displays the render count adjacent the button.</p>
-<pre><code class="language-tsx">const ButtonWithRenderCount = ({
+<pre class="highlight" tabindex="0"><code class="hljs language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">ButtonWithRenderCount</span> = (<span class="hljs-params">{
   text,
   onClick
 }: {
-  text: string;
-  onClick: () =&gt; void;
-}) =&gt; {
-  const renderCountRef = useRef(0);
-  renderCountRef.current += 1;
+  text: <span class="hljs-built_in">string</span>;
+  onClick: () =&gt; <span class="hljs-built_in">void</span>;
+}</span>) =&gt; {
+  <span class="hljs-keyword">const</span> renderCountRef = <span class="hljs-title function_">useRef</span>(<span class="hljs-number">0</span>);
+  renderCountRef.<span class="hljs-property">current</span> += <span class="hljs-number">1</span>;
 
-  return (
-    &lt;div&gt;
-      &lt;button onClick={onClick}&gt;{text}&lt;/button&gt;
-      &lt;span&gt;renders: {renderCountRef.current}&lt;/span&gt;
-    &lt;/div&gt;
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{onClick}</span>&gt;</span>{text}<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>renders: {renderCountRef.current}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
   );
 };
 </code></pre>
@@ -324,8 +412,8 @@ export const App = () =&gt; (
 <h2 id="improved-pattern">The improved pattern</h2>
 <p>The <code>LogValueButton</code> doesn't need to always know the current <code>value</code> – only where to get it when clicked. We could say the above pattern causes the <code>LogValueButton</code> to &quot;subscribe&quot; to the state (the &quot;Push&quot; pattern), while a more efficient pattern would allow it to &quot;get&quot; the state when required (the &quot;Pull&quot; pattern).</p>
 <p>To enable an option to consume <code>value</code> via the &quot;Pull&quot; pattern, <code>ValueProvider</code> can be updated as follows:</p>
-<pre><code class="language-diff">  const ValueContext = createContext&lt;number | null&gt;(null);
-+ const ValueRefContext = createContext&lt;MutableRefObject&lt;number&gt; | null&gt;(null);
+<pre class="highlight" tabindex="0"><code class="hljs language-diff">  const ValueContext = createContext&lt;number | null&gt;(null);
+<span class="hljs-addition">+ const ValueRefContext = createContext&lt;MutableRefObject&lt;number&gt; | null&gt;(null);</span>
   const SetValueContext = createContext&lt;Dispatch&lt;SetStateAction&lt;number&gt;&gt; | null&gt;(
     null
   );
@@ -333,16 +421,16 @@ export const App = () =&gt; (
   const ValueProvider = ({ children }: { children: React.ReactNode }) =&gt; {
     const INITIAL_VALUE = 0;
     const [value, setValue] = useState&lt;number&gt;(INITIAL_VALUE);
-+   const valueRef = useRef&lt;number&gt;(INITIAL_VALUE);
-+   valueRef.current = value;
+<span class="hljs-addition">+   const valueRef = useRef&lt;number&gt;(INITIAL_VALUE);</span>
+<span class="hljs-addition">+   valueRef.current = value;</span>
 
     return (
       &lt;ValueContext.Provider value={value}&gt;
-+       &lt;ValueRefContext.Provider value={valueRef}&gt;
+<span class="hljs-addition">+       &lt;ValueRefContext.Provider value={valueRef}&gt;</span>
           &lt;SetValueContext.Provider value={setValue}&gt;
             {children}
           &lt;/SetValueContext.Provider&gt;
-+       &lt;/ValueRefContext.Provider&gt;
+<span class="hljs-addition">+       &lt;/ValueRefContext.Provider&gt;</span>
       &lt;/ValueContext.Provider&gt;
     );
   };
@@ -354,28 +442,28 @@ export const App = () =&gt; (
 </blockquote>
 <p>In other words, while the <code>.current</code> property of the <code>valueRef</code> changes frequently, <strong>the <code>valueRef</code> object is stable for the lifetime of the provider</strong> (note that &quot;lifetime&quot; does not mean &quot;a render cycle&quot; – it means until the <code>ValueProvider</code> is unmounted, in which case all child consumer components are also unmounted).</p>
 <p>Because of this, we can define a custom hook <code>useGetValue</code>, and sleep soundly trusting it returns a <strong>stable</strong> callback that returns an object with the <code>.current</code> property always pointing to the latest <code>value</code>:</p>
-<pre><code class="language-tsx">const useGetValue = () =&gt; {
-  const valueRef = useContext(ValueRefContext);
-  return useCallback(() =&gt; valueRef?.current, [valueRef]);
+<pre class="highlight" tabindex="0"><code class="hljs language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">useGetValue</span> = (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword">const</span> valueRef = <span class="hljs-title function_">useContext</span>(<span class="hljs-title class_">ValueRefContext</span>);
+  <span class="hljs-keyword">return</span> <span class="hljs-title function_">useCallback</span>(<span class="hljs-function">() =&gt;</span> valueRef?.<span class="hljs-property">current</span>, [valueRef]);
 };
 </code></pre>
 <p>To test out the new hook, we add an additional button, <code>LogGetValueButton</code>, which behaves in exactly the same way as the <code>LogValueButton</code> <strong>but only renders once</strong> 🎉🥳 :</p>
-<pre><code class="language-tsx">const LogGetValueButton = () =&gt; {
-  const getValue = useGetValue();
-  return (
-    &lt;ButtonWithRenderCount
-      text=&quot;console.log(getValue())&quot;
-      onClick={() =&gt; console.log(getValue())}
-    /&gt;
+<pre class="highlight" tabindex="0"><code class="hljs language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">LogGetValueButton</span> = (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword">const</span> getValue = <span class="hljs-title function_">useGetValue</span>();
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ButtonWithRenderCount</span>
+      <span class="hljs-attr">text</span>=<span class="hljs-string">&quot;console.log(getValue())&quot;</span>
+      <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> console.log(getValue())}
+    /&gt;</span>
   );
 };
 </code></pre>
 <p>After dropping it in alongside the other components...</p>
-<pre><code class="language-diff"> export const App = () =&gt; (
+<pre class="highlight" tabindex="0"><code class="hljs language-diff"> export const App = () =&gt; (
     &lt;ValueProvider&gt;
       &lt;SetValueButton /&gt;
       &lt;LogValueButton /&gt;
-+     &lt;LogGetValueButton /&gt;
+<span class="hljs-addition">+     &lt;LogGetValueButton /&gt;</span>
       &lt;ValueDisplay /&gt;
     &lt;/ValueProvider&gt;
  );
@@ -461,6 +549,19 @@ export const App = () =&gt; (
 
 			</div>
 			<aside class="sidebar">
+	<div class="widget-search widget site-search-slot site-search-slot--sidebar">
+		
+		
+<button type="button" class="site-search__trigger site-search__trigger--sidebar" data-search-open aria-haspopup="dialog" aria-controls="site-search-dialog" aria-label="Search">
+	<span class="site-search__icons" aria-hidden="true">
+		<svg class="site-search__icon site-search__icon--text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 5H3"/><path d="M10 12H3"/><path d="M10 19H3"/><circle cx="17" cy="15" r="3"/><path d="m21 19-1.9-1.9"/></svg>
+	</span>
+	<span class="site-search__trigger-label">Search</span>
+	<span class="site-search__shortcut" aria-hidden="true">⌘K</span>
+</button>
+
+	</div>
+
 	<div class="widget-recent widget">
 		<h4 class="widget__title">Recent Posts</h4>
 		<div class="widget__content">
@@ -583,8 +684,34 @@ export const App = () =&gt; (
 </footer>
 
 	</div>
+	<div class="site-search" data-site-search>
+	<div class="site-search__backdrop" data-search-backdrop hidden>
+		<section class="site-search__dialog" id="site-search-dialog" role="dialog" aria-modal="true" aria-labelledby="site-search-title">
+			<div class="site-search__chrome">
+				<h2 class="site-search__title" id="site-search-title">Search</h2>
+				<button type="button" class="site-search__close" data-search-close aria-label="Close search">
+					<svg class="site-search__close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+				</button>
+			</div>
+			<label class="site-search__field" for="site-search-input">
+				<span class="site-search__input-wrap">
+					<svg class="site-search__magnifier" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+					<input class="site-search__input" id="site-search-input" data-search-input type="text" role="combobox" aria-autocomplete="list" aria-controls="site-search-results" aria-expanded="false" autocomplete="off" spellcheck="false" placeholder="Search all pages..." aria-describedby="site-search-status">
+					<button type="button" class="site-search__clear" data-search-clear hidden aria-label="Clear search">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+					</button>
+				</span>
+			</label>
+			<p class="site-search__status" id="site-search-status" data-search-status role="status" aria-live="polite" hidden></p>
+			<ol class="site-search__results" id="site-search-results" data-search-results role="listbox" aria-label="Search results"></ol>
+		</section>
+	</div>
+</div>
+
 	<script async defer src="/js/menu.js"></script>
 	<script defer src="/js/theme.js"></script>
 	<script async defer src="/js/analytics.js"></script>
+	<script defer src="/js/search-core.js"></script>
+	<script defer src="/js/search.js"></script>
 </body>
 </html>

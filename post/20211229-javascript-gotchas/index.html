@@ -1,11 +1,38 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en-us">
+<html class="no-js" lang="en-us" data-search-placement="sidebar" data-search-mobile="menu-dropdown" data-search-highlight="red-on-black" data-search-icon="text-search">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>JS Gotchas with logical operators ||, &amp;&amp;, and ?? - Chris Palmieri</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<script>
+	/* Hide restored open-search chrome ASAP on bfcache Back (before search.js runs). */
+	(function () {
+		window.addEventListener("pageshow", function (event) {
+			if (!event.persisted) return;
+			document.documentElement.classList.add("palmo-bfcache-restore");
+			document.documentElement.classList.remove("has-menu-search-query", "has-search-open");
+			var list = document.querySelector("[data-menu-list]") || document.querySelector(".menu__list");
+			if (list) list.classList.remove("menu__list--active", "menu__list--transition");
+			var btn = document.querySelector(".menu__btn");
+			if (btn) {
+				btn.classList.remove("menu__btn--active");
+				btn.setAttribute("aria-expanded", "false");
+			}
+			var backdrop = document.querySelector("[data-search-backdrop]");
+			if (backdrop) {
+				backdrop.hidden = true;
+				backdrop.setAttribute("hidden", "");
+			}
+			var menuBackdrop = document.querySelector("[data-menu-backdrop]");
+			if (menuBackdrop) {
+				menuBackdrop.hidden = true;
+				menuBackdrop.setAttribute("hidden", "");
+			}
+		}, true);
+	})();
+	</script>
 	<script>
 	(function(){try{
 		var themeKey="palmo-theme", userAtKey="palmo-theme-user-at", systemAtKey="palmo-theme-system-at";
@@ -48,9 +75,12 @@
 	
 	<link rel="preload" href="/fonts/open-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/palette.css">
 	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" href="/css/theme-toggles.css">
 	<link rel="stylesheet" href="/css/custom.css">
+	<link rel="stylesheet" href="/css/highlight.css">
+	<link rel="stylesheet" href="/css/search.css">
 	<link rel="shortcut icon" href="/favicon.ico">
 	
 	<script type="speculationrules">
@@ -115,21 +145,24 @@
 	<div class="container">
 		<div class="header__top">
 			<div class="logo">
-				<a class="logo__link" href="/" title="Chris Palmieri" rel="home">
+				<button type="button" class="logo__link logo__link--search" data-search-open aria-haspopup="dialog" aria-controls="site-search-dialog" aria-label="Search" title="Search">
 					<div class="logo__title">
 						<img src="/img/cp-logo-200.png" style="height:1em" alt=""/>
 						Chris Palmieri
 					</div>
-				</a>
+				</button>
 			</div>
-			<div class="theme-toggle-wrap">
-				
-				<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
-					<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" fill="currentColor" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32">
-  <clipPath id="theme-toggle__classic__cutout-classic">
+			<div class="header__actions">
+				<div class="theme-toggle-wrap theme-toggle-wrap--header">
+					
+					<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
+						
+						<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" fill="currentColor" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32">
+  
+  <clipPath id="theme-toggle-cutout-header">
     <path d="M0-5h30a1 1 0 0 0 9 13v24H0Z"/>
   </clipPath>
-  <g clip-path="url(#theme-toggle__classic__cutout-classic)">
+  <g clip-path="url(#theme-toggle-cutout-header)">
     <circle cx="16" cy="16" r="9.34"/>
     <g stroke="currentColor" stroke-width="1.5">
       <path d="M16 5.5v-4"/>
@@ -143,28 +176,83 @@
     </g>
   </g>
 </svg>
-				</button>
+
+					</button>
+				</div>
 			</div>
 		</div>
-		<nav class="menu">
-	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
-		<span class="menu__btn-title" tabindex="-1">Menu</span>
-	</button>
-	<ul class="menu__list">
+		<nav class="menu" data-site-menu>
+	<div class="menu__toolbar">
+		<button class="menu__btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Open menu" tabindex="0" data-menu-toggle>
+			<span class="menu__btn-title" tabindex="-1">≡</span>
+			<span class="menu__btn-icons" aria-hidden="true">
+				
+				<svg class="menu__btn-icon menu__btn-icon--open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 5H3"/><path d="M10 12H3"/><path d="M10 19H3"/><circle cx="17" cy="15" r="3"/><path d="m21 19-1.9-1.9"/></svg>
+				<svg class="menu__btn-icon menu__btn-icon--close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+			</span>
+		</button>
+		<div class="menu__brand">
+			<button type="button" class="menu__brand-toggle" data-menu-toggle aria-label="Toggle menu">
+				<img class="menu__brand-logo" src="/img/cp-logo-200.png" alt="" height="18" width="18"/>
+				<span class="menu__brand-title">Chris Palmieri</span>
+			</button>
+		</div>
+		<div class="theme-toggle-wrap theme-toggle-wrap--toolbar">
+			<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
+				
+				<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" fill="currentColor" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32">
+  
+  <clipPath id="theme-toggle-cutout-toolbar">
+    <path d="M0-5h30a1 1 0 0 0 9 13v24H0Z"/>
+  </clipPath>
+  <g clip-path="url(#theme-toggle-cutout-toolbar)">
+    <circle cx="16" cy="16" r="9.34"/>
+    <g stroke="currentColor" stroke-width="1.5">
+      <path d="M16 5.5v-4"/>
+      <path d="M16 30.5v-4"/>
+      <path d="M1.5 16h4"/>
+      <path d="M26.5 16h4"/>
+      <path d="m23.4 8.6 2.8-2.8"/>
+      <path d="m5.7 26.3 2.9-2.9"/>
+      <path d="m5.8 5.8 2.8 2.8"/>
+      <path d="m23.4 23.4 2.9 2.9"/>
+    </g>
+  </g>
+</svg>
+
+			</button>
+		</div>
+	</div>
+	<div class="menu__toolbar-spacer" data-menu-toolbar-spacer aria-hidden="true"></div>
+	<button type="button" class="menu__backdrop" data-menu-backdrop hidden aria-label="Close menu"></button>
+	<ul class="menu__list" data-menu-list>
+		<li class="menu__item menu__item--search" data-menu-search>
+			<label class="menu__search-field" for="site-search-input-menu">
+				<span class="menu__search-input-wrap">
+					<svg class="menu__search-magnifier" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+					<input class="menu__search-input" id="site-search-input-menu" data-search-input-menu type="text" autocomplete="off" spellcheck="false" placeholder="Search all pages..." aria-controls="site-search-results-menu" aria-autocomplete="list">
+					<button type="button" class="menu__search-clear" data-search-clear-menu hidden aria-label="Clear search">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+					</button>
+				</span>
+			</label>
+			<p class="menu__search-status" id="site-search-status-menu" data-search-status-menu role="status" aria-live="polite" hidden></p>
+			<ol class="menu__search-results" id="site-search-results-menu" data-search-results-menu role="listbox" aria-label="Search results" hidden></ol>
+		</li>
 		
-		<li class="menu__item menu__item--active">
+		<li class="menu__item menu__item--nav menu__item--active">
 			<a class="menu__link" href="/"><span class="menu__text">Blog</span></a>
 		</li>
 		
-		<li class="menu__item">
+		<li class="menu__item menu__item--nav">
 			<a class="menu__link" href="/about/"><span class="menu__text">About</span></a>
 		</li>
 		
-		<li class="menu__item">
+		<li class="menu__item menu__item--nav">
 			<a class="menu__link" href="/contact/" data-analytics-contact="/contact/"><span class="menu__text">Contact</span></a>
 		</li>
 		
-		<li class="menu__item">
+		<li class="menu__item menu__item--nav">
 			<a class="menu__link" href="/categories/projects/"><span class="menu__text">Projects</span></a>
 		</li>
 		
@@ -217,24 +305,24 @@
 <li>To conditionally render a component in JSX only when it's prop(s) are defined, <code>{ prop &amp;&amp; &lt;Component prop={prop} /&gt; }</code> is very convenient, but exercise caution when <code>typeof prop === 'string'</code>, and when <code>typeof prop === 'number'</code>, use <code>{ prop !== undefined &amp;&amp; prop !== null &amp;&amp; &lt;Component prop={prop} /&gt; }</code> instead.</li>
 <li>Basic results for <code>||</code>, <code>&amp;&amp;</code>, and <code>??</code> are tabulated as a quick reference:</li>
 </ol>
-<pre><code class="language-js">┌──────────────────────┬───────────┬────────┬────────┐
+<pre class="highlight" tabindex="0"><code class="hljs language-js">┌──────────────────────┬───────────┬────────┬────────┐
 │        [a, b]        │  a &amp;&amp; b   │ a || b │ a ?? b │
 ├──────────────────────┼───────────┼────────┼────────┤
-│   [ null, 'foo' ]    │   null    │ 'foo'  │ 'foo'  │
-│ [ undefined, 'foo' ] │ undefined │ 'foo'  │ 'foo'  │
-│    [ '', 'foo' ]     │    ''     │ 'foo'  │   ''   │
-│     [ 0, 'foo' ]     │     0     │ 'foo'  │   0    │
-│    [ NaN, 'foo' ]    │    NaN    │ 'foo'  │  NaN   │
+│   [ <span class="hljs-literal">null</span>, <span class="hljs-string">&#x27;foo&#x27;</span> ]    │   <span class="hljs-literal">null</span>    │ <span class="hljs-string">&#x27;foo&#x27;</span>  │ <span class="hljs-string">&#x27;foo&#x27;</span>  │
+│ [ <span class="hljs-literal">undefined</span>, <span class="hljs-string">&#x27;foo&#x27;</span> ] │ <span class="hljs-literal">undefined</span> │ <span class="hljs-string">&#x27;foo&#x27;</span>  │ <span class="hljs-string">&#x27;foo&#x27;</span>  │
+│    [ <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-string">&#x27;foo&#x27;</span> ]     │    <span class="hljs-string">&#x27;&#x27;</span>     │ <span class="hljs-string">&#x27;foo&#x27;</span>  │   <span class="hljs-string">&#x27;&#x27;</span>   │
+│     [ <span class="hljs-number">0</span>, <span class="hljs-string">&#x27;foo&#x27;</span> ]     │     <span class="hljs-number">0</span>     │ <span class="hljs-string">&#x27;foo&#x27;</span>  │   <span class="hljs-number">0</span>    │
+│    [ <span class="hljs-title class_">NaN</span>, <span class="hljs-string">&#x27;foo&#x27;</span> ]    │    <span class="hljs-title class_">NaN</span>    │ <span class="hljs-string">&#x27;foo&#x27;</span>  │  <span class="hljs-title class_">NaN</span>   │
 └──────────────────────┴───────────┴────────┴────────┘
 </code></pre>
 <h2 id="the-gotchas">The Gotchas</h2>
 <h3 id="gotcha-1-using--instead-of--to-define-values-with-a-default-fallback">Gotcha #1: Using <code>||</code> instead of <code>??</code> to define values with a default fallback</h3>
 <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR">logical OR (<code>||</code>)</a> operator is part of the syntax you probably learned on your first day of writing javascript, and you would already be comfortable using it to write conditional <code>if</code>, <code>else</code>, <code>while</code> etc. statements.</p>
 <p>Then one day, you discover it can also be used to initialize variables to a default value:</p>
-<pre><code class="language-js">let userInput;
-const projectName = userInput || &quot;untitled project&quot;;
-console.log(projectName);
-// returns &quot;untitled project&quot;
+<pre class="highlight" tabindex="0"><code class="hljs language-js"><span class="hljs-keyword">let</span> userInput;
+<span class="hljs-keyword">const</span> projectName = userInput || <span class="hljs-string">&quot;untitled project&quot;</span>;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(projectName);
+<span class="hljs-comment">// returns &quot;untitled project&quot;</span>
 </code></pre>
 <p>Nice! You have seen some people use the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator">nullish coalescing operator (<code>??</code>)</a>, which seems to do the same thing (at least for this example), so why not just stick with the more familiar <code>||</code> syntax, and start using this to initialize variables everywhere? 🤔</p>
 <p>MDN provides the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR">below warning</a>:</p>
@@ -246,51 +334,51 @@ console.log(projectName);
 <p>The OR operator returns the value on the right if the expression on the left is <a href="https://www.designcise.com/web/tutorial/which-values-are-considered-falsy-in-javascript">falsy</a>, while the nullish coalescing operator returns the value on the right if expression on the left is a <a href="https://designcise.com/web/tutorial/what-is%E2%80%93a-nullish-value-in-javascript">nullish value</a> (i.e. null or undefined);</p>
 </blockquote>
 <p>Let's test a few examples to see how both operators compare:</p>
-<pre><code class="language-ts">const logiOr = (a, b) =&gt; a || b; // logical OR operator
-const nullCo = (a, b) =&gt; a ?? b; // nullish coalescing operator
+<pre class="highlight" tabindex="0"><code class="hljs language-ts"><span class="hljs-keyword">const</span> <span class="hljs-title function_">logiOr</span> = (<span class="hljs-params">a, b</span>) =&gt; a || b; <span class="hljs-comment">// logical OR operator</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">nullCo</span> = (<span class="hljs-params">a, b</span>) =&gt; a ?? b; <span class="hljs-comment">// nullish coalescing operator</span>
 
-const testInputs = [
-  [null, &quot;foo&quot;],
-  [undefined, &quot;foo&quot;],
-  [&quot;&quot;, &quot;foo&quot;],
-  [0, &quot;foo&quot;],
-  [NaN, &quot;foo&quot;],
+<span class="hljs-keyword">const</span> testInputs = [
+  [<span class="hljs-literal">null</span>, <span class="hljs-string">&quot;foo&quot;</span>],
+  [<span class="hljs-literal">undefined</span>, <span class="hljs-string">&quot;foo&quot;</span>],
+  [<span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;foo&quot;</span>],
+  [<span class="hljs-number">0</span>, <span class="hljs-string">&quot;foo&quot;</span>],
+  [<span class="hljs-title class_">NaN</span>, <span class="hljs-string">&quot;foo&quot;</span>],
 ];
 
-console.table(
-  testInputs.map(([a, b]) =&gt; {
-    return {
-      inputs: [a, b],
-      logiOr: logiOr(a, b),
-      nullCo: nullCo(a, b),
-      sameResult: logiOr(a, b) === nullCo(a, b),
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">table</span>(
+  testInputs.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">[a, b]</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> {
+      <span class="hljs-attr">inputs</span>: [a, b],
+      <span class="hljs-attr">logiOr</span>: <span class="hljs-title function_">logiOr</span>(a, b),
+      <span class="hljs-attr">nullCo</span>: <span class="hljs-title function_">nullCo</span>(a, b),
+      <span class="hljs-attr">sameResult</span>: <span class="hljs-title function_">logiOr</span>(a, b) === <span class="hljs-title function_">nullCo</span>(a, b),
     };
   })
 );
 
-// output:
+<span class="hljs-comment">// output:</span>
 ┌──────────────────────┬────────┬────────┬────────────┐
 │        inputs        │ logiOr │ nullCo │ sameResult │
 │──────────────────────┼────────┼────────┼────────────┤
-│   [ null, 'foo' ]    │ 'foo'  │ 'foo'  │    true    │
-│ [ undefined, 'foo' ] │ 'foo'  │ 'foo'  │    true    │
-│    [ '', 'foo' ]     │ 'foo'  │   ''   │   false    │//&lt;-gotcha!
-│     [ 0, 'foo' ]     │ 'foo'  │   0    │   false    │//&lt;-gotcha!
-│    [ NaN, 'foo' ]    │ 'foo'  │  NaN   │   false    │//&lt;-gotcha!
+│   [ <span class="hljs-literal">null</span>, <span class="hljs-string">&#x27;foo&#x27;</span> ]    │ <span class="hljs-string">&#x27;foo&#x27;</span>  │ <span class="hljs-string">&#x27;foo&#x27;</span>  │    <span class="hljs-literal">true</span>    │
+│ [ <span class="hljs-literal">undefined</span>, <span class="hljs-string">&#x27;foo&#x27;</span> ] │ <span class="hljs-string">&#x27;foo&#x27;</span>  │ <span class="hljs-string">&#x27;foo&#x27;</span>  │    <span class="hljs-literal">true</span>    │
+│    [ <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-string">&#x27;foo&#x27;</span> ]     │ <span class="hljs-string">&#x27;foo&#x27;</span>  │   <span class="hljs-string">&#x27;&#x27;</span>   │   <span class="hljs-literal">false</span>    │<span class="hljs-comment">//&lt;-gotcha!</span>
+│     [ <span class="hljs-number">0</span>, <span class="hljs-string">&#x27;foo&#x27;</span> ]     │ <span class="hljs-string">&#x27;foo&#x27;</span>  │   <span class="hljs-number">0</span>    │   <span class="hljs-literal">false</span>    │<span class="hljs-comment">//&lt;-gotcha!</span>
+│    [ <span class="hljs-title class_">NaN</span>, <span class="hljs-string">&#x27;foo&#x27;</span> ]    │ <span class="hljs-string">&#x27;foo&#x27;</span>  │  <span class="hljs-title class_">NaN</span>   │   <span class="hljs-literal">false</span>    │<span class="hljs-comment">//&lt;-gotcha!</span>
 └──────────────────────┴────────┴────────┴────────────┘
 </code></pre>
 <p>We can see that while <code>''</code>, <code>0</code>, and <code>NaN</code> are <em>falsy</em>, they are <strong>not</strong> <em>nullish</em>. Overlooking this difference would introduce bugs where a <em>falsy</em> value is actually a valid input:</p>
-<pre><code class="language-ts">// calculating golf scores
-const DEFAULT_HANDICAP = 3;
-const getScore = (points: number, handicap?: number) =&gt;
-  points - (handicap || DEFAULT_HANDICAP);
-getScore(10, 0); // returns `7`, instead of the expected `10`
+<pre class="highlight" tabindex="0"><code class="hljs language-ts"><span class="hljs-comment">// calculating golf scores</span>
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">DEFAULT_HANDICAP</span> = <span class="hljs-number">3</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">getScore</span> = (<span class="hljs-params"><span class="hljs-attr">points</span>: <span class="hljs-built_in">number</span>, <span class="hljs-attr">handicap</span>?: <span class="hljs-built_in">number</span></span>) =&gt;
+  points - (handicap || <span class="hljs-variable constant_">DEFAULT_HANDICAP</span>);
+<span class="hljs-title function_">getScore</span>(<span class="hljs-number">10</span>, <span class="hljs-number">0</span>); <span class="hljs-comment">// returns `7`, instead of the expected `10`</span>
 
-// adding text to a label (or maybe a sign in a game)
-const DEFAULT_TEXT = &quot;click to edit text&quot;;
-const labelText = (input: string) =&gt; input || DEFAULT_TEXT;
-// user tries to create a blank label / sign
-getText(&quot;&quot;); // returns &quot;click to edit text&quot;, instead of the expected &quot;&quot;
+<span class="hljs-comment">// adding text to a label (or maybe a sign in a game)</span>
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">DEFAULT_TEXT</span> = <span class="hljs-string">&quot;click to edit text&quot;</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">labelText</span> = (<span class="hljs-params"><span class="hljs-attr">input</span>: <span class="hljs-built_in">string</span></span>) =&gt; input || <span class="hljs-variable constant_">DEFAULT_TEXT</span>;
+<span class="hljs-comment">// user tries to create a blank label / sign</span>
+<span class="hljs-title function_">getText</span>(<span class="hljs-string">&quot;&quot;</span>); <span class="hljs-comment">// returns &quot;click to edit text&quot;, instead of the expected &quot;&quot;</span>
 </code></pre>
 <h4 id="recommendation">Recommendation</h4>
 <p>Of course there are cases where it is ok to use the <code>||</code> operator to fall back to a default value, but in my opinion the <code>??</code> operator should still be used, with any additional special handling for <em>falsy</em> values being explicitly defined, resulting in clear, readable code that is less likely to be broken by the next developer who may reasonably lack a complete knowledge of expected inputs or overlook the subtle implications of previous syntax choices.</p>
@@ -300,12 +388,12 @@ getText(&quot;&quot;); // returns &quot;click to edit text&quot;, instead of the
 <p>the [<code>&amp;&amp;</code>] operator returns the value of the first <a href="https://developer.mozilla.org/en-US/docs/Glossary/Falsy">falsy</a> operand encountered when evaluating from left to right, or the value of the last operand if they are all <a href="https://developer.mozilla.org/en-US/docs/Glossary/Truthy">truthy</a>.</p>
 </blockquote>
 <p>A common use is to conditionally render React components / JSX elements – in the below example, the <code>&lt;ErrorDetails/&gt;</code> component is only rendered when the <code>errorText</code> prop is provided:</p>
-<pre><code class="language-tsx">const ErrorMessage = (errorText?: string) =&gt; {
-  return (
-    &lt;&gt;
-      &lt;div&gt;An error occurred&lt;/div&gt;
-      {errorText &amp;&amp; &lt;ErrorDetails text={errorText} /&gt;}
-    &lt;/&gt;
+<pre class="highlight" tabindex="0"><code class="hljs language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">ErrorMessage</span> = (<span class="hljs-params"><span class="hljs-attr">errorText</span>?: <span class="hljs-built_in">string</span></span>) =&gt; {
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>An error occurred<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      {errorText &amp;&amp; <span class="hljs-tag">&lt;<span class="hljs-name">ErrorDetails</span> <span class="hljs-attr">text</span>=<span class="hljs-string">{errorText}</span> /&gt;</span>}
+    <span class="hljs-tag">&lt;/&gt;</span></span>
   );
 };
 </code></pre>
@@ -315,10 +403,10 @@ getText(&quot;&quot;); // returns &quot;click to edit text&quot;, instead of the
 <p>If you read the previous gotcha, you are already step ahead and know that if <code>errorText === ''</code>, the component will not render, and the empty string returned instead of the <code>ErrorDetails /&gt;</code> results in nothing being rendered.</p>
 <h4 id="mysterious-0s-and-nans-appearing-in-the-ui">Mysterious <code>0</code>s and <code>NaN</code>s appearing in the UI</h4>
 <p>In addition to the effects of <code>''</code>, <code>0</code>, and <code>NaN</code> being <em>falsy</em>, we additionally see some interesting behavior when the left-hand operator is <code>NaN</code> or <code>0</code>. The below example essentially uses the below JSX for conditional rendering:</p>
-<pre><code class="language-jsx">return &lt;&gt;
-  {value &amp;&amp; &lt;div&gt;Value `{value}` is TRUTHY&lt;/div&gt;}
-  {!value &amp;&amp; &lt;div&gt;Value `{value}` is FALSY&lt;/div&gt;;}
-&lt;/&gt;
+<pre class="highlight" tabindex="0"><code class="hljs language-jsx"><span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+  {value &amp;&amp; <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Value `{value}` is TRUTHY<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>}
+  {!value &amp;&amp; <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Value `{value}` is FALSY<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>;}
+<span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
 <p>At a quick glance, it looks like only one element should ever render, which is technically true, but look what appears when you set <code>value === NaN</code> or <code>value === 0</code>:</p>
 <p class="codepen" data-height="368" data-default-tab="result" data-slug-hash="MWEQOxp" data-user="chrispalmo" style="height: 368px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
@@ -329,20 +417,20 @@ getText(&quot;&quot;); // returns &quot;click to edit text&quot;, instead of the
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 <br/>
 <p>Including results for a new function <code>const logAnd = (a, b) =&gt; a &amp;&amp; b</code> for the tests above helps clarify why this occurs:</p>
-<pre><code class="language-js">┌──────────────────────┬───────────┬────────┬────────┐
+<pre class="highlight" tabindex="0"><code class="hljs language-js">┌──────────────────────┬───────────┬────────┬────────┐
 │        inputs        │  logAnd   │ condOr │ nullCo │
 ├──────────────────────┼───────────┼────────┼────────┤
-│   [ null, 'foo' ]    │   null    │ 'foo'  │ 'foo'  │
-│ [ undefined, 'foo' ] │ undefined │ 'foo'  │ 'foo'  │
-│    [ '', 'foo' ]     │    ''     │ 'foo'  │   ''   │
-│     [ 0, 'foo' ]     │     0     │ 'foo'  │   0    │
-│    [ NaN, 'foo' ]    │    NaN    │ 'foo'  │  NaN   │
+│   [ <span class="hljs-literal">null</span>, <span class="hljs-string">&#x27;foo&#x27;</span> ]    │   <span class="hljs-literal">null</span>    │ <span class="hljs-string">&#x27;foo&#x27;</span>  │ <span class="hljs-string">&#x27;foo&#x27;</span>  │
+│ [ <span class="hljs-literal">undefined</span>, <span class="hljs-string">&#x27;foo&#x27;</span> ] │ <span class="hljs-literal">undefined</span> │ <span class="hljs-string">&#x27;foo&#x27;</span>  │ <span class="hljs-string">&#x27;foo&#x27;</span>  │
+│    [ <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-string">&#x27;foo&#x27;</span> ]     │    <span class="hljs-string">&#x27;&#x27;</span>     │ <span class="hljs-string">&#x27;foo&#x27;</span>  │   <span class="hljs-string">&#x27;&#x27;</span>   │
+│     [ <span class="hljs-number">0</span>, <span class="hljs-string">&#x27;foo&#x27;</span> ]     │     <span class="hljs-number">0</span>     │ <span class="hljs-string">&#x27;foo&#x27;</span>  │   <span class="hljs-number">0</span>    │
+│    [ <span class="hljs-title class_">NaN</span>, <span class="hljs-string">&#x27;foo&#x27;</span> ]    │    <span class="hljs-title class_">NaN</span>    │ <span class="hljs-string">&#x27;foo&#x27;</span>  │  <span class="hljs-title class_">NaN</span>   │
 └──────────────────────┴───────────┴────────┴────────┘
 </code></pre>
 <p>Just as <code>'' &amp;&amp; &lt;Component /&gt;</code> returns <code>''</code>, the <em>falsey</em> left-hand operator is also returned for <code>NaN &amp;&amp; &lt;Component /&gt;</code> and <code>0 &amp;&amp; &lt;Component /&gt;</code>. The problem is that <code>0</code> and <code>NaN</code> are both <code>'number'</code> types, which are included in the HTML output as visible elements.</p>
 <h4 id="recommendation-1">Recommendation</h4>
 <p>Using <code>prop &amp;&amp; &lt;Component prop={prop}/&gt;</code> is convenient, concise, and works most of the time, but can cause surprises if used without caution. When <code>typeof prop === 'number'</code>, a robust way to conditionally render the component without sacrificing too much brevity would be:</p>
-<pre><code class="language-tsx">prop !== undefined &amp;&amp; prop !== null &amp;&amp; &lt;Component prop={prop} /&gt;;
+<pre class="highlight" tabindex="0"><code class="hljs language-tsx">prop !== <span class="hljs-literal">undefined</span> &amp;&amp; prop !== <span class="hljs-literal">null</span> &amp;&amp; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Component</span> <span class="hljs-attr">prop</span>=<span class="hljs-string">{prop}</span> /&gt;</span></span>;
 </code></pre>
 <h2 id="questions">Questions?</h2>
 <p>Do you have any questions or feedback? Feel free to leave a comment below, or to <a href="/contact/">reach out to me directly</a>.</p>
@@ -410,6 +498,19 @@ getText(&quot;&quot;); // returns &quot;click to edit text&quot;, instead of the
 
 			</div>
 			<aside class="sidebar">
+	<div class="widget-search widget site-search-slot site-search-slot--sidebar">
+		
+		
+<button type="button" class="site-search__trigger site-search__trigger--sidebar" data-search-open aria-haspopup="dialog" aria-controls="site-search-dialog" aria-label="Search">
+	<span class="site-search__icons" aria-hidden="true">
+		<svg class="site-search__icon site-search__icon--text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 5H3"/><path d="M10 12H3"/><path d="M10 19H3"/><circle cx="17" cy="15" r="3"/><path d="m21 19-1.9-1.9"/></svg>
+	</span>
+	<span class="site-search__trigger-label">Search</span>
+	<span class="site-search__shortcut" aria-hidden="true">⌘K</span>
+</button>
+
+	</div>
+
 	<div class="widget-recent widget">
 		<h4 class="widget__title">Recent Posts</h4>
 		<div class="widget__content">
@@ -532,8 +633,34 @@ getText(&quot;&quot;); // returns &quot;click to edit text&quot;, instead of the
 </footer>
 
 	</div>
+	<div class="site-search" data-site-search>
+	<div class="site-search__backdrop" data-search-backdrop hidden>
+		<section class="site-search__dialog" id="site-search-dialog" role="dialog" aria-modal="true" aria-labelledby="site-search-title">
+			<div class="site-search__chrome">
+				<h2 class="site-search__title" id="site-search-title">Search</h2>
+				<button type="button" class="site-search__close" data-search-close aria-label="Close search">
+					<svg class="site-search__close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+				</button>
+			</div>
+			<label class="site-search__field" for="site-search-input">
+				<span class="site-search__input-wrap">
+					<svg class="site-search__magnifier" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+					<input class="site-search__input" id="site-search-input" data-search-input type="text" role="combobox" aria-autocomplete="list" aria-controls="site-search-results" aria-expanded="false" autocomplete="off" spellcheck="false" placeholder="Search all pages..." aria-describedby="site-search-status">
+					<button type="button" class="site-search__clear" data-search-clear hidden aria-label="Clear search">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+					</button>
+				</span>
+			</label>
+			<p class="site-search__status" id="site-search-status" data-search-status role="status" aria-live="polite" hidden></p>
+			<ol class="site-search__results" id="site-search-results" data-search-results role="listbox" aria-label="Search results"></ol>
+		</section>
+	</div>
+</div>
+
 	<script async defer src="/js/menu.js"></script>
 	<script defer src="/js/theme.js"></script>
 	<script async defer src="/js/analytics.js"></script>
+	<script defer src="/js/search-core.js"></script>
+	<script defer src="/js/search.js"></script>
 </body>
 </html>

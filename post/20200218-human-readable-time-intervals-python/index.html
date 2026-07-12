@@ -1,11 +1,38 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en-us">
+<html class="no-js" lang="en-us" data-search-placement="sidebar" data-search-mobile="menu-dropdown" data-search-highlight="red-on-black" data-search-icon="text-search">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Human-readable time intervals in Python - Chris Palmieri</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<script>
+	/* Hide restored open-search chrome ASAP on bfcache Back (before search.js runs). */
+	(function () {
+		window.addEventListener("pageshow", function (event) {
+			if (!event.persisted) return;
+			document.documentElement.classList.add("palmo-bfcache-restore");
+			document.documentElement.classList.remove("has-menu-search-query", "has-search-open");
+			var list = document.querySelector("[data-menu-list]") || document.querySelector(".menu__list");
+			if (list) list.classList.remove("menu__list--active", "menu__list--transition");
+			var btn = document.querySelector(".menu__btn");
+			if (btn) {
+				btn.classList.remove("menu__btn--active");
+				btn.setAttribute("aria-expanded", "false");
+			}
+			var backdrop = document.querySelector("[data-search-backdrop]");
+			if (backdrop) {
+				backdrop.hidden = true;
+				backdrop.setAttribute("hidden", "");
+			}
+			var menuBackdrop = document.querySelector("[data-menu-backdrop]");
+			if (menuBackdrop) {
+				menuBackdrop.hidden = true;
+				menuBackdrop.setAttribute("hidden", "");
+			}
+		}, true);
+	})();
+	</script>
 	<script>
 	(function(){try{
 		var themeKey="palmo-theme", userAtKey="palmo-theme-user-at", systemAtKey="palmo-theme-system-at";
@@ -48,9 +75,12 @@
 	
 	<link rel="preload" href="/fonts/open-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/palette.css">
 	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" href="/css/theme-toggles.css">
 	<link rel="stylesheet" href="/css/custom.css">
+	<link rel="stylesheet" href="/css/highlight.css">
+	<link rel="stylesheet" href="/css/search.css">
 	<link rel="shortcut icon" href="/favicon.ico">
 	
 	<script type="speculationrules">
@@ -115,21 +145,24 @@
 	<div class="container">
 		<div class="header__top">
 			<div class="logo">
-				<a class="logo__link" href="/" title="Chris Palmieri" rel="home">
+				<button type="button" class="logo__link logo__link--search" data-search-open aria-haspopup="dialog" aria-controls="site-search-dialog" aria-label="Search" title="Search">
 					<div class="logo__title">
 						<img src="/img/cp-logo-200.png" style="height:1em" alt=""/>
 						Chris Palmieri
 					</div>
-				</a>
+				</button>
 			</div>
-			<div class="theme-toggle-wrap">
-				
-				<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
-					<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" fill="currentColor" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32">
-  <clipPath id="theme-toggle__classic__cutout-classic">
+			<div class="header__actions">
+				<div class="theme-toggle-wrap theme-toggle-wrap--header">
+					
+					<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
+						
+						<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" fill="currentColor" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32">
+  
+  <clipPath id="theme-toggle-cutout-header">
     <path d="M0-5h30a1 1 0 0 0 9 13v24H0Z"/>
   </clipPath>
-  <g clip-path="url(#theme-toggle__classic__cutout-classic)">
+  <g clip-path="url(#theme-toggle-cutout-header)">
     <circle cx="16" cy="16" r="9.34"/>
     <g stroke="currentColor" stroke-width="1.5">
       <path d="M16 5.5v-4"/>
@@ -143,28 +176,83 @@
     </g>
   </g>
 </svg>
-				</button>
+
+					</button>
+				</div>
 			</div>
 		</div>
-		<nav class="menu">
-	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
-		<span class="menu__btn-title" tabindex="-1">Menu</span>
-	</button>
-	<ul class="menu__list">
+		<nav class="menu" data-site-menu>
+	<div class="menu__toolbar">
+		<button class="menu__btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Open menu" tabindex="0" data-menu-toggle>
+			<span class="menu__btn-title" tabindex="-1">≡</span>
+			<span class="menu__btn-icons" aria-hidden="true">
+				
+				<svg class="menu__btn-icon menu__btn-icon--open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 5H3"/><path d="M10 12H3"/><path d="M10 19H3"/><circle cx="17" cy="15" r="3"/><path d="m21 19-1.9-1.9"/></svg>
+				<svg class="menu__btn-icon menu__btn-icon--close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+			</span>
+		</button>
+		<div class="menu__brand">
+			<button type="button" class="menu__brand-toggle" data-menu-toggle aria-label="Toggle menu">
+				<img class="menu__brand-logo" src="/img/cp-logo-200.png" alt="" height="18" width="18"/>
+				<span class="menu__brand-title">Chris Palmieri</span>
+			</button>
+		</div>
+		<div class="theme-toggle-wrap theme-toggle-wrap--toolbar">
+			<button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
+				
+				<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" fill="currentColor" stroke-linecap="round" class="theme-toggle__classic" viewBox="0 0 32 32">
+  
+  <clipPath id="theme-toggle-cutout-toolbar">
+    <path d="M0-5h30a1 1 0 0 0 9 13v24H0Z"/>
+  </clipPath>
+  <g clip-path="url(#theme-toggle-cutout-toolbar)">
+    <circle cx="16" cy="16" r="9.34"/>
+    <g stroke="currentColor" stroke-width="1.5">
+      <path d="M16 5.5v-4"/>
+      <path d="M16 30.5v-4"/>
+      <path d="M1.5 16h4"/>
+      <path d="M26.5 16h4"/>
+      <path d="m23.4 8.6 2.8-2.8"/>
+      <path d="m5.7 26.3 2.9-2.9"/>
+      <path d="m5.8 5.8 2.8 2.8"/>
+      <path d="m23.4 23.4 2.9 2.9"/>
+    </g>
+  </g>
+</svg>
+
+			</button>
+		</div>
+	</div>
+	<div class="menu__toolbar-spacer" data-menu-toolbar-spacer aria-hidden="true"></div>
+	<button type="button" class="menu__backdrop" data-menu-backdrop hidden aria-label="Close menu"></button>
+	<ul class="menu__list" data-menu-list>
+		<li class="menu__item menu__item--search" data-menu-search>
+			<label class="menu__search-field" for="site-search-input-menu">
+				<span class="menu__search-input-wrap">
+					<svg class="menu__search-magnifier" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+					<input class="menu__search-input" id="site-search-input-menu" data-search-input-menu type="text" autocomplete="off" spellcheck="false" placeholder="Search all pages..." aria-controls="site-search-results-menu" aria-autocomplete="list">
+					<button type="button" class="menu__search-clear" data-search-clear-menu hidden aria-label="Clear search">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+					</button>
+				</span>
+			</label>
+			<p class="menu__search-status" id="site-search-status-menu" data-search-status-menu role="status" aria-live="polite" hidden></p>
+			<ol class="menu__search-results" id="site-search-results-menu" data-search-results-menu role="listbox" aria-label="Search results" hidden></ol>
+		</li>
 		
-		<li class="menu__item menu__item--active">
+		<li class="menu__item menu__item--nav menu__item--active">
 			<a class="menu__link" href="/"><span class="menu__text">Blog</span></a>
 		</li>
 		
-		<li class="menu__item">
+		<li class="menu__item menu__item--nav">
 			<a class="menu__link" href="/about/"><span class="menu__text">About</span></a>
 		</li>
 		
-		<li class="menu__item">
+		<li class="menu__item menu__item--nav">
 			<a class="menu__link" href="/contact/" data-analytics-contact="/contact/"><span class="menu__text">Contact</span></a>
 		</li>
 		
-		<li class="menu__item">
+		<li class="menu__item menu__item--nav">
 			<a class="menu__link" href="/categories/projects/"><span class="menu__text">Projects</span></a>
 		</li>
 		
@@ -221,10 +309,10 @@
 <p>If you are creating a countdown timer however, it may be more useful to have a higher level of granularity, displaying days, hours, minutes and seconds (<code>granularity=4</code>).</p>
 <p>The below script contains two functions: <code>time_breakdown</code>, which handles the unit conversions, and <code>time_breakdown_string</code>, which handles the &quot;human readability&quot; logic:</p>
 <h3 id="semantic-timepy">semantic_time.py</h3>
-<pre><code class="language-python">from math import floor
+<pre class="highlight" tabindex="0"><code class="hljs language-python"><span class="hljs-keyword">from</span> math <span class="hljs-keyword">import</span> floor
 
-def time_breakdown(ms):
- &quot;&quot;&quot;Converts an integer representing number of milliseconds into a dictionary
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">time_breakdown</span>(<span class="hljs-params">ms</span>):
+ <span class="hljs-string">&quot;&quot;&quot;Converts an integer representing number of milliseconds into a dictionary
  representing days, hours, minutes, seconds and milliseconds. Output is
  rounded down to the nearest whole number.
 
@@ -237,27 +325,27 @@ def time_breakdown(ms):
 
  Example usage:
   &gt;&gt;&gt; time_breakdown = time_breakdown(123456789)
-  {'day': 1, 'hr': 10, 'min': 17, 'sec': 36, 'ms': 789}
- &quot;&quot;&quot;
+  {&#x27;day&#x27;: 1, &#x27;hr&#x27;: 10, &#x27;min&#x27;: 17, &#x27;sec&#x27;: 36, &#x27;ms&#x27;: 789}
+ &quot;&quot;&quot;</span>
 
- ms_out = ms % 1000;
- sec = floor((ms % (1000 * 60)) / 1000)
- min = floor((ms % (1000 * 60 * 60)) / 1000 / 60)
- hr = floor((ms % (1000 * 60 * 60 * 24)) / 1000 / 60 / 60)
+ ms_out = ms % <span class="hljs-number">1000</span>;
+ sec = floor((ms % (<span class="hljs-number">1000</span> * <span class="hljs-number">60</span>)) / <span class="hljs-number">1000</span>)
+ <span class="hljs-built_in">min</span> = floor((ms % (<span class="hljs-number">1000</span> * <span class="hljs-number">60</span> * <span class="hljs-number">60</span>)) / <span class="hljs-number">1000</span> / <span class="hljs-number">60</span>)
+ hr = floor((ms % (<span class="hljs-number">1000</span> * <span class="hljs-number">60</span> * <span class="hljs-number">60</span> * <span class="hljs-number">24</span>)) / <span class="hljs-number">1000</span> / <span class="hljs-number">60</span> / <span class="hljs-number">60</span>)
  day = floor(
-  (ms % (1000 * 60 * 60 * 24 * 365)) / 1000 / 60 / 60 / 24
+  (ms % (<span class="hljs-number">1000</span> * <span class="hljs-number">60</span> * <span class="hljs-number">60</span> * <span class="hljs-number">24</span> * <span class="hljs-number">365</span>)) / <span class="hljs-number">1000</span> / <span class="hljs-number">60</span> / <span class="hljs-number">60</span> / <span class="hljs-number">24</span>
  )
 
- return {
-  &quot;day&quot;: day,
-  &quot;hr&quot;: hr,
-  &quot;min&quot;: min,
-  &quot;sec&quot;: sec,
-  &quot;ms&quot;: round(ms_out)
+ <span class="hljs-keyword">return</span> {
+  <span class="hljs-string">&quot;day&quot;</span>: day,
+  <span class="hljs-string">&quot;hr&quot;</span>: hr,
+  <span class="hljs-string">&quot;min&quot;</span>: <span class="hljs-built_in">min</span>,
+  <span class="hljs-string">&quot;sec&quot;</span>: sec,
+  <span class="hljs-string">&quot;ms&quot;</span>: <span class="hljs-built_in">round</span>(ms_out)
  }
 
-def time_breakdown_string(ms, granularity=5):
- &quot;&quot;&quot;Converts an integer representing number of milliseconds into a string that
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">time_breakdown_string</span>(<span class="hljs-params">ms, granularity=<span class="hljs-number">5</span></span>):
+ <span class="hljs-string">&quot;&quot;&quot;Converts an integer representing number of milliseconds into a string that
  uses natural language to represent the time quantity.
 
  Parameters:
@@ -270,104 +358,104 @@ def time_breakdown_string(ms, granularity=5):
  Example usage:
   &gt;&gt;&gt; time_breakdown_string(123456789)
 
-  '1 day 10 hours 17 minutes 36 seconds 789 milliseconds'
+  &#x27;1 day 10 hours 17 minutes 36 seconds 789 milliseconds&#x27;
 
   &gt;&gt;&gt;time_breakdown_string(
   123456789,
   granularity=3)
 
-  '1 day 10 hours 17 minutes'
- &quot;&quot;&quot;
+  &#x27;1 day 10 hours 17 minutes&#x27;
+ &quot;&quot;&quot;</span>
 
  time = time_breakdown(ms)
- time_string = &quot;&quot;
+ time_string = <span class="hljs-string">&quot;&quot;</span>
 
- if time[&quot;day&quot;] != 0:
-  time_string += str(time[&quot;day&quot;]) + &quot; day&quot;
-  if time[&quot;day&quot;] != 1:
-   time_string += &quot;s&quot;
+ <span class="hljs-keyword">if</span> time[<span class="hljs-string">&quot;day&quot;</span>] != <span class="hljs-number">0</span>:
+  time_string += <span class="hljs-built_in">str</span>(time[<span class="hljs-string">&quot;day&quot;</span>]) + <span class="hljs-string">&quot; day&quot;</span>
+  <span class="hljs-keyword">if</span> time[<span class="hljs-string">&quot;day&quot;</span>] != <span class="hljs-number">1</span>:
+   time_string += <span class="hljs-string">&quot;s&quot;</span>
 
- if time[&quot;hr&quot;] != 0:
-  time_string += &quot; &quot; + str(time[&quot;hr&quot;]) + &quot; hour&quot;
-  if time[&quot;hr&quot;] != 1:
-   time_string += &quot;s&quot;
+ <span class="hljs-keyword">if</span> time[<span class="hljs-string">&quot;hr&quot;</span>] != <span class="hljs-number">0</span>:
+  time_string += <span class="hljs-string">&quot; &quot;</span> + <span class="hljs-built_in">str</span>(time[<span class="hljs-string">&quot;hr&quot;</span>]) + <span class="hljs-string">&quot; hour&quot;</span>
+  <span class="hljs-keyword">if</span> time[<span class="hljs-string">&quot;hr&quot;</span>] != <span class="hljs-number">1</span>:
+   time_string += <span class="hljs-string">&quot;s&quot;</span>
 
- if time[&quot;min&quot;] != 0:
-  time_string += &quot; &quot; + str(time[&quot;min&quot;]) + &quot; minute&quot;
-  if time[&quot;min&quot;] != 1:
-   time_string += &quot;s&quot;
+ <span class="hljs-keyword">if</span> time[<span class="hljs-string">&quot;min&quot;</span>] != <span class="hljs-number">0</span>:
+  time_string += <span class="hljs-string">&quot; &quot;</span> + <span class="hljs-built_in">str</span>(time[<span class="hljs-string">&quot;min&quot;</span>]) + <span class="hljs-string">&quot; minute&quot;</span>
+  <span class="hljs-keyword">if</span> time[<span class="hljs-string">&quot;min&quot;</span>] != <span class="hljs-number">1</span>:
+   time_string += <span class="hljs-string">&quot;s&quot;</span>
 
- if time[&quot;sec&quot;] != 0:
-  time_string += &quot; &quot; + str(time[&quot;sec&quot;]) + &quot; second&quot;
-  if time[&quot;sec&quot;] != 1:
-   time_string += &quot;s&quot;
+ <span class="hljs-keyword">if</span> time[<span class="hljs-string">&quot;sec&quot;</span>] != <span class="hljs-number">0</span>:
+  time_string += <span class="hljs-string">&quot; &quot;</span> + <span class="hljs-built_in">str</span>(time[<span class="hljs-string">&quot;sec&quot;</span>]) + <span class="hljs-string">&quot; second&quot;</span>
+  <span class="hljs-keyword">if</span> time[<span class="hljs-string">&quot;sec&quot;</span>] != <span class="hljs-number">1</span>:
+   time_string += <span class="hljs-string">&quot;s&quot;</span>
 
- if time[&quot;ms&quot;] != 0:
-  time_string += &quot; &quot; + str(time[&quot;ms&quot;]) + &quot; millisecond&quot;
-  if time[&quot;ms&quot;] != 1:
-   time_string += &quot;s&quot;
+ <span class="hljs-keyword">if</span> time[<span class="hljs-string">&quot;ms&quot;</span>] != <span class="hljs-number">0</span>:
+  time_string += <span class="hljs-string">&quot; &quot;</span> + <span class="hljs-built_in">str</span>(time[<span class="hljs-string">&quot;ms&quot;</span>]) + <span class="hljs-string">&quot; millisecond&quot;</span>
+  <span class="hljs-keyword">if</span> time[<span class="hljs-string">&quot;ms&quot;</span>] != <span class="hljs-number">1</span>:
+   time_string += <span class="hljs-string">&quot;s&quot;</span>
 
- #filter to specified granularity
- time_string = time_string.strip().split(&quot; &quot;)[:2*granularity]
+ <span class="hljs-comment">#filter to specified granularity</span>
+ time_string = time_string.strip().split(<span class="hljs-string">&quot; &quot;</span>)[:<span class="hljs-number">2</span>*granularity]
 
- return &quot; &quot;.join(time_string)
+ <span class="hljs-keyword">return</span> <span class="hljs-string">&quot; &quot;</span>.join(time_string)
 </code></pre>
 <h3 id="example-implementation">Example implementation</h3>
 <p>To test it out, add the below code at the bottom of <code>semantic_time.py</code>:</p>
-<pre><code class="language-python">def main():
- from datetime import datetime
+<pre class="highlight" tabindex="0"><code class="hljs language-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():
+ <span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime
 
- mercury_orbit_period = 7600608000
- print(f&quot;&quot;&quot;
+ mercury_orbit_period = <span class="hljs-number">7600608000</span>
+ <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;&quot;&quot;
 To orbit the sun, it takes Mercury:
 
- {time_breakdown(mercury_orbit_period)}
- {time_breakdown_string(mercury_orbit_period, 1)}
- {time_breakdown_string(mercury_orbit_period, 2)}
- {time_breakdown_string(mercury_orbit_period, 3)}
- {time_breakdown_string(mercury_orbit_period, 4)}
- &quot;&quot;&quot;)
+ <span class="hljs-subst">{time_breakdown(mercury_orbit_period)}</span>
+ <span class="hljs-subst">{time_breakdown_string(mercury_orbit_period, <span class="hljs-number">1</span>)}</span>
+ <span class="hljs-subst">{time_breakdown_string(mercury_orbit_period, <span class="hljs-number">2</span>)}</span>
+ <span class="hljs-subst">{time_breakdown_string(mercury_orbit_period, <span class="hljs-number">3</span>)}</span>
+ <span class="hljs-subst">{time_breakdown_string(mercury_orbit_period, <span class="hljs-number">4</span>)}</span>
+ &quot;&quot;&quot;</span>)
 
- one_day_minus_one_second = 1*24*60*60*1000 - 1000
- one_day_exactly = 1*24*60*60*1000
- one_day_plus_one_second = 1*24*60*60*1000 + 1000
- one_day_plus_one_minute = 1*24*60*60*1000 + 1000*60
- print(f&quot;&quot;&quot;
-Ignores 'zero' units:
+ one_day_minus_one_second = <span class="hljs-number">1</span>*<span class="hljs-number">24</span>*<span class="hljs-number">60</span>*<span class="hljs-number">60</span>*<span class="hljs-number">1000</span> - <span class="hljs-number">1000</span>
+ one_day_exactly = <span class="hljs-number">1</span>*<span class="hljs-number">24</span>*<span class="hljs-number">60</span>*<span class="hljs-number">60</span>*<span class="hljs-number">1000</span>
+ one_day_plus_one_second = <span class="hljs-number">1</span>*<span class="hljs-number">24</span>*<span class="hljs-number">60</span>*<span class="hljs-number">60</span>*<span class="hljs-number">1000</span> + <span class="hljs-number">1000</span>
+ one_day_plus_one_minute = <span class="hljs-number">1</span>*<span class="hljs-number">24</span>*<span class="hljs-number">60</span>*<span class="hljs-number">60</span>*<span class="hljs-number">1000</span> + <span class="hljs-number">1000</span>*<span class="hljs-number">60</span>
+ <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;&quot;&quot;
+Ignores &#x27;zero&#x27; units:
 
- {time_breakdown(one_day_minus_one_second)}
- {time_breakdown_string(one_day_minus_one_second)}
+ <span class="hljs-subst">{time_breakdown(one_day_minus_one_second)}</span>
+ <span class="hljs-subst">{time_breakdown_string(one_day_minus_one_second)}</span>
 
- {time_breakdown(one_day_exactly)}
- {time_breakdown_string(one_day_exactly)}
+ <span class="hljs-subst">{time_breakdown(one_day_exactly)}</span>
+ <span class="hljs-subst">{time_breakdown_string(one_day_exactly)}</span>
 
- {time_breakdown(one_day_plus_one_second)}
- {time_breakdown_string(one_day_plus_one_second)}
+ <span class="hljs-subst">{time_breakdown(one_day_plus_one_second)}</span>
+ <span class="hljs-subst">{time_breakdown_string(one_day_plus_one_second)}</span>
 
- {time_breakdown(one_day_plus_one_minute)}
- {time_breakdown_string(one_day_plus_one_minute)}
- &quot;&quot;&quot;)
+ <span class="hljs-subst">{time_breakdown(one_day_plus_one_minute)}</span>
+ <span class="hljs-subst">{time_breakdown_string(one_day_plus_one_minute)}</span>
+ &quot;&quot;&quot;</span>)
 
- one_second = 1000
- two_seconds = 2000
- one_minute_one_second = 361000
- two_minute_one_second = 721000
- two_minute_two_second = 722000
- print(f&quot;&quot;&quot;
+ one_second = <span class="hljs-number">1000</span>
+ two_seconds = <span class="hljs-number">2000</span>
+ one_minute_one_second = <span class="hljs-number">361000</span>
+ two_minute_one_second = <span class="hljs-number">721000</span>
+ two_minute_two_second = <span class="hljs-number">722000</span>
+ <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;&quot;&quot;
 Plurality is considered:
 
- {time_breakdown_string(one_second)}
- {time_breakdown_string(two_seconds)}
- {time_breakdown_string(one_minute_one_second)}
- {time_breakdown_string(two_minute_one_second)}
- {time_breakdown_string(two_minute_two_second)}
- &quot;&quot;&quot;)
+ <span class="hljs-subst">{time_breakdown_string(one_second)}</span>
+ <span class="hljs-subst">{time_breakdown_string(two_seconds)}</span>
+ <span class="hljs-subst">{time_breakdown_string(one_minute_one_second)}</span>
+ <span class="hljs-subst">{time_breakdown_string(two_minute_one_second)}</span>
+ <span class="hljs-subst">{time_breakdown_string(two_minute_two_second)}</span>
+ &quot;&quot;&quot;</span>)
 
-if __name__ == &quot;__main__&quot;:
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:
  main()
 </code></pre>
 <h3 id="example-output">Example output</h3>
-<pre><code>To orbit the sun, it takes Mercury:
+<pre class="highlight" tabindex="0"><code class="hljs">To orbit the sun, it takes Mercury:
 
         {'day': 87, 'hr': 23, 'min': 16, 'sec': 48, 'ms': 0}
         87 days
@@ -459,6 +547,19 @@ Plurality is considered:
 
 			</div>
 			<aside class="sidebar">
+	<div class="widget-search widget site-search-slot site-search-slot--sidebar">
+		
+		
+<button type="button" class="site-search__trigger site-search__trigger--sidebar" data-search-open aria-haspopup="dialog" aria-controls="site-search-dialog" aria-label="Search">
+	<span class="site-search__icons" aria-hidden="true">
+		<svg class="site-search__icon site-search__icon--text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 5H3"/><path d="M10 12H3"/><path d="M10 19H3"/><circle cx="17" cy="15" r="3"/><path d="m21 19-1.9-1.9"/></svg>
+	</span>
+	<span class="site-search__trigger-label">Search</span>
+	<span class="site-search__shortcut" aria-hidden="true">⌘K</span>
+</button>
+
+	</div>
+
 	<div class="widget-recent widget">
 		<h4 class="widget__title">Recent Posts</h4>
 		<div class="widget__content">
@@ -581,8 +682,34 @@ Plurality is considered:
 </footer>
 
 	</div>
+	<div class="site-search" data-site-search>
+	<div class="site-search__backdrop" data-search-backdrop hidden>
+		<section class="site-search__dialog" id="site-search-dialog" role="dialog" aria-modal="true" aria-labelledby="site-search-title">
+			<div class="site-search__chrome">
+				<h2 class="site-search__title" id="site-search-title">Search</h2>
+				<button type="button" class="site-search__close" data-search-close aria-label="Close search">
+					<svg class="site-search__close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+				</button>
+			</div>
+			<label class="site-search__field" for="site-search-input">
+				<span class="site-search__input-wrap">
+					<svg class="site-search__magnifier" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+					<input class="site-search__input" id="site-search-input" data-search-input type="text" role="combobox" aria-autocomplete="list" aria-controls="site-search-results" aria-expanded="false" autocomplete="off" spellcheck="false" placeholder="Search all pages..." aria-describedby="site-search-status">
+					<button type="button" class="site-search__clear" data-search-clear hidden aria-label="Clear search">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+					</button>
+				</span>
+			</label>
+			<p class="site-search__status" id="site-search-status" data-search-status role="status" aria-live="polite" hidden></p>
+			<ol class="site-search__results" id="site-search-results" data-search-results role="listbox" aria-label="Search results"></ol>
+		</section>
+	</div>
+</div>
+
 	<script async defer src="/js/menu.js"></script>
 	<script defer src="/js/theme.js"></script>
 	<script async defer src="/js/analytics.js"></script>
+	<script defer src="/js/search-core.js"></script>
+	<script defer src="/js/search.js"></script>
 </body>
 </html>

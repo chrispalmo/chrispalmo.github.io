@@ -1,0 +1,94 @@
+/*
+ * Syntax highlighting — Monokai (matches Hugo/Chroma monokai used pre-migration).
+ * Token colors from highlight.js monokai-sublime; block chrome matched to Hugo #272822.
+ * Build-time highlighting via highlight.js in eleventy.config.js.
+ */
+
+.highlight,
+pre code.hljs {
+	display: block;
+	overflow-x: auto;
+}
+
+.highlight,
+.highlight pre,
+pre:has(> code.hljs),
+code.hljs {
+	background: #272822;
+	color: #f8f8f2;
+	border-color: #1d1e19;
+}
+
+.highlight pre,
+pre:has(> code.hljs) {
+	margin-bottom: 1.25rem;
+}
+
+.highlight pre code,
+pre code.hljs {
+	padding: 0;
+	background: transparent;
+	border: 0;
+	color: inherit;
+}
+
+/* Token colors (monokai-sublime) */
+.hljs-tag,
+.hljs-subst {
+  color: #f8f8f2
+}
+.hljs-strong,
+.hljs-emphasis {
+  color: #a8a8a2
+}
+.hljs-bullet,
+.hljs-quote,
+.hljs-number,
+.hljs-regexp,
+.hljs-literal,
+.hljs-link {
+  color: #ae81ff
+}
+.hljs-code,
+.hljs-title,
+.hljs-section,
+.hljs-selector-class {
+  color: #a6e22e
+}
+.hljs-strong {
+  font-weight: bold
+}
+.hljs-emphasis {
+  font-style: italic
+}
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-name,
+.hljs-attr {
+  color: #f92672
+}
+.hljs-symbol,
+.hljs-attribute {
+  color: #66d9ef
+}
+.hljs-params,
+.hljs-title.class_,
+.hljs-class .hljs-title {
+  color: #f8f8f2
+}
+.hljs-string,
+.hljs-type,
+.hljs-built_in,
+.hljs-selector-id,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-addition,
+.hljs-variable,
+.hljs-template-variable {
+  color: #e6db74
+}
+.hljs-comment,
+.hljs-deletion,
+.hljs-meta {
+  color: #75715e
+}
