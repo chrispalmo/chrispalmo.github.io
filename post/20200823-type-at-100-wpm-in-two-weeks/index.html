@@ -1111,33 +1111,33 @@
 				}
 			]
 		}
-<p>new Chart(document.getElementById(&quot;bubble-chart&quot;), {
-type: 'bubble',
-data: data,
-options: {
-legend: {
-display: false
-},
-title: {
-display: true,
-text: 'Speed vs Accuracy vs log(Relative_Sample_Size)'
-}, scales: {
-yAxes: [{
-scaleLabel: {
-display: true,
-labelString: &quot;Speed (WPM)&quot;
-}
-}],
-xAxes: [{
-scaleLabel: {
-display: true,
-labelString: &quot;Accuracy (%)&quot;
-}
-}]
-}
-}
-});
-</script></p>
+		new Chart(document.getElementById("bubble-chart"), {
+		    type: 'bubble',
+		    data: data,
+		    options: {
+		    	legend: {
+		    		display: false
+		    	},
+		      title: {
+		        display: true,
+		        text: 'Speed vs Accuracy vs log(Relative_Sample_Size)'
+		      }, scales: {
+		        yAxes: [{ 
+		          scaleLabel: {
+		            display: true,
+		            labelString: "Speed (WPM)"
+		          }
+		        }],
+		        xAxes: [{ 
+		          scaleLabel: {
+		            display: true,
+		            labelString: "Accuracy (%)"
+		          }
+		        }]
+		      }
+		    }
+		});
+	</script>
 </div>
 <h2 id="still-scrolling">Still scrolling?</h2>
 <p>Like me, you might need a new hobby. But seems you're still here -- have you ever used any strange tools or hacks you to achieve accelerated learning? Or maybe you have a great idea for a learning tool but don't know how to go about building it, or whether it is even possible. If so I would love to hear from you. Feel free to leave a comment below, or to <a href="/contact/">reach out to me directly</a>.</p>
