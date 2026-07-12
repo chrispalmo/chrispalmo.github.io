@@ -597,6 +597,7 @@ html[data-search-mobile="menu-dropdown"].has-search-open {
 		align-items: center;
 		justify-content: center;
 		gap: .4rem;
+		min-height: 2.75rem;
 		max-width: 100%;
 		overflow: hidden;
 		padding: .35rem;
@@ -604,7 +605,7 @@ html[data-search-mobile="menu-dropdown"].has-search-open {
 		background: transparent;
 		color: var(--palmo-on-chrome);
 		font-weight: 700;
-		font-size: .95rem;
+		font-size: 1.15rem;
 		line-height: 1;
 		letter-spacing: .02em;
 		text-transform: uppercase;
@@ -614,7 +615,7 @@ html[data-search-mobile="menu-dropdown"].has-search-open {
 
 	html[data-search-mobile="menu-dropdown"] .menu__brand-logo {
 		flex: 0 0 auto;
-		height: 1em;
+		height: 1.45rem;
 		width: auto;
 		filter: brightness(1.15);
 	}
@@ -633,6 +634,9 @@ html[data-search-mobile="menu-dropdown"].has-search-open {
 	}
 
 	html[data-search-mobile="menu-dropdown"] .theme-toggle-wrap--toolbar .theme-toggle {
+		width: 2.1rem;
+		height: 2.1rem;
+		font-size: 1.55rem;
 		color: var(--palmo-on-chrome);
 	}
 
