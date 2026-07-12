@@ -58,7 +58,7 @@
 	}
 
 	window.__palmoMenu = {
-		open: function () { setExpanded(true, false); },
+		open: function (immediate) { setExpanded(true, immediate === true); },
 		close: function (immediate) { setExpanded(false, immediate === true); },
 		isOpen: function () {
 			return !!(menuBtn && menuBtn.getAttribute('aria-expanded') === 'true');

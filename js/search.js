@@ -214,7 +214,6 @@
     setResultsNavMode("keyboard");
     activeResult = (nextIndex + links.length) % links.length;
     links.forEach((link, index) => {
-      // Narrow CSS keeps --active visually plain; wide still shows the red focus row.
       link.classList.toggle(current.activeClass, index === activeResult);
       link.parentElement.setAttribute("aria-selected", String(index === activeResult));
     });
@@ -287,7 +286,7 @@
 
       activeSurface = "menu";
       if (menuInput) menuInput.value = query;
-      if (window.__palmoMenu) window.__palmoMenu.open();
+      if (window.__palmoMenu) window.__palmoMenu.open(true);
       document.documentElement.classList.add("has-search-open");
       blockBfcacheWhileSearchOpen();
       syncClearButton(menuInput, menuClear);
@@ -368,8 +367,12 @@
   function focusSearchInput(input) {
     if (!input) return;
     const token = ++focusToken;
+    const menuList = input.closest(".menu__list");
+    // Ensure layout has applied open styles before focusing (visibility/opacity flips).
+    if (menuList) void menuList.offsetHeight;
     input.focus({ preventScroll: true });
     // Re-assert after paint so open animations / layout don't steal focus.
+    // Keep this inside the same turn's follow-ups; avoid setTimeout (iOS drops gesture).
     window.requestAnimationFrame(() => {
       if (token !== focusToken) return;
       if (document.activeElement !== input) input.focus({ preventScroll: true });
@@ -416,7 +419,8 @@
   function openMenuSearch() {
     activeSurface = "menu";
     suppressMenuFocusOpen = false;
-    if (window.__palmoMenu) window.__palmoMenu.open();
+    // Immediate open so the field is focusable in this user-gesture turn (iOS).
+    if (window.__palmoMenu) window.__palmoMenu.open(true);
     document.documentElement.classList.add("has-search-open");
     blockBfcacheWhileSearchOpen();
     syncMenuSearchChrome();
@@ -661,7 +665,7 @@
     menuInput.addEventListener("focus", () => {
       if (suppressMenuFocusOpen) return;
       activeSurface = "menu";
-      if (window.__palmoMenu && !window.__palmoMenu.isOpen()) window.__palmoMenu.open();
+      if (window.__palmoMenu && !window.__palmoMenu.isOpen()) window.__palmoMenu.open(true);
       syncMenuSearchChrome();
       loadIndex().catch(() => {});
     });
@@ -678,7 +682,11 @@
 
   function bindResultPointerClear(resultsEl) {
     if (!resultsEl) return;
-    resultsEl.addEventListener("pointerover", (event) => {
+    // Require real pointer movement. pointerover alone can fire from
+    // scrollIntoView while arrowing, which would wipe keyboard selection.
+    resultsEl.addEventListener("pointermove", (event) => {
+      if (event.pointerType === "touch") return;
+      if (!(event.movementX || event.movementY)) return;
       if (!(event.target instanceof Element)) return;
       if (!event.target.closest("[data-search-result]")) return;
       setResultsNavMode("pointer");
@@ -691,30 +699,32 @@
 
   document.querySelectorAll("[data-menu-toggle]").forEach((menuToggle) => {
     menuToggle.addEventListener("click", () => {
-      window.requestAnimationFrame(() => {
-        if (!(window.__palmoMenu && window.__palmoMenu.isOpen())) {
-          focusToken += 1;
-          suppressMenuFocusOpen = true;
-          if (menuInput) menuInput.value = "";
-          activeSurface = "menu";
-          clearResults();
-          setStatus("");
-          document.documentElement.classList.remove("has-search-open");
-          document.documentElement.classList.remove("has-menu-search-query");
-          activeSurface = "dialog";
-          window.requestAnimationFrame(() => {
-            suppressMenuFocusOpen = false;
-          });
-          return;
-        }
-        document.documentElement.classList.add("has-search-open");
-        blockBfcacheWhileSearchOpen();
-        syncMenuSearchChrome();
-        if (usesMenuDropdown() && menuInput) {
-          focusSearchInput(menuInput);
-          loadIndex().catch(() => {});
-        }
-      });
+      // menu.js is deferred before search.js, so it toggles first in this turn.
+      if (!(window.__palmoMenu && window.__palmoMenu.isOpen())) {
+        focusToken += 1;
+        suppressMenuFocusOpen = true;
+        if (menuInput) menuInput.value = "";
+        activeSurface = "menu";
+        clearResults();
+        setStatus("");
+        document.documentElement.classList.remove("has-search-open");
+        document.documentElement.classList.remove("has-menu-search-query");
+        activeSurface = "dialog";
+        queueMicrotask(() => {
+          suppressMenuFocusOpen = false;
+        });
+        return;
+      }
+      // Snap open without the legacy visibility/scaleY gate so focus works now.
+      if (window.__palmoMenu) window.__palmoMenu.open(true);
+      document.documentElement.classList.add("has-search-open");
+      blockBfcacheWhileSearchOpen();
+      syncMenuSearchChrome();
+      if (menuInput && (usesMenuDropdown() || menuInput.offsetParent !== null)) {
+        activeSurface = "menu";
+        focusSearchInput(menuInput);
+        loadIndex().catch(() => {});
+      }
     });
   });
 

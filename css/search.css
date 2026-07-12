@@ -203,7 +203,8 @@ html.palmo-bfcache-restore .site-search__backdrop {
 	min-height: 2.75rem;
 	padding: .55rem 2.4rem .55rem 2.45rem;
 	font: inherit;
-	font-size: 1rem;
+	/* ≥16px prevents iOS Safari focus zoom (body is 14px). */
+	font-size: 16px;
 	color: var(--sd-text);
 	background: transparent;
 	border: 0;
@@ -634,9 +635,9 @@ html[data-search-mobile="menu-dropdown"].has-search-open {
 	}
 
 	html[data-search-mobile="menu-dropdown"] .theme-toggle-wrap--toolbar .theme-toggle {
-		width: 2.1rem;
-		height: 2.1rem;
-		font-size: 1.55rem;
+		width: 1.9rem;
+		height: 1.9rem;
+		font-size: 1.35rem;
 		color: var(--palmo-on-chrome);
 	}
 
@@ -691,6 +692,28 @@ html[data-search-mobile="menu-dropdown"].has-search-open {
 		max-height: min(70vh, 32rem);
 		overflow: auto;
 		-webkit-overflow-scrolling: touch;
+		/* Override legacy scaleY/visibility gate from style.css (blocks input focus). */
+		visibility: visible;
+		transform: none;
+	}
+
+	/*
+	 * Closed: invisible + non-interactive, but NOT visibility:hidden.
+	 * Hiding via visibility prevents same-turn autofocus (and iOS keyboard).
+	 * Selector must not require a nested .js descendant (html itself has .js).
+	 */
+	html[data-search-mobile="menu-dropdown"] .menu__list:not(.menu__list--active) {
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	html[data-search-mobile="menu-dropdown"] .menu__list--active {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	html[data-search-mobile="menu-dropdown"] .menu__list--transition {
+		transition: opacity .15s ease;
 	}
 
 	/* Same dimmed veil as wide search; click closes the dropdown */
@@ -746,6 +769,8 @@ html[data-search-mobile="menu-dropdown"].has-search-open {
 		min-height: 2.5rem;
 		padding: .45rem 2.2rem .45rem 2.35rem;
 		font: inherit;
+		/* ≥16px prevents iOS Safari focus zoom (body is 14px / font: inherit). */
+		font-size: 16px;
 		color: var(--sd-text);
 		background: transparent;
 		border: 0;
@@ -792,29 +817,7 @@ html[data-search-mobile="menu-dropdown"].has-search-open {
 		color: var(--sd-muted);
 	}
 
-	/* Narrow: no result hover / keyboard / focus highlighting */
-	html[data-search-mobile="menu-dropdown"] .menu__search-result-link:hover,
-	html[data-search-mobile="menu-dropdown"] .menu__search-result-link:focus-visible,
-	html[data-search-mobile="menu-dropdown"] .menu__search-result-link--active {
-		color: var(--sd-text);
-		background: transparent;
-		outline: 0;
-	}
-
-	html[data-search-mobile="menu-dropdown"] .menu__search-result-link:hover .menu__search-result-title,
-	html[data-search-mobile="menu-dropdown"] .menu__search-result-link:focus-visible .menu__search-result-title,
-	html[data-search-mobile="menu-dropdown"] .menu__search-result-link--active .menu__search-result-title {
-		color: var(--sd-heading);
-	}
-
-	html[data-search-mobile="menu-dropdown"] .menu__search-result-link:hover .menu__search-result-type,
-	html[data-search-mobile="menu-dropdown"] .menu__search-result-link:hover .menu__search-result-snippet,
-	html[data-search-mobile="menu-dropdown"] .menu__search-result-link:focus-visible .menu__search-result-type,
-	html[data-search-mobile="menu-dropdown"] .menu__search-result-link:focus-visible .menu__search-result-snippet,
-	html[data-search-mobile="menu-dropdown"] .menu__search-result-link--active .menu__search-result-type,
-	html[data-search-mobile="menu-dropdown"] .menu__search-result-link--active .menu__search-result-snippet {
-		color: var(--sd-muted);
-	}
+	/* Narrow uses the same grey hover/active as wide (pointer-nav gated hover). */
 
 	html[data-search-mobile="menu-dropdown"] .site-search__backdrop {
 		display: none !important;
@@ -846,6 +849,8 @@ html[data-search-mobile="menu-dropdown"].has-search-open {
 		background: var(--sd-surface);
 		transform: none;
 		visibility: visible;
+		opacity: 1;
+		pointer-events: auto;
 	}
 
 	html[data-search-mobile="menu-dropdown"].has-menu-search-query .menu__item--search {
